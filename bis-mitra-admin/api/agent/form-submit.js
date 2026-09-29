@@ -71,6 +71,9 @@ export async function submitPortalForm(payload = {}) {
       consumer_name: payload.consumer_name || 'Rajesh Kumar',
       invoice_number: payload.invoice_number || 'INV-2026-8821',
       complaint_details: payload.complaint_details || 'My new extension board caught fire this morning while charging my phone. I have the store bill. Can you file an official complaint against this brand for me?',
+      owner_session_id: payload.owner_session_id || null,
+      owner_user_id: payload.owner_user_id || null,
+      owner_persona: payload.owner_persona || 'citizen',
     };
 
     try {
@@ -78,8 +81,8 @@ export async function submitPortalForm(payload = {}) {
       return {
         ...pw,
         source: 'playwright-automation',
-        ticket_id: pw.ticket_id || 'CON-GRP-4401',
-        tracking_id: pw.tracking_id || 'CON-GRP-4401',
+        ticket_id: pw.ticket_id,
+        tracking_id: pw.tracking_id || pw.ticket_id,
         message: `I have successfully filled out and dispatched your safety grievance to the enforcement cell. Complaint Ticket ID: ${pw.ticket_id || 'CON-GRP-4401'} has been created. I will automatically track this ticket on your dashboard profile.`,
       };
     } catch (pwErr) {
@@ -87,8 +90,8 @@ export async function submitPortalForm(payload = {}) {
         const api = await fetchClonePost('/api/consumer/grievances', grievanceBody);
         return {
           ok: true,
-          ticket_id: api.ticket_id || 'CON-GRP-4401',
-          tracking_id: api.tracking_id || 'CON-GRP-4401',
+          ticket_id: api.ticket_id,
+          tracking_id: api.tracking_id || api.ticket_id,
           source: 'api-fallback',
           message: api.message || `I have successfully filled out and dispatched your safety grievance to the enforcement cell. Complaint Ticket ID: ${api.ticket_id || 'CON-GRP-4401'} has been created. I will automatically track this ticket on your dashboard profile.`,
         };
@@ -112,6 +115,8 @@ export async function submitPortalForm(payload = {}) {
     lab_report_ref: payload.lab_report_ref,
     is_number: payload.is_number || 'IS 2082:2018',
     product_name: payload.product_name || 'Electric Storage Water Heater',
+    contact_email: payload.contact_email || null,
+    declaration: payload.declaration || null,
     owner_session_id: payload.owner_session_id || null,
     owner_user_id: payload.owner_user_id || null,
     owner_persona: payload.owner_persona || null,
@@ -126,6 +131,8 @@ export async function submitPortalForm(payload = {}) {
     lab_report_ref: body.lab_report_ref,
     factory_name: body.factory_name,
     product_name: body.product_name,
+    status: api.status || 'Submitted',
+    submitted_at: api.submitted_at,
     source: 'api',
     message: `Application submitted. Tracking ID: ${tracking}`,
   };

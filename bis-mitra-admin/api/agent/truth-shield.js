@@ -1,7 +1,8 @@
 /**
- * Truth Shield — anti-hallucination guard for numeric claims.
- * Every engineering number in the draft answer must appear in retrieved sources.
- * Unverified numbers are redacted before the user sees the answer.
+ * Truth Shield — anti-hallucination guard.
+ * Every engineering number and regulatory reference (IS number, record ID, licence, HUID)
+ * in the draft answer must appear in the retrieved sources or the user's question.
+ * Unverified spans are redacted; diagnostics go to `shield` metadata, not the answer text.
  */
 
 const NUM_RE = /(?:Rs\.?\s*)?(?:₹\s*)?(\d+(?:,\d{3})*(?:\.\d+)?)\s*(%|MPa|mpa|kPa|mm|cm|kg|kN|°C|kW|bar|psi|mins?|minutes|hours?|days?|years?|per\s+annum)\b/gi;
@@ -103,28 +104,65 @@ export function applyTruthShield(draftAnswer, { hits = [], probe = null, extraCo
   const uniqueBlocked = [...blocked].sort((a, b) => b.raw.length - a.raw.length);
   for (const b of uniqueBlocked) {
     const escaped = b.raw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    answer = answer.replace(new RegExp(escaped, 'g'), '[UNVERIFIED NUMBER REMOVED]');
+    answer = answer.replace(new RegExp(escaped, 'g'), '[value not in sources]');
   }
 
-  const status = blocked.length === 0 ? 'pass' : (verified.length ? 'partial' : 'fail');
-
-  if (blocked.length) {
-    answer += `\n\n⚠ Truth Shield: blocked ${blocked.length} numeric claim(s) not found in source documents`
-      + ` (${blocked.slice(0, 3).map(b => b.raw).join(', ')}${blocked.length > 3 ? '…' : ''}).`;
-  } else if (verified.length) {
-    answer += `\n\n✓ Truth Shield: ${verified.length} numeric claim(s) verified against sources.`;
+  const refs = checkReferenceClaims(answer, corpus);
+  answer = refs.answer;
+  const blockedTotal = blocked.length + refs.blocked.length;
+  const verifiedTotal = verified.length + refs.verified.length;
+  const status = blockedTotal === 0 ? 'pass' : (verifiedTotal ? 'partial' : 'fail');
+  if (refs.blocked.length) {
+    answer += '\n\n_Some references were removed because they are not in the BIS sources for this answer._';
   }
 
   return {
     answer,
     shield: {
       status,
-      verifiedCount: verified.length,
-      blockedCount: blocked.length,
+      verifiedCount: verifiedTotal,
+      blockedCount: blockedTotal,
       verified: verified.slice(0, 20).map(v => ({ raw: v.raw, unit: v.unit })),
       blocked: blocked.slice(0, 20).map(v => ({ raw: v.raw, unit: v.unit })),
+      references: { verified: refs.verified.slice(0, 20), blocked: refs.blocked.slice(0, 20) },
     },
   };
+}
+
+// Regulatory references the model must never invent: IS numbers, demo/record IDs, licence numbers, HUIDs.
+const REF_RES = [
+  { kind: 'is_number', re: /\bIS\s*(?:DEMO\s*)?\d{1,5}(?:\s*\(\s*Part\s*\d+\s*\))?(?:\s*:\s*\d{4})?(?![\w])/gi },
+  { kind: 'record_id', re: /\b[A-Z]{2,6}-DEMO-[A-Z0-9-]+\b/g },
+  { kind: 'licence', re: /\bCM\/L[\s-]?\d{6,10}\b/gi },
+  { kind: 'huid', re: /\bHUID[\s-]?[A-Z0-9]{6}\b/gi },
+];
+
+const squash = (s) => String(s).toLowerCase().replace(/[\s\-/:()]+/g, '');
+
+/**
+ * Remove regulatory references that do not appear in the evidence corpus (or the user's question).
+ * An IS number cited without an edition year is accepted when the base number is in the corpus.
+ */
+export function checkReferenceClaims(text, corpus) {
+  const hay = squash(corpus);
+  const verified = [];
+  const blocked = [];
+  let answer = String(text || '');
+  for (const { kind, re } of REF_RES) {
+    const found = [...new Set(answer.match(new RegExp(re.source, re.flags)) || [])];
+    for (const ref of found) {
+      const key = squash(ref);
+      const base = kind === 'is_number' ? squash(ref.split(':')[0]) : key;
+      if (hay.includes(key) || (kind === 'is_number' && hay.includes(base))) {
+        verified.push({ kind, raw: ref });
+      } else {
+        blocked.push({ kind, raw: ref });
+        const escaped = ref.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        answer = answer.replace(new RegExp(`\\*{0,2}${escaped}\\*{0,2}`, 'g'), '[reference not in sources]');
+      }
+    }
+  }
+  return { answer, verified, blocked };
 }
 
 export function extractVerifiedFacts(hits = [], limit = 5) {

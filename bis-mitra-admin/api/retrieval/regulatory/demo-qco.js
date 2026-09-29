@@ -1,6 +1,7 @@
 import { enrichChunkFields } from '../source-enrichment.js';
 import { resolvePdfStorageFromHit } from '../source-files.js';
 import { resolvePortalUrl } from '../portal-provenance.js';
+import { extractIdentifiers } from '../identifiers.js';
 
 const CLONE = process.env.CLONE_API || 'http://localhost:4000';
 
@@ -100,10 +101,17 @@ export function buildQcoAuthoritativeChunk(q, query) {
   };
 }
 
+/**
+ * Inject the QCO enforcement fact for the product the user asked about.
+ * An IS number named in the query wins; otherwise only the two best relevance-filtered
+ * chunks that carry an IS number may nominate one, so an unrelated product's QCO never leaks in.
+ */
 export async function attachQcoAuthoritativeSources(chunks, query, isNumbers = []) {
-  const fromQuery = String(query || '').match(/IS\s*[\d\s().A-Z:-]+/gi) || [];
-  const fromChunks = chunks.map((c) => c.is_number).filter(Boolean);
-  const candidates = [...new Set([...fromQuery, ...fromChunks].map((s) => String(s).replace(/\s+/g, ' ').trim()))];
+  const fromQuery = extractIdentifiers(query).isNumbers;
+  const fromChunks = fromQuery.length
+    ? []
+    : chunks.filter((c) => c.retrievalMethod !== 'qco_join' && c.is_number).slice(0, 2).map((c) => c.is_number);
+  const candidates = [...new Set([...isNumbers, ...fromQuery, ...fromChunks].map((s) => String(s).replace(/\s+/g, ' ').trim()))];
 
   let injected = null;
   for (const isn of candidates) {

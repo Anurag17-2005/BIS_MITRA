@@ -3,6 +3,7 @@
  */
 
 import { SCORE_POLICY } from '../retrieval/score-policy.js';
+import { extractIdentifiers } from '../retrieval/identifiers.js';
 
 const META_RE = /^(hi|hello|hey|namaste|thanks|thank\s+you|ok|okay|bye)\b/i;
 const ABOUT_RE = /\b(who\s+are\s+(you|u)|what\s+are\s+(you|u)|what\s+can\s+(you|u)\s+do|what\s+(you|u)\s+can\s+do|how\s+(do|can)\s+(you|u)\s+(answer|work|help)|(?:you|u)r?\s+(name|model|role)|introduce\s+yourself|who\s+(r|are)\s+u|model\s+are\s+(you|u))\b/i;
@@ -62,21 +63,65 @@ Ask something concrete, e.g. “Is bicycle helmet certification mandatory?” or
 /**
  * Keep only hits that are relevant enough to show / feed the LLM.
  */
-export function filterRelevantHits(query, hits, { minScore = SCORE_POLICY.evidenceFloor, max = 5 } = {}) {
-  const qIs = (String(query).match(/IS\s*[\d\s().:]+/gi) || [])
+const STOPWORDS = new Set(`a an the and or but for nor with without from into onto about above below over under of to in on at by as is are was were be been being am
+do does did doing have has had having i me my we our you your he she it its they them their this that these those there here what which who whom whose
+when where why how can could should would will shall may might must want need like please help tell give show get make let know also just only
+any some all each every more most other such than then too very not no yes if so because while till until again further once own same few both
+one two new use used using per via etc kya hai ka ki ke ko se mein aur
+explain describe list find search check tell know understand mean means meaning work works steps step guide guidance about
+simple simply easy brief briefly short detail detailed overview summary summarise summarize words plain
+लिए कौन क्या हैं मुझे मेरे मेरा मेरी कैसे करें करना चाहिए होता होती होगा लागू बताइए बताओ बताएं सकता सकते इसके उसके किस`.split(/\s+/));
+
+/** Domain words that appear in almost every BIS chunk — they cannot prove topical relevance. */
+const GENERIC_DOMAIN = new Set(`bis bureau indian standard standards india certification certificate certified certify licence license licensing
+product products mandatory voluntary required requirement requirements process procedure scheme apply application document documents
+test tests testing information details rule rules detail regarding related qco quality control order orders
+manufacture manufacturer manufacturing manufacturers company business applies apply applicable`.split(/\s+/));
+
+export function queryContentTokens(query, extraTerms = []) {
+  const blob = [query, ...extraTerms].join(' ').toLowerCase();
+  const tokens = blob.match(/[a-z0-9\u0900-\u097f]{3,}/g) || [];
+  return [...new Set(tokens.filter(t => !STOPWORDS.has(t) && !GENERIC_DOMAIN.has(t)))];
+}
+
+function hitBlob(h) {
+  return [
+    h.title, h.section, h.text?.slice(0, 2000), h.textPreview, (h.isNumbers || []).join(' '),
+    h.metadata?.demo_id, h.metadata?.product, h.metadata?.is_number, (h.layman_synonyms || []).join(' '),
+  ].filter(Boolean).join(' ').toLowerCase();
+}
+
+/**
+ * Keep only hits that are relevant enough to show / feed the LLM.
+ * A hit must clear the score floor AND share at least one topical term with the query
+ * (or be a very strong semantic match). No forced fallback — empty is better than wrong.
+ */
+export function filterRelevantHits(query, hits, {
+  minScore = SCORE_POLICY.evidenceFloor,
+  max = 5,
+  expandedTerms = [],
+} = {}) {
+  const qIs = (String(query).match(/IS\s*(?:DEMO\s*)?\d{1,5}/gi) || [])
     .map(s => s.replace(/\s+/g, ' ').toUpperCase());
+  const contentTokens = queryContentTokens(query, expandedTerms);
   const scored = (hits || []).map(h => {
     let boost = 0;
-    const text = `${h.title || ''} ${h.citation?.citation_anchor || ''} ${(h.isNumbers || []).join(' ')}`.toUpperCase();
+    const text = `${h.title || ''} ${h.citation?.citation_anchor || ''} ${(h.isNumbers || []).join(' ')} ${h.metadata?.is_number || ''}`.toUpperCase();
     for (const isn of qIs) {
-      const core = isn.replace(/IS\s*/i, '').split(/[:\s]/)[0];
+      const core = isn.replace(/IS\s*(DEMO\s*)?/i, '').split(/[:\s]/)[0];
       if (core && text.includes(core)) boost += 0.25;
     }
-    return { ...h, _rel: (h.score || 0) + boost };
+    const blob = hitBlob(h);
+    const overlap = contentTokens.filter(t => blob.includes(t)).length;
+    return { ...h, _rel: (h.score || 0) + boost, _overlap: overlap, _isMatch: boost > 0 };
   });
 
   scored.sort((a, b) => b._rel - a._rel);
-  const filtered = scored.filter(h => h._rel >= minScore);
+  // One shared word (e.g. "safety") is not enough when the query names several topical terms.
+  const queryTermCount = queryContentTokens(query).length;
+  const minOverlap = queryTermCount >= 4 ? 2 : 1;
+  const filtered = scored.filter(h => h._rel >= minScore
+    && (h._isMatch || !contentTokens.length || h._overlap >= minOverlap || (h.score || 0) >= SCORE_POLICY.strongEvidence));
   // If query names an IS, prefer hits that mention it
   if (qIs.length) {
     const matched = filtered.filter(h => {
@@ -88,7 +133,7 @@ export function filterRelevantHits(query, hits, { minScore = SCORE_POLICY.eviden
     });
     if (matched.length) return matched.slice(0, max);
   }
-  return (filtered.length ? filtered : scored.slice(0, 2)).slice(0, max);
+  return filtered.slice(0, max);
 }
 
 export function cleanPreview(text, max = 160) {

@@ -48,14 +48,19 @@ export async function fetchApplications() {
   return [...a, ...b].sort((x, y) => String(y.submitted_at || '').localeCompare(String(x.submitted_at || '')));
 }
 
-export async function patchApplicationStatus(referenceId, status, scheme = 'scheme-i') {
+export async function patchApplicationStatus(
+  referenceId,
+  status,
+  scheme = 'scheme-i',
+  changedBy = 'Demo BIS Certification Officer',
+) {
   const path = scheme === 'fmcs'
     ? `/api/fmcs/applications/${encodeURIComponent(referenceId)}`
     : `/api/applications/${encodeURIComponent(referenceId)}`;
   const res = await fetch(`${API}${path}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ status }),
+    body: JSON.stringify({ status, changed_by: changedBy }),
   });
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
@@ -67,5 +72,24 @@ export async function patchApplicationStatus(referenceId, status, scheme = 'sche
 export async function fetchOrgProfile(orgId = 'DEMO_MSME') {
   const res = await fetch(`${API}/api/org/${encodeURIComponent(orgId)}`);
   if (!res.ok) throw new Error('Org profile fetch failed');
+  return res.json();
+}
+
+export async function fetchGrievances() {
+  const res = await fetch(`${API}/api/consumer/grievances`);
+  if (!res.ok) throw new Error('Grievances fetch failed');
+  return res.json();
+}
+
+export async function patchGrievanceStatus(ticketId, status, changedBy = 'Demo BIS Consumer Officer') {
+  const res = await fetch(`${API}/api/consumer/grievances/${encodeURIComponent(ticketId)}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status, changed_by: changedBy, note: `Status set to ${status}` }),
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || 'Complaint status update failed');
+  }
   return res.json();
 }

@@ -15,12 +15,13 @@ export function getPersona(id) {
 
 export const PROFILES = {
   industry: {
-    name: 'Rahul',
-    org: 'Rahul Water Heaters',
+    name: 'Rahul Mehta',
+    org: 'NovaShield Safety Products Pvt. Ltd.',
     city: 'Pune',
-    products: '25L electric storage water heaters',
+    products: 'Industrial safety helmet — Model NSH-1001',
     market: 'Maharashtra',
-    udyam: '',
+    udyam: 'UDYAM-MH-12-0012345',
+    email: 'compliance@novashield.demo',
   },
   foreign_exporter: { name: 'A. Chen', org: 'Northwind Exports', city: '', products: '', country: '', air_name: '' },
   citizen: { name: 'Priya Shah', org: 'General public' },
@@ -43,10 +44,10 @@ export function profileFor(id) {
 
 export const QUICK_BY_PERSONA = {
   industry: [
-    { icon: '📘', label: 'Which standard?', prompt: 'Which BIS standard applies to my 25L electric storage water heater?' },
-    { icon: '✓', label: 'Mandatory?', prompt: 'Is BIS certification mandatory for my electric storage water heater (geyser)?' },
-    { icon: '🗺️', label: 'Certification steps', prompt: 'What is the BIS certification process for my product?' },
-    { icon: '📝', label: 'Apply now', prompt: 'Apply for BIS product certification for my 25L electric storage water heater.' },
+    { icon: '📘', label: 'Helmet compliance', prompt: 'I manufacture industrial safety helmets. What BIS standard applies to my product, is certification mandatory, and what tests and documents do I need?' },
+    { icon: '✓', label: 'Mandatory?', prompt: 'Is certification mandatory for industrial safety helmets under IS DEMO 1001:2026?' },
+    { icon: '🗺️', label: 'Certification steps', prompt: 'What is the BIS certification process for my industrial safety helmet?' },
+    { icon: '📝', label: 'Apply now', prompt: 'I want to apply for certification for my industrial safety helmet. Help me complete and submit the application.' },
     { icon: '▣', label: 'Application status', prompt: 'What is the status of my BIS certification application BIS-APP-CERT-DEMO-001?' },
     { icon: '🧪', label: 'Tests required', prompt: 'What tests do I need to perform for IS 2082 water heater certification?' },
     { icon: '💰', label: 'Fee estimate', prompt: 'Calculate the BIS marking fees for my water heater application.' },

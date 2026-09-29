@@ -2,13 +2,16 @@
  * Extract structured identifiers from user queries.
  */
 
-const IS_RE = /\bIS\s*(?:DEMO\s*)?[\d][\d\s().:A-Z-]*/gi;
+// IS numbers: "IS 2082", "IS 2082:2018", "IS 1786 (Part 2):2008", "IS DEMO 1001:2026" — never trailing words.
+const IS_RE = /\bIS\s*(?:DEMO\s*)?\d{1,5}(?:\s*\(\s*Part\s*\d+\s*\))?(?:\s*:\s*\d{4})?(?![\w])/gi;
 const QCO_RE = /\bQCO[\s-]?(?:DEMO[\s-][\w-]+|[A-Z0-9][\w-]{2,})\b/gi;
 const CML_RE = /\b(?:CM\/L[\s-]?|CML[\s-]?)?(?:DEMO[\s-])?[\d]{6,10}\b/gi;
 const LICENCE_RE = /\b(?:CML|LIC)[\s-]?DEMO[\s-]?[\w-]+/gi;
 const HUID_RE = /\bHUID[\s-]?[A-Z0-9-]{6,20}\b/gi;
 const LAB_RE = /\b(?:LAB|LRS)[\s-]?DEMO[\s-]?[\w-]+/gi;
-const CASE_RE = /\b(?:ENF|CMP|SURV|CON)[\s-]?(?:DEMO|GRP)?[\s-]?[\w-]+/gi;
+// Prefix must be followed by a separator. CON is only valid as CON-GRP.
+// "consumer", "contact", "conformity", and "enforcement" must not match.
+const CASE_RE = /\b(?:ENF|CMP|SURV)[\s-](?:DEMO(?:[\s-][A-Z0-9][\w-]*)?|[A-Z0-9][\w-]*)\b|\bCON[\s-]GRP(?:[\s-][A-Z0-9][\w-]*)?\b/gi;
 const APP_RE = /\b(?:BIS-APP|ISI|LAB-APP|WF)-[\w-]+|\b(?:CERT|CMP)-DEMO[\s-][\w-]+/gi;
 
 export function extractIdentifiers(query) {
@@ -59,8 +62,8 @@ export function connectorForIdentifier(ids) {
   if (ids.caseIds?.some(c => /^SURV/i.test(c))) {
     return { connector: 'surveillance_search', token: ids.caseIds.find(c => /^SURV/i.test(c)) };
   }
-  if (ids.caseIds?.some(c => /^CMP|CON/i.test(c))) {
-    return { connector: 'consumer_complaints_search', token: ids.caseIds[0] };
+  if (ids.caseIds?.some(c => /^(CMP|CON)/i.test(c))) {
+    return { connector: 'consumer_complaints_search', token: ids.caseIds.find(c => /^(CMP|CON)/i.test(c)) };
   }
   if (ids.appIds?.length) return { connector: 'application_search', token: ids.appIds[0] };
   return null;

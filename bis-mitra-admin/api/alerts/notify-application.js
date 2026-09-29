@@ -48,6 +48,9 @@ export async function notifyApplicationStatusChange({
   userId,
   persona,
   product,
+  changedBy,
+  changedAt,
+  recordType,
 } = {}) {
   if (!referenceId || !status || previousStatus === status) {
     return { alerts: [], skipped: true };
@@ -60,12 +63,21 @@ export async function notifyApplicationStatusChange({
     registerApplicationOwner({ referenceId, sessionId: sid, userId: uid, persona: who });
     watchRecord(sid, referenceId, { userId: uid, persona: who });
   }
+  const isComplaint = recordType === 'complaint' || /^CMP-DEMO-/i.test(referenceId);
   const alert = createAlert({
     sessionId: sid || 'unassigned',
     userId: uid,
-    type: 'application_status_changed',
-    title: `Application status changed — ${referenceId}`,
-    message: `${referenceId} status changed from ${previousStatus || 'previous'} to ${status}.`,
+    type: isComplaint ? 'complaint_status_changed' : 'application_status_changed',
+    title: isComplaint
+      ? `Complaint status updated — ${referenceId}`
+      : status === 'Certified'
+        ? `Certification Approved — ${referenceId}`
+        : `Application status changed — ${referenceId}`,
+    message: isComplaint
+      ? `Your complaint ${referenceId} is now **${String(status).replace(/_/g, ' ')}**.`
+      : status === 'Certified'
+        ? `Your certification application ${referenceId} has been certified.`
+        : `${referenceId} status changed from ${previousStatus || 'previous'} to ${status}.`,
     priority: 'high',
     relatedRecordId: referenceId,
     relatedServiceId: 'SVC-CERT-001',
@@ -75,6 +87,8 @@ export async function notifyApplicationStatusChange({
       new_status: status,
       record_id: referenceId,
       product,
+      changed_by: changedBy || 'BIS Certification Officer',
+      changed_at: changedAt || new Date().toISOString(),
     },
   });
   sendWhatsApp(

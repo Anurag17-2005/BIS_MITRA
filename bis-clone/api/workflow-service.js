@@ -26,6 +26,7 @@ function loadForms() {
 
 /** Status lifecycle → next action mapping */
 const NEXT_ACTION_MAP = {
+  'Submitted': 'BIS will begin document verification.',
   'Under Review': 'Await document verification by BIS certification officer.',
   'Query Raised': 'Respond to the query and upload requested documents via eBIS portal.',
   'Granted': 'Download licence certificate and begin ISI marking as per scheme requirements.',
@@ -45,6 +46,8 @@ const NEXT_ACTION_MAP = {
   'OFFICER_ASSIGNED': 'Field officer assigned; sample collection scheduled within 48 hours.',
   'Documents Required': 'Upload missing documents listed in the query notice.',
   'Inspection/Testing': 'Factory inspection or sample testing in progress.',
+  'Testing': 'Product testing is in progress.',
+  'Certified': 'Certification approved. Download the certificate from eBIS.',
   'Active': 'Licence is valid. Plan renewal before validity date.',
   'Active - Renewed': 'Licence renewed and valid. Continue compliance monitoring.',
   'Recognised': 'Laboratory recognition granted. Scope available in recognition letter.',

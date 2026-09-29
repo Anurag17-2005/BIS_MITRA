@@ -24,11 +24,19 @@ export function resolvePersonaMode(mode, query, hits = []) {
 /**
  * Deterministic Everyday Citizen playbook answers (no LLM required for demo).
  */
+/** Canned playbooks may only answer questions about their own topic. */
+const PLAYBOOK_TOPICS = {
+  toys: /\b(toys?|khilon[ae]|IS\s*9873)\b|खिलौन/i,
+  jargon: /\b(dielectric|2000\s*v|high[-\s]?voltage|insulation\s+test|jargon|technical\s+term)\b/i,
+  dispute: /\b(dispute|merchant|shopkeeper|refund|leverage|legal)\b/i,
+};
+
 export function formatCitizenPlaybook(toolName, data, query = '') {
   if (!toolName || !data) return null;
   const d = data.data || data;
 
   if (toolName === 'search_knowledge_base') {
+    if (!PLAYBOOK_TOPICS.toys.test(query)) return null;
     const rows = Array.isArray(d.catalog) ? d.catalog : (d.catalog?.results || []);
     const part3 = rows.find(r => /part\s*3|migration/i.test(r.part || r.title || '')) || rows[rows.length - 1];
     const limits = part3?.chemical_limits || part3?.migration_limits
@@ -47,15 +55,15 @@ export function formatCitizenPlaybook(toolName, data, query = '') {
 
   if (toolName === 'grievance_status' || (toolName === 'check_system_freshness' && d.grievance)) {
     const g = d.record || d.grievance || (d.results || [])[0];
-    if (!g) return null;
-    return `📋 **Complaint tracker — ${g.ticket_id || 'CON-GRP-4401'}**\n\n`
-      + `Status: **${(g.status || 'OFFICER_ASSIGNED').replace(/_/g, ' ')}**\n`
-      + `Action: ${g.action || 'Surprise sample collection ordered'}\n`
-      + (g.officer_notes ? `Officer note: ${g.officer_notes}\n` : '')
-      + `\nYes — enforcement has taken action on your extension-board complaint.`;
+    if (!g?.ticket_id || !g.status) return null;
+    return `📋 **Complaint tracker — ${g.ticket_id}**\n\n`
+      + `Status: **${g.status.replace(/_/g, ' ')}**\n`
+      + (g.action ? `Action: ${g.action}\n` : '')
+      + (g.officer_notes ? `Officer note: ${g.officer_notes}\n` : '');
   }
 
   if (toolName === 'translate_technical_jargon' || toolName === 'expand_layman_terms') {
+    if (!PLAYBOOK_TOPICS.jargon.test(query)) return null;
     const row = (d.results || [])[0];
     const plain = row?.formal_terms || row?.notes
       || 'Shock-proof safety barrier — the insulation prevents dangerous electrical current from leaking to the outer metal casing if internal wiring fails.';
@@ -66,6 +74,7 @@ export function formatCitizenPlaybook(toolName, data, query = '') {
   }
 
   if (toolName === 'get_dispute_leverage') {
+    if (!PLAYBOOK_TOPICS.dispute.test(query)) return null;
     const text = d.dispute_leverage_text || d.agent_answer
       || 'Under Ministry QCO Gazetted Order **G.S.R. 182(E)**, selling an uncertified geyser under IS 2082 is a criminal offense. Show the merchant this citation under **Section 16 & 17 of the BIS Act 2016**.';
     return `⚖️ **Legal leverage for your dispute**\n\n${text}`;
@@ -224,8 +233,23 @@ export function formatEnforcementPlaybook(toolName, data, query = '') {
   return null;
 }
 
+/** A write-tool playbook may only report success when the tool returned the record it created. */
+const WRITE_RESULT_KEYS = {
+  submit_portal_form: ['ticket_id', 'tracking_id', 'reference_id', 'record_id'],
+  trigger_hazard_alert: ['hazard_id'],
+  report_hallmark_violation: ['ticket_id'],
+  log_test_certificate: ['cert_id', 'registry_tracking'],
+  initialize_cross_testing: ['batch_id'],
+  log_raid_evidence: ['evidence_id'],
+  execute_emergency_seal: ['order_id'],
+};
+
 /** Unified deterministic playbook — citizen, gold, lab, academic, enforcement */
 export function formatPersonaPlaybook(toolName, data, query = '') {
+  const d = data?.data || data;
+  if (!d || d.awaiting_confirmation || d.blocked) return null;
+  const resultKeys = WRITE_RESULT_KEYS[toolName];
+  if (resultKeys && !resultKeys.some((k) => d[k])) return null;
   return formatCitizenPlaybook(toolName, data, query)
     || formatGoldPlaybook(toolName, data, query)
     || formatLabPlaybook(toolName, data, query)

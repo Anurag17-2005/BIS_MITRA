@@ -24,11 +24,14 @@ import { applyTruthShield, extractVerifiedFacts } from './truth-shield.js';
 import { shouldRunLiveProbe, runLivePlaywrightProbe } from './live-probe.js';
 import { resolvePersonaMode, formatForPersona, formatPersonaPlaybook } from './persona.js';
 import { composeWithLlm, llmConfigured, llmProvider } from './llm.js';
+import { enrichProofPanel, mergeProofPanel } from './proof-panels.js';
 import {
   wantsApplication,
   wantsCertApplication,
   CERT_PERSONAS,
   handleCertificationTurn,
+  handleComplaintTurn,
+  wantsComplaintFiling,
   buildConfirmTable,
   confirmAnswer,
   rememberFacts,
@@ -43,7 +46,11 @@ import {
   loadSessionContext,
   persistChatTurn,
   getRecentConversation,
+  getContext,
+  updateContext,
 } from '../context/context-service.js';
+import { WRITE_TOOLS } from './tools.js';
+import { TRANSACTIONAL_INTENTS } from './router/intents.js';
 import { scanSessionAlerts } from '../alerts/alert-engine.js';
 import { getUnreadCount } from '../alerts/alert-store.js';
 import { notifyApplicationSubmitted } from '../alerts/notify-application.js';
@@ -91,6 +98,7 @@ const LIVE_PROBE_PATTERNS = [
   { re: /\b(near\s+(Pune|Mumbai|Delhi|Bengaluru)|shortest\s+queue|waiting\s+queue|send\s+my\s+sample)/i, tool: 'suggest_testing_labs' },
   { re: /\b(launch\s+on\s+amazon|legally\s+mandatory|voluntary|break\s+the\s+law)/i, tool: 'check_qco_enforcement' },
   { re: /\b(my\s+licen[cs]e|org\s+profile|submission\s+tracker|DEMO_MSME)/i, tool: 'get_user_profile' },
+  { re: /\bindustrial\s+safety\s+helmets?\b/i, tool: 'search_standards' },
   { re: /\b(IS\s*DEMO|STD-DEMO)/i, tool: 'search_standards' },
   { re: /\b(IS\s*\d+|standard\s+for|find\s+standard|search\s+standard)/i, tool: 'search_standards' },
   { re: /\b(marking\s+fee|licence\s+fee|annual\s+fee|kharcha)/i, tool: 'search_marking_fees' },
@@ -98,7 +106,7 @@ const LIVE_PROBE_PATTERNS = [
   { re: /\b(application\s+status|BIS-APP-|ISI-)/i, tool: 'search_applications' },
   { re: /\b(hallmark|AHC|assaying|gold\s+ring|shudhata)/i, tool: 'search_hallmarking_centres' },
   { re: /\b(LRS|testing\s+lab\b)/i, tool: 'search_labs' },
-  { re: /\b(complaint|consumer\s+guidance|verify\s+isi)/i, tool: 'search_consumer_guidance' },
+  { re: /\b(consumer\s+guidance|verify\s+isi)\b/i, tool: 'search_consumer_guidance' },
   { re: /\b(QCO|quality\s+control\s+order|gazette)/i, tool: 'search_qco_orders' },
   { re: /\b(SIT|STI|testing\s+machinery|factory\s+floor|factory\s+test|inspection\s+and\s+testing)/i, tool: 'search_sit_manuals' },
   { re: /\b(geyser|milk\s+packet|kharcha|nakli|shudhata|built\s+a\s+home)/i, tool: 'expand_layman_terms' },
@@ -124,10 +132,32 @@ function collectIsFromHits(hits) {
   for (const h of hits) {
     for (const isn of h.isNumbers || []) out.add(isn);
     const m = (h.metadata?.is_number || h.citation?.citation_anchor || '');
-    const found = String(m).match(/IS\s*[\d\s().:]+/i);
+    const found = String(m).match(/IS\s*(?:DEMO\s*)?\d[\d\s().:]*/i);
     if (found) out.add(found[0].trim());
   }
   return [...out];
+}
+
+/**
+ * Enforcement facts from the authoritative QCO line. Registry fields are kept only when they
+ * describe the same standard — never mix two products into one enforcement record.
+ */
+function authoritativeEnforcement(authLine, registry) {
+  const field = (label) => authLine.match(new RegExp(`${label}:\\s*([^|]+)`, 'i'))?.[1]?.trim() || null;
+  const isNumber = authLine.match(/IS\s*(?:DEMO\s*)?\d{1,5}(?::\d{4})?/i)?.[0] || null;
+  const squash = (s) => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const sameStandard = registry?.is_number && isNumber
+    && squash(registry.is_number).startsWith(squash(isNumber.split(':')[0]));
+  return {
+    ...(sameStandard ? registry : {}),
+    enforcement_status: field('Status') || 'MANDATORY',
+    is_number: isNumber || registry?.is_number || null,
+    scheme: field('Scheme') || (sameStandard ? registry.scheme : null),
+    effective_date: field('Effective') || (sameStandard ? registry.effective_date : null),
+    notifying_gazette_id: authLine.match(/QCO[\s-]*DEMO[\s-]*\d+/i)?.[0] || (sameStandard ? registry.notifying_gazette_id : null),
+    legal_caveat: authLine,
+    authoritative: authLine,
+  };
 }
 
 function chunksToHits(chunks) {
@@ -266,6 +296,25 @@ function sourcesFromProbe(probe, toolName) {
   }
   const portalUrl = resolvePortalUrl({ source_type: 'compulsory_portal' });
 
+  if (tool === 'search_standards') {
+    return results.slice(0, 5).map((r, i) => ({
+      score: 0.96 - i * 0.02,
+      title: `${r.is_number || 'Indian Standard'} — ${r.title || 'Standard record'}`,
+      sourceUrl: `${BIS}/regulatory-hub`,
+      portalUrl: `${BIS}/regulatory-hub`,
+      textPreview: r.description || `${r.status || 'Active'} · ${r.mandatory_voluntary || 'See applicability'}`,
+      label: r.demo_id || r.is_number || null,
+      evidence: [r.certification_applicability, r.qco_reference].filter(Boolean),
+      storage_uri: r.pdf_path
+        ? `knowledge/pdfs/${r.pdf_path}`
+        : (r.source_file ? `knowledge/pdfs/demo/${r.source_file}` : null),
+      source_file: r.source_file || null,
+      source_reference: r.source_reference || null,
+      demo_id: r.demo_id || null,
+      source_type: 'bis_api',
+    }));
+  }
+
   if (tool === 'search_compulsory_products') {
     return results.slice(0, 5).map((r) => ({
       score: 0.94,
@@ -359,7 +408,18 @@ function buildUiSources(hits, retrievalSources, probe, toolName) {
   ]);
 }
 
-function buildCapabilityPanel(router, probe, retrieval) {
+function probePayloadUiMode(router, probe, queryText) {
+  const extra = enrichProofPanel(queryText, probe, probe?.tool || router.tool);
+  return extra?.uiMode || router.uiMode;
+}
+
+function argsRunIdFromQuery(q) {
+  const explicit = String(q || '').match(/(?:run[\s_-]?id|evidence[\s_-]?id)[\s:=]+([A-Z0-9-]+)/i)?.[1];
+  if (explicit) return explicit;
+  return `EVD-PA10-${Date.now().toString().slice(-8)}`;
+}
+
+function buildCapabilityPanel(router, probe, retrieval, query = '') {
   const base = {
     uiMode: router.uiMode,
     intent: router.intent,
@@ -368,22 +428,22 @@ function buildCapabilityPanel(router, probe, retrieval) {
   };
   if (router.uiMode === 'verification' && probe?.data) {
     const d = probe.data;
-    return {
+    return mergeProofPanel({
       ...base,
       ruleId: d.rule_id,
       status: d.outcome || d.status || (d.found ? 'FOUND' : 'not_found'),
       evidence: d.evidence || d,
       source: d.source || probe.source || 'rules_engine',
-    };
+    }, enrichProofPanel(query, probe, probe?.tool));
   }
   if (router.uiMode === 'calculation' && probe?.data) {
-    return {
+    return mergeProofPanel({
       ...base,
       inputs: probe.data.inputs || probe.data,
       result: probe.data.total_inr || probe.data.compensation_inr || probe.data.amount || probe.data,
       formula: probe.data.formula || probe.data.note,
       source: probe.source || 'clone_rules',
-    };
+    }, enrichProofPanel(query, probe, probe?.tool));
   }
   if (router.uiMode === 'alert' && probe?.data) {
     const alerts = probe.data.alerts || probe.data.results || [];
@@ -391,17 +451,17 @@ function buildCapabilityPanel(router, probe, retrieval) {
   }
   if (router.uiMode === 'comparison' && probe?.data) {
     const d = probe.data;
-    return {
+    return mergeProofPanel({
       ...base,
       ruleId: d.rule_id,
       comparison: d.evidence || d,
       outcome: d.outcome,
       source: d.source || 'rules_engine',
-    };
+    }, enrichProofPanel(query, probe, probe?.tool));
   }
   if (router.uiMode === 'workflow' && probe?.data) {
     const d = probe.data;
-    return {
+    return mergeProofPanel({
       ...base,
       status: d.current_status || d.status,
       next_action: d.next_action,
@@ -411,19 +471,62 @@ function buildCapabilityPanel(router, probe, retrieval) {
       service_name: d.service_name,
       required_documents: d.required_documents,
       steps: d.steps || d.lifecycle_states,
+      status_history: d.status_history || [],
       evidence: d.evidence_refs || d.form,
       source: d.source || 'ebis_workflow',
+    }, enrichProofPanel(query, probe, probe?.tool));
+  }
+  const standardRows = probe?.tool === 'search_standards' ? probe?.data?.results : null;
+  const helmet = Array.isArray(standardRows)
+    ? standardRows.find((row) => row.demo_id === 'STD-DEMO-001'
+      || /industrial safety helmet/i.test(`${row.title || ''} ${row.description || ''}`))
+    : null;
+  if (helmet) {
+    const description = String(helmet.description || '');
+    const section = (label) => {
+      const match = description.match(new RegExp(`${label}:\\s*([\\s\\S]*?)(?=\\n\\n[A-Z][^:]+:|$)`, 'i'));
+      return match?.[1]?.split(';').map((item) => item.trim()).filter(Boolean) || [];
+    };
+    return {
+      ...base,
+      compliance: {
+        product_category: 'Industrial Safety Helmet',
+        standard_number: helmet.is_number,
+        status: helmet.status || 'Active',
+        applicability: helmet.certification_applicability || helmet.mandatory_voluntary,
+        qco_reference: helmet.qco_reference || null,
+        requirements: section('Key requirements'),
+        tests: section('Testing requirements'),
+        documents: section('Documentation required'),
+        source: helmet.source_reference || helmet.demo_id || 'STD-DEMO-001',
+        demo_notice: 'Synthetic BIS MITRA demonstration record — not an official BIS standard.',
+      },
+      action: {
+        id: 'start-certification',
+        label: 'Start Certification',
+        prompt: `I want to apply for certification for my industrial safety helmet under ${helmet.is_number}.`,
+      },
+      retrieval_type: retrieval?.retrieval_type,
     };
   }
   if (retrieval) {
-    return {
+    return mergeProofPanel({
       ...base,
       retrieval_type: retrieval.retrieval_type,
       confidence: retrieval.confidence,
       insufficient_evidence: retrieval.insufficient_evidence,
-    };
+    }, enrichProofPanel(query, probe, probe?.tool));
   }
-  return base;
+  return mergeProofPanel(base, enrichProofPanel(query, probe, probe?.tool));
+}
+
+/** Advisory next-step button from the model. It only pre-fills a chat prompt; nothing executes. */
+function withSuggestedAction(panel, cta) {
+  if (panel.action || !cta?.label || !cta?.prompt) return panel;
+  return {
+    ...panel,
+    action: { id: 'suggested', label: cta.label.slice(0, 40), prompt: cta.prompt.slice(0, 240), advisory: true },
+  };
 }
 
 function formatAlertListAnswer(data) {
@@ -492,6 +595,84 @@ export async function agentChat(message, {
     userProfile: { ...(userProfile || {}), ...profilePatch, ...(sessionContext?.userInfo || {}) },
   };
 
+  const pending = storageKey ? getContext(storageKey)?.pendingAction : null;
+  if (pending?.tool && WRITE_TOOLS[pending.tool]) {
+    const text = message.trim();
+    const confirmed = confirmSubmit || /^(confirm|yes|proceed|go ahead|हाँ|हां|पुष्टि)\b/i.test(text);
+    const cancelled = /^(cancel|no|stop|never mind|रद्द)\b/i.test(text);
+    if (confirmed || cancelled) {
+      updateContext(storageKey, { pendingAction: null }, { userId, persona: userPersona });
+      let answer;
+      let probe = null;
+      if (confirmed) {
+        probe = await executeAgentTool(pending.tool, { ...pending.args, confirm: true });
+        answer = formatPersonaPlaybook(pending.tool, probe?.data, pending.args?.query || text)
+          || probe?.data?.message
+          || `Done — ${WRITE_TOOLS[pending.tool]}.`;
+      } else {
+        answer = 'Okay, I have not done anything. The action was cancelled.';
+      }
+      const payload = {
+        clusterId: cluster,
+        query: text,
+        answer,
+        sources: [],
+        personaMode: userPersona || 'citizen',
+        uiMode: 'chat',
+        panel: { status: confirmed ? 'Completed' : 'Cancelled', action: pending.tool, result: probe?.data || null },
+        probe: probe ? { tool: pending.tool, query: pending.args?.query } : null,
+        router: { intent: 'task', uiMode: 'chat', tool: pending.tool },
+        llm: { used: false, configured: llmConfigured(), skipped: 'deterministic_action' },
+        answered_at: new Date().toISOString(),
+      };
+      persistChatTurn(storageKey, { userMessage: text, assistantResult: payload, router: payload.router, userId, persona: userPersona });
+      return payload;
+    }
+    updateContext(storageKey, { pendingAction: null }, { userId, persona: userPersona });
+  }
+
+  const complaintCandidate = wantsComplaintFiling(message)
+    || (sessionContext?.currentTask === 'complaint_collect');
+  if (complaintCandidate && sessionContext?.currentTask !== 'certification_collect') {
+    const complaint = await handleComplaintTurn({
+      personaId: userPersona,
+      message,
+      sessionId: storageKey || sessionId,
+      portalSessionId: sessionId,
+      userId,
+      language,
+      confirmSubmit,
+      confirmFields,
+    });
+    if (complaint.handled) {
+      const panel = {
+        confirmTable: complaint.table,
+        status: complaint.submitted ? 'Submitted' : (complaint.table ? 'Awaiting confirmation' : 'Collecting'),
+        record_id: complaint.submitted?.ticket_id || complaint.submitted?.tracking_id || null,
+      };
+      persistChatTurn(storageKey || sessionId, {
+        userMessage: message,
+        assistantResult: { answer: complaint.answer, uiMode: complaint.uiMode, panel },
+        router: { intent: 'task', uiMode: complaint.uiMode, serviceId: 'SVC-GRIEV-001' },
+        userId,
+        persona: userPersona,
+      });
+      return {
+        clusterId: cluster,
+        query: message.trim(),
+        answer: complaint.answer,
+        sources: [],
+        personaMode: userPersona || 'citizen',
+        uiMode: complaint.uiMode,
+        panel,
+        profilePatch,
+        router: { intent: 'task', uiMode: complaint.uiMode, tool: 'file_consumer_complaint', serviceId: 'SVC-GRIEV-001' },
+        llm: { used: false, configured: llmConfigured(), skipped: 'deterministic_workflow' },
+        answered_at: new Date().toISOString(),
+      };
+    }
+  }
+
   if (CERT_PERSONAS.has(userPersona) && (
     confirmSubmit
     || wantsCertApplication(message)
@@ -517,6 +698,7 @@ export async function agentChat(message, {
           userId,
           persona: userPersona,
           product: intake.facts?.product,
+          status: intake.submitted.status || 'Submitted',
         });
       }
       persistChatTurn(storageKey || sessionId, {
@@ -639,7 +821,7 @@ export async function agentChat(message, {
       },
       uiMode: 'alert',
       capability: router.capability,
-      panel: buildCapabilityPanel(router, probe, null),
+      panel: buildCapabilityPanel(router, probe, null, query),
       retrievalStage: null,
       mode: `intent:${router.intent}+user_alerts`,
       answered_at: new Date().toISOString(),
@@ -716,7 +898,7 @@ export async function agentChat(message, {
       },
       uiMode: router.uiMode,
       capability: router.capability,
-      panel: buildCapabilityPanel(router, probe, null),
+      panel: buildCapabilityPanel(router, probe, null, query),
       retrievalStage: null,
       mode: [
         llmMeta.used ? `llm:${llmMeta.provider}` : 'template',
@@ -740,7 +922,10 @@ export async function agentChat(message, {
   }
 
   // eBIS Workflow engine — probe tools, no RAG
-  if (router.useWorkflowEngine || (!router.useRag && router.useProbe && !router.useRulesEngine && router.uiMode === 'workflow')) {
+  if (
+    (router.useWorkflowEngine || (!router.useRag && router.useProbe && !router.useRulesEngine && router.uiMode === 'workflow'))
+    && !WRITE_TOOLS[router.tool]
+  ) {
     const extracted = extractWorkflowContext(prior);
     const wfCtx = {
       ...extracted,
@@ -820,7 +1005,7 @@ export async function agentChat(message, {
       },
       uiMode: router.uiMode,
       capability: router.capability,
-      panel: buildCapabilityPanel(router, probe, null),
+      panel: buildCapabilityPanel(router, probe, null, query),
       retrievalStage: null,
       mode: [
         llmMeta.used ? `llm:${llmMeta.provider}` : 'template',
@@ -842,6 +1027,121 @@ export async function agentChat(message, {
       await scanSessionAlerts(sessionId, { userId });
     }
     return workflowPayload;
+  }
+
+  // Clone probe tools without RAG (registry, HUID, revision diff, FMCS lookup, etc.)
+  if (!router.useRag && router.useProbe && router.tool && !router.useWorkflowEngine && !router.useRulesEngine) {
+    let probe = null;
+    try {
+      probe = await executeAgentTool(router.tool, { query, clusterId: cluster });
+    } catch {
+      probe = { tool: router.tool, data: { query, _offline: true }, source: 'fallback' };
+    }
+    if (probe?.data?.awaiting_confirmation && probe.data.action && WRITE_TOOLS[probe.data.action] && storageKey) {
+      const caseId = query.match(/ENF-DEMO-\d+/i)?.[0] || 'ENF-DEMO-001';
+      const runId = argsRunIdFromQuery(query);
+      updateContext(storageKey, {
+        pendingAction: {
+          tool: probe.data.action,
+          args: { query, case_id: caseId, run_id: runId },
+          requestedAt: new Date().toISOString(),
+        },
+      }, { userId, persona: userPersona });
+      const evidenceTable = probe.data.action === 'log_raid_evidence'
+        ? {
+            kind: 'evidence',
+            columns: ['Case ID', 'Evidence', 'Officer'],
+            rows: [[caseId, 'Sealed sample reference and inspection photographs', 'FIELD-OFFICER-01']],
+            missing: [],
+            fields: { case_id: caseId, run_id: runId, product_description: 'Sealed sample and inspection photographs' },
+          }
+        : null;
+      const answer = language === 'hi'
+        ? `मैं यह कार्य कर सकता हूँ: ${WRITE_TOOLS[probe.data.action]}। आगे बढ़ने के लिए “confirm” लिखें, या “cancel”।`
+        : `I can do this for you: **${WRITE_TOOLS[probe.data.action]}**.\n\nNothing has been done yet. Reply **confirm** to proceed or **cancel** to stop.`;
+      return {
+        clusterId: cluster,
+        query,
+        answer,
+        sources: [],
+        personaMode: persona,
+        uiMode: 'confirm',
+        panel: { status: 'Awaiting confirmation', action: probe.data.action, confirmTable: evidenceTable },
+        probe: { tool: probe.data.action, query },
+        router: { intent: 'task', uiMode: 'confirm', tool: probe.data.action },
+        llm: { used: false, configured: llmConfigured(), skipped: 'awaiting_confirmation' },
+        answered_at: new Date().toISOString(),
+      };
+    }
+    let draft = formatPersonaPlaybook(router.tool, probe?.data, query)
+      || probe?.data?.message
+      || 'Verified details are shown in the panel below.';
+    let llmMeta = { used: false, provider: llmProvider(), configured: llmConfigured() };
+    const llmResult = await composeWithLlm({
+      query,
+      hits: [],
+      intent: router.intent,
+      persona,
+      history: prior,
+      ...llmExtras,
+      enforcement: null,
+      probe: { tool: router.tool, data: probe?.data },
+      live: null,
+    });
+    if (llmResult?.text) {
+      draft = llmResult.text;
+      llmMeta = { used: true, provider: llmResult.provider, model: llmResult.model || null, configured: true };
+    } else if (llmResult?.error) {
+      llmMeta.error = llmResult.error;
+    }
+    const probePayload = {
+      clusterId: cluster,
+      query,
+      answer: draft,
+      sources: sourcesFromProbe(probe, router.tool),
+      enforcement: null,
+      expandedTerms: [],
+      personaMode: persona,
+      truthShield: { status: 'skip', reason: 'probe_no_rag' },
+      verifiedFacts: [],
+      hybrid: false,
+      llm: llmMeta,
+      probe: { tool: router.tool, query },
+      liveProbe: null,
+      intent: router.intent,
+      router: {
+        intent: router.intent,
+        capability: router.capability,
+        tool: router.tool,
+        dataSource: router.dataSource,
+        uiMode: router.uiMode,
+        confidence: router.confidence,
+        isFollowUp: router.isFollowUp,
+        classification: router.classification,
+      },
+      uiMode: probePayloadUiMode(router, probe, query),
+      capability: router.capability,
+      panel: buildCapabilityPanel(router, probe, null, query),
+      retrievalStage: null,
+      mode: [
+        llmMeta.used ? `llm:${llmMeta.provider}` : 'template',
+        `intent:${router.intent}`,
+        `probe:${router.tool}`,
+        'no-rag',
+        `persona:${persona}`,
+      ].join('+'),
+      answered_at: new Date().toISOString(),
+    };
+    if (sessionId) {
+      persistChatTurn(storageKey || sessionId, {
+        userMessage: message.trim(),
+        assistantResult: probePayload,
+        router,
+        userId,
+        persona: userPersona,
+      });
+    }
+    return probePayload;
   }
 
   // Meta / greeting — no vector search
@@ -889,7 +1189,7 @@ export async function agentChat(message, {
       router,
       uiMode: router.uiMode,
       capability: router.capability,
-      panel: buildCapabilityPanel(router, null, null),
+      panel: buildCapabilityPanel(router, null, null, query),
       retrievalStage: null,
       mode: [
         llmMeta.used ? `llm:${llmMeta.provider}` : 'template',
@@ -915,11 +1215,15 @@ export async function agentChat(message, {
     clusterId: cluster,
     topK,
     history: prior,
-    contextEntities: router.contextEntities,
+    // Carry prior IS/QCO/CML only for genuine follow-ups ("what about it?"), never into a new topic.
+    contextEntities: router.isFollowUp ? router.contextEntities : {},
   });
 
   let probe = null;
-  const probeHint = pickLiveProbe(query);
+  // Registry probe hints may refine knowledge lookups, but never override a transactional route.
+  const skipLiveProbe = TRANSACTIONAL_INTENTS.has(router.intent)
+    || (router.classification === 'rules' && router.tool);
+  const probeHint = skipLiveProbe ? null : pickLiveProbe(query);
   const toolName = probeHint?.tool || router.tool;
   if (toolName && router.useProbe) {
     try {
@@ -927,6 +1231,49 @@ export async function agentChat(message, {
     } catch {
       probe = { tool: toolName, data: { query, _offline: true }, source: 'fallback' };
     }
+  }
+
+  if (probe?.data?.awaiting_confirmation && probe.data.action && WRITE_TOOLS[probe.data.action] && storageKey) {
+    const caseId = query.match(/ENF-DEMO-\d+/i)?.[0] || 'ENF-DEMO-001';
+    const runId = argsRunIdFromQuery(query);
+    updateContext(storageKey, {
+      pendingAction: {
+        tool: probe.data.action,
+        args: { query, case_id: caseId, run_id: runId },
+        requestedAt: new Date().toISOString(),
+      },
+    }, { userId, persona: userPersona });
+    const evidenceTable = probe.data.action === 'log_raid_evidence'
+      ? {
+          kind: 'evidence',
+          columns: ['Case ID', 'Evidence', 'Officer'],
+          rows: [[caseId, 'Sealed sample reference and inspection photographs', 'FIELD-OFFICER-01']],
+          missing: [],
+          fields: { case_id: caseId, run_id: runId, product_description: 'Sealed sample and inspection photographs' },
+        }
+      : null;
+    const answer = language === 'hi'
+      ? `मैं यह कार्य कर सकता हूँ: ${WRITE_TOOLS[probe.data.action]}। आगे बढ़ने के लिए “confirm” लिखें, या “cancel”।`
+      : `I can do this for you: **${WRITE_TOOLS[probe.data.action]}**.\n\nNothing has been done yet. Reply **confirm** to proceed or **cancel** to stop.`;
+    const payload = {
+      clusterId: cluster,
+      query,
+      answer,
+      sources: [],
+      personaMode: persona,
+      uiMode: 'confirm',
+      panel: {
+        status: 'Awaiting confirmation',
+        action: probe.data.action,
+        confirmTable: evidenceTable,
+      },
+      probe: { tool: probe.data.action, query },
+      router: { intent: 'task', uiMode: 'confirm', tool: probe.data.action },
+      llm: { used: false, configured: llmConfigured(), skipped: 'awaiting_confirmation' },
+      answered_at: new Date().toISOString(),
+    };
+    persistChatTurn(storageKey, { userMessage: message.trim(), assistantResult: payload, router, userId, persona: userPersona });
+    return payload;
   }
 
   const contract = assertAnswerSourceContract(
@@ -949,23 +1296,24 @@ export async function agentChat(message, {
     live = await runLivePlaywrightProbe(query, { toolHint: probeHint?.tool || toolName });
   }
 
-  const isList = collectIsFromHits(hits);
-  const fromQuery = query.match(/IS\s*[\d\s().:]+/i);
-  if (fromQuery) isList.unshift(fromQuery[0].trim());
+  // Enforcement status must belong to the product asked about: query IS first, else the top evidence only.
   const exp = expandQueryTerms(query);
-  for (const t of exp.expandedTerms) {
-    if (/^IS\s/i.test(t)) isList.push(t);
-  }
+  const queryIs = router.entities?.isNumbers || [];
+  const hitIs = collectIsFromHits(hits.filter((h) => h.isNumbers?.length || h.metadata?.is_number).slice(0, 2));
+  const isList = queryIs.length
+    ? [...queryIs]
+    : (hitIs.length ? hitIs : exp.expandedTerms.filter((t) => /^IS\s/i.test(t)));
   const enforcement = isList.length ? bestEnforcementForIsList(isList) : null;
   const authLine = retrievalResult.answer_context?.authoritativeEnforcement;
   const enforcementForLlm = authLine
-    ? { ...enforcement, enforcement_status: 'MANDATORY', legal_caveat: authLine, authoritative: authLine }
+    ? authoritativeEnforcement(authLine, enforcement)
     : enforcement;
   const verifiedFacts = extractVerifiedFacts(hits);
   const personaFinal = resolvePersonaMode(personaMode, query, hits);
 
   let draft;
   let llmMeta = { used: false, provider: llmProvider(), configured: llmConfigured() };
+  let llmContract = null;
 
   // NO EVIDENCE → NO ANSWER (skip LLM inventing from empty context)
   if (!contract.hasEvidence && !live?.ok) {
@@ -991,10 +1339,19 @@ export async function agentChat(message, {
         used: true,
         provider: llmResult.provider,
         model: llmResult.model || null,
+        fallbackModel: llmResult.fallbackModel || undefined,
         configured: true,
+        structured: !!llmResult.structured,
+        citedEvidence: llmResult.citedEvidence || [],
+        missingData: llmResult.contract?.missing_data || [],
+        latency_ms: llmResult.latency_ms,
       };
+      llmContract = llmResult.contract || null;
     } else {
-      if (llmResult?.error) llmMeta.error = llmResult.error;
+      if (llmResult?.error) {
+        llmMeta.error = llmResult.error;
+        llmMeta.errorKind = llmResult.errorKind;
+      }
       if (llmResult?.model) llmMeta.model = llmResult.model;
       const playbookAnswer = formatPersonaPlaybook(toolName, probe?.data || probe, query);
       draft = playbookAnswer || formatForPersona(personaFinal, {
@@ -1013,9 +1370,13 @@ export async function agentChat(message, {
     }
   }
 
-  // Evidence existed but model refused — treat as pipeline issue, not empty corpus
-  const refusedNoData = /(?:don'?t|do not|does not|doesn't)\s+have\s+(?:specific\s+)?data|insufficient evidence|no (?:relevant )?information|not (?:available|found|listed) in (?:the )?(?:current )?(?:data|information set)|standard(?:\s*&?\s*qco)?\s*[–—-]\s*not listed|does not list a standard or qco/i
-    .test(String(draft || ''));
+  // Evidence existed but model refused — treat as pipeline issue, not empty corpus.
+  // A structured answer is never overridden: citing evidence or declaring missing_data is an honest answer.
+  const refusalText = llmContract ? llmContract.summary : draft;
+  const refusedNoData = !llmMeta.structured
+    && !(llmMeta.citedEvidence?.length)
+    && /(?:don'?t|do not|does not|doesn't)\s+have\s+(?:specific\s+)?data|insufficient evidence|no (?:relevant )?information|not (?:available|found|listed) in (?:the )?(?:current )?(?:data|information set)|standard(?:\s*&?\s*qco)?\s*[–—-]\s*not listed|does not list a standard or qco/i
+      .test(String(refusalText || ''));
   if (contract.validatedCount > 0 && refusedNoData) {
     const qTokens = String(query || '').toLowerCase().match(/[a-z0-9]{4,}/g) || [];
     const ranked = [...hits].sort((a, b) => {
@@ -1039,7 +1400,7 @@ export async function agentChat(message, {
   const shielded = applyTruthShield(draft, {
     hits,
     probe: live?.ok ? { data: live } : probe,
-    extraCorpus: { enforcement: enforcementForLlm, verifiedFacts, expandedTerms: exp.expandedTerms },
+    extraCorpus: { query, enforcement: enforcementForLlm, verifiedFacts, expandedTerms: exp.expandedTerms },
   });
   draft = shielded.answer;
 
@@ -1089,10 +1450,11 @@ export async function agentChat(message, {
     },
     uiMode: chatModule === 'advice' ? 'advice' : router.uiMode,
     capability: router.capability,
-    panel: {
-      ...buildCapabilityPanel(router, probe, retrievalResult),
+    panel: withSuggestedAction({
+      ...buildCapabilityPanel(router, probe, retrievalResult, query),
       noVerifiedSources: chatModule !== 'advice' && !uiSources.length,
-    },
+      missingData: llmContract?.missing_data?.length ? llmContract.missing_data : undefined,
+    }, llmContract?.suggested_cta),
     retrieval: {
       type: retrievalResult.retrieval_type,
       methods: retrievalResult.methods_used,

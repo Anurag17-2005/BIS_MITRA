@@ -216,12 +216,19 @@ export async function retrieve(query, {
   let connectorUsed = null;
 
   const { entities, expanded, identifiers: ids } = extractQueryEntities(query);
-  for (const [key, val] of Object.entries(contextEntities)) {
-    if (!val) continue;
-    if (key === 'isNumbers' && !ids.isNumbers.length) ids.isNumbers.push(...(Array.isArray(val) ? val : [val]));
-    if (key === 'qcoIds' && !ids.qcoIds.length) ids.qcoIds.push(...(Array.isArray(val) ? val : [val]));
-    if (key === 'cmlIds' && !ids.cmlIds.length) ids.cmlIds.push(...(Array.isArray(val) ? val : [val]));
-  }
+  // Only the latest carried identifier, and only when the caller passed context
+  // (chat does that for pronoun follow-ups). Never merge a whole session history.
+  const lastOf = (val) => {
+    const list = (Array.isArray(val) ? val : (val ? [val] : [])).filter(Boolean);
+    return list.length ? [list[list.length - 1]] : [];
+  };
+  if (!ids.isNumbers.length) ids.isNumbers.push(...lastOf(contextEntities.isNumbers));
+  if (!ids.qcoIds.length) ids.qcoIds.push(...lastOf(contextEntities.qcoIds));
+  if (!ids.cmlIds.length) ids.cmlIds.push(...lastOf(contextEntities.cmlIds));
+  ids.hasExactId = Boolean(
+    ids.isNumbers.length || ids.qcoIds.length || ids.cmlIds.length
+    || ids.huidCodes.length || ids.labIds.length || ids.caseIds.length || ids.appIds.length,
+  );
 
   const exactStage = { status: 'not_used', method: 'exact_identifier', results: [], count: 0, connector: null, error: null };
   const structuredStage = { status: 'not_used', method: 'structured_api', results: [], count: 0, connector: null, error: null };
@@ -258,8 +265,7 @@ export async function retrieve(query, {
     }
   }
 
-  const isSynonymQuery = expanded.expandedTerms?.length > 0
-    && expanded.expandedQuery !== query.trim();
+  const isSynonymQuery = (expanded.expandedTerms?.length || 0) > 0;
 
   let indexTrace = null;
   let filteredStage = { status: 'not_used', before: 0, after: 0, results: [], filters };
@@ -271,7 +277,7 @@ export async function retrieve(query, {
     || /\b(standard|apply|which|what|how|helmet|safety|mandatory|fee|lab|laboratory|active)\b/i.test(query);
 
   if (needsIndex) {
-    indexTrace = searchIndexTraced(clusterId, expanded.expandedQuery || query, {
+    indexTrace = searchIndexTraced(clusterId, query, {
       topK,
       stage,
       mode,
@@ -304,7 +310,7 @@ export async function retrieve(query, {
     };
 
     const evidenceInput = hits.length;
-    const filtered = filterRelevantHits(query, hits, { max: topK });
+    const filtered = filterRelevantHits(query, hits, { max: topK, expandedTerms: expanded.expandedTerms });
     evidenceStage = {
       status: filtered.length ? 'used' : 'not_used',
       input: evidenceInput,

@@ -4,13 +4,16 @@
  */
 export const SCORE_POLICY = {
   /** Index candidate floor (trace-search topCandidates). */
-  candidateFloor: 0.02,
-  /** Minimum hybrid score to keep as evidence for the agent. */
-  evidenceFloor: 0.05,
+  candidateFloor: 0.05,
+  /** Minimum hybrid score to keep as evidence for the agent (topical term overlap is also required). */
+  evidenceFloor: 0.12,
+  /** Hybrid score high enough to keep a hit without literal term overlap (paraphrase / Hindi). */
+  // Hash-trick dense scores sit near 0.35 even for noise, so the bypass must be well above that.
+  strongEvidence: 0.5,
   /** UI sources must be >= hybridTop * uiRelativeFloor. */
   uiRelativeFloor: 0.65,
-  /** Absolute UI floor (aligned with evidenceFloor for recall). */
-  uiAbsoluteFloor: 0.05,
+  /** Absolute UI floor. Kept aligned with evidenceFloor so weak chunks are not shown. */
+  uiAbsoluteFloor: 0.12,
   uiMax: 5,
   /**
    * Authoritative injects (qco_join) use a fixed high score (0.99).
