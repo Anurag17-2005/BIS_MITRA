@@ -297,6 +297,13 @@
 .theme-light .tone-blue { background: #eff6ff; }
 .bp-grid4 small, .bp-status small, .bp-ctx small { color: var(--muted); font-size: 11px; text-transform: uppercase; }
 .bp-grid4 ul { margin: 6px 0 0; padding-left: 16px; }
+.bp-compliance-result { margin-top: 10px; }
+.bp-compliance-result > header { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.bp-compliance-result > header small { color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.bp-compliance-lists { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+.bp-compliance-lists section { border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+.bp-compliance-lists h4 { margin: 0 0 6px; }
+.bp-compliance-lists ul { margin: 0; padding-left: 18px; }
 .bp-verify { background: #052e1a; margin-top: 8px; }
 .theme-light .bp-verify { background: #ecfdf3; }
 .bp-status { display: flex; gap: 16px; margin-top: 8px; background: var(--card); }
@@ -440,6 +447,7 @@
   .bp-body.nav-rail { grid-template-columns: var(--nav, 220px) minmax(0, 1fr); }
   .bp-split { display: none; }
   .bp-grid4 { grid-template-columns: 1fr 1fr; }
+  .bp-compliance-lists { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   .bp-body,

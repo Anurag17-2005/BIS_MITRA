@@ -82,6 +82,16 @@ db.exec(`
     submitted_at TEXT DEFAULT (datetime('now'))
   );
 
+  CREATE TABLE IF NOT EXISTS application_status_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    reference_id TEXT NOT NULL,
+    old_status TEXT,
+    new_status TEXT NOT NULL,
+    changed_by TEXT NOT NULL DEFAULT 'BIS MITRA',
+    changed_at TEXT NOT NULL DEFAULT (datetime('now')),
+    note TEXT
+  );
+
   CREATE TABLE IF NOT EXISTS licences (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     licence_number TEXT UNIQUE NOT NULL,
@@ -186,6 +196,8 @@ try {
   ensureColumn('applications', 'owner_session_id', 'TEXT');
   ensureColumn('applications', 'owner_user_id', 'TEXT');
   ensureColumn('applications', 'owner_persona', 'TEXT');
+  ensureColumn('applications', 'contact_email', 'TEXT');
+  ensureColumn('applications', 'declaration', 'TEXT');
   ensureColumn('fmcs_applications', 'owner_session_id', 'TEXT');
   ensureColumn('fmcs_applications', 'owner_user_id', 'TEXT');
   ensureColumn('fmcs_applications', 'owner_persona', 'TEXT');

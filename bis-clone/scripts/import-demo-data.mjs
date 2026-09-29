@@ -160,7 +160,63 @@ function ensureNewTables(db) {
       source_reference TEXT,
       source_file TEXT
     );
+    CREATE TABLE IF NOT EXISTS grievance_status_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ticket_id TEXT NOT NULL,
+      previous_status TEXT,
+      new_status TEXT NOT NULL,
+      changed_by TEXT,
+      changed_at TEXT DEFAULT (datetime('now')),
+      note TEXT
+    );
   `);
+  for (const sql of [
+    'ALTER TABLE mock_seizure_ledger ADD COLUMN case_id TEXT',
+    'ALTER TABLE mock_grievances ADD COLUMN owner_session_id TEXT',
+    'ALTER TABLE mock_grievances ADD COLUMN owner_user_id TEXT',
+    'ALTER TABLE mock_grievances ADD COLUMN owner_persona TEXT',
+  ]) {
+    try { db.exec(sql); } catch { /* column exists */ }
+  }
+}
+
+function seedProofActionExtras(db) {
+  const existingFmcs = db.prepare(`SELECT id FROM fmcs_catalog WHERE is_number LIKE '%1003%' LIMIT 1`).get();
+  if (!existingFmcs) {
+    db.prepare(`
+      INSERT INTO fmcs_catalog (hs_code, product_description, is_number, scheme, mandatory_import, sector, notes)
+      VALUES (?,?,?,?,?,?,?)
+    `).run(
+      '8516.79',
+      'Domestic induction cooking appliances (foreign manufacture import)',
+      'IS DEMO 1003:2025',
+      'FMCS (Scheme-I)',
+      1,
+      'Electrical Appliances',
+      'FMCS-DEMO-003 | QCO-DEMO-003 | AIR required | Factory inspection | Test reports from BIS-recognised lab',
+    );
+  }
+  db.prepare(`DELETE FROM standard_revision_diffs WHERE is_number LIKE '%DEMO 1010%' OR evolution_context LIKE '%STD-DEMO-010%'`).run();
+  const insDiff = db.prepare(`
+    INSERT INTO standard_revision_diffs (is_number, parameter_field, old_edition, new_edition, old_value, new_value, evolution_context)
+    VALUES (?,?,?,?,?,?,?)
+  `);
+  const diffs = [
+    ['IS DEMO 1010', 'Pipe dimensions and wall thickness', 'IS DEMO 1010:2023', 'IS DEMO 1011:2026', 'Match declared size series (earlier tolerances)', 'Meet revised size-series tolerances', 'STD-DEMO-010 → STD-DEMO-011 | source: key_requirements'],
+    ['IS DEMO 1010', 'Ring stiffness', 'IS DEMO 1010:2023', 'IS DEMO 1011:2026', 'Earlier stiffness and workmanship checks', 'Declared stiffness class with test evidence', 'STD-DEMO-010 → STD-DEMO-011'],
+    ['IS DEMO 1010', 'Jointing', 'IS DEMO 1010:2023', 'IS DEMO 1011:2026', 'Compatible with specified connection method', 'Socket/seal configuration demonstrated watertight', 'STD-DEMO-010 → STD-DEMO-011'],
+    ['IS DEMO 1010', 'Identification marking', 'IS DEMO 1010:2023', 'IS DEMO 1011:2026', 'Manufacturer, size, batch reference', 'Current IS DEMO 1011:2026 and traceability on pipe', 'STD-DEMO-010 → STD-DEMO-011'],
+  ];
+  for (const d of diffs) insDiff.run(...d);
+  try {
+    db.prepare(`
+      UPDATE labs SET scope = ?
+      WHERE demo_id = 'LAB-DEMO-001'
+    `).run(
+      'IS DEMO 1003:2025 domestic induction cooking appliances — electrical safety, performance, and thermal tests (exact scope match for proof action 5).',
+    );
+    db.prepare(`UPDATE mock_huid_ledger SET status = 'FLAGGED' WHERE huid = 'HUID-DM26-Z99FLAG'`).run();
+  } catch { /* optional */ }
 }
 
 function importStandards(db) {
@@ -201,8 +257,10 @@ function importStandards(db) {
       ? 'Mandatory' : (/voluntary/i.test(r.certification_applicability || '') ? 'Voluntary' : 'Mandatory');
     const supersededBy = r.superseded_by ? idToIs[r.superseded_by] || null : null;
     const descParts = [r.scope, r.applicability];
-    if (r.key_requirements?.length) descParts.push('Key requirements: ' + r.key_requirements.slice(0, 3).join('; '));
-    if (r.testing_requirements?.length) descParts.push('Testing: ' + r.testing_requirements.slice(0, 2).join('; '));
+    if (r.key_requirements?.length) descParts.push('Key requirements: ' + r.key_requirements.join('; '));
+    if (r.testing_requirements?.length) descParts.push('Testing requirements: ' + r.testing_requirements.join('; '));
+    if (r.documentation_required?.length) descParts.push('Documentation required: ' + r.documentation_required.join('; '));
+    if (r.marking_requirements?.length) descParts.push('Marking requirements: ' + r.marking_requirements.join('; '));
     const reviewedYear = r.last_reviewed ? parseInt(r.last_reviewed.slice(0, 4), 10) : parseInt(r.edition_year, 10);
 
     upsert.run(
@@ -349,11 +407,15 @@ function importHallmarking(db) {
     const weight = parseFloat((r.net_weight || '0').replace(/[^\d.]/g, '')) || null;
 
     try {
+      const ver = String(
+        r['record_verification_status'] || r.verification_status || r.huid_status || '',
+      ).toLowerCase();
+      const status = /flagged|invalid|mismatch/.test(ver) ? 'FLAGGED' : 'VERIFIED';
       db.prepare(`
         INSERT INTO mock_huid_ledger (huid, jeweller_name, assaying_center, stamping_date, weight_grams, status, demo_id, source_reference, source_file)
         VALUES (?,?,?,?,?,?,?,?,?)
       `).run(
-        r.huid, r.jeweller_name, r.ahc_name, r.hallmarking_date, weight, 'VERIFIED',
+        r.huid, r.jeweller_name, r.ahc_name, r.hallmarking_date, weight, status,
         r.demo_id, srcRef('Hallmarking', r.demo_id), SOURCE_FILES.hallmarking,
       );
     } catch { /* dup huid */ }
@@ -437,6 +499,7 @@ export function importDemoData(db) {
   importComplaints(db);
   importEnforcement(db);
   importSurveillance(db);
+  seedProofActionExtras(db);
   try {
     seedWorkflowInstances(db);
     console.log('[import-demo] eBIS workflow demo instances seeded');

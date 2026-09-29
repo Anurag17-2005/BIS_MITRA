@@ -246,3 +246,6 @@ db.prepare(
 console.log(
   `[sync-knowledge] files=${files.length} portal=${Object.entries(counts).map(([k, v]) => `${k}:${v}`).join(' ')} process_page=${proc} manuals=${manuals} guidance=${guide} consumer_pdfs=${consumer}`
 );
+
+db.close();
+process.exit(0);

@@ -52,6 +52,7 @@ db.exec(`
   DROP TABLE IF EXISTS labs;
   DROP TABLE IF EXISTS hallmarking_centres;
   DROP TABLE IF EXISTS licences;
+  DROP TABLE IF EXISTS application_status_history;
   DROP TABLE IF EXISTS applications;
   DROP TABLE IF EXISTS referred_standards;
   DROP TABLE IF EXISTS portal_documents;
@@ -528,6 +529,7 @@ db.exec(`
     location TEXT,
     officer_id TEXT,
     status TEXT DEFAULT 'LOCKED',
+    case_id TEXT,
     created_at TEXT DEFAULT (datetime('now'))
   );
 
@@ -901,6 +903,7 @@ const fmcsCatalog = [
   ['8481.80', 'Pressure relief valves and plumbing fittings', 'IS 778:2019', 'FMCS (Scheme-I)', 1, 'Plumbing', 'Safety critical plumbing components — FMCS'],
   ['9018.19', 'Clinical thermometers', 'IS 3055 (Part 1):1994', 'FMCS (Scheme-I)', 1, 'Medical Devices', 'Medical device FMCS requirement'],
   ['8504.40.90', 'Static converters / power inverters', 'IS 13252 (Part 1):2010', 'FMCS (Scheme-I)', 1, 'Electronics', 'Port enforcement mandate — mandatory BIS clearance before customs release'],
+  ['8516.79', 'Domestic induction cooking appliances (import)', 'IS DEMO 1003:2025', 'FMCS (Scheme-I)', 1, 'Electrical Appliances', 'FMCS-DEMO-003 | QCO-DEMO-003 | AIR required | Factory inspection | BIS lab test reports'],
 ];
 const insertFmcsCatalog = db.prepare(
   `INSERT INTO fmcs_catalog (hs_code, product_description, is_number, scheme, mandatory_import, sector, notes) VALUES (?,?,?,?,?,?,?)`
@@ -1202,3 +1205,7 @@ const sync = spawnSync('node', ['scripts/sync-knowledge-into-clone.mjs'], {
   stdio: 'inherit',
 });
 if (sync.status !== 0) console.warn('Knowledge sync warning — manifest may be missing');
+
+// Close explicitly — Node 24 + better-sqlite3 can assert on GC teardown otherwise
+db.close();
+process.exit(0);

@@ -2,6 +2,9 @@ import { executeProbeApi } from '../core/probes.js';
 import { searchKnowledge } from '../retrieval/search-knowledge.js';
 import { submitPortalForm } from './form-submit.js';
 import { finalizeToolRegistry, getTool, getToolRegistry, listRegistryTools } from './tool-registry.js';
+import { WRITE_TOOLS, refuseUnconfirmedAction } from './action-guard.js';
+
+export { WRITE_TOOLS };
 
 /** Map tool name → probe connector (live Clone API) */
 export const TOOL_CONNECTOR = {
@@ -710,8 +713,24 @@ function queryFromArgs(toolName, args) {
  * Execute an agent tool by name. Returns structured JSON for the LLM.
  */
 export async function executeAgentTool(toolName, args = {}) {
+  // Side-effecting tools run only after the deterministic confirmation step sets confirm === true.
+  const refusal = refuseUnconfirmedAction(toolName, { ...args, confirm: args.confirm === true });
+  if (refusal && toolName !== 'submit_portal_form') {
+    return {
+      tool: toolName,
+      data: {
+        ...refusal,
+        awaiting_confirmation: true,
+        action: toolName,
+        action_label: WRITE_TOOLS[toolName],
+        message: `This will ${WRITE_TOOLS[toolName]}. Reply "confirm" to proceed or "cancel" to stop.`,
+      },
+      source: 'confirm-first',
+      probed_at: new Date().toISOString(),
+    };
+  }
   if (toolName === 'submit_portal_form') {
-    if (!args.confirm) {
+    if (refusal) {
       return {
         tool: toolName,
         data: {
@@ -957,15 +976,24 @@ export async function executeAgentTool(toolName, args = {}) {
 
   if (toolName === 'log_raid_evidence') {
     const { fetchClonePost } = await import('../core/clone-client.js');
-    const units = Number(String(args.query || '').match(/(\d+)\s*box/i)?.[1]) || 500;
+    const q = String(args.query || '');
+    const units = Number(q.match(/(\d+)\s*box/i)?.[1]) || 1;
+    const caseId = args.case_id || q.match(/ENF-DEMO-\d+/i)?.[0] || 'ENF-DEMO-001';
+    const evidenceId = args.run_id || args.evidence_id || q.match(/EVD-PA10-[\w]+/i)?.[0] || `EVD-PA10-${Date.now().toString().slice(-8)}`;
+    const description = /sealed\s+sample|photograph|helmet/i.test(q)
+      ? 'Sealed sample reference and inspection photographs'
+      : (args.product_description || 'Sealed sample and inspection photographs');
     try {
       const api = await fetchClonePost('/api/v1/enforcement/raid-evidence', {
         units,
-        product_description: 'Uncertified cement bags with fake ISI logo',
+        case_id: caseId,
+        evidence_id: evidenceId,
+        product_description: description,
+        officer_id: args.officer_id || 'FIELD-OFFICER-01',
       });
-      return { tool: toolName, data: api, source: 'raid-evidence-api', probed_at: new Date().toISOString() };
+      return { tool: toolName, data: { ...api, case_id: caseId, evidence_id: api.evidence_id || evidenceId }, source: 'raid-evidence-api', probed_at: new Date().toISOString() };
     } catch {
-      return { tool: toolName, data: { evidence_id: 'SEZ-CEMENT-992', message: 'EVIDENCE INTERCEPT REGISTERED' }, source: 'local-fallback', probed_at: new Date().toISOString() };
+      return { tool: toolName, data: { evidence_id: evidenceId, case_id: caseId, message: 'EVIDENCE INTERCEPT REGISTERED' }, source: 'local-fallback', probed_at: new Date().toISOString() };
     }
   }
 

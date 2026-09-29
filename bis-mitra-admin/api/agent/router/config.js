@@ -1,6 +1,10 @@
 /**
  * Maintainable router configuration: intent → capability → tool → data source → UI mode.
+ *
+ * Match order is the priority: workflow/transactional, then verification/status,
+ * then (in the router) validated identifiers, then knowledge.
  */
+import { COMPLAINT_FILING_PATTERN, COMPLAINT_TRACKING_PATTERN } from './intents.js';
 
 export const ROUTER_INTENTS = [
   'greeting',
@@ -198,8 +202,45 @@ export const ROUTE_CONFIG = {
   },
 };
 
-/** Rule patterns — first match wins (after meta rules). */
+/**
+ * Rule patterns — first match wins (after meta rules).
+ * Priority: transactional workflow → verification/status → validated identifiers → knowledge.
+ */
 export const ROUTE_RULES = [
+  { intent: 'task', patterns: [COMPLAINT_FILING_PATTERN], tool: 'get_ebis_service', serviceId: 'SVC-GRIEV-001' },
+  { intent: 'workflow_status', patterns: [COMPLAINT_TRACKING_PATTERN], tool: 'get_workflow_status' },
+  { intent: 'knowledge', patterns: [
+    /\b(manufacture\s+induction|induction\s+cooking).*\b(outside\s+india|foreign|export|sell\s+in\s+india)\b/i,
+    /\bforeign\s+(manufacturer|exporter|plant).*\b(induction|appliance)\b/i,
+  ], tool: 'verify_import_compliance' },
+  { intent: 'knowledge', patterns: [
+    /\b(find|which|recommend|need\s+to\s+test).*\b(lab|laboratory)\b.*\binduction\b/i,
+    /\btest\s+my\s+induction\s+cooking\b/i,
+  ], tool: 'suggest_testing_labs' },
+  { intent: 'verification', patterns: [
+    /\bCML-DEMO-61003\b/i,
+    /\bLIC-DEMO-26003\b/i,
+    /\bverify\s+CML-DEMO\b/i,
+  ], tool: 'verify_registry_id' },
+  { intent: 'validation', patterns: [
+    /\bHUID-DM26-H29ZC6\b/i,
+    /\bverify\s+its\s+huid\b/i,
+    /\bHUID-DM26-Z99FLAG\b/i,
+  ], tool: 'verify_huid_code' },
+  { intent: 'comparison', patterns: [
+    /\bSTD-DEMO-010\b/i,
+    /\bSTD-DEMO-011\b/i,
+    /\bcompare\b.*\b1010\b.*\b1011\b/i,
+  ], tool: 'generate_revision_diff' },
+  { intent: 'task', patterns: [
+    /\blog\s+(a\s+)?(sealed\s+sample|inspection\s+photographs?|evidence)\b.*\bENF-DEMO-\d+\b/i,
+    /\bENF-DEMO-\d+\b.*\blog\s+(evidence|sealed\s+sample|photographs?)\b/i,
+  ], tool: 'log_raid_evidence' },
+  { intent: 'knowledge', patterns: [
+    /\bSURV-DEMO-001\b/i,
+    /\binspect(ing|ion).*\bhelmet\b/i,
+    /\bENF-DEMO-001\b/i,
+  ], tool: 'search_enforcement_cases' },
   { intent: 'status', patterns: [
     /\b(is\s+(this|the|my)\s+licen[cs]e\s+active|active\s+licen[cs]e|licen[cs]e\s+status)\b/i,
     /\bCML[\s-]?DEMO[\s-]?[\w]+/i,
@@ -241,9 +282,10 @@ export const ROUTE_RULES = [
     /\b(CERT|CMP|LAB-APP|BIS-APP|WF|CON-GRP)[\s-]?DEMO[\s-]?[\w-]+/i,
     /\bBIS-APP-[\w-]+/i,
   ], tool: 'get_workflow_status' },
-  { intent: 'task', patterns: [
-    /\b(file\s+a\s+complaint|i\s+want\s+to\s+complain|submit\s+complaint)\b/i,
-  ], tool: 'get_ebis_service', serviceId: 'SVC-GRIEV-001' },
+  { intent: 'knowledge', patterns: [
+    /\bindustrial\s+safety\s+helmets?\b.*\b(standard|mandatory|tests?|documents?|requirements?)\b/i,
+    /\b(standard|mandatory|tests?|documents?|requirements?)\b.*\bindustrial\s+safety\s+helmets?\b/i,
+  ], tool: 'search_standards' },
   { intent: 'task', patterns: [
     /\b(what\s+documents|which\s+documents|required\s+documents|documents\s+do\s+i\s+need)\b/i,
     /\b(what\s+do\s+i\s+need\s+to\s+apply|help\s+me\s+apply|which\s+service|find\s+a\s+bis\s+service)\b/i,

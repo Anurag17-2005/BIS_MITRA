@@ -241,6 +241,7 @@ export default function PortalApp({
         time: a.created_at || 'Recent',
         tone: 'amber',
         tag: a.priority || '',
+        evidence: a.evidence || null,
       })),
   ];
 
@@ -742,7 +743,15 @@ function Home({ persona, lang = 'en', libReady = false, messages, busy, prompts,
             <div>
               {m.role === 'assistant' && <header><strong>BIS MITRA</strong><time>now</time></header>}
               {m.role === 'assistant' && !m.error ? <RichText text={m.text} /> : <p>{m.text}</p>}
-              {m.role === 'assistant' && <ResponseCards lang={lang} panel={m.panel} uiMode={m.uiMode} onConfirm={() => onSend(t(lang, 'confirm'), { confirmSubmit: true, confirmFields: m.panel?.confirmTable?.fields })} />}
+              {m.role === 'assistant' && (
+                <ResponseCards
+                  lang={lang}
+                  panel={m.panel}
+                  uiMode={m.uiMode}
+                  onConfirm={() => onSend(t(lang, 'confirm'), { confirmSubmit: true, confirmFields: m.panel?.confirmTable?.fields })}
+                  onAction={(prompt) => onSend(prompt)}
+                />
+              )}
               {m.role === 'assistant' && m.modules?.length > 0 && (
                 <div className="bp-module-tags">
                   {m.modules.map((mod) => (
@@ -873,7 +882,107 @@ function SourceGroups({ sources, onOpen, lang = 'en', libReady = false }) {
   );
 }
 
-function ResponseCards({ panel, uiMode, lang = 'en', onConfirm }) {
+function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
+  if (panel?.checklist) {
+    const c = panel.checklist;
+    return (
+      <div className="bp-card bp-compliance-result">
+        <header><small>Import / FMCS checklist</small><strong>{c.standard}</strong></header>
+        <div className="bp-grid4">
+          <div className="tone-blue"><small>Product</small><p>{c.product}</p></div>
+          <div className="tone-green"><small>QCO</small><p>{c.qco}</p></div>
+          <div className="tone-amber"><small>Pathway</small><p>{c.pathway}</p></div>
+          <div className="tone-purple"><small>Source</small><p>{c.source}</p></div>
+        </div>
+        <ul>{(c.documents || []).map((row) => <li key={row}>{row}</li>)}</ul>
+        {c.air_required && <p className="bp-muted">AIR (Form-VI) required · Factory inspection: {c.factory_inspection ? 'Yes' : 'No'}</p>}
+        {panel.action?.prompt && (
+          <button type="button" className="bp-btn-primary" onClick={() => onAction?.(panel.action.prompt)}>
+            {panel.action.label || 'Continue'}
+          </button>
+        )}
+      </div>
+    );
+  }
+  if (panel?.matching) {
+    const m = panel.matching;
+    return (
+      <div className="bp-card">
+        <small>Recommended laboratory</small>
+        <strong>{m.recommended}</strong>
+        <p>{m.lab_code} · {m.city}, {m.state} · {m.demo_id}</p>
+        <p className="bp-muted">{m.reason}</p>
+        {m.scope && <p>Scope: {m.scope}</p>}
+      </div>
+    );
+  }
+  if (panel?.verification) {
+    const v = panel.verification;
+    return (
+      <div className="bp-verify bp-card">
+        <strong>{v.verification_result || (v.verified ? 'VERIFIED' : 'MISMATCH')}</strong>
+        <p>{v.identifier || v.huid}</p>
+        {v.manufacturer && <p>{v.manufacturer} · {v.product}</p>}
+        {v.flag_reason && <p className="bp-muted">{v.flag_reason}</p>}
+      </div>
+    );
+  }
+  if (panel?.calculation) {
+    const calc = panel.calculation;
+    return (
+      <div className="bp-card">
+        <small>Gold value estimate</small>
+        <p>{calc.formula}</p>
+        <strong>{calc.estimated_value_inr != null ? `₹${calc.estimated_value_inr.toLocaleString('en-IN')}` : 'Provide 24K price per gram'}</strong>
+        <p className="bp-muted">{calc.caveat}</p>
+      </div>
+    );
+  }
+  if (panel?.case) {
+    const c = panel.case;
+    return (
+      <div className="bp-card">
+        <small>Enforcement case</small>
+        <strong>{c.case_id}</strong>
+        <p>{c.manufacturer} · {c.product} · {c.standard}</p>
+        <p>Licence: {c.licence} · Surveillance: {c.surveillance_ref}</p>
+        {c.evidence_required?.length > 0 && (
+          <section><h4>Evidence to record</h4><ul>{c.evidence_required.map((row) => <li key={row}>{row}</li>)}</ul></section>
+        )}
+        {c.evidence_history?.length > 0 && (
+          <section><h4>Evidence history</h4><ul>{c.evidence_history.slice(0, 5).map((e) => <li key={e.evidence_id}>{e.evidence_id} · {e.product_description}</li>)}</ul></section>
+        )}
+      </div>
+    );
+  }
+  if (panel?.compliance) {
+    const result = panel.compliance;
+    return (
+      <div className="bp-card bp-compliance-result">
+        <header>
+          <small>Standards / Compliance Result</small>
+          <strong>{result.standard_number}</strong>
+        </header>
+        <div className="bp-grid4">
+          <div className="tone-blue"><small>Product category</small><p>{result.product_category}</p></div>
+          <div className="tone-green"><small>Status</small><p>{result.status}</p></div>
+          <div className="tone-amber"><small>Applicability</small><p>{result.applicability}</p></div>
+          <div className="tone-purple"><small>Source</small><p>{result.source}</p></div>
+        </div>
+        <div className="bp-compliance-lists">
+          <section><h4>Requirements</h4><ul>{result.requirements.map((row) => <li key={row}>{row}</li>)}</ul></section>
+          <section><h4>Tests</h4><ul>{result.tests.map((row) => <li key={row}>{row}</li>)}</ul></section>
+          <section><h4>Documents</h4><ul>{result.documents.map((row) => <li key={row}>{row}</li>)}</ul></section>
+        </div>
+        <p className="bp-muted">{result.demo_notice}</p>
+        {panel.action?.prompt && (
+          <button type="button" className="bp-btn-primary" onClick={() => onAction?.(panel.action.prompt)}>
+            {panel.action.label || 'Continue'}
+          </button>
+        )}
+      </div>
+    );
+  }
   if (panel?.confirmTable) {
     const table = panel.confirmTable;
     return (
@@ -896,13 +1005,29 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm }) {
   if (!panel || !uiMode || uiMode === 'chat') return null;
   if (uiMode === 'workflow') {
     return (
-      <div className="bp-grid4">
-        <div className="tone-green"><small>Eligibility</small><p>{panel.eligibility || panel.service_name || 'See requirements for this service.'}</p></div>
-        <div className="tone-blue"><small>Applicable standard</small><p>{panel.standard || panel.is_number || 'Linked Indian Standard'}</p></div>
-        <div className="tone-amber"><small>Key documents</small>
-          <ul>{(panel.required_documents || ['Form-I', 'Test report', 'Undertaking']).slice(0, 4).map((d) => <li key={d}>{d}</li>)}</ul>
+      <div>
+        <div className="bp-grid4">
+          <div className="tone-green"><small>Status / Eligibility</small><p>{panel.status || panel.eligibility || panel.service_name || 'See requirements for this service.'}</p></div>
+          <div className="tone-blue"><small>Application</small><p>{panel.record_id || panel.standard || panel.is_number || 'Linked Indian Standard'}</p></div>
+          <div className="tone-amber"><small>Key documents</small>
+            <ul>{(panel.required_documents || ['Form-I', 'Test report', 'Undertaking']).slice(0, 4).map((d) => <li key={d}>{d}</li>)}</ul>
+          </div>
+          <div className="tone-purple"><small>Next step</small><p>{panel.next_action || panel.current_step || 'Continue in MITRA'}</p></div>
         </div>
-        <div className="tone-purple"><small>Next step</small><p>{panel.next_action || panel.current_step || 'Continue in MITRA'}</p></div>
+        {panel.status_history?.length > 0 && (
+          <div className="bp-card">
+            <strong>Status timeline</strong>
+            <ol>
+              {panel.status_history.map((event, index) => (
+                <li key={`${event.at || event.changed_at}-${index}`}>
+                  <strong>{event.status || event.new_status}</strong>
+                  {' · '}{event.changed_by || 'System'}
+                  {' · '}{event.at || event.changed_at}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
     );
   }
@@ -911,6 +1036,27 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm }) {
       <div className="bp-verify">
         <strong>{panel.status || 'Result'}</strong>
         <p>{panel.evidence?.company_name || panel.evidence?.status || 'Registry record'}</p>
+      </div>
+    );
+  }
+  if (uiMode === 'comparison' && panel.comparison?.rows?.length) {
+    const cmp = panel.comparison;
+    return (
+      <div className="bp-card">
+        <small>Standard comparison</small>
+        <strong>{cmp.old_is_number} → {cmp.new_is_number}</strong>
+        <table>
+          <thead><tr><th>Aspect</th><th>Previous</th><th>Current</th></tr></thead>
+          <tbody>
+            {cmp.rows.slice(0, 8).map((row, i) => (
+              <tr key={i}>
+                <td>{row.parameter_field || row.aspect}</td>
+                <td>{row.old_value || row.old_requirement}</td>
+                <td>{row.new_value || row.new_requirement}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -926,11 +1072,34 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm }) {
   }
   if (panel.status) {
     return (
-      <div className="bp-status">
-        <div><small>Status</small><strong>{panel.status}</strong></div>
-        {panel.record_id && <div><small>Record</small><strong>{panel.record_id}</strong></div>}
-        {panel.next_action && <div><small>Next action</small><strong>{panel.next_action}</strong></div>}
+      <div>
+        <div className="bp-status">
+          <div><small>Status</small><strong>{panel.status}</strong></div>
+          {panel.record_id && <div><small>Record</small><strong>{panel.record_id}</strong></div>}
+          {panel.next_action && <div><small>Next action</small><strong>{panel.next_action}</strong></div>}
+        </div>
+        {panel.status_history?.length > 0 && (
+          <div className="bp-card">
+            <strong>Status timeline</strong>
+            <ol>
+              {panel.status_history.map((event, index) => (
+                <li key={`${event.at || event.changed_at}-${index}`}>
+                  <strong>{event.status || event.new_status}</strong>
+                  {' · '}{event.changed_by || 'System'}
+                  {' · '}{event.at || event.changed_at}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
+    );
+  }
+  if (panel.action?.prompt) {
+    return (
+      <button type="button" className="bp-btn-primary" onClick={() => onAction?.(panel.action.prompt)}>
+        {panel.action.label || 'Continue'}
+      </button>
     );
   }
   return null;
@@ -952,7 +1121,24 @@ function Applications({ apps, selected, onSelect, lang = 'en' }) {
               <span className={`pill ${app.tone}`}>{app.status}</span>
             </div>
             <p>{app.type} · {app.product}</p>
+            {(app.manufacturer || app.is_number) && (
+              <small>{[app.manufacturer, app.is_number].filter(Boolean).join(' · ')}</small>
+            )}
             <small>{app.stage} · Submitted {app.submitted}</small>
+            {app.status_history?.length > 0 && (
+              <details>
+                <summary>Status timeline</summary>
+                <ol>
+                  {app.status_history.map((event, index) => (
+                    <li key={`${event.changed_at || event.at}-${index}`}>
+                      <strong>{event.new_status || event.status}</strong>
+                      {' · '}{event.changed_by || 'System'}
+                      {' · '}{event.changed_at || event.at}
+                    </li>
+                  ))}
+                </ol>
+              </details>
+            )}
             <button type="button" className="bp-btn-primary" onClick={() => onSelect(app)}>{t(lang, 'askMitra')}</button>
           </article>
         ))}
@@ -970,6 +1156,9 @@ function Alerts({ alerts, onAsk, lang = 'en' }) {
           <article key={a.id} className="bp-app">
             <div><strong>{a.title}</strong>{a.tag && <span className="pill amber">{a.tag}</span>}</div>
             <p>{a.body}</p>
+            {a.evidence?.changed_by && (
+              <small>Changed by {a.evidence.changed_by} · {a.evidence.changed_at || a.time}</small>
+            )}
             <small>{a.time}</small>
             <button type="button" className="bp-btn-primary" onClick={() => onAsk(a)}>{t(lang, 'visit')}</button>
           </article>

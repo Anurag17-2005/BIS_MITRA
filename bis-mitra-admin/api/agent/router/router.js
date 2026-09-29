@@ -13,6 +13,7 @@ function classifyByRules(query, identifiers) {
     for (const pat of rule.patterns) {
       if (pat.test(query)) {
         const base = routeConfigForIntent(rule.intent);
+        const probeTool = rule.tool && rule.tool !== 'run_deterministic_rule';
         return {
           ...base,
           tool: rule.tool || base.tool,
@@ -20,6 +21,9 @@ function classifyByRules(query, identifiers) {
           serviceId: rule.serviceId || base.serviceId,
           confidence: 0.82,
           matchedRule: pat.source,
+          useProbe: probeTool ? true : base.useProbe,
+          useRulesEngine: probeTool ? false : base.useRulesEngine,
+          useWorkflowEngine: probeTool ? false : base.useWorkflowEngine,
         };
       }
     }

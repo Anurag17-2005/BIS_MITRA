@@ -289,6 +289,32 @@ app.patch('/api/product-manuals/:id', (req, res) => {
 });
 
 // Applications
+function applicationHistory(referenceId) {
+  return db.prepare(
+    `SELECT old_status, new_status, changed_by, changed_at, note
+     FROM application_status_history WHERE reference_id = ? ORDER BY id ASC`
+  ).all(referenceId);
+}
+
+function withApplicationHistory(row) {
+  return row ? { ...row, status_history: applicationHistory(row.reference_id) } : row;
+}
+
+function applicationNextAction(status) {
+  const actions = {
+    Submitted: 'BIS will begin document verification.',
+    'Under Review': 'Await document verification by the certification officer.',
+    'Query Raised': 'Respond to the query and upload requested documents.',
+    'Documents Required': 'Upload the requested supporting documents.',
+    'Inspection Scheduled': 'Prepare the factory and product samples for inspection.',
+    Testing: 'Product testing is in progress.',
+    Granted: 'Licence granted. Download the certificate from eBIS.',
+    Certified: 'Certification approved. Download the certificate from eBIS.',
+    Rejected: 'Review the rejection reason and available appeal options.',
+  };
+  return actions[status] || 'Track the application in eBIS.';
+}
+
 app.post('/api/applications', (req, res) => {
   const {
     company_name,
@@ -300,13 +326,15 @@ app.post('/api/applications', (req, res) => {
     owner_session_id,
     owner_user_id,
     owner_persona,
+    contact_email,
+    declaration,
   } = req.body;
-  const ref = is_number?.includes('2082')
-    ? `ISI-2082-${String(Date.now()).slice(-5)}`
-    : `BIS-APP-${Date.now()}`;
+  const ref = `BIS-APP-DEMO-${String(Date.now()).slice(-6)}`;
+  const submittedAt = new Date().toISOString();
   db.prepare(
-    `INSERT INTO applications (reference_id, company_name, factory_name, udyam_id, lab_report_ref, is_number, product_name, status, owner_session_id, owner_user_id, owner_persona)
-     VALUES (?, ?, ?, ?, ?, ?, ?, 'Under Review', ?, ?, ?)`
+    `INSERT INTO applications (reference_id, company_name, factory_name, udyam_id, lab_report_ref, is_number, product_name, status,
+      owner_session_id, owner_user_id, owner_persona, contact_email, declaration, submitted_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, 'Submitted', ?, ?, ?, ?, ?, ?)`
   ).run(
     ref,
     company_name || factory_name,
@@ -318,15 +346,51 @@ app.post('/api/applications', (req, res) => {
     owner_session_id || null,
     owner_user_id || null,
     owner_persona || null,
+    contact_email || null,
+    declaration || null,
+    submittedAt,
   );
-  res.json({ reference_id: ref, tracking_id: ref, status: 'Under Review', message: 'Application submitted successfully' });
+  db.prepare(
+    `INSERT INTO application_status_history (reference_id, old_status, new_status, changed_by, changed_at, note)
+     VALUES (?, NULL, 'Submitted', 'BIS MITRA Agent', ?, 'Application submitted after user confirmation')`
+  ).run(ref, submittedAt);
+  db.prepare(
+    `INSERT OR REPLACE INTO ebis_workflow_instances
+     (workflow_id, service_id, persona, record_type, record_id, application_id, applicant_name,
+      submitted_at, current_status, current_step, next_action, status_history, assigned_department,
+      related_standard, evidence_refs, source, demo_id, last_updated)
+     VALUES (?, 'SVC-CERT-001', 'industry', 'application', ?, ?, ?, ?, 'Submitted',
+      'Application Submitted', ?, ?, 'Product Certification', ?, ?, 'eBIS Applications', ?, ?)`
+  ).run(
+    `WF-${ref}`,
+    ref,
+    ref,
+    company_name || factory_name,
+    submittedAt,
+    applicationNextAction('Submitted'),
+    JSON.stringify([{ status: 'Submitted', at: submittedAt, changed_by: 'BIS MITRA Agent' }]),
+    is_number,
+    JSON.stringify([
+      { type: 'lab_report', reference: lab_report_ref || null },
+      { type: 'declaration', status: declaration || null },
+    ]),
+    ref,
+    submittedAt,
+  );
+  res.json({
+    reference_id: ref,
+    tracking_id: ref,
+    status: 'Submitted',
+    submitted_at: submittedAt,
+    message: 'Application submitted successfully',
+  });
 });
 
 app.get('/api/applications', (req, res) => {
   const { q, reference_id, company_name, is_number } = req.query;
   if (reference_id) {
     const row = db.prepare('SELECT * FROM applications WHERE reference_id = ?').get(reference_id);
-    return res.json(row ? [row] : []);
+    return res.json(row ? [withApplicationHistory(row)] : []);
   }
   if (q || company_name || is_number) {
     const term = q || company_name || is_number;
@@ -334,21 +398,28 @@ app.get('/api/applications', (req, res) => {
     const rows = db.prepare(
       `SELECT * FROM applications WHERE reference_id LIKE ? OR company_name LIKE ? OR is_number LIKE ? OR product_name LIKE ? ORDER BY submitted_at DESC LIMIT 20`
     ).all(like, like, like, like);
-    return res.json(rows);
+    return res.json(rows.map(withApplicationHistory));
   }
-  res.json(db.prepare('SELECT * FROM applications ORDER BY submitted_at DESC, id DESC').all());
+  res.json(
+    db.prepare('SELECT * FROM applications ORDER BY submitted_at DESC, id DESC')
+      .all()
+      .map(withApplicationHistory)
+  );
 });
 
 const APP_STATUSES = [
+  'Submitted',
   'Under Review',
   'Query Raised',
   'Documents Required',
   'Inspection Scheduled',
+  'Testing',
   'Granted',
+  'Certified',
   'Rejected',
 ];
 
-app.patch('/api/applications/:referenceId', (req, res) => {
+app.patch('/api/applications/:referenceId', async (req, res) => {
   const referenceId = req.params.referenceId;
   const existing = db.prepare('SELECT * FROM applications WHERE reference_id = ?').get(referenceId);
   if (!existing) return res.status(404).json({ error: 'Application not found' });
@@ -356,9 +427,31 @@ app.patch('/api/applications/:referenceId', (req, res) => {
   if (!APP_STATUSES.includes(status)) {
     return res.status(400).json({ error: `status must be one of: ${APP_STATUSES.join(', ')}` });
   }
+  const changedBy = String(req.body.changed_by || req.body.changedBy || 'BIS Certification Officer').trim();
+  const changedAt = new Date().toISOString();
+  const note = String(req.body.note || '').trim() || null;
   db.prepare('UPDATE applications SET status = ? WHERE reference_id = ?').run(status, referenceId);
-  const row = db.prepare('SELECT * FROM applications WHERE reference_id = ?').get(referenceId);
-  notifyMitraStatus({
+  db.prepare(
+    `INSERT INTO application_status_history (reference_id, old_status, new_status, changed_by, changed_at, note)
+     VALUES (?, ?, ?, ?, ?, ?)`
+  ).run(referenceId, existing.status, status, changedBy, changedAt, note);
+  const workflow = db.prepare(
+    'SELECT * FROM ebis_workflow_instances WHERE record_id = ? OR application_id = ?'
+  ).get(referenceId, referenceId);
+  if (workflow) {
+    let history = [];
+    try { history = JSON.parse(workflow.status_history || '[]'); } catch { history = []; }
+    history.push({ status, at: changedAt, changed_by: changedBy, note });
+    db.prepare(
+      `UPDATE ebis_workflow_instances
+       SET current_status = ?, current_step = ?, next_action = ?, status_history = ?, last_updated = ?
+       WHERE workflow_id = ?`
+    ).run(status, status, applicationNextAction(status), JSON.stringify(history), changedAt, workflow.workflow_id);
+  }
+  const row = withApplicationHistory(
+    db.prepare('SELECT * FROM applications WHERE reference_id = ?').get(referenceId)
+  );
+  await notifyMitraStatus({
     reference_id: referenceId,
     status,
     previous_status: existing.status,
@@ -367,6 +460,8 @@ app.patch('/api/applications/:referenceId', (req, res) => {
     user_id: row.owner_user_id,
     persona: row.owner_persona,
     scheme: 'scheme-i',
+    changed_by: changedBy,
+    changed_at: changedAt,
   });
   res.json(row);
 });
@@ -1284,9 +1379,24 @@ app.post('/api/consumer/grievances', (req, res) => {
     return res.status(400).json({ error: 'merchant_name required' });
   }
 
-  // Use pre-assigned ticket or generate CON-GRP-4401 default
-  const ref = ticket_id || (/extension board/i.test(product_category || complaint_details || '') ? 'CON-GRP-4401' : `CON-GRP-${Math.floor(1000 + Math.random() * 9000)}`);
+  const {
+    owner_session_id: ownerSession,
+    owner_user_id: ownerUser,
+    owner_persona: ownerPersona,
+  } = req.body;
+
+  function allocCmpDemoId() {
+    for (let i = 0; i < 8; i += 1) {
+      const candidate = `CMP-DEMO-${Math.floor(1000 + Math.random() * 9000)}`;
+      if (!db.prepare('SELECT 1 FROM mock_grievances WHERE ticket_id = ?').get(candidate)) return candidate;
+    }
+    return `CMP-DEMO-${Date.now().toString().slice(-6)}`;
+  }
+
+  const ref = ticket_id
+    || (/extension board/i.test(product_category || complaint_details || '') ? 'CON-GRP-4401' : allocCmpDemoId());
   const now = new Date().toISOString();
+  const initialStatus = /^CMP-DEMO-/i.test(ref) ? 'SUBMITTED' : 'OFFICER_ASSIGNED';
 
   try {
     // Upsert or insert
@@ -1297,8 +1407,8 @@ app.post('/api/consumer/grievances', (req, res) => {
       ).run(merchant_name, product_category || '', evidence_upload || '', complaint_details || '', now, ref);
     } else {
       db.prepare(
-        `INSERT INTO mock_grievances (ticket_id, consumer_name, merchant_name, product_category, product_name, is_number, invoice_number, evidence_upload, complaint_details, status, action, created_at, updated_at)
-         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
+        `INSERT INTO mock_grievances (ticket_id, consumer_name, merchant_name, product_category, product_name, is_number, invoice_number, evidence_upload, complaint_details, status, action, created_at, updated_at, owner_session_id, owner_user_id, owner_persona)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
       ).run(
         ref,
         consumer_name || 'Retail Consumer',
@@ -1309,11 +1419,20 @@ app.post('/api/consumer/grievances', (req, res) => {
         invoice_number || 'INV-2026-8821',
         evidence_upload || 'store_bill.pdf',
         complaint_details || 'Defective product report',
-        'OFFICER_ASSIGNED',
-        'Surprise sample collection ordered',
+        initialStatus,
+        initialStatus === 'SUBMITTED' ? 'Awaiting officer assignment' : 'Surprise sample collection ordered',
         now,
-        now
+        now,
+        ownerSession || null,
+        ownerUser || null,
+        ownerPersona || null,
       );
+      try {
+        db.prepare(`
+          INSERT INTO grievance_status_history (ticket_id, previous_status, new_status, changed_by, note)
+          VALUES (?,?,?,?,?)
+        `).run(ref, null, initialStatus, 'System', 'Complaint submitted via BIS MITRA');
+      } catch { /* table optional until migrate */ }
     }
 
     createComplianceAlert({
@@ -1330,23 +1449,67 @@ app.post('/api/consumer/grievances', (req, res) => {
       ok: true,
       ticket_id: ref,
       tracking_id: ref,
-      status: 'OFFICER_ASSIGNED',
-      action: 'Surprise sample collection ordered',
-      message: `I have successfully filled out and dispatched your safety grievance to the enforcement cell. Complaint Ticket ID: ${ref} has been created. I will automatically track this ticket on your dashboard profile.`,
+      record_id: ref,
+      status: initialStatus,
+      action: initialStatus === 'SUBMITTED' ? 'Awaiting officer assignment' : 'Surprise sample collection ordered',
+      message: initialStatus === 'SUBMITTED'
+        ? `Your complaint has been filed. Ticket **${ref}**. Track it by asking for the status of complaint ${ref}.`
+        : `I have successfully filled out and dispatched your safety grievance to the enforcement cell. Complaint Ticket ID: ${ref} has been created. I will automatically track this ticket on your dashboard profile.`,
     });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
+app.patch('/api/consumer/grievances/:ticketId', async (req, res) => {
+  const ticketId = req.params.ticketId;
+  const existing = db.prepare('SELECT * FROM mock_grievances WHERE ticket_id = ?').get(ticketId);
+  if (!existing) return res.status(404).json({ error: 'Grievance not found' });
+  const status = String(req.body.status || '').trim().replace(/\s+/g, '_').toUpperCase();
+  if (!status) return res.status(400).json({ error: 'status required' });
+  const changedBy = req.body.changed_by || 'BIS Consumer Grievance Officer';
+  const note = req.body.note || '';
+  const now = new Date().toISOString();
+  const previous = existing.status;
+  db.prepare('UPDATE mock_grievances SET status = ?, action = ?, officer_notes = ?, updated_at = ? WHERE ticket_id = ?')
+    .run(status, note || existing.action, note || existing.officer_notes, now, ticketId);
+  try {
+    db.prepare(`
+      INSERT INTO grievance_status_history (ticket_id, previous_status, new_status, changed_by, changed_at, note)
+      VALUES (?,?,?,?,?,?)
+    `).run(ticketId, previous, status, changedBy, now, note);
+  } catch { /* optional */ }
+  await notifyMitraStatus({
+    reference_id: ticketId,
+    status,
+    previous_status: previous,
+    product_name: existing.product_name || existing.product_category,
+    session_id: existing.owner_session_id,
+    user_id: existing.owner_user_id,
+    persona: existing.owner_persona || 'citizen',
+    changed_by: changedBy,
+    changed_at: now,
+    record_type: 'complaint',
+  });
+  const row = db.prepare('SELECT * FROM mock_grievances WHERE ticket_id = ?').get(ticketId);
+  res.json({ ok: true, ...row, status_history: db.prepare('SELECT * FROM grievance_status_history WHERE ticket_id = ? ORDER BY id').all(ticketId) });
+});
+
 // Deterministic Counterfeit & Factory License Verification
 app.get('/api/registry/verify', (req, res) => {
   const rawQ = String(req.query.cml || req.query.licence || req.query.q || '').trim();
   const cleanQ = rawQ.replace(/^CM\/L-?/i, '').trim();
+  const exactDemo = /(?:CML|LIC)-DEMO-/i.test(rawQ);
 
   let row = null;
   if (cleanQ) {
-    row = db.prepare('SELECT * FROM mock_licensed_manufacturers WHERE cml_number = ? OR cml_number LIKE ? OR licence_number LIKE ?').get(cleanQ, `%${cleanQ}%`, `%${cleanQ}%`);
+    if (exactDemo) {
+      row = db.prepare(
+        'SELECT * FROM mock_licensed_manufacturers WHERE cml_number = ? OR licence_number = ? OR cml_number = ? OR licence_number = ?',
+      ).get(cleanQ, cleanQ, rawQ.replace(/^CM\/L-?/i, '').trim(), rawQ.replace(/^CM\/L-?/i, '').trim());
+    } else {
+      row = db.prepare('SELECT * FROM mock_licensed_manufacturers WHERE cml_number = ? OR cml_number LIKE ? OR licence_number LIKE ?').get(cleanQ, `%${cleanQ}%`, `%${cleanQ}%`);
+    }
   }
 
   if (row) {
@@ -1571,9 +1734,17 @@ app.get('/api/gold/huid/verify', (req, res) => {
   const huid = String(req.query.huid || req.query.q || '').trim().toUpperCase();
   const row = db.prepare('SELECT * FROM mock_huid_ledger WHERE huid = ?').get(huid);
   if (!row) return res.json({ found: false, huid, message: 'HUID not found in secure ledger.' });
+  const flagged = String(row.status || '').toUpperCase() === 'FLAGGED';
   res.json({
-    found: true, verified: true, ...row,
-    demo_id: row.demo_id, source_reference: row.source_reference, source_file: row.source_file,
+    found: true,
+    verified: !flagged,
+    verification_result: flagged ? 'MISMATCH' : 'VERIFIED',
+    flag_reason: flagged ? 'Article-link mismatch in the demo HUID registry (synthetic exception case).' : undefined,
+    ...row,
+    demo_id: row.demo_id,
+    source_reference: row.source_reference,
+    source_file: row.source_file,
+    verified_at: new Date().toISOString(),
   });
 });
 
@@ -1745,9 +1916,22 @@ app.get('/api/academic/formula-derivation', (req, res) => {
 });
 
 app.get('/api/academic/revision-diff', (req, res) => {
-  const isNumber = String(req.query.is_number || req.query.q || 'IS 4151').trim();
-  const rows = db.prepare('SELECT * FROM standard_revision_diffs WHERE is_number LIKE ?').all(`%${isNumber.replace(/^IS\s*/i, '').split(':')[0]}%`);
-  res.json({ is_number: isNumber, diff_matrix: rows });
+  const token = String(req.query.is_number || req.query.q || req.query.old_id || 'IS 4151').trim();
+  if (/STD-DEMO-010|STD-DEMO-011|1010|1011/i.test(token)) {
+    const rows = db.prepare(`
+      SELECT * FROM standard_revision_diffs
+      WHERE is_number LIKE '%1010%' OR evolution_context LIKE '%STD-DEMO-010%'
+    `).all();
+    return res.json({
+      old_standard_id: 'STD-DEMO-010',
+      new_standard_id: 'STD-DEMO-011',
+      old_is_number: 'IS DEMO 1010:2023',
+      new_is_number: 'IS DEMO 1011:2026',
+      diff_matrix: rows,
+    });
+  }
+  const rows = db.prepare('SELECT * FROM standard_revision_diffs WHERE is_number LIKE ?').all(`%${token.replace(/^IS\s*/i, '').split(':')[0]}%`);
+  res.json({ is_number: token, diff_matrix: rows });
 });
 
 app.get('/api/academic/profile', (_req, res) => {
@@ -1775,7 +1959,15 @@ app.get('/api/enforcement/cases', (req, res) => {
   }
   sql += ' ORDER BY inspection_date DESC LIMIT 30';
   try {
-    res.json(db.prepare(sql).all(...params));
+    const rows = db.prepare(sql).all(...params);
+    const enriched = rows.map((row) => {
+      let evidenceHistory = [];
+      try {
+        evidenceHistory = db.prepare('SELECT * FROM mock_seizure_ledger WHERE case_id = ? ORDER BY id DESC').all(row.case_id);
+      } catch { /* optional */ }
+      return { ...row, evidence_history: evidenceHistory };
+    });
+    res.json(enriched);
   } catch {
     res.json([]);
   }
@@ -1796,7 +1988,15 @@ app.get('/api/surveillance', (req, res) => {
   }
   sql += ' ORDER BY surveillance_date DESC LIMIT 30';
   try {
-    res.json(db.prepare(sql).all(...params));
+    const rows = db.prepare(sql).all(...params);
+    const enriched = rows.map((row) => {
+      let evidenceHistory = [];
+      try {
+        evidenceHistory = db.prepare('SELECT * FROM mock_seizure_ledger WHERE case_id = ? ORDER BY id DESC').all(row.case_id);
+      } catch { /* no case_id column yet */ }
+      return { ...row, evidence_history: evidenceHistory };
+    });
+    res.json(enriched);
   } catch {
     res.json([]);
   }
@@ -1805,12 +2005,31 @@ app.get('/api/surveillance', (req, res) => {
 // ── Persona 8: Enforcement ────────────────────────────────────────────────
 app.post('/api/v1/enforcement/raid-evidence', (req, res) => {
   const b = req.body || {};
-  const ref = b.evidence_id || 'SEZ-CEMENT-992';
+  const ref = b.evidence_id || `EVD-${Date.now().toString().slice(-8)}`;
+  const caseId = b.case_id || 'ENF-DEMO-001';
+  const existing = db.prepare('SELECT * FROM mock_seizure_ledger WHERE evidence_id = ?').get(ref);
+  if (existing) {
+    return res.json({
+      ok: true,
+      evidence_id: ref,
+      case_id: existing.case_id || caseId,
+      idempotent: true,
+      message: `Evidence ${ref} already registered for case ${existing.case_id || caseId}.`,
+    });
+  }
   try {
     db.prepare(
-      `INSERT INTO mock_seizure_ledger (evidence_id, product_description, units, location, officer_id, status)
-       VALUES (?,?,?,?,?,?)`
-    ).run(ref, b.product_description || 'Uncertified cement bags with fake ISI logo', Number(b.units || 500), b.location || 'Rogue factory floor', b.officer_id || 'FIELD-OFFICER-01', 'LOCKED');
+      `INSERT INTO mock_seizure_ledger (evidence_id, product_description, units, location, officer_id, status, case_id)
+       VALUES (?,?,?,?,?,?,?)`
+    ).run(
+      ref,
+      b.product_description || b.description || 'Sealed sample and inspection photographs',
+      Number(b.units || 1),
+      b.location || 'Factory inspection site',
+      b.officer_id || 'FIELD-OFFICER-01',
+      'LOCKED',
+      caseId,
+    );
   } catch { /* dup ok */ }
   createComplianceAlert({
     title: `Evidence Intercept Registered — ${ref}`,

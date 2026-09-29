@@ -13,7 +13,7 @@ function docRow(row) {
 
 export const APPLICATIONS = {
   industry: [
-    { id: 'BIS-APP-CERT-DEMO-001', type: 'Product Certification', product: '25L electric storage water heater', status: 'Under Review', stage: 'Officer reviewing Form-I', submitted: '15 Sep 2026', tone: 'amber' },
+    { id: 'BIS-APP-CERT-DEMO-001', type: 'Product Certification', product: 'Industrial safety helmet — Model NSH-1001', status: 'Under Review', stage: 'Officer reviewing Form-I', submitted: '15 Sep 2026', tone: 'amber', is_number: 'IS DEMO 1001:2026', manufacturer: 'NovaShield Safety Products Pvt. Ltd.' },
     { id: 'LAB-APP-DEMO-001', type: 'Laboratory Recognition', product: 'NABL scope', status: 'Inspection Scheduled', stage: 'Inspection on 29 Sep 2026', submitted: '10 Aug 2026', tone: 'blue' },
     { id: 'CML-DEMO-61001', type: 'Licence / CML', product: 'Safety Helmet', status: 'Granted', stage: 'Valid till 11 Aug 2027', submitted: '11 Aug 2025', tone: 'green' },
   ],

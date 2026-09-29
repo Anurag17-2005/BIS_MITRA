@@ -1,5 +1,6 @@
 import { fetchClone } from '../../core/clone-client.js';
 import { extractIdentifiers } from '../../retrieval/identifiers.js';
+import { wantsComplaintFiling } from '../../agent/router/intents.js';
 
 const SERVICE_KEYWORDS = {
   'SVC-CERT-001': /\b(certif|licen[cs]e|apply|form-?i|isi\s+mark|manufactur)\b/i,
@@ -64,7 +65,7 @@ export function pickWorkflowTool(query, router, workflowCtx = {}) {
   if (/\b(which\s+service|what\s+do\s+i\s+need|find\s+a\s+bis|help\s+me\s+apply|eligib)\b/i.test(q)) {
     return 'discover_ebis_service';
   }
-  if (/\b(file\s+a\s+complaint|submit\s+complaint|i\s+want\s+to\s+complain)\b/i.test(q)) {
+  if (wantsComplaintFiling(q)) {
     return 'get_ebis_service';
   }
   if (/\b(submit|fill\s+out|form-?i)\b/i.test(q) && !/\broadmap|step|cost|fee\b/i.test(q)) {

@@ -297,6 +297,9 @@ app.post('/api/agent/application-status', async (req, res) => {
       userId: body.user_id || body.userId,
       persona: body.persona,
       product: body.product_name || body.product,
+      changedBy: body.changed_by || body.changedBy,
+      changedAt: body.changed_at || body.changedAt,
+      recordType: body.record_type || body.recordType,
     });
     res.json({ ok: true, ...result });
   } catch (err) {
@@ -306,7 +309,7 @@ app.post('/api/agent/application-status', async (req, res) => {
 
 function mapCloneApp(row, scheme) {
   const status = row.status || 'Under Review';
-  const tone = /grant|active/i.test(status)
+  const tone = /grant|active|certified/i.test(status)
     ? 'green'
     : /reject/i.test(status)
       ? 'red'
@@ -319,11 +322,14 @@ function mapCloneApp(row, scheme) {
     id: row.reference_id,
     type: scheme === 'fmcs' ? 'FMCS' : 'Product Certification',
     product: row.product_name || row.company_name || '',
+    manufacturer: row.company_name || row.factory_name || '',
     status,
     stage: status,
     submitted: row.submitted_at || '',
     tone,
     is_number: row.is_number || '',
+    status_history: Array.isArray(row.status_history) ? row.status_history : [],
+    contact_email: row.contact_email || '',
     owner_user_id: row.owner_user_id,
     owner_session_id: row.owner_session_id,
     live: true,

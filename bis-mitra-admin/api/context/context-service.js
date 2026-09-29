@@ -129,8 +129,9 @@ export function deriveContextUpdates(sessionContext, { router, message, result }
     patch.activeRecordId = wf.record_id || wf.application_id;
   }
 
-  if (sessionContext?.currentTask === 'certification_collect' && result?.uiMode !== 'status') {
-    patch.currentTask = 'certification_collect';
+  const collecting = ['certification_collect', 'complaint_collect'].includes(sessionContext?.currentTask);
+  if (collecting && result?.uiMode !== 'status') {
+    patch.currentTask = sessionContext.currentTask;
   } else if (result?.uiMode === 'status' || result?.panel?.status === 'Submitted') {
     patch.currentTask = null;
   } else if (/\b(certif|licen[cs]e|complaint|lab\s+recognition|apply)\b/i.test(message || '')) {
