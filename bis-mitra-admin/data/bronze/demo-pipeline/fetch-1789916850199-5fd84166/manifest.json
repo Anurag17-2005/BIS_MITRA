@@ -1,0 +1,158 @@
+{
+  "fetch_id": "fetch-1789916850199-5fd84166",
+  "cluster_id": "demo-pipeline",
+  "source_id": "process_api",
+  "plan_id": "ingest_process_pdfs",
+  "started_at": "2026-09-20T15:07:30.197Z",
+  "finished_at": "2026-09-20T15:07:30.199Z",
+  "seed_urls": [
+    "plan://ingest_process_pdfs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-ingest_process_pdfs-change-in-scope-of-licence.pdf",
+      "url": "plan://ingest_process_pdfs/change-in-scope-of-licence.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-dealing-with-non-conformity-2026.pdf",
+      "url": "plan://ingest_process_pdfs/dealing-with-non-conformity-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-factory-surveillance-2026.pdf",
+      "url": "plan://ingest_process_pdfs/factory-surveillance-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-grant-of-coc-guidelines.pdf",
+      "url": "plan://ingest_process_pdfs/grant-of-coc-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-grant-of-licence-guidelines-2023.pdf",
+      "url": "plan://ingest_process_pdfs/grant-of-licence-guidelines-2023.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-grant-of-licence-guidelines-2026.pdf",
+      "url": "plan://ingest_process_pdfs/grant-of-licence-guidelines-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-market-surveillance-2026.pdf",
+      "url": "plan://ingest_process_pdfs/market-surveillance-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-renewal-of-coc-guidelines.pdf",
+      "url": "plan://ingest_process_pdfs/renewal-of-coc-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-unsatisfactory-performance-2026.pdf",
+      "url": "plan://ingest_process_pdfs/unsatisfactory-performance-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-compulsory-products-list.pdf",
+      "url": "plan://ingest_process_pdfs/compulsory-products-list.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-conformity-assessment-regulations-2019.pdf",
+      "url": "plan://ingest_process_pdfs/conformity-assessment-regulations-2019.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-guidance-document-on-qcos.pdf",
+      "url": "plan://ingest_process_pdfs/guidance-document-on-qcos.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-marking-fee-all-products-2026.pdf",
+      "url": "plan://ingest_process_pdfs/marking-fee-all-products-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-marking-fee-gazette-2025.pdf",
+      "url": "plan://ingest_process_pdfs/marking-fee-gazette-2025.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-scheme-1-notification-2024.pdf",
+      "url": "plan://ingest_process_pdfs/scheme-1-notification-2024.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-simplified-procedure-products.pdf",
+      "url": "plan://ingest_process_pdfs/simplified-procedure-products.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

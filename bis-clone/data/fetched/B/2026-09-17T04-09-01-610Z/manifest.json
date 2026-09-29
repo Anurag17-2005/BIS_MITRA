@@ -1,0 +1,34 @@
+{
+  "pattern": "B",
+  "fetched_at": "2026-09-17T04:09:01.610Z",
+  "source_url": "http://localhost:3001/product-certification/process",
+  "description": "Directory → direct PDF links",
+  "files": [
+    "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/B/2026-09-17T04-09-01-610Z/certification-process-guidelines.pdf",
+    "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/B/2026-09-17T04-09-01-610Z/scheme-1-additional.pdf",
+    "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/B/2026-09-17T04-09-01-610Z/non-conformity-guidelines.pdf"
+  ],
+  "scraped_text": {
+    "documents": [
+      {
+        "title": "📄Guidelines for Grant of Licence under Scheme-I(271 KB)📄Additional Guidelines for Scheme-I(510 KB)📄Guidelines for Dealing With Product Non-Conformity(198 KB)",
+        "href": null
+      },
+      {
+        "title": "Guidelines for Grant of Licence under Scheme-I",
+        "href": "http://localhost:4000/files/process/certification-process-guidelines.pdf",
+        "saved_path": "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/B/2026-09-17T04-09-01-610Z/certification-process-guidelines.pdf"
+      },
+      {
+        "title": "Additional Guidelines for Scheme-I",
+        "href": "http://localhost:4000/files/process/scheme-1-additional.pdf",
+        "saved_path": "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/B/2026-09-17T04-09-01-610Z/scheme-1-additional.pdf"
+      },
+      {
+        "title": "Guidelines for Dealing With Product Non-Conformity",
+        "href": "http://localhost:4000/files/process/non-conformity-guidelines.pdf",
+        "saved_path": "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/B/2026-09-17T04-09-01-610Z/non-conformity-guidelines.pdf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "pattern": "F",
+  "fetched_at": "2026-09-14T14:21:59.676Z",
+  "source_url": "http://localhost:3003/standard-details/IS%20623%3A2025",
+  "description": "Search → detail page → PDF",
+  "scraped_text": {
+    "query": "IS 623:2025",
+    "title": "IS 623:2025",
+    "description": "BICYCLES - BICYCLE FRAMES - SPECIFICATION (First Revision)",
+    "status": "Reviewed In: 2025",
+    "referred": [
+      "IS 1068:2025 — Reviewed In: 2025Zinc ingots (slab zinc) - Specification",
+      "IS 8910:2024 — Reviewed In: 2024Cycles - Terminology",
+      "IS 10685:2024 — Reviewed In: 2024Cycles - Safety requirements"
+    ]
+  },
+  "files": [
+    "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/F/2026-09-14T14-21-59-676Z/IS-623-2025.pdf"
+  ]
+}

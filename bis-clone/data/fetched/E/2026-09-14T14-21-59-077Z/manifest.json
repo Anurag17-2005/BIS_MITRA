@@ -1,0 +1,13 @@
+{
+  "pattern": "E",
+  "fetched_at": "2026-09-14T14:21:59.078Z",
+  "source_url": "http://localhost:3002/marking-fee",
+  "description": "Login → search → scrape fee",
+  "scraped_text": {
+    "query": "helmet",
+    "results": [
+      "IS 4151:2015: PROTECTIVE HELMET FOR TWO WHEELER RIDERS"
+    ],
+    "fee_amount": "Marking Fee for IS 4151:2015: Rs. 15,000 per annum"
+  }
+}

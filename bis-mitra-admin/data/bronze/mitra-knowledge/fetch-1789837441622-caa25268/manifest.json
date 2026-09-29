@@ -1,0 +1,24 @@
+{
+  "fetch_id": "fetch-1789837441622-caa25268",
+  "cluster_id": "mitra-knowledge",
+  "source_id": "news_api",
+  "plan_id": "mitra-knowledge_ingest_bis_news",
+  "started_at": "2026-09-19T17:04:01.620Z",
+  "finished_at": "2026-09-19T17:04:01.622Z",
+  "seed_urls": [
+    "plan://mitra-knowledge_ingest_bis_news"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_bis_news",
+      "url": "plan://mitra-knowledge_ingest_bis_news/bis-news.json",
+      "sha256": "8cb5e8c122447b3912d553bf5b7efd2c200081eb899e73c1bbd79e8645d128c1",
+      "uri": "bronze/mitra-knowledge/fetch-1789837441622-caa25268/artifacts/bis-news.json",
+      "mime_type": "application/json",
+      "bytes": 1707,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

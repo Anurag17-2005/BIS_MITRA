@@ -1,0 +1,41 @@
+{
+  "fetch_id": "fetch-1789837531584-4cdc8af4",
+  "cluster_id": "demo-pipeline",
+  "source_id": "process_api",
+  "plan_id": "ingest_process_pdfs",
+  "started_at": "2026-09-19T17:05:31.583Z",
+  "finished_at": "2026-09-19T17:05:31.584Z",
+  "seed_urls": [
+    "plan://ingest_process_pdfs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-ingest_process_pdfs-certification-process-guidelines.pdf",
+      "url": "plan://ingest_process_pdfs/certification-process-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-scheme-1-additional.pdf",
+      "url": "plan://ingest_process_pdfs/scheme-1-additional.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_process_pdfs-non-conformity-guidelines.pdf",
+      "url": "plan://ingest_process_pdfs/non-conformity-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

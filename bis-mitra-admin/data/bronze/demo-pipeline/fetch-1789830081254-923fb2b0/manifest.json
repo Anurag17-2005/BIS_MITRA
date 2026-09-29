@@ -1,0 +1,24 @@
+{
+  "fetch_id": "fetch-1789830081254-923fb2b0",
+  "cluster_id": "demo-pipeline",
+  "source_id": "standards_api",
+  "plan_id": "ingest_all_standards",
+  "started_at": "2026-09-19T15:01:21.249Z",
+  "finished_at": "2026-09-19T15:01:21.254Z",
+  "seed_urls": [
+    "plan://ingest_all_standards"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-ingest_all_standards",
+      "url": "plan://ingest_all_standards/standards-catalog.json",
+      "sha256": "60565f63ba8917c5e806cb78aea3a5b044f89f03ea4298257e57dd922c03d870",
+      "uri": "bronze/demo-pipeline/fetch-1789830081254-923fb2b0/artifacts/standards-catalog.json",
+      "mime_type": "application/json",
+      "bytes": 1140,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

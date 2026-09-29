@@ -1,0 +1,95 @@
+{
+  "fetch_id": "fetch-1789960665622-73001a90",
+  "cluster_id": "test",
+  "source_id": "manuals_api",
+  "plan_id": "test_ingest_product_manuals",
+  "started_at": "2026-09-21T03:17:45.615Z",
+  "finished_at": "2026-09-21T03:17:45.621Z",
+  "seed_urls": [
+    "plan://test_ingest_product_manuals"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_product_manuals-PM-IS-4151-helmet-2024.pdf",
+      "url": "plan://test_ingest_product_manuals/PM-IS-4151-helmet-2024.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-PM-IS-623-bicycle-frame-2024.pdf",
+      "url": "plan://test_ingest_product_manuals/PM-IS-623-bicycle-frame-2024.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-PM-IS-3055-clinical-thermometer.pdf",
+      "url": "plan://test_ingest_product_manuals/PM-IS-3055-clinical-thermometer.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-PM-IS-10613-bicycle-safety-bilingual.pdf",
+      "url": "plan://test_ingest_product_manuals/PM-IS-10613-bicycle-safety-bilingual.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-PM-IS-269-portland-cement-2023.pdf",
+      "url": "plan://test_ingest_product_manuals/PM-IS-269-portland-cement-2023.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-516_E.pdf",
+      "url": "plan://test_ingest_product_manuals/516_E.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-FSSAI Regulation 2011.pdf",
+      "url": "plan://test_ingest_product_manuals/FSSAI Regulation 2011.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-Order-on-extension-in-the-date-of-enforcement-of-Quality-Control-Order-on-StampingLaminationsCores-of-Transformers (1).pdf",
+      "url": "plan://test_ingest_product_manuals/Order-on-extension-in-the-date-of-enforcement-of-Quality-Control-Order-on-StampingLaminationsCores-of-Transformers (1).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_product_manuals-Order-on-extension-in-the-date-of-enforcement-of-Quality-Control-Order-on-StampingLaminationsCores-of-Transformers.pdf",
+      "url": "plan://test_ingest_product_manuals/Order-on-extension-in-the-date-of-enforcement-of-Quality-Control-Order-on-StampingLaminationsCores-of-Transformers.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

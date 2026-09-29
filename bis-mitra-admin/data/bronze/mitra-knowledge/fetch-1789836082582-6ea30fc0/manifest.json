@@ -1,0 +1,41 @@
+{
+  "fetch_id": "fetch-1789836082582-6ea30fc0",
+  "cluster_id": "mitra-knowledge",
+  "source_id": "process_api",
+  "plan_id": "mitra-knowledge_ingest_process_pdfs",
+  "started_at": "2026-09-19T16:41:22.580Z",
+  "finished_at": "2026-09-19T16:41:22.582Z",
+  "seed_urls": [
+    "plan://mitra-knowledge_ingest_process_pdfs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-certification-process-guidelines.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/certification-process-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-scheme-1-additional.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/scheme-1-additional.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-non-conformity-guidelines.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/non-conformity-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

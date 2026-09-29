@@ -1,0 +1,284 @@
+{
+  "fetch_id": "fetch-1789958863189-ddd8aba7",
+  "cluster_id": "test",
+  "source_id": "schemes_api",
+  "plan_id": "test_ingest_schemes_docs",
+  "started_at": "2026-09-21T02:47:43.187Z",
+  "finished_at": "2026-09-21T02:47:43.189Z",
+  "seed_urls": [
+    "plan://test_ingest_schemes_docs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-GSR-NO-759(E).pdf",
+      "url": "plan://test_ingest_schemes_docs/GSR-NO-759(E).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Guidance-document-on-QCOs-Revised-1.pdf",
+      "url": "plan://test_ingest_schemes_docs/Guidance-document-on-QCOs-Revised-1.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-QCO-CoC-Bycycle-DPIIT (1).pdf",
+      "url": "plan://test_ingest_schemes_docs/QCO-CoC-Bycycle-DPIIT (1).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-QCO-CoC-Bycycle-DPIIT.pdf",
+      "url": "plan://test_ingest_schemes_docs/QCO-CoC-Bycycle-DPIIT.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-QCO30032020.pdf",
+      "url": "plan://test_ingest_schemes_docs/QCO30032020.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 2033 (E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 2033 (E).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 2357 (E) (1).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 2357 (E) (1).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 2357 (E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 2357 (E).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 822 (E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 822 (E).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO-No-165(E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO-No-165(E).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO-No-191(E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO-No-191(E).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.56.29 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.56.29 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.56.56 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.56.56 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.58.15 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.58.15 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.59.46 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.59.46 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.02.23 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.02.23 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.02.29 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.02.29 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.03.17 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.03.17 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.04.21 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.04.21 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.05.18 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.05.18 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.07.19 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.07.19 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.10.07 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.10.07 AM.png",
+      "sha256": null,
+      "mime_type": "image/png",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Steel-QCO-2020-dated-27th-May-2020.pdf",
+      "url": "plan://test_ingest_schemes_docs/Steel-QCO-2020-dated-27th-May-2020.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-gazette_notification_2012_10_03 (1).pdf",
+      "url": "plan://test_ingest_schemes_docs/gazette_notification_2012_10_03 (1).pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-gazette_notification_2012_10_03.pdf",
+      "url": "plan://test_ingest_schemes_docs/gazette_notification_2012_10_03.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-compulsory-products-list.pdf",
+      "url": "plan://test_ingest_schemes_docs/compulsory-products-list.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-conformity-assessment-regulations-2019.pdf",
+      "url": "plan://test_ingest_schemes_docs/conformity-assessment-regulations-2019.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-guidance-document-on-qcos.pdf",
+      "url": "plan://test_ingest_schemes_docs/guidance-document-on-qcos.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-scheme-1-notification-2024.pdf",
+      "url": "plan://test_ingest_schemes_docs/scheme-1-notification-2024.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-simplified-procedure-products.pdf",
+      "url": "plan://test_ingest_schemes_docs/simplified-procedure-products.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

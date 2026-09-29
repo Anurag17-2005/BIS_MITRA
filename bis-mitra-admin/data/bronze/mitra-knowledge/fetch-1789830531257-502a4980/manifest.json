@@ -1,0 +1,24 @@
+{
+  "fetch_id": "fetch-1789830531257-502a4980",
+  "cluster_id": "mitra-knowledge",
+  "source_id": "standards_api",
+  "plan_id": "mitra-knowledge_ingest_all_standards",
+  "started_at": "2026-09-19T15:08:51.254Z",
+  "finished_at": "2026-09-19T15:08:51.257Z",
+  "seed_urls": [
+    "plan://mitra-knowledge_ingest_all_standards"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_all_standards",
+      "url": "plan://mitra-knowledge_ingest_all_standards/standards-catalog.json",
+      "sha256": "60565f63ba8917c5e806cb78aea3a5b044f89f03ea4298257e57dd922c03d870",
+      "uri": "bronze/mitra-knowledge/fetch-1789830531257-502a4980/artifacts/standards-catalog.json",
+      "mime_type": "application/json",
+      "bytes": 1140,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

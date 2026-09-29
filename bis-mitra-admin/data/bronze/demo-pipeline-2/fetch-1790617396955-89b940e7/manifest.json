@@ -1,0 +1,134 @@
+{
+  "fetch_id": "fetch-1790617396955-89b940e7",
+  "cluster_id": "demo-pipeline-2",
+  "source_id": "hallmarking_api",
+  "plan_id": "demo-pipeline-2_ingest_hallmarking_docs",
+  "started_at": "2026-09-28T17:43:16.858Z",
+  "finished_at": "2026-09-28T17:43:16.929Z",
+  "seed_urls": [
+    "plan://demo-pipeline-2_ingest_hallmarking_docs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-brief-on-hallmarking.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/brief-on-hallmarking.pdf",
+      "sha256": "ec8c0256ed243f251307b8ee74ab01cc9463a87434fbeadc0d6ffefe813d79d7",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/brief-on-hallmarking.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 127711,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-consumer-gold-testing-guidelines.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/consumer-gold-testing-guidelines.pdf",
+      "sha256": "0a9b21a37bb4717cd802e5494bdfd17a467df75a5cc173a74e71b0de3e19d770",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/consumer-gold-testing-guidelines.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 512723,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-generic-quality-manual-ahc.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/generic-quality-manual-ahc.pdf",
+      "sha256": "b15aa716a8f506374c2b23b48d90a1a2d429fb473a2a168d64e8ccc81e5e8cf9",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/generic-quality-manual-ahc.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1557424,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-gold-jewellery-purity-consumer-compensation-reference.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/gold-jewellery-purity-consumer-compensation-reference.pdf",
+      "sha256": "8a3247408b02cff9fdc0a0a5afe9a8f91cf94b3f9ee6cdce85a379cf5c19c1c4",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/gold-jewellery-purity-consumer-compensation-reference.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 98830,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-guide-ahc-recognition-2021.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/guide-ahc-recognition-2021.pdf",
+      "sha256": "59130ca45f815b53692019851b96d091a7f803f6d77f105b761f64449ff47911",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/guide-ahc-recognition-2021.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 2694281,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-guide-jeweller-registration.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/guide-jeweller-registration.pdf",
+      "sha256": "a219302ac20972fd271f0a0fced76435a4461154c9785275d8da2bf27fe2ef34",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/guide-jeweller-registration.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 2643258,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-guidelines-ahc-2019.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/guidelines-ahc-2019.pdf",
+      "sha256": "4f0998c2181a02b4408db3d97e2b3f9454ac7a740daae1f4f7c46f30bc7b2bb9",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/guidelines-ahc-2019.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 632355,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-guidelines-for-ahcs-2026.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/guidelines-for-ahcs-2026.pdf",
+      "sha256": "355df5ebfea8cee97b0adce9a844d222126cafb579c5af9094599070a7f9fca4",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/guidelines-for-ahcs-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 2504008,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-guidelines-for-jewellers-2026.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/guidelines-for-jewellers-2026.pdf",
+      "sha256": "413890d7d28e575f5a57bd5997a6d21ea0c31de5c654425def795a4340d7ca20",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/guidelines-for-jewellers-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1981553,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-mandatory-hallmarking-order-2020.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/mandatory-hallmarking-order-2020.pdf",
+      "sha256": "1f38c9758aa65ce6a0c6ce1f98e8388bb1883ad4c3d65c11efbdd9b4189cc016",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/mandatory-hallmarking-order-2020.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 477704,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-offsite-ahc-centres.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/offsite-ahc-centres.pdf",
+      "sha256": "c0d27f3c27f76b9232ebe74e200162f374b4cd81d1288660183c96e5e208e050",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/offsite-ahc-centres.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 323901,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_hallmarking_docs-phase-wise-mandatory-districts.pdf",
+      "url": "plan://demo-pipeline-2_ingest_hallmarking_docs/phase-wise-mandatory-districts.pdf",
+      "sha256": "0ae3355e293234344eff2e9578c86e506911aea2821ea78c833caa1266b558b1",
+      "uri": "bronze/demo-pipeline-2/fetch-1790617396955-89b940e7/artifacts/phase-wise-mandatory-districts.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 583757,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

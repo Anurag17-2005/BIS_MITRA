@@ -1,0 +1,728 @@
+/* BIS MITRA — shared Agent shell (user portal + admin preview) */
+.mitra-shell {
+  --mitra-bg: #0f172a;
+  --mitra-panel: #1e293b;
+  --mitra-border: #334155;
+  --mitra-accent: #2563eb;
+  --mitra-text: #e2e8f0;
+  --mitra-muted: #94a3b8;
+  min-height: 100vh;
+  background: var(--mitra-bg);
+  color: var(--mitra-text);
+  display: flex;
+  flex-direction: column;
+}
+
+.mitra-loading,
+.mitra-error-wrap {
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.mitra-persona-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: #0b1220;
+  border-bottom: 1px solid var(--mitra-border);
+  flex-wrap: wrap;
+}
+
+.mitra-persona-bar-label {
+  font-size: 12px;
+  color: var(--mitra-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mitra-persona-select,
+.mitra-cluster-select {
+  padding: 6px 10px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  color: var(--mitra-text);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.mitra-cluster-hint {
+  font-size: 11px;
+  color: var(--mitra-muted);
+  margin-left: auto;
+}
+
+.mitra-top-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mitra-alert-bell {
+  background: transparent;
+  border: 1px solid var(--mitra-border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  color: var(--mitra-text);
+  position: relative;
+}
+
+.mitra-badge-count {
+  background: #dc2626;
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 10px;
+  margin-left: 4px;
+}
+
+.mitra-body {
+  display: grid;
+  grid-template-columns: 220px 1fr 300px;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.mitra-brand {
+  display: flex;
+  gap: 10px;
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--mitra-border);
+  align-items: center;
+}
+
+.mitra-brand strong {
+  display: block;
+  font-size: 14px;
+}
+
+.mitra-brand-icon {
+  font-size: 28px;
+}
+
+.mitra-sidebar {
+  background: #111827;
+  border-right: 1px solid var(--mitra-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.mitra-nav {
+  list-style: none;
+  padding: 8px;
+  margin: 0;
+}
+
+.mitra-nav button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--mitra-muted);
+  cursor: pointer;
+  font-size: 13px;
+  text-align: left;
+}
+
+.mitra-nav button:hover {
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--mitra-text);
+}
+
+.mitra-nav button.active {
+  background: rgba(37, 99, 235, 0.22);
+  color: #fff;
+}
+
+.mitra-nav-badge {
+  margin-left: auto;
+  background: #dc2626;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.mitra-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: calc(100vh - 90px);
+  background: var(--mitra-bg);
+}
+
+.mitra-agent-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  padding: 0 16px 12px;
+}
+
+.mitra-conv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--mitra-border);
+}
+
+.mitra-conv-header h2 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mitra-chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mitra-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--mitra-muted);
+}
+
+.mitra-empty-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.mitra-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 92%;
+}
+
+.mitra-msg-user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.mitra-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--mitra-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mitra-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.mitra-msg-user .mitra-bubble {
+  background: #1d4ed8;
+  border-color: #2563eb;
+}
+
+.mitra-bubble-error {
+  border-color: #dc2626;
+}
+
+.mitra-mode-pill {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.25);
+  color: #93c5fd;
+  margin-bottom: 6px;
+}
+
+.mitra-answer {
+  white-space: pre-wrap;
+}
+
+.mitra-thinking {
+  color: var(--mitra-muted);
+  font-size: 13px;
+  padding: 8px 0;
+}
+
+.mitra-input-wrap {
+  padding-top: 8px;
+  border-top: 1px solid var(--mitra-border);
+}
+
+.mitra-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  border-radius: 12px;
+  padding: 6px 10px;
+}
+
+.mitra-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--mitra-text);
+  font-size: 14px;
+  outline: none;
+  padding: 8px 4px;
+}
+
+.mitra-input-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.mitra-send-btn {
+  background: var(--mitra-accent);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.mitra-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mitra-mode-indicator {
+  font-size: 11px;
+  color: var(--mitra-muted);
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.mitra-mode-indicator::before {
+  content: 'Mode: ';
+}
+
+/* Panels */
+.mitra-panel {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid var(--mitra-border);
+  font-size: 13px;
+}
+
+.mitra-panel-head {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--mitra-muted);
+  margin-bottom: 6px;
+}
+
+.mitra-panel-meta {
+  font-size: 12px;
+  color: var(--mitra-muted);
+}
+
+.mitra-panel-highlight {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mitra-doc-list,
+.mitra-step-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.mitra-alert-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--mitra-border);
+}
+
+.mitra-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.3);
+  text-transform: uppercase;
+}
+
+/* Sources */
+.mitra-sources {
+  margin-top: 10px;
+}
+
+.mitra-sources-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--mitra-muted);
+  margin-bottom: 4px;
+}
+
+.mitra-sources ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mitra-source-link {
+  background: none;
+  border: none;
+  color: #60a5fa;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  text-align: left;
+}
+
+.mitra-source-meta {
+  color: var(--mitra-muted);
+  font-size: 12px;
+}
+
+/* Context panel */
+.mitra-context-wrap {
+  background: #111827;
+  border-left: 1px solid var(--mitra-border);
+  overflow-y: auto;
+}
+
+.mitra-context {
+  padding: 14px;
+}
+
+.mitra-context-block {
+  margin-bottom: 16px;
+}
+
+.mitra-context-block h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--mitra-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.mitra-context-persona {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.mitra-suggest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mitra-chip-btn {
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  color: var(--mitra-text);
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.mitra-chip-btn:hover {
+  border-color: var(--mitra-accent);
+}
+
+.mitra-debug summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--mitra-muted);
+}
+
+/* Pages */
+.mitra-page {
+  padding: 20px 24px;
+  overflow-y: auto;
+}
+
+.mitra-page h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.mitra-empty-inline {
+  color: var(--mitra-muted);
+  padding: 24px 0;
+}
+
+.mitra-doc-page-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.mitra-doc-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.mitra-app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.mitra-app-card {
+  padding: 14px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  border-radius: 8px;
+}
+
+.mitra-app-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mitra-alert-page-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.mitra-alert-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.mitra-alert-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.mitra-profile-card {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.mitra-profile-icon {
+  font-size: 48px;
+}
+
+.mitra-setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--mitra-border);
+  max-width: 400px;
+}
+
+/* PDF viewer */
+.mitra-pdf-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.mitra-pdf-modal {
+  background: var(--mitra-panel);
+  border: 1px solid var(--mitra-border);
+  border-radius: 10px;
+  width: min(1100px, 96vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mitra-pdf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--mitra-border);
+}
+
+.mitra-pdf-header h3 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.mitra-icon-btn {
+  background: transparent;
+  border: 1px solid var(--mitra-border);
+  color: var(--mitra-text);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mitra-pdf-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  min-height: 480px;
+  max-height: calc(92vh - 60px);
+}
+
+.mitra-pdf-frame-wrap {
+  min-height: 400px;
+}
+
+.mitra-pdf-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  border: none;
+  background: #fff;
+}
+
+.mitra-pdf-excerpt {
+  padding: 14px;
+  border-left: 1px solid var(--mitra-border);
+  overflow-y: auto;
+}
+
+.mitra-pdf-highlight {
+  background: #fef08a;
+  color: #1e293b;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 8px 0 12px;
+}
+
+.mitra-mobile-toggle,
+.mitra-context-toggle {
+  display: none;
+}
+
+.mitra-admin-strip {
+  display: flex;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #0b1220;
+  border-bottom: 1px solid var(--mitra-border);
+}
+
+@media (max-width: 1024px) {
+  .mitra-body {
+    grid-template-columns: 200px 1fr;
+  }
+  .mitra-context-wrap {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 50;
+    transform: translateX(100%);
+    transition: transform 0.2s;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
+  }
+  .mitra-context-wrap.open {
+    transform: translateX(0);
+  }
+  .mitra-context-toggle {
+    display: block;
+    position: fixed;
+    right: 12px;
+    bottom: 80px;
+    z-index: 40;
+    background: var(--mitra-accent);
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .mitra-pdf-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mitra-body {
+    grid-template-columns: 1fr;
+  }
+  .mitra-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 240px;
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+  }
+  .mitra-sidebar.open {
+    transform: translateX(0);
+  }
+  .mitra-mobile-toggle {
+    display: block;
+    position: fixed;
+    left: 12px;
+    bottom: 80px;
+    z-index: 40;
+    background: var(--mitra-panel);
+    border: 1px solid var(--mitra-border);
+    color: var(--mitra-text);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

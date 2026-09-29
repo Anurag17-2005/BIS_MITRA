@@ -1,0 +1,194 @@
+{
+  "fetch_id": "fetch-1790529381899-d7f0c0f2",
+  "cluster_id": "demo-pipeline-2",
+  "source_id": "demo_consumer_complaints_api",
+  "plan_id": "demo-pipeline-2_ingest_demo_consumer_complaints",
+  "started_at": "2026-09-27T17:16:21.894Z",
+  "finished_at": "2026-09-27T17:16:21.898Z",
+  "seed_urls": [
+    "plan://demo-pipeline-2_ingest_demo_consumer_complaints"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-001",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-001",
+      "sha256": "178c63798e3848b1a480323598ba217be00021017ab8fa3aae1d9d434f93f5c0",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1103,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-002",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-002",
+      "sha256": "d6d9bf0c46feb96f03f03a061de2fbf3b61710ac4bb0ad3703857fc42b0559dd",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 1093,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-003",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-003",
+      "sha256": "0cc815c39ac7da0c9b6d3daba4b250aedde7409ad41b5695c6b92b72908957e2",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 1052,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-004",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-004",
+      "sha256": "7744de35dcd13e2beb2107ac3412bac1a7ee8cc8c86a72fde224573507bdb15f",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 1110,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-005",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-005",
+      "sha256": "06a47a9cf5a3c04a0147200fbd748c9a2a244755c66def86aaba684ce783814c",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 1121,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-006",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-006",
+      "sha256": "ff1a6dbe9546c07d51718c529ad8158e8a3aba0accd0387c705be8b3996a4ba2",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 1102,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-007",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-007",
+      "sha256": "275f26058b9593f48df103a03c334394202cea7f232aa806cf5e9b9e067e5f6d",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 1088,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-008",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-008",
+      "sha256": "2107619c1d813350b4dab9475047c3023c11463c9718b68b19afd701244ad2cd",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 1050,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-009",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-009",
+      "sha256": "459e71b085e8a732ff3e5b8c93aae067853c027aae29ea1889031411381c2988",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 1162,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-010",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-010",
+      "sha256": "2ee9e0aa4cca779b478a18492b417f480e59f0448e0cfbf675fc3a261f42b35e",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 1083,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-011",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-011",
+      "sha256": "e3b334bc81aeacb545f259d6eaf53fcaa2137279ac21e826ba692916a3a0e7b3",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 1127,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-012",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-012",
+      "sha256": "c2415f8409a0371174c2313add9941fa15a5d31f711ef7965485f31b657a4c06",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 1126,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-013",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-013",
+      "sha256": "c53b9964871b61d6fac8725ec0689b646e36b39e88e6d89543064e94f1e76315",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-013.json",
+      "mime_type": "application/json",
+      "bytes": 1114,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-014",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-014",
+      "sha256": "f7c6c30c881029296c48d730ea573914396352653278d402c7445bdcd0f1482c",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-014.json",
+      "mime_type": "application/json",
+      "bytes": 1119,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-015",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-015",
+      "sha256": "6d53781df1bb2652e12ada6ed00fe43c2e44b2ab0b48b571250102fc12f2b003",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-015.json",
+      "mime_type": "application/json",
+      "bytes": 1090,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-016",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-016",
+      "sha256": "ce4b0d5f13cfdea5347f6130f2ed59a2e71b8e5b4cd84ff6b4aee5bfd8cfe9b9",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-016.json",
+      "mime_type": "application/json",
+      "bytes": 1109,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-017",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-017",
+      "sha256": "1f652e3e85ed73212b5a850c3fc5a1a750c2830f9ae2585c68ec4e8f1341a5b3",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-017.json",
+      "mime_type": "application/json",
+      "bytes": 1052,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_consumer_complaints-CMP-DEMO-018",
+      "url": "demo://consumer_complaints_demo.pdf#CMP-DEMO-018",
+      "sha256": "bb22f0963b2088d8fccaa9fee02791361829d95af12630ca96049f1d2429c23a",
+      "uri": "bronze/demo-pipeline-2/fetch-1790529381899-d7f0c0f2/artifacts/consumer_complaints-CMP-DEMO-018.json",
+      "mime_type": "application/json",
+      "bytes": 1076,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

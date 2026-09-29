@@ -1,0 +1,30 @@
+{
+  "pattern": "G",
+  "fetched_at": "2026-09-18T03:17:20.471Z",
+  "source_url": "http://localhost:3001/news",
+  "description": "BIS News page — scrape all announcements (no search)",
+  "scraped_text": {
+    "items": [
+      {
+        "title": "Gama news",
+        "summary": "gama news",
+        "published_at": "Published 2026-09-17"
+      },
+      {
+        "title": "Charlie news",
+        "summary": "Charlie news",
+        "published_at": "Published 2026-09-17"
+      },
+      {
+        "title": "Bravo news",
+        "summary": "Bravo news",
+        "published_at": "Published 2026-09-17"
+      },
+      {
+        "title": "Alpha news",
+        "summary": "Alpha news",
+        "published_at": "Published 2026-09-17"
+      }
+    ]
+  }
+}

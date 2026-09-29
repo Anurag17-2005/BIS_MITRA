@@ -1,0 +1,36 @@
+{
+  "name": "bis-mitra-admin",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:clean": "lsof -ti :5050 -ti :5001 2>/dev/null | xargs kill -9 2>/dev/null || true",
+    "dev": "npm run dev:clean && concurrently \"npm run dev:api\" \"npm run dev:frontend\"",
+    "start": "npm run dev",
+    "dev:api": "npm run dev -w api",
+    "dev:frontend": "npm run dev -w frontend",
+    "start:api": "npm run start -w api",
+    "seed:c2": "node scripts/seed-mitra-knowledge.mjs",
+    "test:demo-ingest": "node test/demo-ingestion.mjs",
+    "test:agent:router": "node api/tests/agent/router-retrieval.test.mjs",
+    "test:agent:trace": "node api/tests/agent/retrieval-trace.test.mjs",
+    "test:agent": "npm run test:agent:router && npm run test:agent:trace",
+    "test:agent:context": "node api/tests/agent/context-alerts-tools.test.mjs",
+    "test:agent:all": "npm run test:agent && npm run test:agent:context",
+    "golden": "OCR_ENABLED=0 node scripts/run-golden.mjs",
+    "golden:all": "OCR_ENABLED=0 node scripts/run-golden.mjs --all",
+    "golden:c2": "OCR_ENABLED=0 node scripts/run-golden.mjs --cluster mitra-knowledge",
+    "chunks": "node scripts/run-chunks.mjs",
+    "chunks:all": "node scripts/run-chunks.mjs --all",
+    "chunks:c2": "node scripts/run-chunks.mjs --cluster mitra-knowledge",
+    "index": "node scripts/run-index.mjs",
+    "index:all": "node scripts/run-index.mjs --all",
+    "index:c2": "node scripts/run-index.mjs --cluster mitra-knowledge",
+    "build": "OCR_ENABLED=0 node scripts/run-full.mjs --cluster demo-pipeline-2",
+    "build:all": "OCR_ENABLED=0 node scripts/run-full.mjs --all",
+    "build:demo": "OCR_ENABLED=0 node scripts/run-full.mjs --cluster demo-pipeline-2 && node -e \"import { promoteIndexToLive } from './api/transformation/pipeline/run-index.js'; promoteIndexToLive('demo-pipeline-2');\""
+  },
+  "workspaces": ["api", "frontend"],
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

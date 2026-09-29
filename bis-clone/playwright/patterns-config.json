@@ -1,0 +1,74 @@
+{
+  "A": {
+    "name": "Search Box → Text Results",
+    "description": "User types a keyword in a search box; results appear as a list of text items (no table). Common on Know Your Standards portal.",
+    "clonePage": "standards.local/know-your-standards",
+    "supportsSearch": true,
+    "defaultQuery": "cycle",
+    "queryLabel": "Search keyword (e.g. cycle, helmet)",
+    "realBisExample": "standards.bis.gov.in — search by product name or IS number"
+  },
+  "B": {
+    "name": "Directory → Direct PDF Links",
+    "description": "A page lists PDF documents as direct download links in a directory layout. No search required — scrape and download each link.",
+    "clonePage": "bis.local/product-certification/process",
+    "supportsSearch": false,
+    "defaultQuery": "",
+    "queryLabel": "",
+    "realBisExample": "bis.gov.in — Certification Process guidelines PDF list"
+  },
+  "C": {
+    "name": "Static Table (with optional filter)",
+    "description": "A full data table is displayed on page load. Optional search box filters visible rows. Used for certification lists and compulsory products.",
+    "clonePage": "manak.local/standards-under-certification",
+    "supportsSearch": true,
+    "defaultQuery": "",
+    "queryLabel": "Table filter keyword (optional, e.g. helmet)",
+    "realBisExample": "manakonline.in — Standards Under Certification table"
+  },
+  "D": {
+    "name": "Search → Table → PDF in Last Column",
+    "description": "User searches by IS number; results appear in a table; last column has View/Download PDF links. Most common BIS document pattern.",
+    "clonePage": "bis.local/product-manuals",
+    "supportsSearch": true,
+    "defaultQuery": "3055",
+    "queryLabel": "IS number or keyword (e.g. 3055, helmet)",
+    "realBisExample": "bis.gov.in — Product Manuals table with download"
+  },
+  "E": {
+    "name": "Login → Search → Results",
+    "description": "Requires authentication first (login + captcha), then search on a protected page. Proves Playwright can handle gated portals.",
+    "clonePage": "manak.local/login → marking-fee",
+    "supportsSearch": true,
+    "defaultQuery": "helmet",
+    "queryLabel": "Product keyword after login (e.g. helmet)",
+    "realBisExample": "manakonline.in — Marking Fee search (login required)"
+  },
+  "F": {
+    "name": "Detail Page → Metadata + PDF",
+    "description": "Navigate to a standard detail page (via search or direct URL), scrape metadata tabs, and download linked PDF.",
+    "clonePage": "standards.local/standard-details/:is",
+    "supportsSearch": true,
+    "defaultQuery": "IS 623:2025",
+    "queryLabel": "IS number for detail page (e.g. IS 623:2025)",
+    "realBisExample": "standards.bis.gov.in — Standard Details with tabs and manual PDF"
+  },
+  "G": {
+    "name": "News list (all items, no search)",
+    "description": "Public news page lists all announcements. Scrape every card — no keyword required.",
+    "clonePage": "bis.local/news",
+    "supportsSearch": false,
+    "defaultQuery": "",
+    "queryLabel": "",
+    "realBisExample": "bis.gov.in — news and announcements"
+  },
+  "N": {
+    "name": "Login → org dashboard",
+    "description": "Authenticate on eBIS then scrape the logged-in dashboard as an org-session probe.",
+    "clonePage": "manak.local/login → dashboard",
+    "supportsSearch": false,
+    "defaultQuery": "",
+    "queryLabel": "",
+    "realBisExample": "manakonline.in — licensee dashboard after login"
+  }
+}

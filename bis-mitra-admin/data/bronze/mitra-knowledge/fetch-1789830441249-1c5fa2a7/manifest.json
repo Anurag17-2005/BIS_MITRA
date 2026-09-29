@@ -1,0 +1,24 @@
+{
+  "fetch_id": "fetch-1789830441249-1c5fa2a7",
+  "cluster_id": "mitra-knowledge",
+  "source_id": "fees_api",
+  "plan_id": "mitra-knowledge_ingest_marking_fees",
+  "started_at": "2026-09-19T15:07:21.245Z",
+  "finished_at": "2026-09-19T15:07:21.249Z",
+  "seed_urls": [
+    "plan://mitra-knowledge_ingest_marking_fees"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_marking_fees",
+      "url": "plan://mitra-knowledge_ingest_marking_fees/marking-fees.json",
+      "sha256": "216d18781fb170c6f20f7a231e4545f6e4166fbb0bdcc7026b61f223adb1cf84",
+      "uri": "bronze/mitra-knowledge/fetch-1789830441249-1c5fa2a7/artifacts/marking-fees.json",
+      "mime_type": "application/json",
+      "bytes": 781,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

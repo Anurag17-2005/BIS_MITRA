@@ -1,0 +1,370 @@
+{
+  "downloadedAt": "2026-09-19T05:17:15.673Z",
+  "source": "bis.gov.in (public PDFs)",
+  "total": 44,
+  "totalBytes": 70982245,
+  "note": "IS 2062 and IS 10748 product manuals blocked (403) from bis.gov.in/PDF/cart — add manually if needed",
+  "byFolder": {
+    "process": 9,
+    "schemes": 7,
+    "hallmarking": 11,
+    "consumer": 2,
+    "labs": 6,
+    "standards-meta": 4,
+    "manuals": 5
+  },
+  "files": [
+    {
+      "folder": "process",
+      "name": "change-in-scope-of-licence.pdf",
+      "path": "data/knowledge/pdfs/process/change-in-scope-of-licence.pdf",
+      "bytes": 149013,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:17.068Z"
+    },
+    {
+      "folder": "process",
+      "name": "dealing-with-non-conformity-2026.pdf",
+      "path": "data/knowledge/pdfs/process/dealing-with-non-conformity-2026.pdf",
+      "bytes": 319617,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:16.648Z"
+    },
+    {
+      "folder": "process",
+      "name": "factory-surveillance-2026.pdf",
+      "path": "data/knowledge/pdfs/process/factory-surveillance-2026.pdf",
+      "bytes": 228417,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:16.755Z"
+    },
+    {
+      "folder": "process",
+      "name": "grant-of-coc-guidelines.pdf",
+      "path": "data/knowledge/pdfs/process/grant-of-coc-guidelines.pdf",
+      "bytes": 354819,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:17.174Z"
+    },
+    {
+      "folder": "process",
+      "name": "grant-of-licence-guidelines-2023.pdf",
+      "path": "data/knowledge/pdfs/process/grant-of-licence-guidelines-2023.pdf",
+      "bytes": 215853,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:17.018Z"
+    },
+    {
+      "folder": "process",
+      "name": "grant-of-licence-guidelines-2026.pdf",
+      "path": "data/knowledge/pdfs/process/grant-of-licence-guidelines-2026.pdf",
+      "bytes": 483290,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:16.312Z"
+    },
+    {
+      "folder": "process",
+      "name": "market-surveillance-2026.pdf",
+      "path": "data/knowledge/pdfs/process/market-surveillance-2026.pdf",
+      "bytes": 196992,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:16.858Z"
+    },
+    {
+      "folder": "process",
+      "name": "renewal-of-coc-guidelines.pdf",
+      "path": "data/knowledge/pdfs/process/renewal-of-coc-guidelines.pdf",
+      "bytes": 136222,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:17.224Z"
+    },
+    {
+      "folder": "process",
+      "name": "unsatisfactory-performance-2026.pdf",
+      "path": "data/knowledge/pdfs/process/unsatisfactory-performance-2026.pdf",
+      "bytes": 243163,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:16.935Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "compulsory-products-list.pdf",
+      "path": "data/knowledge/pdfs/schemes/compulsory-products-list.pdf",
+      "bytes": 4613705,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:19.916Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "conformity-assessment-regulations-2019.pdf",
+      "path": "data/knowledge/pdfs/schemes/conformity-assessment-regulations-2019.pdf",
+      "bytes": 7312036,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:35.245Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "guidance-document-on-qcos.pdf",
+      "path": "data/knowledge/pdfs/schemes/guidance-document-on-qcos.pdf",
+      "bytes": 712151,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:17.367Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "marking-fee-all-products-2026.pdf",
+      "path": "data/knowledge/pdfs/schemes/marking-fee-all-products-2026.pdf",
+      "bytes": 7397270,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:45.151Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "marking-fee-gazette-2025.pdf",
+      "path": "data/knowledge/pdfs/schemes/marking-fee-gazette-2025.pdf",
+      "bytes": 2735578,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:46.594Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "scheme-1-notification-2024.pdf",
+      "path": "data/knowledge/pdfs/schemes/scheme-1-notification-2024.pdf",
+      "bytes": 1142292,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:17.556Z"
+    },
+    {
+      "folder": "schemes",
+      "name": "simplified-procedure-products.pdf",
+      "path": "data/knowledge/pdfs/schemes/simplified-procedure-products.pdf",
+      "bytes": 313083,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:20.053Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "brief-on-hallmarking.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/brief-on-hallmarking.pdf",
+      "bytes": 127711,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:46.845Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "consumer-gold-testing-guidelines.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/consumer-gold-testing-guidelines.pdf",
+      "bytes": 512723,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:07.995Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "generic-quality-manual-ahc.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/generic-quality-manual-ahc.pdf",
+      "bytes": 1557424,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:15.813Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "guide-ahc-recognition-2021.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/guide-ahc-recognition-2021.pdf",
+      "bytes": 2694281,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:55.266Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "guide-jeweller-registration.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/guide-jeweller-registration.pdf",
+      "bytes": 2643258,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:50.892Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "guidelines-ahc-2019.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/guidelines-ahc-2019.pdf",
+      "bytes": 632355,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:16.419Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "guidelines-for-ahcs-2026.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/guidelines-for-ahcs-2026.pdf",
+      "bytes": 2504008,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:12:58.501Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "guidelines-for-jewellers-2026.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/guidelines-for-jewellers-2026.pdf",
+      "bytes": 1981553,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:38.924Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "mandatory-hallmarking-order-2020.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/mandatory-hallmarking-order-2020.pdf",
+      "bytes": 477704,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:12.714Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "offsite-ahc-centres.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/offsite-ahc-centres.pdf",
+      "bytes": 323901,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:07.446Z"
+    },
+    {
+      "folder": "hallmarking",
+      "name": "phase-wise-mandatory-districts.pdf",
+      "path": "data/knowledge/pdfs/hallmarking/phase-wise-mandatory-districts.pdf",
+      "bytes": 583757,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:18.149Z"
+    },
+    {
+      "folder": "consumer",
+      "name": "complaint-guidelines-certified-products-2023.pdf",
+      "path": "data/knowledge/pdfs/consumer/complaint-guidelines-certified-products-2023.pdf",
+      "bytes": 1022438,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:18.496Z"
+    },
+    {
+      "folder": "consumer",
+      "name": "complaint-handling-procedure-ompc5.pdf",
+      "path": "data/knowledge/pdfs/consumer/complaint-handling-procedure-ompc5.pdf",
+      "bytes": 189743,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:18.717Z"
+    },
+    {
+      "folder": "labs",
+      "name": "group-1-recognised-labs-2026.pdf",
+      "path": "data/knowledge/pdfs/labs/group-1-recognised-labs-2026.pdf",
+      "bytes": 440385,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:18.898Z"
+    },
+    {
+      "folder": "labs",
+      "name": "group-2-empanelled-labs-2026.pdf",
+      "path": "data/knowledge/pdfs/labs/group-2-empanelled-labs-2026.pdf",
+      "bytes": 260868,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:19.191Z"
+    },
+    {
+      "folder": "labs",
+      "name": "lab-recognition-scheme-2020.pdf",
+      "path": "data/knowledge/pdfs/labs/lab-recognition-scheme-2020.pdf",
+      "bytes": 919251,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:20.003Z"
+    },
+    {
+      "folder": "labs",
+      "name": "lrs-fee-annex.pdf",
+      "path": "data/knowledge/pdfs/labs/lrs-fee-annex.pdf",
+      "bytes": 125046,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:42.059Z"
+    },
+    {
+      "folder": "labs",
+      "name": "lrs-forms-and-undertakings.pdf",
+      "path": "data/knowledge/pdfs/labs/lrs-forms-and-undertakings.pdf",
+      "bytes": 1427650,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:27.168Z"
+    },
+    {
+      "folder": "labs",
+      "name": "support-to-other-laboratories-2024.pdf",
+      "path": "data/knowledge/pdfs/labs/support-to-other-laboratories-2024.pdf",
+      "bytes": 1199481,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:41.816Z"
+    },
+    {
+      "folder": "standards-meta",
+      "name": "annual-review-statement-hindi-2022.pdf",
+      "path": "data/knowledge/pdfs/standards-meta/annual-review-statement-hindi-2022.pdf",
+      "bytes": 5590041,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:24.133Z"
+    },
+    {
+      "folder": "standards-meta",
+      "name": "know-your-standards-portal-writeup.pdf",
+      "path": "data/knowledge/pdfs/standards-meta/know-your-standards-portal-writeup.pdf",
+      "bytes": 147562,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:13:42.311Z"
+    },
+    {
+      "folder": "standards-meta",
+      "name": "standards-promotion-bilingual.pdf",
+      "path": "data/knowledge/pdfs/standards-meta/standards-promotion-bilingual.pdf",
+      "bytes": 14212522,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:13.616Z"
+    },
+    {
+      "folder": "standards-meta",
+      "name": "training-strategy-2023.pdf",
+      "path": "data/knowledge/pdfs/standards-meta/training-strategy-2023.pdf",
+      "bytes": 687874,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:14.140Z"
+    },
+    {
+      "folder": "manuals",
+      "name": "PM-IS-10613-bicycle-safety-bilingual.pdf",
+      "path": "data/knowledge/pdfs/manuals/PM-IS-10613-bicycle-safety-bilingual.pdf",
+      "bytes": 1010587,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:32.445Z"
+    },
+    {
+      "folder": "manuals",
+      "name": "PM-IS-269-portland-cement-2023.pdf",
+      "path": "data/knowledge/pdfs/manuals/PM-IS-269-portland-cement-2023.pdf",
+      "bytes": 1279992,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:16:47.948Z"
+    },
+    {
+      "folder": "manuals",
+      "name": "PM-IS-3055-clinical-thermometer.pdf",
+      "path": "data/knowledge/pdfs/manuals/PM-IS-3055-clinical-thermometer.pdf",
+      "bytes": 227128,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:16:39.706Z"
+    },
+    {
+      "folder": "manuals",
+      "name": "PM-IS-4151-helmet-2024.pdf",
+      "path": "data/knowledge/pdfs/manuals/PM-IS-4151-helmet-2024.pdf",
+      "bytes": 1110434,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:24.826Z"
+    },
+    {
+      "folder": "manuals",
+      "name": "PM-IS-623-bicycle-frame-2024.pdf",
+      "path": "data/knowledge/pdfs/manuals/PM-IS-623-bicycle-frame-2024.pdf",
+      "bytes": 539067,
+      "validPdf": false,
+      "downloadedAt": "2026-09-19T05:14:25.248Z"
+    }
+  ]
+}

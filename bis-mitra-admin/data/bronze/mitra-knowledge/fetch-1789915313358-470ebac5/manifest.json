@@ -1,0 +1,185 @@
+{
+  "fetch_id": "fetch-1789915313358-470ebac5",
+  "cluster_id": "mitra-knowledge",
+  "source_id": "process_api",
+  "plan_id": "mitra-knowledge_ingest_process_pdfs",
+  "started_at": "2026-09-20T14:41:53.355Z",
+  "finished_at": "2026-09-20T14:41:53.358Z",
+  "seed_urls": [
+    "plan://mitra-knowledge_ingest_process_pdfs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-certification-process-guidelines.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/certification-process-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-scheme-1-additional.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/scheme-1-additional.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-non-conformity-guidelines.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/non-conformity-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-change-in-scope-of-licence.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/change-in-scope-of-licence.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-dealing-with-non-conformity-2026.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/dealing-with-non-conformity-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-factory-surveillance-2026.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/factory-surveillance-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-grant-of-coc-guidelines.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/grant-of-coc-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-grant-of-licence-guidelines-2023.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/grant-of-licence-guidelines-2023.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-grant-of-licence-guidelines-2026.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/grant-of-licence-guidelines-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-market-surveillance-2026.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/market-surveillance-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-renewal-of-coc-guidelines.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/renewal-of-coc-guidelines.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-unsatisfactory-performance-2026.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/unsatisfactory-performance-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-compulsory-products-list.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/compulsory-products-list.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-conformity-assessment-regulations-2019.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/conformity-assessment-regulations-2019.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-guidance-document-on-qcos.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/guidance-document-on-qcos.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-marking-fee-all-products-2026.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/marking-fee-all-products-2026.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-marking-fee-gazette-2025.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/marking-fee-gazette-2025.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-scheme-1-notification-2024.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/scheme-1-notification-2024.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-mitra-knowledge_ingest_process_pdfs-simplified-procedure-products.pdf",
+      "url": "plan://mitra-knowledge_ingest_process_pdfs/simplified-procedure-products.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

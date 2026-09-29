@@ -1,0 +1,74 @@
+{
+  "IS 4151:2015": {
+    "product": "Two-wheeler helmets",
+    "gazette_reference_id": "GSR 759(E)",
+    "effective_date": "2018-06-01",
+    "ministry": "Ministry of Road Transport and Highways",
+    "legal_statute": "BIS Act / QCO helmets",
+    "scheme": "Scheme-I (ISI Mark)",
+    "sector": "Automotive"
+  },
+  "IS 623:2025": {
+    "product": "Bicycle frames",
+    "gazette_reference_id": "QCO Bicycle DPIIT",
+    "effective_date": "2025-01-01",
+    "ministry": "DPIIT",
+    "legal_statute": "Quality Control Order — Bicycles",
+    "scheme": "Scheme-I (ISI Mark)",
+    "sector": "Transport"
+  },
+  "IS 2062:2011": {
+    "product": "Hot rolled structural steel",
+    "gazette_reference_id": "SO 2357 (E)",
+    "effective_date": "2020-08-15",
+    "ministry": "Ministry of Steel",
+    "legal_statute": "QCO — Structural Steel",
+    "scheme": "Scheme-I (ISI Mark)",
+    "sector": "Metals"
+  },
+  "IS 15844:2010": {
+    "product": "Self-ballasted LED lamps",
+    "gazette_reference_id": "CRS Notification 2012",
+    "effective_date": "2012-10-03",
+    "ministry": "MeitY",
+    "legal_statute": "Compulsory Registration Scheme",
+    "scheme": "Scheme-II (CRS)",
+    "sector": "Electronics"
+  },
+  "IS 13252 (Part 1):2010": {
+    "product": "IT equipment safety",
+    "gazette_reference_id": "CRS Gazette 2012",
+    "effective_date": "2012-10-03",
+    "ministry": "MeitY",
+    "legal_statute": "Compulsory Registration Scheme",
+    "scheme": "Scheme-II (CRS)",
+    "sector": "Electronics"
+  },
+  "IS 3055 (Part 1):1994": {
+    "product": "Clinical thermometers",
+    "gazette_reference_id": "SO 822 (E)",
+    "effective_date": "2019-04-01",
+    "ministry": "Ministry of Health and Family Welfare",
+    "legal_statute": "QCO — Clinical Thermometers",
+    "scheme": "Scheme-I (ISI Mark)",
+    "sector": "Medical"
+  },
+  "IS 2082:2018": {
+    "product": "Storage electric water heaters (geysers)",
+    "gazette_reference_id": "G.S.R. 182(E)",
+    "effective_date": "2024-03-12",
+    "ministry": "DPIIT",
+    "legal_statute": "QCO — Storage Water Heaters",
+    "scheme": "Scheme-I (ISI Mark)",
+    "sector": "Electrical Appliances"
+  },
+  "IS 14543:2016": {
+    "product": "Packaged drinking water",
+    "gazette_reference_id": "SO 14543-QCO",
+    "effective_date": "2016-01-01",
+    "ministry": "Ministry of Consumer Affairs",
+    "legal_statute": "QCO — Packaged Drinking Water",
+    "scheme": "Scheme-I (ISI Mark)",
+    "sector": "Food & Water"
+  }
+}

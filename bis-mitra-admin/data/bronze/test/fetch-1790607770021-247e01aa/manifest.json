@@ -1,0 +1,74 @@
+{
+  "fetch_id": "fetch-1790607770021-247e01aa",
+  "cluster_id": "test",
+  "source_id": "labs_docs_api",
+  "plan_id": "test_ingest_labs_docs",
+  "started_at": "2026-09-28T15:02:50.000Z",
+  "finished_at": "2026-09-28T15:02:50.013Z",
+  "seed_urls": [
+    "plan://test_ingest_labs_docs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_labs_docs-group-1-recognised-labs-2026.pdf",
+      "url": "plan://test_ingest_labs_docs/group-1-recognised-labs-2026.pdf",
+      "sha256": "5f38ed95235bea5567c159d7360f88bf51c8c6e971fe0aeb27beb16f1a13e0b1",
+      "uri": "bronze/test/fetch-1790607770021-247e01aa/artifacts/group-1-recognised-labs-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 440385,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_labs_docs-group-2-empanelled-labs-2026.pdf",
+      "url": "plan://test_ingest_labs_docs/group-2-empanelled-labs-2026.pdf",
+      "sha256": "ee6d5aa401f894e2ce041bb9c9381491fcc998418a0230b4ab095a191ed4dcbf",
+      "uri": "bronze/test/fetch-1790607770021-247e01aa/artifacts/group-2-empanelled-labs-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 260868,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_labs_docs-lab-recognition-scheme-2020.pdf",
+      "url": "plan://test_ingest_labs_docs/lab-recognition-scheme-2020.pdf",
+      "sha256": "bd51457afd109ddf77b172cd9be3a991b4d9bcd4ae1e9bbdc84e393a52a17688",
+      "uri": "bronze/test/fetch-1790607770021-247e01aa/artifacts/lab-recognition-scheme-2020.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 919251,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_labs_docs-lrs-fee-annex.pdf",
+      "url": "plan://test_ingest_labs_docs/lrs-fee-annex.pdf",
+      "sha256": "22f87095fc2aa38dab33a818f6516d87075c776d036460cddb2228b6574087eb",
+      "uri": "bronze/test/fetch-1790607770021-247e01aa/artifacts/lrs-fee-annex.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 125046,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_labs_docs-lrs-forms-and-undertakings.pdf",
+      "url": "plan://test_ingest_labs_docs/lrs-forms-and-undertakings.pdf",
+      "sha256": "d32892d36ffe16f5d3de920fc58a3436e5e373f7070c7a42a282bb3d17a9b2b6",
+      "uri": "bronze/test/fetch-1790607770021-247e01aa/artifacts/lrs-forms-and-undertakings.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1427650,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_labs_docs-support-to-other-laboratories-2024.pdf",
+      "url": "plan://test_ingest_labs_docs/support-to-other-laboratories-2024.pdf",
+      "sha256": "950df16480be473959be6dcbe4d04abbd33ee7ce87cfe19e9da9f6676d113de4",
+      "uri": "bronze/test/fetch-1790607770021-247e01aa/artifacts/support-to-other-laboratories-2024.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1199481,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

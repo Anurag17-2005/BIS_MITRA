@@ -1,0 +1,26 @@
+{
+  "name": "bis-clone",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "api",
+    "apps/*",
+    "playwright"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w api",
+    "dev:bis": "npm run dev -w bis-web",
+    "dev:manak": "npm run dev -w manak-web",
+    "dev:standards": "npm run dev -w standards-web",
+    "seed": "node scripts/seed.js",
+    "build-demo-knowledge": "node scripts/build-demo-golden.mjs && cd ../bis-mitra-admin && npm run build:demo",
+    "generate-pdfs": "node scripts/generate-pdfs.js",
+    "fetch": "npm run fetch -w playwright",
+    "start": "node scripts/seed.js && concurrently -n api,bis,manak,std -c blue,green,magenta,cyan \"npm run dev:api\" \"npm run dev:bis\" \"npm run dev:manak\" \"npm run dev:standards\"",
+    "dev": "npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  }
+}

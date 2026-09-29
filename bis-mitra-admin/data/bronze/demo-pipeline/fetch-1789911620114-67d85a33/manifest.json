@@ -1,0 +1,24 @@
+{
+  "fetch_id": "fetch-1789911620114-67d85a33",
+  "cluster_id": "demo-pipeline",
+  "source_id": "fees_api",
+  "plan_id": "ingest_marking_fees",
+  "started_at": "2026-09-20T13:40:20.109Z",
+  "finished_at": "2026-09-20T13:40:20.114Z",
+  "seed_urls": [
+    "plan://ingest_marking_fees"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-ingest_marking_fees",
+      "url": "plan://ingest_marking_fees/marking-fees.json",
+      "sha256": "413429b90cfd06cfb8d42ff86321beb3a54b6d18ac919a2c6b02f0e0ba1d7da2",
+      "uri": "bronze/demo-pipeline/fetch-1789911620114-67d85a33/artifacts/marking-fees.json",
+      "mime_type": "application/json",
+      "bytes": 956,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

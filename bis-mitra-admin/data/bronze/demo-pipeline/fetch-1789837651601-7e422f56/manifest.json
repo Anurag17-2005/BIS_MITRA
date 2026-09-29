@@ -1,0 +1,59 @@
+{
+  "fetch_id": "fetch-1789837651601-7e422f56",
+  "cluster_id": "demo-pipeline",
+  "source_id": "manuals_api",
+  "plan_id": "ingest_product_manuals",
+  "started_at": "2026-09-19T17:07:31.599Z",
+  "finished_at": "2026-09-19T17:07:31.601Z",
+  "seed_urls": [
+    "plan://ingest_product_manuals"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-ingest_product_manuals-IS-4151-2015.pdf",
+      "url": "plan://ingest_product_manuals/IS-4151-2015.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_product_manuals-IS-623-2025.pdf",
+      "url": "plan://ingest_product_manuals/IS-623-2025.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_product_manuals-IS-3055-1994.pdf",
+      "url": "plan://ingest_product_manuals/IS-3055-1994.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_product_manuals-IS-170-2020.pdf",
+      "url": "plan://ingest_product_manuals/IS-170-2020.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-ingest_product_manuals-IS-1-1968.pdf",
+      "url": "plan://ingest_product_manuals/IS-1-1968.pdf",
+      "sha256": null,
+      "mime_type": "application/pdf",
+      "bytes": null,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

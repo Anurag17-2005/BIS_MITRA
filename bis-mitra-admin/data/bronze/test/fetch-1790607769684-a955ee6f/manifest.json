@@ -1,0 +1,34 @@
+{
+  "fetch_id": "fetch-1790607769684-a955ee6f",
+  "cluster_id": "test",
+  "source_id": "news_api",
+  "plan_id": "test_ingest_bis_news",
+  "started_at": "2026-09-28T15:02:49.662Z",
+  "finished_at": "2026-09-28T15:02:49.673Z",
+  "seed_urls": [
+    "plan://test_ingest_bis_news"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_bis_news",
+      "url": "plan://test_ingest_bis_news/bis-news.json",
+      "sha256": "52bb5e776bea1525380cd20f498fe9e63405a2e514fc00004c02cb6bd4428e3c",
+      "uri": "bronze/test/fetch-1790607769684-a955ee6f/artifacts/bis-news.json",
+      "mime_type": "application/json",
+      "bytes": 2935,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_bis_news-BIS_Feb_Mar_2019_Printing_File.pdf",
+      "url": "plan://test_ingest_bis_news/BIS_Feb_Mar_2019_Printing_File.pdf",
+      "sha256": "b15980b353d992beb82f12682eb6cca979eb3a97774054148f0a7dc00e38533c",
+      "uri": "bronze/test/fetch-1790607769684-a955ee6f/artifacts/BIS_Feb_Mar_2019_Printing_File.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 6775241,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

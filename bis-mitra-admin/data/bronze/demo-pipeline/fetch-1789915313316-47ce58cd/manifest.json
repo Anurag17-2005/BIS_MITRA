@@ -1,0 +1,24 @@
+{
+  "fetch_id": "fetch-1789915313316-47ce58cd",
+  "cluster_id": "demo-pipeline",
+  "source_id": "news_api",
+  "plan_id": "ingest_bis_news",
+  "started_at": "2026-09-20T14:41:53.307Z",
+  "finished_at": "2026-09-20T14:41:53.315Z",
+  "seed_urls": [
+    "plan://ingest_bis_news"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-ingest_bis_news",
+      "url": "plan://ingest_bis_news/bis-news.json",
+      "sha256": "8d4f53a8f017fed330fc1bc72dbc5744305bfd0abdf5ea85e9b858d6061244f3",
+      "uri": "bronze/demo-pipeline/fetch-1789915313316-47ce58cd/artifacts/bis-news.json",
+      "mime_type": "application/json",
+      "bytes": 1958,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,12 @@
+{
+  "pattern": "A",
+  "fetched_at": "2026-09-14T14:19:44.977Z",
+  "source_url": "http://localhost:3003/know-your-standards",
+  "description": "Search box → text results",
+  "scraped_text": {
+    "query": "helmet",
+    "results": [
+      "IS 4151:2015PROTECTIVE HELMET FOR TWO WHEELER RIDERSPublished In: 2015 | Mandatory"
+    ]
+  }
+}

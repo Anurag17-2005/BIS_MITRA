@@ -1,0 +1,21 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "fetch": "node run-all.js --all",
+    "fetch:selected": "node run-all.js --patterns",
+    "fetch:a": "node fetch-pattern-a.js",
+    "fetch:b": "node fetch-pattern-b.js",
+    "fetch:c": "node fetch-pattern-c.js",
+    "fetch:d": "node fetch-pattern-d.js",
+    "fetch:e": "node fetch-pattern-e.js",
+    "fetch:f": "node fetch-pattern-f.js",
+    "fetch:g": "node fetch-pattern-g.js",
+    "fetch:n": "node fetch-pattern-n.js"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.49.1",
+    "playwright": "^1.49.1"
+  }
+}

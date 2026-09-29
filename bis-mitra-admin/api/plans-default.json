@@ -1,0 +1,127 @@
+{
+  "version": 3,
+  "clusters": [
+    {
+      "id": "global-bis",
+      "name": "Global BIS",
+      "description": "Single source for MSME, students, consumers, researchers",
+      "published": true,
+      "fileCount": 0
+    },
+    {
+      "id": "sandbox",
+      "name": "Sandbox",
+      "description": "Test plans only — not published to agent",
+      "published": false,
+      "fileCount": 0
+    }
+  ],
+  "plans": [
+    {
+      "id": "ingest_bis_news",
+      "clusterId": "global-bis",
+      "name": "BIS News",
+      "kind": "ingest",
+      "method": "Clone API · News",
+      "connector": "news_api",
+      "queries": [],
+      "schedule": { "enabled": false, "time": "02:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "ingest_all_standards",
+      "clusterId": "global-bis",
+      "name": "Standards catalog",
+      "kind": "ingest",
+      "method": "Clone API · Standards",
+      "connector": "standards_api",
+      "queries": [],
+      "schedule": { "enabled": false, "time": "03:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "ingest_product_manuals",
+      "clusterId": "global-bis",
+      "name": "Product manuals",
+      "kind": "ingest",
+      "method": "Clone API · Product manuals",
+      "connector": "manuals_api",
+      "queries": [],
+      "schedule": { "enabled": false, "time": "04:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "ingest_marking_fees",
+      "clusterId": "global-bis",
+      "name": "Marking fees",
+      "kind": "ingest",
+      "method": "Clone API · Marking fees",
+      "connector": "fees_api",
+      "queries": [],
+      "schedule": { "enabled": false, "time": "05:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "ingest_process_pdfs",
+      "clusterId": "global-bis",
+      "name": "Certification process docs",
+      "kind": "ingest",
+      "method": "Clone API · Process documents",
+      "connector": "process_api",
+      "queries": [],
+      "schedule": { "enabled": false, "time": "06:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "probe_kys_search",
+      "clusterId": "global-bis",
+      "name": "Know Your Standards search",
+      "kind": "probe",
+      "method": "Clone API · Standards search",
+      "connector": "standards_search",
+      "queries": ["cycle", "helmet", "623"],
+      "schedule": { "enabled": false, "time": "07:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "probe_marking_fee",
+      "clusterId": "global-bis",
+      "name": "Marking fee lookup",
+      "kind": "probe",
+      "method": "Clone API · Fee search",
+      "connector": "fees_search",
+      "queries": ["helmet"],
+      "schedule": { "enabled": false, "time": "08:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    },
+    {
+      "id": "probe_fetch_orgdata",
+      "clusterId": "global-bis",
+      "name": "Org data probe",
+      "kind": "probe",
+      "method": "Org connector (demo)",
+      "connector": "fetch_orgdata",
+      "queries": ["DEMO_MSME", "IS 4151"],
+      "schedule": { "enabled": false, "time": "09:00", "lastFiredKey": null },
+      "lastStatus": null,
+      "lastRunAt": null,
+      "lastResult": null
+    }
+  ],
+  "warehouse": [],
+  "history": []
+}

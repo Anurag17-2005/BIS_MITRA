@@ -1,0 +1,154 @@
+{
+  "fetch_id": "fetch-1790422159877-85098e93",
+  "cluster_id": "demo-pipeline-2",
+  "source_id": "demo_enforcement_api",
+  "plan_id": "demo-pipeline-2_ingest_demo_enforcement",
+  "started_at": "2026-09-26T11:29:19.872Z",
+  "finished_at": "2026-09-26T11:29:19.876Z",
+  "seed_urls": [
+    "plan://demo-pipeline-2_ingest_demo_enforcement"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-001",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-001",
+      "sha256": "cd9f43073961934f85edcf376bea94623a66c8fc35acadbd3bc174bd489a7bb0",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1371,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-002",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-002",
+      "sha256": "3d81eb7cafb5249c6fc0fddb70ee156bff70fa8149d624f2a4b8936f7807c61d",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 1311,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-003",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-003",
+      "sha256": "979cbbcbf13a8151ee5b24edff7118e2e21f12be879632c1877a6ee37b93b281",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 1316,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-004",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-004",
+      "sha256": "44bc3d1a9333c379399e90e62456e539874e90ac5ebdeeee37c6fff41ef29b29",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 1305,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-005",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-005",
+      "sha256": "9f57e24da4385321846e3e71362558d8d8773cf74248da719d7145a0d7ee8530",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 1227,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-006",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-006",
+      "sha256": "57d574278437e1bcc728dc5034a3326ad74b917716c1dd00a291a2fa0e9e1da4",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 1258,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-007",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-007",
+      "sha256": "cf6e4b06f16c20b39731b1414a0c72c9b2b62b046755ca039f556d4a1f4aeba1",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 1266,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-008",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-008",
+      "sha256": "db17dba69291d6edcdf52706621da35a3a7b1d6aee323c905f8fd4590278aa2d",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 1217,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-009",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-009",
+      "sha256": "857c775f6e04b1f37f6050115ef64099cec11e1ce3828cbe97fd65716020282a",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 1259,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-010",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-010",
+      "sha256": "57302f9e7a9a94ad426f51bf284b412602c8e8a261172e3579a171b7e7ced23e",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 1266,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-011",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-011",
+      "sha256": "85b44578931382d0bfbf5d932cd78ce9b2dad3701b814437398a54fb533f35db",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 1247,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-012",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-012",
+      "sha256": "35c29c1c36641ceecbd679ec411fec76a021bf43356d30b25a33979108875d28",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 1196,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-013",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-013",
+      "sha256": "51459119e128e1da78fddd136924b29250112cf1b9896a0d0a87ae6ef520a256",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-013.json",
+      "mime_type": "application/json",
+      "bytes": 1178,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-demo-pipeline-2_ingest_demo_enforcement-ENF-DEMO-014",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-014",
+      "sha256": "b77293b08ca85a2c565ead0b46535d3ba66e644052974d5574f97f6a56641679",
+      "uri": "bronze/demo-pipeline-2/fetch-1790422159877-85098e93/artifacts/enforcement-ENF-DEMO-014.json",
+      "mime_type": "application/json",
+      "bytes": 1299,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

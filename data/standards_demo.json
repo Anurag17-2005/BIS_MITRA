@@ -1,0 +1,1041 @@
+{
+  "notice": "BIS MITRA DEMO DATA\nSynthetic demonstration records - NOT official BIS data.",
+  "dataset_name": "BIS MITRA Standards Demo Dataset",
+  "domain": "STANDARDS",
+  "is_synthetic": true,
+  "official_status": "NOT OFFICIAL BIS DATA",
+  "generated_for": "BIS MITRA demonstration and retrieval workflow testing",
+  "record_count": 14,
+  "records": [
+    {
+      "demo_id": "STD-DEMO-001",
+      "standard_number": "IS DEMO 1001:2026",
+      "title": "Industrial Safety Helmets - Performance and Marking",
+      "sector": "Personal Protective Equipment",
+      "sub_sector": "Occupational head protection",
+      "standard_type": "Product standard",
+      "edition_year": "2026",
+      "status": "Active",
+      "scope": "Specifies minimum performance, construction, inspection, and marking requirements for industrial safety helmets intended to protect workers from falling objects and incidental impact in routine industrial and construction environments.",
+      "applicability": "Applies to industrial safety helmets supplied for general workplace use; excludes helmets specifically designed for high-voltage electrical insulation, firefighting, sports, and motorcycling.",
+      "certification_applicability": "Certification applicable where the referenced product control order is in force; otherwise this standard may be used for voluntary product conformity claims.",
+      "qco_reference": "QCO-DEMO-PPE-2026-01",
+      "key_requirements": [
+        "Shell material shall maintain structural integrity after impact testing.",
+        "Helmet suspension shall retain the shell and maintain clearance from the headform.",
+        "Chin-strap attachment, where provided, shall meet the specified retention performance.",
+        "Manufacturer shall control dimensions, materials, and production consistency."
+      ],
+      "testing_requirements": [
+        "Impact attenuation test using specified impact energies and headform configuration.",
+        "Penetration resistance test using a controlled striker.",
+        "Retention-system performance test where a retention system is supplied.",
+        "Environmental conditioning before selected performance tests."
+      ],
+      "lab_evidence": [
+        "Product test report identifying sample configuration and conditioning.",
+        "Test observations and measured impact/penetration results.",
+        "Laboratory statement linking sample identification to the tested production model."
+      ],
+      "marking_requirements": [
+        "Manufacturer or responsible brand identification.",
+        "Model or product identification.",
+        "Standard number: IS DEMO 1001:2026.",
+        "Manufacturing batch or traceability mark."
+      ],
+      "documentation_required": [
+        "Product specification sheet.",
+        "Bill of materials or material declaration.",
+        "Routine production inspection record.",
+        "Relevant laboratory test report."
+      ],
+      "published_date": "2026-02-12",
+      "effective_date": "2026-05-01",
+      "last_reviewed": "2026-08-20",
+      "amendment_status": "Amended",
+      "amendment_reference": "AMD-DEMO-1001-01",
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-004",
+        "STD-DEMO-008"
+      ],
+      "keywords": [
+        "industrial safety helmet",
+        "head protection",
+        "workplace helmet",
+        "impact helmet",
+        "PPE"
+      ],
+      "synonyms": [
+        "safety helmet",
+        "industrial helmet",
+        "protective helmet",
+        "worker helmet",
+        "head protection"
+      ],
+      "product_examples": [
+        "Construction hard hats",
+        "Factory safety helmets",
+        "Warehouse worker helmets"
+      ],
+      "amendment": {
+        "amendment_number": "Amendment 1",
+        "amendment_date": "2026-07-15",
+        "affected_clause": "Clause 7 - Marking and traceability",
+        "previous_requirement": "Required the manufacturer identification and product model marking on the shell or label.",
+        "revised_requirement": "Adds a batch or lot traceability mark and allows the mark to be placed on the shell or durable internal label.",
+        "reason_for_change": "Improves traceability for production batches and field investigations without changing the core safety performance criteria.",
+        "effective_date": "2026-09-01"
+      }
+    },
+    {
+      "demo_id": "STD-DEMO-002",
+      "standard_number": "IS DEMO 1002:2025",
+      "title": "Flexible Polymer Food Packs - Food Contact and Performance Requirements",
+      "sector": "Food and Packaging",
+      "sub_sector": "Food-contact packaging",
+      "standard_type": "Product standard",
+      "edition_year": "2025",
+      "status": "Active",
+      "scope": "Covers flexible polymer films, pouches, and laminated packs intended for direct contact with dry, aqueous, or fatty foods under defined time and temperature conditions.",
+      "applicability": "Applies to packaging materials used in food storage and distribution when the material is intended to contact food directly; does not cover reusable rigid containers or pharmaceutical packaging.",
+      "certification_applicability": "Certification not automatically required by this standard alone; applicability depends on the product, applicable regulatory order, and conformity route selected by the organization.",
+      "qco_reference": "QCO-DEMO-FP-2025-02",
+      "key_requirements": [
+        "Materials shall meet specified composition and migration criteria for the intended food-contact condition.",
+        "Pack seams and closures shall maintain integrity during the declared service conditions.",
+        "Odour and appearance shall remain within defined acceptance criteria after conditioning.",
+        "Packaging construction shall be traceable to a defined material and supplier specification."
+      ],
+      "testing_requirements": [
+        "Overall migration test using the specified food simulant and exposure condition.",
+        "Seal strength test for applicable pouch and bag constructions.",
+        "Odour and sensory screening after conditioning.",
+        "Thickness and dimensional verification."
+      ],
+      "lab_evidence": [
+        "Migration test report with simulant, time, and temperature stated.",
+        "Seal strength measurements for representative production lots.",
+        "Material specification or certificate of composition from the supplier."
+      ],
+      "marking_requirements": [
+        "Manufacturer or converter identification.",
+        "Material family or construction code.",
+        "Batch or lot identification.",
+        "Statement of intended food-contact use where required by the applicable conformity route."
+      ],
+      "documentation_required": [
+        "Packaging construction drawing.",
+        "Material and supplier specifications.",
+        "Food-contact test report.",
+        "Production batch traceability record."
+      ],
+      "published_date": "2025-04-10",
+      "effective_date": "2025-07-01",
+      "last_reviewed": "2026-03-18",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-006",
+        "STD-DEMO-012"
+      ],
+      "keywords": [
+        "food packaging",
+        "polymer film",
+        "food contact",
+        "pouch",
+        "migration"
+      ],
+      "synonyms": [
+        "food-contact packaging",
+        "plastic food pack",
+        "food packaging film",
+        "polymer pouch",
+        "food pack"
+      ],
+      "product_examples": [
+        "Snack pouches",
+        "Dry-food liners",
+        "Laminated food sachets"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-003",
+      "standard_number": "IS DEMO 1003:2025",
+      "title": "Domestic Induction Cooking Appliances - Safety and Performance",
+      "sector": "Electrical Appliances",
+      "sub_sector": "Domestic cooking appliances",
+      "standard_type": "Product standard",
+      "edition_year": "2025",
+      "status": "Active",
+      "scope": "Specifies safety, electrical, thermal, and functional performance requirements for freestanding and countertop domestic induction cooking appliances supplied for household use.",
+      "applicability": "Applies to induction hobs and portable induction cookers designed for household cooking; excludes commercial catering equipment and laboratory heating equipment.",
+      "certification_applicability": "Certification applicable where a product-specific control order adopts this standard; otherwise conformity assessment may be voluntary.",
+      "qco_reference": "QCO-DEMO-ELEC-2025-03",
+      "key_requirements": [
+        "Electrical insulation and protective measures shall meet the specified safety criteria.",
+        "Accessible surfaces shall remain within defined temperature limits during declared use.",
+        "The appliance shall safely detect or respond to abnormal operating conditions.",
+        "Controls and indicators shall remain legible and function correctly."
+      ],
+      "testing_requirements": [
+        "Dielectric strength and insulation verification.",
+        "Temperature rise testing under representative load.",
+        "Abnormal operation and protective-device response testing.",
+        "Control and indicator functional checks."
+      ],
+      "lab_evidence": [
+        "Electrical safety test report.",
+        "Temperature rise data for defined cooking-load conditions.",
+        "Abnormal operation test record with protective responses."
+      ],
+      "marking_requirements": [
+        "Manufacturer name or trademark.",
+        "Rated voltage, frequency, and power information.",
+        "Model and serial/batch identification.",
+        "Relevant warning and installation information."
+      ],
+      "documentation_required": [
+        "Circuit and wiring diagram.",
+        "Rated electrical characteristics.",
+        "User and installation instructions.",
+        "Laboratory test evidence."
+      ],
+      "published_date": "2025-06-21",
+      "effective_date": "2025-09-01",
+      "last_reviewed": "2026-04-12",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-005",
+        "STD-DEMO-014"
+      ],
+      "keywords": [
+        "induction cooker",
+        "electric cooking appliance",
+        "induction hob",
+        "kitchen appliance"
+      ],
+      "synonyms": [
+        "induction stove",
+        "induction cooktop",
+        "portable induction cooker",
+        "electric induction appliance"
+      ],
+      "product_examples": [
+        "Countertop induction cooker",
+        "Two-zone induction hob",
+        "Portable induction plate"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-004",
+      "standard_number": "IS DEMO 1004:2024",
+      "title": "Cementitious Repair Mortars - Industrial and Building Concrete Repair",
+      "sector": "Construction Materials",
+      "sub_sector": "Concrete repair materials",
+      "standard_type": "Product standard",
+      "edition_year": "2024",
+      "status": "Active",
+      "scope": "Specifies composition, fresh-state properties, hardened performance, and application-related requirements for pre-bagged cementitious repair mortars used for patching and restoration of concrete substrates.",
+      "applicability": "Applies to non-structural and defined repair applications where the repair material is mixed and placed according to the manufacturer instructions; excludes resin-based repair systems.",
+      "certification_applicability": "Certification generally voluntary unless a project specification, procurement condition, or applicable order requires conformity to this standard.",
+      "qco_reference": null,
+      "key_requirements": [
+        "Specified compressive strength shall be achieved at the declared test age.",
+        "Fresh mortar shall meet workable consistency and water-demand limits.",
+        "Bond performance to the defined concrete substrate shall meet the acceptance threshold.",
+        "Packaging shall identify mixing instructions and declared batch information."
+      ],
+      "testing_requirements": [
+        "Compressive strength test on prepared mortar specimens.",
+        "Bond strength or pull-off test on the defined substrate configuration.",
+        "Water demand and workability verification.",
+        "Drying shrinkage screening where declared."
+      ],
+      "lab_evidence": [
+        "Strength test results by specimen and batch.",
+        "Bond test report identifying substrate and surface preparation.",
+        "Product formulation and mixing record."
+      ],
+      "marking_requirements": [
+        "Product name and manufacturer identification.",
+        "Declared class or performance designation.",
+        "Batch number and date of manufacture.",
+        "Storage and mixing instructions."
+      ],
+      "documentation_required": [
+        "Technical data sheet.",
+        "Batch certificate or quality-control record.",
+        "Laboratory performance report.",
+        "Application instructions."
+      ],
+      "published_date": "2024-08-05",
+      "effective_date": "2024-11-01",
+      "last_reviewed": "2026-01-22",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-001"
+      ],
+      "keywords": [
+        "repair mortar",
+        "concrete repair",
+        "cementitious mortar",
+        "patch repair"
+      ],
+      "synonyms": [
+        "concrete repair mortar",
+        "cement repair compound",
+        "patching mortar",
+        "concrete patch material"
+      ],
+      "product_examples": [
+        "Pre-bagged repair mortar",
+        "Concrete patching mortar",
+        "Repair screed mortar"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-005",
+      "standard_number": "IS DEMO 1005:2026",
+      "title": "LED Road Luminaires - Photometric, Electrical and Environmental Performance",
+      "sector": "Lighting",
+      "sub_sector": "Road and outdoor lighting",
+      "standard_type": "Product standard",
+      "edition_year": "2026",
+      "status": "Active",
+      "scope": "Specifies photometric, electrical, thermal, ingress-related, and marking requirements for LED road luminaires used on public and private roads, access ways, and comparable outdoor lighting installations.",
+      "applicability": "Applies to LED luminaires with integral drivers intended for fixed outdoor installation; excludes decorative luminaires and portable work lights.",
+      "certification_applicability": "Certification applicable where the relevant product control order adopts this standard; otherwise conformity may be demonstrated through supplier declaration and test evidence.",
+      "qco_reference": "QCO-DEMO-LTG-2026-01",
+      "key_requirements": [
+        "Declared luminous performance shall be supported by photometric measurements.",
+        "Electrical input and protective measures shall meet the specified limits.",
+        "Thermal design shall maintain component temperatures within declared limits.",
+        "Enclosure and environmental protection shall match the declared installation condition."
+      ],
+      "testing_requirements": [
+        "Photometric test and luminous flux verification.",
+        "Electrical safety and power-factor related checks where specified.",
+        "Thermal endurance and temperature measurement.",
+        "Environmental enclosure verification for the declared protection level."
+      ],
+      "lab_evidence": [
+        "Photometric test report with mounting and operating conditions.",
+        "Electrical safety and performance report.",
+        "Thermal test data and enclosure verification record."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Model/type designation.",
+        "Rated electrical data.",
+        "Declared outdoor/environmental protection information and batch traceability."
+      ],
+      "documentation_required": [
+        "Luminaire technical data sheet.",
+        "LED module and driver identification.",
+        "Photometric file or equivalent laboratory output.",
+        "Environmental and electrical test reports."
+      ],
+      "published_date": "2026-01-18",
+      "effective_date": "2026-04-15",
+      "last_reviewed": "2026-08-02",
+      "amendment_status": "Amended",
+      "amendment_reference": "AMD-DEMO-1005-01",
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-003",
+        "STD-DEMO-009"
+      ],
+      "keywords": [
+        "LED luminaire",
+        "road lighting",
+        "street light",
+        "outdoor lighting",
+        "photometry"
+      ],
+      "synonyms": [
+        "LED street light",
+        "road light fitting",
+        "outdoor LED luminaire",
+        "highway LED light"
+      ],
+      "product_examples": [
+        "Roadway LED luminaire",
+        "Street-light fitting",
+        "Outdoor access-road LED fixture"
+      ],
+      "amendment": {
+        "amendment_number": "Amendment 1",
+        "amendment_date": "2026-06-30",
+        "affected_clause": "Clause 5.4 - Driver operating data",
+        "previous_requirement": "Required declaration of rated input power and operating voltage.",
+        "revised_requirement": "Adds maximum inrush current declaration for models using electronic drivers with active power management.",
+        "reason_for_change": "Provides installers with additional information for circuit protection and commissioning calculations.",
+        "effective_date": "2026-08-15"
+      }
+    },
+    {
+      "demo_id": "STD-DEMO-006",
+      "standard_number": "IS DEMO 1006:2025",
+      "title": "Stainless Steel Food-Contact Utensils - Hygiene and Material Requirements",
+      "sector": "Food Contact Materials",
+      "sub_sector": "Metal utensils and kitchenware",
+      "standard_type": "Product standard",
+      "edition_year": "2025",
+      "status": "Active",
+      "scope": "Specifies material, finish, corrosion resistance, cleanability, and marking requirements for stainless steel utensils and kitchenware intended for repeated food contact.",
+      "applicability": "Applies to ladles, serving utensils, bowls, trays, and similar stainless steel kitchenware used in domestic or institutional food preparation and serving.",
+      "certification_applicability": "Certification is not automatically required by the standard alone; it may become applicable through a product-specific order or contractual specification.",
+      "qco_reference": null,
+      "key_requirements": [
+        "Food-contact surfaces shall use the declared stainless-steel grade or an approved equivalent within the demo specification.",
+        "Surfaces shall be reasonably smooth and cleanable for the intended use.",
+        "Joints and seams shall not create avoidable food-retention pockets in areas declared as food contact.",
+        "Products shall resist the defined corrosion screening exposure."
+      ],
+      "testing_requirements": [
+        "Material identification verification.",
+        "Corrosion resistance screening under the defined exposure.",
+        "Surface finish and cleanability inspection.",
+        "Dimensional and workmanship checks."
+      ],
+      "lab_evidence": [
+        "Material chemistry or grade-identification report.",
+        "Corrosion test observations and acceptance result.",
+        "Inspection record showing finish and workmanship."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification or trade mark.",
+        "Product/model identification.",
+        "Batch or lot mark where traceability is claimed.",
+        "Material grade designation where required by the product specification."
+      ],
+      "documentation_required": [
+        "Material grade certificate or supplier declaration.",
+        "Production inspection checklist.",
+        "Laboratory corrosion test report where applicable.",
+        "Product drawing or dimensional specification."
+      ],
+      "published_date": "2025-03-02",
+      "effective_date": "2025-06-01",
+      "last_reviewed": "2026-02-10",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-002"
+      ],
+      "keywords": [
+        "food contact",
+        "stainless steel utensil",
+        "kitchenware",
+        "corrosion resistance"
+      ],
+      "synonyms": [
+        "stainless steel kitchenware",
+        "food-contact utensil",
+        "steel serving utensil",
+        "food-grade utensil"
+      ],
+      "product_examples": [
+        "Serving ladles",
+        "Steel bowls",
+        "Institutional serving trays"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-007",
+      "standard_number": "IS DEMO 1007:2025",
+      "title": "LPG Cabinet Heaters for Indoor Domestic Use - Safety Requirements",
+      "sector": "Gas Appliances",
+      "sub_sector": "LPG room heating appliances",
+      "standard_type": "Product standard",
+      "edition_year": "2025",
+      "status": "Active",
+      "scope": "Specifies safety, combustion, gas-tightness, burner, ignition, flame-failure, and marking requirements for cabinet-type LPG room heaters intended for indoor domestic use.",
+      "applicability": "Applies to cabinet heaters using LPG supplied from portable cylinders under the defined appliance configuration; excludes industrial heaters and permanently installed central heating equipment.",
+      "certification_applicability": "Certification applicable where a product-specific control order requires conformity to this standard; operation without the applicable conformity route is outside this demo dataset assumptions.",
+      "qco_reference": "QCO-DEMO-GAS-2025-01",
+      "key_requirements": [
+        "Gas-carrying components shall maintain gas-tightness over the declared operating range.",
+        "Burner combustion shall remain within the defined safety limits.",
+        "Flame-failure protection shall safely interrupt gas flow under the specified failure condition.",
+        "Hot-surface and ventilation warnings shall be provided as required."
+      ],
+      "testing_requirements": [
+        "Gas-tightness and leak verification.",
+        "Flame-failure device response test.",
+        "Combustion performance and stability test.",
+        "Ignition and abnormal-condition testing."
+      ],
+      "lab_evidence": [
+        "Gas-tightness test report.",
+        "Combustion and flame-failure performance record.",
+        "Abnormal-condition test evidence with appliance configuration."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Appliance model/type.",
+        "Gas type and rated heat input.",
+        "Warning, ventilation, and installation information."
+      ],
+      "documentation_required": [
+        "Gas circuit schematic.",
+        "Burner and safety-device specifications.",
+        "Installation and operating instructions.",
+        "Laboratory safety test report."
+      ],
+      "published_date": "2025-01-15",
+      "effective_date": "2025-04-01",
+      "last_reviewed": "2026-05-04",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-003"
+      ],
+      "keywords": [
+        "LPG heater",
+        "gas heater",
+        "cabinet heater",
+        "room heater",
+        "flame failure"
+      ],
+      "synonyms": [
+        "LPG room heater",
+        "gas room heater",
+        "cabinet gas heater",
+        "portable LPG heater"
+      ],
+      "product_examples": [
+        "Cabinet LPG heater",
+        "Portable domestic gas heater"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-008",
+      "standard_number": "IS DEMO 1008:2024",
+      "title": "Modular Office Chairs - Structural Safety and Durability",
+      "sector": "Furniture",
+      "sub_sector": "Office seating",
+      "standard_type": "Product standard",
+      "edition_year": "2024",
+      "status": "Active",
+      "scope": "Specifies dimensional, structural, stability, adjustment, durability, and marking requirements for modular office chairs intended for seated work in offices and similar indoor environments.",
+      "applicability": "Applies to adjustable and fixed office chairs assembled from modular components; excludes specialist medical seating and auditorium fixed seating.",
+      "certification_applicability": "Certification generally voluntary unless required by procurement specifications or another applicable conformity instrument.",
+      "qco_reference": null,
+      "key_requirements": [
+        "Chair structure shall withstand the specified static loading sequences.",
+        "Base and caster assembly shall maintain stability during prescribed movement conditions.",
+        "Adjustment mechanisms shall operate without unsafe release or unintended movement.",
+        "Repeated-use durability shall meet the defined cycle requirement."
+      ],
+      "testing_requirements": [
+        "Static load and stability test.",
+        "Seat, backrest, and armrest durability cycling where applicable.",
+        "Caster/base strength and movement test.",
+        "Adjustment mechanism endurance test."
+      ],
+      "lab_evidence": [
+        "Structural test report with load sequence.",
+        "Durability-cycle results and failure observations.",
+        "Stability and adjustment mechanism test record."
+      ],
+      "marking_requirements": [
+        "Manufacturer or supplier identification.",
+        "Model/product code.",
+        "Basic assembly and maximum-use information where relevant.",
+        "Batch/lot reference for traceability claims."
+      ],
+      "documentation_required": [
+        "Assembly drawing.",
+        "Materials and component specification.",
+        "Durability and structural test evidence.",
+        "User assembly instructions."
+      ],
+      "published_date": "2024-03-10",
+      "effective_date": "2024-06-15",
+      "last_reviewed": "2026-06-09",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-001"
+      ],
+      "keywords": [
+        "office chair",
+        "modular furniture",
+        "seating",
+        "chair durability",
+        "stability"
+      ],
+      "synonyms": [
+        "work chair",
+        "office seating",
+        "adjustable office chair",
+        "task chair",
+        "desk chair"
+      ],
+      "product_examples": [
+        "Adjustable task chair",
+        "Modular workstation chair",
+        "Meeting-room office chair"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-009",
+      "standard_number": "IS DEMO 1009:2026",
+      "title": "Rooftop Solar PV Mounting Systems - Mechanical and Installation Requirements",
+      "sector": "Renewable Energy",
+      "sub_sector": "Solar photovoltaic mounting",
+      "standard_type": "Installation and product interface standard",
+      "edition_year": "2026",
+      "status": "Active",
+      "scope": "Defines mechanical strength, corrosion protection, attachment, load-path, and installation documentation requirements for rooftop mounting systems supporting solar photovoltaic modules.",
+      "applicability": "Applies to fixed rooftop mounting systems for small and medium distributed solar PV installations; excludes ground-mounted utility-scale systems and tracking structures.",
+      "certification_applicability": "Certification may be required when the mounting product is covered by a procurement or project conformity specification; this standard alone does not universally mandate certification.",
+      "qco_reference": null,
+      "key_requirements": [
+        "Mounting members shall withstand declared design loads for the installation zone.",
+        "Fasteners and attachment details shall maintain the specified load path.",
+        "Corrosion protection shall match the declared environmental exposure.",
+        "Installation documents shall identify permitted roof interfaces and tightening requirements."
+      ],
+      "testing_requirements": [
+        "Mechanical load verification for representative assemblies.",
+        "Fastener and connection strength checks.",
+        "Corrosion-protection verification by documented coating or material evidence.",
+        "Installation interface inspection."
+      ],
+      "lab_evidence": [
+        "Mechanical load test report for the representative assembly.",
+        "Connection-strength test records.",
+        "Material/coating evidence for corrosion resistance."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "System/model designation.",
+        "Material or coating identification where relevant.",
+        "Batch or component identification for traceable parts."
+      ],
+      "documentation_required": [
+        "Assembly drawings and installation manual.",
+        "Declared load capacities and design assumptions.",
+        "Mechanical test evidence.",
+        "Material/coating documentation."
+      ],
+      "published_date": "2026-02-28",
+      "effective_date": "2026-06-01",
+      "last_reviewed": "2026-08-18",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-005",
+        "STD-DEMO-013"
+      ],
+      "keywords": [
+        "solar PV mounting",
+        "rooftop solar",
+        "solar mounting system",
+        "PV structure",
+        "roof attachment"
+      ],
+      "synonyms": [
+        "rooftop solar structure",
+        "solar panel mounting",
+        "PV mounting frame",
+        "solar rooftop mounting"
+      ],
+      "product_examples": [
+        "Rail-based rooftop mounting",
+        "Flat-roof ballast mounting",
+        "Pitched-roof PV attachment kit"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-010",
+      "standard_number": "IS DEMO 1010:2023",
+      "title": "uPVC Drainage Pipes - Gravity Drainage Service",
+      "sector": "Building Materials",
+      "sub_sector": "Plastics piping systems",
+      "standard_type": "Product standard",
+      "edition_year": "2023",
+      "status": "Superseded",
+      "scope": "Specified dimensional, material, jointing, pressure-related, and workmanship requirements for unplasticized PVC drainage pipes used in gravity drainage applications.",
+      "applicability": "Applied to uPVC gravity drainage pipes produced under the earlier demo specification; this record is retained for historical lookup and replacement tracing.",
+      "certification_applicability": "Certification applicability followed the conformity route attached to the earlier edition; it is not the current basis for new conformity claims in this demo dataset.",
+      "qco_reference": "QCO-DEMO-BLDG-2023-02",
+      "key_requirements": [
+        "Pipe dimensions and wall thickness shall match the declared size series.",
+        "Material shall meet the earlier demo formulation limits.",
+        "Jointing surfaces shall remain compatible with the specified connection method.",
+        "Pipes shall meet the earlier stiffness and workmanship checks."
+      ],
+      "testing_requirements": [
+        "Dimensional and wall-thickness verification.",
+        "Ring stiffness screening.",
+        "Joint-leakage or watertightness check where applicable.",
+        "Visual workmanship inspection."
+      ],
+      "lab_evidence": [
+        "Historical product test report.",
+        "Dimensional inspection results.",
+        "Stiffness and joint performance evidence."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Nominal size and class designation.",
+        "Batch or production reference.",
+        "Earlier standard number marking where historically applied."
+      ],
+      "documentation_required": [
+        "Historical product specification.",
+        "Production test record.",
+        "Archived conformity evidence.",
+        "Replacement mapping to the current demo standard."
+      ],
+      "published_date": "2023-02-14",
+      "effective_date": "2023-05-01",
+      "last_reviewed": "2025-12-05",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": "STD-DEMO-011",
+      "related_standards": [
+        "STD-DEMO-011"
+      ],
+      "keywords": [
+        "uPVC pipe",
+        "drainage pipe",
+        "gravity drainage",
+        "plastic piping",
+        "superseded pipe standard"
+      ],
+      "synonyms": [
+        "PVC drainage pipe",
+        "uPVC sewer pipe",
+        "plastic drain pipe",
+        "PVC gravity pipe"
+      ],
+      "product_examples": [
+        "uPVC drain pipe",
+        "Building drainage pipe",
+        "Gravity wastewater pipe"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-011",
+      "standard_number": "IS DEMO 1011:2026",
+      "title": "uPVC Drainage Pipes - Gravity Drainage Service, Revised Requirements",
+      "sector": "Building Materials",
+      "sub_sector": "Plastics piping systems",
+      "standard_type": "Product standard",
+      "edition_year": "2026",
+      "status": "Active",
+      "scope": "Specifies current dimensional, material, jointing, stiffness, and identification requirements for unplasticized PVC drainage pipes intended for gravity drainage service in buildings and site drainage systems.",
+      "applicability": "Applies to new production and current conformity assessment for the defined uPVC drainage pipe range; the earlier 2023 demo edition is retained only as a superseded historical record.",
+      "certification_applicability": "Certification applicable where the current product control route adopts this standard; otherwise the standard may support voluntary or contractually required conformity.",
+      "qco_reference": "QCO-DEMO-BLDG-2026-02",
+      "key_requirements": [
+        "Pipe dimensions and wall thickness shall meet the revised size-series tolerances.",
+        "Ring stiffness classification shall be declared and supported by test evidence.",
+        "Joint compatibility shall be demonstrated for the specified socket and seal configuration.",
+        "Permanent identification shall include current standard reference and traceability information."
+      ],
+      "testing_requirements": [
+        "Dimensional and wall-thickness verification.",
+        "Ring stiffness or flattening-related performance test.",
+        "Joint watertightness or leakage test.",
+        "Impact/workmanship inspection where the declared application requires it."
+      ],
+      "lab_evidence": [
+        "Current-edition product test report.",
+        "Stiffness results by representative pipe size.",
+        "Joint performance report using the declared seal/joint system."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Nominal size and stiffness/class designation.",
+        "Current standard number: IS DEMO 1011:2026.",
+        "Batch/production traceability mark."
+      ],
+      "documentation_required": [
+        "Current product specification.",
+        "Installation and jointing instructions.",
+        "Laboratory test evidence.",
+        "Traceability and production-control record."
+      ],
+      "published_date": "2026-01-10",
+      "effective_date": "2026-04-01",
+      "last_reviewed": "2026-08-10",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": "STD-DEMO-010",
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-010"
+      ],
+      "keywords": [
+        "uPVC drainage",
+        "current drainage pipe",
+        "gravity pipe",
+        "building drainage",
+        "replacement standard"
+      ],
+      "synonyms": [
+        "revised uPVC drainage pipe",
+        "current PVC drain pipe standard",
+        "gravity drainage pipe",
+        "uPVC sewer pipe current"
+      ],
+      "product_examples": [
+        "New-generation uPVC drain pipe",
+        "Building drainage pipe",
+        "Site gravity drainage pipe"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-012",
+      "standard_number": "IS DEMO 1012:2023",
+      "title": "Solar Water Heating Collectors - Domestic Thermal Systems",
+      "sector": "Renewable Energy",
+      "sub_sector": "Solar thermal water heating",
+      "standard_type": "Product standard",
+      "edition_year": "2023",
+      "status": "Superseded",
+      "scope": "Specified thermal efficiency, durability, connection, and basic safety requirements for domestic solar water-heating collectors used in small building-scale systems.",
+      "applicability": "Applied to the earlier collector design classes covered by the demo catalogue; retained for historical searches and replacement tracing.",
+      "certification_applicability": "Certification was applicable under the earlier demo conformity route when invoked by procurement or product-control conditions; current conformity should use the replacement record.",
+      "qco_reference": "QCO-DEMO-REN-2023-01",
+      "key_requirements": [
+        "Collector shall achieve the declared thermal output under the defined test condition.",
+        "Hydraulic connections shall remain leak-tight under the specified pressure.",
+        "Thermal cycling shall not cause unacceptable functional damage.",
+        "Collector casing and support points shall remain secure."
+      ],
+      "testing_requirements": [
+        "Thermal efficiency test under defined irradiance and inlet conditions.",
+        "Pressure and leakage test.",
+        "Thermal cycling durability test.",
+        "Visual and dimensional inspection."
+      ],
+      "lab_evidence": [
+        "Historical thermal-performance report.",
+        "Pressure/leak test report.",
+        "Durability and inspection records."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Collector model.",
+        "Rated thermal performance information.",
+        "Batch/production identification."
+      ],
+      "documentation_required": [
+        "Collector specification sheet.",
+        "Hydraulic connection details.",
+        "Archived performance test evidence.",
+        "Replacement mapping to the current standard."
+      ],
+      "published_date": "2023-05-20",
+      "effective_date": "2023-08-01",
+      "last_reviewed": "2025-11-16",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": "STD-DEMO-013",
+      "related_standards": [
+        "STD-DEMO-009",
+        "STD-DEMO-013"
+      ],
+      "keywords": [
+        "solar water heater",
+        "solar collector",
+        "thermal collector",
+        "hot water",
+        "superseded renewable standard"
+      ],
+      "synonyms": [
+        "solar thermal collector",
+        "domestic solar heater collector",
+        "solar hot-water collector",
+        "solar water-heating panel"
+      ],
+      "product_examples": [
+        "Flat-plate solar collector",
+        "Domestic solar thermal collector"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-013",
+      "standard_number": "IS DEMO 1013:2026",
+      "title": "Solar Water Heating Collectors - Domestic Thermal Systems, Current Requirements",
+      "sector": "Renewable Energy",
+      "sub_sector": "Solar thermal water heating",
+      "standard_type": "Product standard",
+      "edition_year": "2026",
+      "status": "Active",
+      "scope": "Specifies current thermal performance, pressure integrity, durability, materials, insulation, and marking requirements for domestic solar water-heating collectors used in building-scale hot-water systems.",
+      "applicability": "Applies to current collector models intended for domestic or small institutional hot-water systems; the 2023 demo edition is superseded and retained only for historical traceability.",
+      "certification_applicability": "Certification applicable when a product-control or procurement route explicitly requires this current edition; otherwise test evidence may support voluntary conformity.",
+      "qco_reference": "QCO-DEMO-REN-2026-03",
+      "key_requirements": [
+        "Declared thermal performance shall be supported by the current test method and reporting format.",
+        "Collector circuit shall withstand the specified pressure and leakage checks.",
+        "Insulation and absorber construction shall maintain performance after durability conditioning.",
+        "Materials and coatings shall be suitable for the declared operating temperature and environment."
+      ],
+      "testing_requirements": [
+        "Thermal performance test using the current conditioning and reporting method.",
+        "Pressure integrity and leakage test.",
+        "Thermal cycling and stagnation-related durability checks where applicable.",
+        "Material, coating, and insulation inspection."
+      ],
+      "lab_evidence": [
+        "Current thermal-performance laboratory report.",
+        "Pressure integrity report for the representative collector.",
+        "Durability and insulation evidence."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Collector model/type.",
+        "Declared thermal-performance designation.",
+        "Current standard number and traceability mark."
+      ],
+      "documentation_required": [
+        "Current collector technical specification.",
+        "Hydraulic and installation diagrams.",
+        "Laboratory performance report.",
+        "Material/coating evidence and traceability record."
+      ],
+      "published_date": "2026-02-05",
+      "effective_date": "2026-05-15",
+      "last_reviewed": "2026-08-25",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": "STD-DEMO-012",
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-009",
+        "STD-DEMO-012"
+      ],
+      "keywords": [
+        "solar collector",
+        "solar thermal",
+        "domestic hot water",
+        "renewable energy",
+        "current collector standard"
+      ],
+      "synonyms": [
+        "solar hot-water collector",
+        "solar thermal water heater",
+        "domestic solar collector",
+        "solar heating panel"
+      ],
+      "product_examples": [
+        "Current flat-plate collector",
+        "Institutional solar hot-water collector"
+      ],
+      "amendment": null
+    },
+    {
+      "demo_id": "STD-DEMO-014",
+      "standard_number": "IS DEMO 1014:2025",
+      "title": "Electric Storage Water Heaters - Domestic Safety and Energy Performance",
+      "sector": "Electrical Appliances",
+      "sub_sector": "Domestic water heating",
+      "standard_type": "Product standard",
+      "edition_year": "2025",
+      "status": "Active",
+      "scope": "Specifies electrical safety, thermal performance, pressure containment, controls, energy-performance declaration, and marking requirements for domestic electric storage water heaters.",
+      "applicability": "Applies to fixed electric storage water heaters for domestic hot-water service within the declared capacity range; excludes instantaneous heaters and industrial hot-water vessels.",
+      "certification_applicability": "Certification applicable where a relevant product control order adopts this standard; otherwise conformity assessment may be voluntary or procurement-driven.",
+      "qco_reference": "QCO-DEMO-ELEC-2025-05",
+      "key_requirements": [
+        "Tank and pressure-containing parts shall withstand the specified pressure condition.",
+        "Electrical protection shall address insulation, leakage, and protective-device operation.",
+        "Thermostatic controls shall maintain the declared water-temperature range.",
+        "Energy-performance information shall be supported by the stated test method."
+      ],
+      "testing_requirements": [
+        "Pressure containment and leakage test.",
+        "Dielectric strength and insulation tests.",
+        "Thermostat and safety cut-out function test.",
+        "Energy-performance or heat-loss verification."
+      ],
+      "lab_evidence": [
+        "Pressure and leakage test report.",
+        "Electrical safety report.",
+        "Thermostat/safety cut-out functional test record.",
+        "Energy-performance test results."
+      ],
+      "marking_requirements": [
+        "Manufacturer identification.",
+        "Rated capacity and electrical data.",
+        "Model and serial/batch identification.",
+        "Installation warnings and pressure-related information."
+      ],
+      "documentation_required": [
+        "Tank construction specification.",
+        "Electrical schematic and component list.",
+        "Installation and operating manual.",
+        "Laboratory safety and energy-performance evidence."
+      ],
+      "published_date": "2025-09-14",
+      "effective_date": "2025-12-01",
+      "last_reviewed": "2026-07-12",
+      "amendment_status": "No amendment",
+      "amendment_reference": null,
+      "supersedes": null,
+      "superseded_by": null,
+      "related_standards": [
+        "STD-DEMO-003",
+        "STD-DEMO-013"
+      ],
+      "keywords": [
+        "electric water heater",
+        "storage water heater",
+        "geyser",
+        "domestic water heating",
+        "energy performance"
+      ],
+      "synonyms": [
+        "electric geyser",
+        "storage geyser",
+        "hot-water storage heater",
+        "domestic electric heater"
+      ],
+      "product_examples": [
+        "10 L electric storage heater",
+        "25 L domestic water heater",
+        "50 L storage geyser"
+      ],
+      "amendment": null
+    }
+  ]
+}

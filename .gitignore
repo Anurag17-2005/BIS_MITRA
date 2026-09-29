@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+*.db
+.env
+.env.local
+
+# Ignore large data files
+bis-mitra-admin/data/indexes/
+bis-mitra-admin/data/admin-store.json
+bis-mitra-admin/data/rules-store.json

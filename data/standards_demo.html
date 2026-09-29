@@ -1,0 +1,470 @@
+<!-- ⭐ BIS MITRA DEMO DATA -->
+<!-- Synthetic demonstration records - NOT official BIS data. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIS MITRA Demo - Standards Catalog</title>
+<style>
+:root { --ink:#18324a; --blue:#1d5a85; --light:#eef4f8; --line:#cbd6df; --amber:#fff3cd; --red:#7a2f2f; }
+body { font-family: Arial, Helvetica, sans-serif; margin:0; background:#f5f7f9; color:#1f2d3d; }
+.header { background:var(--ink); color:white; padding:28px 36px; }
+.header h1 { margin:0 0 8px; font-size:28px; }
+.notice { margin-top:14px; background:#fff7d6; color:#4a3a00; border-left:5px solid #c59b00; padding:12px 14px; font-weight:700; }
+.wrap { padding:24px 36px 40px; }
+.controls { display:flex; gap:12px; flex-wrap:wrap; background:white; border:1px solid var(--line); padding:16px; margin-bottom:18px; border-radius:8px; }
+.controls input, .controls select { padding:10px 12px; border:1px solid var(--line); border-radius:6px; min-width:230px; }
+.stats { color:#536779; margin-bottom:12px; }
+table { width:100%; border-collapse:collapse; background:white; border:1px solid var(--line); font-size:14px; }
+th { background:var(--light); color:var(--ink); text-align:left; padding:11px 10px; border-bottom:2px solid var(--line); position:sticky; top:0; z-index:1; }
+td { vertical-align:top; padding:10px; border-bottom:1px solid #e6ebef; }
+tr.hidden { display:none; }
+code { background:#eef2f4; padding:2px 5px; border-radius:4px; }
+.muted { color:#667786; font-size:12px; }
+.badge { display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700; }
+.status-active { background:#e3f3e7; color:#1e6a37; }
+.status-superseded { background:#f8e5e5; color:#7a2f2f; }
+details summary { cursor:pointer; color:var(--blue); font-weight:700; }
+.detail { margin-top:10px; padding:12px; background:#fafcfd; border:1px solid #e1e8ed; }
+.detail ul { margin-top:6px; }
+.amendment { background:#fff8e7; border-left:4px solid #d49d00; padding:10px 12px; }
+.citation { background:#eef4f8; padding:10px 12px; border-left:4px solid var(--blue); }
+.footer { margin-top:24px; color:#6b7d8d; font-size:12px; }
+@media (max-width: 1200px) { .wrap { padding:16px; } table { font-size:13px; } th:nth-child(5), td:nth-child(5), th:nth-child(6), td:nth-child(6) { display:none; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>⭐ BIS MITRA DEMO - Standards Catalog</h1>
+  <div>Synthetic demonstration records - NOT official BIS data.</div>
+</div>
+<div class="wrap">
+  <div class="notice">⭐ BIS MITRA DEMO DATA<br>Synthetic demonstration records - NOT official BIS data.</div>
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search title, number, keyword, synonym, demo_id...">
+    <select id="sector"><option value="">All sectors</option><option value="Building Materials">Building Materials</option><option value="Construction Materials">Construction Materials</option><option value="Electrical Appliances">Electrical Appliances</option><option value="Food Contact Materials">Food Contact Materials</option><option value="Food and Packaging">Food and Packaging</option><option value="Furniture">Furniture</option><option value="Gas Appliances">Gas Appliances</option><option value="Lighting">Lighting</option><option value="Personal Protective Equipment">Personal Protective Equipment</option><option value="Renewable Energy">Renewable Energy</option></select>
+    <select id="status"><option value="">All status</option><option>Active</option><option>Superseded</option></select>
+  </div>
+  <div class="stats"><span id="count">14</span> records shown of 14 synthetic standards.</div>
+  <table id="catalog">
+    <thead><tr><th>Demo ID</th><th>Standard</th><th>Sector</th><th>Status</th><th>Dates</th><th>QCO</th><th>Details</th></tr></thead>
+    <tbody><tr data-sector="Personal Protective Equipment" data-status="Active" data-text="is demo 1001:2026 industrial safety helmets - performance and marking industrial safety helmet head protection workplace helmet impact helmet ppe safety helmet industrial helmet protective helmet worker helmet head protection">
+        <td><code>STD-DEMO-001</code></td>
+        <td><strong>IS DEMO 1001:2026</strong><br>Industrial Safety Helmets - Performance and Marking</td>
+        <td>Personal Protective Equipment<br><span class="muted">Occupational head protection</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2026-02-12<br><span class="muted">Effective: 2026-05-01</span></td>
+        <td>QCO-DEMO-PPE-2026-01</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies minimum performance, construction, inspection, and marking requirements for industrial safety helmets intended to protect workers from falling objects and incidental impact in routine industrial and construction environments.</p>
+            <p><strong>Applicability:</strong> Applies to industrial safety helmets supplied for general workplace use; excludes helmets specifically designed for high-voltage electrical insulation, firefighting, sports, and motorcycling.</p>
+            <p><strong>Certification:</strong> Certification applicable where the referenced product control order is in force; otherwise this standard may be used for voluntary product conformity claims.</p>
+            <p><strong>Last reviewed:</strong> 2026-08-20</p>
+            <p><strong>Amendment status:</strong> Amended | <strong>Reference:</strong> AMD-DEMO-1001-01</p>
+            <div class="amendment"><p><strong>Amendment:</strong> Amendment 1 (AMD-DEMO-1001-01)</p>
+        <p><strong>Date:</strong> 2026-07-15 | <strong>Effective:</strong> 2026-09-01</p>
+        <p><strong>Affected clause:</strong> Clause 7 - Marking and traceability</p>
+        <p><strong>Previous:</strong> Required the manufacturer identification and product model marking on the shell or label.</p>
+        <p><strong>Revised:</strong> Adds a batch or lot traceability mark and allows the mark to be placed on the shell or durable internal label.</p>
+        <p><strong>Reason:</strong> Improves traceability for production batches and field investigations without changing the core safety performance criteria.</p></div>
+            <p><strong>Key requirements:</strong></p><ul><li>Shell material shall maintain structural integrity after impact testing.</li><li>Helmet suspension shall retain the shell and maintain clearance from the headform.</li><li>Chin-strap attachment, where provided, shall meet the specified retention performance.</li><li>Manufacturer shall control dimensions, materials, and production consistency.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Impact attenuation test using specified impact energies and headform configuration.</li><li>Penetration resistance test using a controlled striker.</li><li>Retention-system performance test where a retention system is supplied.</li><li>Environmental conditioning before selected performance tests.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Product test report identifying sample configuration and conditioning.</li><li>Test observations and measured impact/penetration results.</li><li>Laboratory statement linking sample identification to the tested production model.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer or responsible brand identification.</li><li>Model or product identification.</li><li>Standard number: IS DEMO 1001:2026.</li><li>Manufacturing batch or traceability mark.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Product specification sheet.</li><li>Bill of materials or material declaration.</li><li>Routine production inspection record.</li><li>Relevant laboratory test report.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-004, STD-DEMO-008</p>
+            <p><strong>Keywords:</strong> industrial safety helmet, head protection, workplace helmet, impact helmet, PPE</p>
+            <p><strong>Synonyms:</strong> safety helmet, industrial helmet, protective helmet, worker helmet, head protection</p>
+            <p><strong>Product examples:</strong> Construction hard hats, Factory safety helmets, Warehouse worker helmets</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-001<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Food and Packaging" data-status="Active" data-text="is demo 1002:2025 flexible polymer food packs - food contact and performance requirements food packaging polymer film food contact pouch migration food-contact packaging plastic food pack food packaging film polymer pouch food pack">
+        <td><code>STD-DEMO-002</code></td>
+        <td><strong>IS DEMO 1002:2025</strong><br>Flexible Polymer Food Packs - Food Contact and Performance Requirements</td>
+        <td>Food and Packaging<br><span class="muted">Food-contact packaging</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2025-04-10<br><span class="muted">Effective: 2025-07-01</span></td>
+        <td>QCO-DEMO-FP-2025-02</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Covers flexible polymer films, pouches, and laminated packs intended for direct contact with dry, aqueous, or fatty foods under defined time and temperature conditions.</p>
+            <p><strong>Applicability:</strong> Applies to packaging materials used in food storage and distribution when the material is intended to contact food directly; does not cover reusable rigid containers or pharmaceutical packaging.</p>
+            <p><strong>Certification:</strong> Certification not automatically required by this standard alone; applicability depends on the product, applicable regulatory order, and conformity route selected by the organization.</p>
+            <p><strong>Last reviewed:</strong> 2026-03-18</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Materials shall meet specified composition and migration criteria for the intended food-contact condition.</li><li>Pack seams and closures shall maintain integrity during the declared service conditions.</li><li>Odour and appearance shall remain within defined acceptance criteria after conditioning.</li><li>Packaging construction shall be traceable to a defined material and supplier specification.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Overall migration test using the specified food simulant and exposure condition.</li><li>Seal strength test for applicable pouch and bag constructions.</li><li>Odour and sensory screening after conditioning.</li><li>Thickness and dimensional verification.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Migration test report with simulant, time, and temperature stated.</li><li>Seal strength measurements for representative production lots.</li><li>Material specification or certificate of composition from the supplier.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer or converter identification.</li><li>Material family or construction code.</li><li>Batch or lot identification.</li><li>Statement of intended food-contact use where required by the applicable conformity route.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Packaging construction drawing.</li><li>Material and supplier specifications.</li><li>Food-contact test report.</li><li>Production batch traceability record.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-006, STD-DEMO-012</p>
+            <p><strong>Keywords:</strong> food packaging, polymer film, food contact, pouch, migration</p>
+            <p><strong>Synonyms:</strong> food-contact packaging, plastic food pack, food packaging film, polymer pouch, food pack</p>
+            <p><strong>Product examples:</strong> Snack pouches, Dry-food liners, Laminated food sachets</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-002<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Electrical Appliances" data-status="Active" data-text="is demo 1003:2025 domestic induction cooking appliances - safety and performance induction cooker electric cooking appliance induction hob kitchen appliance induction stove induction cooktop portable induction cooker electric induction appliance">
+        <td><code>STD-DEMO-003</code></td>
+        <td><strong>IS DEMO 1003:2025</strong><br>Domestic Induction Cooking Appliances - Safety and Performance</td>
+        <td>Electrical Appliances<br><span class="muted">Domestic cooking appliances</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2025-06-21<br><span class="muted">Effective: 2025-09-01</span></td>
+        <td>QCO-DEMO-ELEC-2025-03</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies safety, electrical, thermal, and functional performance requirements for freestanding and countertop domestic induction cooking appliances supplied for household use.</p>
+            <p><strong>Applicability:</strong> Applies to induction hobs and portable induction cookers designed for household cooking; excludes commercial catering equipment and laboratory heating equipment.</p>
+            <p><strong>Certification:</strong> Certification applicable where a product-specific control order adopts this standard; otherwise conformity assessment may be voluntary.</p>
+            <p><strong>Last reviewed:</strong> 2026-04-12</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Electrical insulation and protective measures shall meet the specified safety criteria.</li><li>Accessible surfaces shall remain within defined temperature limits during declared use.</li><li>The appliance shall safely detect or respond to abnormal operating conditions.</li><li>Controls and indicators shall remain legible and function correctly.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Dielectric strength and insulation verification.</li><li>Temperature rise testing under representative load.</li><li>Abnormal operation and protective-device response testing.</li><li>Control and indicator functional checks.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Electrical safety test report.</li><li>Temperature rise data for defined cooking-load conditions.</li><li>Abnormal operation test record with protective responses.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer name or trademark.</li><li>Rated voltage, frequency, and power information.</li><li>Model and serial/batch identification.</li><li>Relevant warning and installation information.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Circuit and wiring diagram.</li><li>Rated electrical characteristics.</li><li>User and installation instructions.</li><li>Laboratory test evidence.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-005, STD-DEMO-014</p>
+            <p><strong>Keywords:</strong> induction cooker, electric cooking appliance, induction hob, kitchen appliance</p>
+            <p><strong>Synonyms:</strong> induction stove, induction cooktop, portable induction cooker, electric induction appliance</p>
+            <p><strong>Product examples:</strong> Countertop induction cooker, Two-zone induction hob, Portable induction plate</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-003<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Construction Materials" data-status="Active" data-text="is demo 1004:2024 cementitious repair mortars - industrial and building concrete repair repair mortar concrete repair cementitious mortar patch repair concrete repair mortar cement repair compound patching mortar concrete patch material">
+        <td><code>STD-DEMO-004</code></td>
+        <td><strong>IS DEMO 1004:2024</strong><br>Cementitious Repair Mortars - Industrial and Building Concrete Repair</td>
+        <td>Construction Materials<br><span class="muted">Concrete repair materials</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2024-08-05<br><span class="muted">Effective: 2024-11-01</span></td>
+        <td><span class="muted">None in demo</span></td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies composition, fresh-state properties, hardened performance, and application-related requirements for pre-bagged cementitious repair mortars used for patching and restoration of concrete substrates.</p>
+            <p><strong>Applicability:</strong> Applies to non-structural and defined repair applications where the repair material is mixed and placed according to the manufacturer instructions; excludes resin-based repair systems.</p>
+            <p><strong>Certification:</strong> Certification generally voluntary unless a project specification, procurement condition, or applicable order requires conformity to this standard.</p>
+            <p><strong>Last reviewed:</strong> 2026-01-22</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Specified compressive strength shall be achieved at the declared test age.</li><li>Fresh mortar shall meet workable consistency and water-demand limits.</li><li>Bond performance to the defined concrete substrate shall meet the acceptance threshold.</li><li>Packaging shall identify mixing instructions and declared batch information.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Compressive strength test on prepared mortar specimens.</li><li>Bond strength or pull-off test on the defined substrate configuration.</li><li>Water demand and workability verification.</li><li>Drying shrinkage screening where declared.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Strength test results by specimen and batch.</li><li>Bond test report identifying substrate and surface preparation.</li><li>Product formulation and mixing record.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Product name and manufacturer identification.</li><li>Declared class or performance designation.</li><li>Batch number and date of manufacture.</li><li>Storage and mixing instructions.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Technical data sheet.</li><li>Batch certificate or quality-control record.</li><li>Laboratory performance report.</li><li>Application instructions.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-001</p>
+            <p><strong>Keywords:</strong> repair mortar, concrete repair, cementitious mortar, patch repair</p>
+            <p><strong>Synonyms:</strong> concrete repair mortar, cement repair compound, patching mortar, concrete patch material</p>
+            <p><strong>Product examples:</strong> Pre-bagged repair mortar, Concrete patching mortar, Repair screed mortar</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-004<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Lighting" data-status="Active" data-text="is demo 1005:2026 led road luminaires - photometric, electrical and environmental performance led luminaire road lighting street light outdoor lighting photometry led street light road light fitting outdoor led luminaire highway led light">
+        <td><code>STD-DEMO-005</code></td>
+        <td><strong>IS DEMO 1005:2026</strong><br>LED Road Luminaires - Photometric, Electrical and Environmental Performance</td>
+        <td>Lighting<br><span class="muted">Road and outdoor lighting</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2026-01-18<br><span class="muted">Effective: 2026-04-15</span></td>
+        <td>QCO-DEMO-LTG-2026-01</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies photometric, electrical, thermal, ingress-related, and marking requirements for LED road luminaires used on public and private roads, access ways, and comparable outdoor lighting installations.</p>
+            <p><strong>Applicability:</strong> Applies to LED luminaires with integral drivers intended for fixed outdoor installation; excludes decorative luminaires and portable work lights.</p>
+            <p><strong>Certification:</strong> Certification applicable where the relevant product control order adopts this standard; otherwise conformity may be demonstrated through supplier declaration and test evidence.</p>
+            <p><strong>Last reviewed:</strong> 2026-08-02</p>
+            <p><strong>Amendment status:</strong> Amended | <strong>Reference:</strong> AMD-DEMO-1005-01</p>
+            <div class="amendment"><p><strong>Amendment:</strong> Amendment 1 (AMD-DEMO-1005-01)</p>
+        <p><strong>Date:</strong> 2026-06-30 | <strong>Effective:</strong> 2026-08-15</p>
+        <p><strong>Affected clause:</strong> Clause 5.4 - Driver operating data</p>
+        <p><strong>Previous:</strong> Required declaration of rated input power and operating voltage.</p>
+        <p><strong>Revised:</strong> Adds maximum inrush current declaration for models using electronic drivers with active power management.</p>
+        <p><strong>Reason:</strong> Provides installers with additional information for circuit protection and commissioning calculations.</p></div>
+            <p><strong>Key requirements:</strong></p><ul><li>Declared luminous performance shall be supported by photometric measurements.</li><li>Electrical input and protective measures shall meet the specified limits.</li><li>Thermal design shall maintain component temperatures within declared limits.</li><li>Enclosure and environmental protection shall match the declared installation condition.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Photometric test and luminous flux verification.</li><li>Electrical safety and power-factor related checks where specified.</li><li>Thermal endurance and temperature measurement.</li><li>Environmental enclosure verification for the declared protection level.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Photometric test report with mounting and operating conditions.</li><li>Electrical safety and performance report.</li><li>Thermal test data and enclosure verification record.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Model/type designation.</li><li>Rated electrical data.</li><li>Declared outdoor/environmental protection information and batch traceability.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Luminaire technical data sheet.</li><li>LED module and driver identification.</li><li>Photometric file or equivalent laboratory output.</li><li>Environmental and electrical test reports.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-003, STD-DEMO-009</p>
+            <p><strong>Keywords:</strong> LED luminaire, road lighting, street light, outdoor lighting, photometry</p>
+            <p><strong>Synonyms:</strong> LED street light, road light fitting, outdoor LED luminaire, highway LED light</p>
+            <p><strong>Product examples:</strong> Roadway LED luminaire, Street-light fitting, Outdoor access-road LED fixture</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-005<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Food Contact Materials" data-status="Active" data-text="is demo 1006:2025 stainless steel food-contact utensils - hygiene and material requirements food contact stainless steel utensil kitchenware corrosion resistance stainless steel kitchenware food-contact utensil steel serving utensil food-grade utensil">
+        <td><code>STD-DEMO-006</code></td>
+        <td><strong>IS DEMO 1006:2025</strong><br>Stainless Steel Food-Contact Utensils - Hygiene and Material Requirements</td>
+        <td>Food Contact Materials<br><span class="muted">Metal utensils and kitchenware</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2025-03-02<br><span class="muted">Effective: 2025-06-01</span></td>
+        <td><span class="muted">None in demo</span></td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies material, finish, corrosion resistance, cleanability, and marking requirements for stainless steel utensils and kitchenware intended for repeated food contact.</p>
+            <p><strong>Applicability:</strong> Applies to ladles, serving utensils, bowls, trays, and similar stainless steel kitchenware used in domestic or institutional food preparation and serving.</p>
+            <p><strong>Certification:</strong> Certification is not automatically required by the standard alone; it may become applicable through a product-specific order or contractual specification.</p>
+            <p><strong>Last reviewed:</strong> 2026-02-10</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Food-contact surfaces shall use the declared stainless-steel grade or an approved equivalent within the demo specification.</li><li>Surfaces shall be reasonably smooth and cleanable for the intended use.</li><li>Joints and seams shall not create avoidable food-retention pockets in areas declared as food contact.</li><li>Products shall resist the defined corrosion screening exposure.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Material identification verification.</li><li>Corrosion resistance screening under the defined exposure.</li><li>Surface finish and cleanability inspection.</li><li>Dimensional and workmanship checks.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Material chemistry or grade-identification report.</li><li>Corrosion test observations and acceptance result.</li><li>Inspection record showing finish and workmanship.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification or trade mark.</li><li>Product/model identification.</li><li>Batch or lot mark where traceability is claimed.</li><li>Material grade designation where required by the product specification.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Material grade certificate or supplier declaration.</li><li>Production inspection checklist.</li><li>Laboratory corrosion test report where applicable.</li><li>Product drawing or dimensional specification.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-002</p>
+            <p><strong>Keywords:</strong> food contact, stainless steel utensil, kitchenware, corrosion resistance</p>
+            <p><strong>Synonyms:</strong> stainless steel kitchenware, food-contact utensil, steel serving utensil, food-grade utensil</p>
+            <p><strong>Product examples:</strong> Serving ladles, Steel bowls, Institutional serving trays</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-006<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Gas Appliances" data-status="Active" data-text="is demo 1007:2025 lpg cabinet heaters for indoor domestic use - safety requirements lpg heater gas heater cabinet heater room heater flame failure lpg room heater gas room heater cabinet gas heater portable lpg heater">
+        <td><code>STD-DEMO-007</code></td>
+        <td><strong>IS DEMO 1007:2025</strong><br>LPG Cabinet Heaters for Indoor Domestic Use - Safety Requirements</td>
+        <td>Gas Appliances<br><span class="muted">LPG room heating appliances</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2025-01-15<br><span class="muted">Effective: 2025-04-01</span></td>
+        <td>QCO-DEMO-GAS-2025-01</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies safety, combustion, gas-tightness, burner, ignition, flame-failure, and marking requirements for cabinet-type LPG room heaters intended for indoor domestic use.</p>
+            <p><strong>Applicability:</strong> Applies to cabinet heaters using LPG supplied from portable cylinders under the defined appliance configuration; excludes industrial heaters and permanently installed central heating equipment.</p>
+            <p><strong>Certification:</strong> Certification applicable where a product-specific control order requires conformity to this standard; operation without the applicable conformity route is outside this demo dataset assumptions.</p>
+            <p><strong>Last reviewed:</strong> 2026-05-04</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Gas-carrying components shall maintain gas-tightness over the declared operating range.</li><li>Burner combustion shall remain within the defined safety limits.</li><li>Flame-failure protection shall safely interrupt gas flow under the specified failure condition.</li><li>Hot-surface and ventilation warnings shall be provided as required.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Gas-tightness and leak verification.</li><li>Flame-failure device response test.</li><li>Combustion performance and stability test.</li><li>Ignition and abnormal-condition testing.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Gas-tightness test report.</li><li>Combustion and flame-failure performance record.</li><li>Abnormal-condition test evidence with appliance configuration.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Appliance model/type.</li><li>Gas type and rated heat input.</li><li>Warning, ventilation, and installation information.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Gas circuit schematic.</li><li>Burner and safety-device specifications.</li><li>Installation and operating instructions.</li><li>Laboratory safety test report.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-003</p>
+            <p><strong>Keywords:</strong> LPG heater, gas heater, cabinet heater, room heater, flame failure</p>
+            <p><strong>Synonyms:</strong> LPG room heater, gas room heater, cabinet gas heater, portable LPG heater</p>
+            <p><strong>Product examples:</strong> Cabinet LPG heater, Portable domestic gas heater</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-007<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Furniture" data-status="Active" data-text="is demo 1008:2024 modular office chairs - structural safety and durability office chair modular furniture seating chair durability stability work chair office seating adjustable office chair task chair desk chair">
+        <td><code>STD-DEMO-008</code></td>
+        <td><strong>IS DEMO 1008:2024</strong><br>Modular Office Chairs - Structural Safety and Durability</td>
+        <td>Furniture<br><span class="muted">Office seating</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2024-03-10<br><span class="muted">Effective: 2024-06-15</span></td>
+        <td><span class="muted">None in demo</span></td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies dimensional, structural, stability, adjustment, durability, and marking requirements for modular office chairs intended for seated work in offices and similar indoor environments.</p>
+            <p><strong>Applicability:</strong> Applies to adjustable and fixed office chairs assembled from modular components; excludes specialist medical seating and auditorium fixed seating.</p>
+            <p><strong>Certification:</strong> Certification generally voluntary unless required by procurement specifications or another applicable conformity instrument.</p>
+            <p><strong>Last reviewed:</strong> 2026-06-09</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Chair structure shall withstand the specified static loading sequences.</li><li>Base and caster assembly shall maintain stability during prescribed movement conditions.</li><li>Adjustment mechanisms shall operate without unsafe release or unintended movement.</li><li>Repeated-use durability shall meet the defined cycle requirement.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Static load and stability test.</li><li>Seat, backrest, and armrest durability cycling where applicable.</li><li>Caster/base strength and movement test.</li><li>Adjustment mechanism endurance test.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Structural test report with load sequence.</li><li>Durability-cycle results and failure observations.</li><li>Stability and adjustment mechanism test record.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer or supplier identification.</li><li>Model/product code.</li><li>Basic assembly and maximum-use information where relevant.</li><li>Batch/lot reference for traceability claims.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Assembly drawing.</li><li>Materials and component specification.</li><li>Durability and structural test evidence.</li><li>User assembly instructions.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-001</p>
+            <p><strong>Keywords:</strong> office chair, modular furniture, seating, chair durability, stability</p>
+            <p><strong>Synonyms:</strong> work chair, office seating, adjustable office chair, task chair, desk chair</p>
+            <p><strong>Product examples:</strong> Adjustable task chair, Modular workstation chair, Meeting-room office chair</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-008<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Renewable Energy" data-status="Active" data-text="is demo 1009:2026 rooftop solar pv mounting systems - mechanical and installation requirements solar pv mounting rooftop solar solar mounting system pv structure roof attachment rooftop solar structure solar panel mounting pv mounting frame solar rooftop mounting">
+        <td><code>STD-DEMO-009</code></td>
+        <td><strong>IS DEMO 1009:2026</strong><br>Rooftop Solar PV Mounting Systems - Mechanical and Installation Requirements</td>
+        <td>Renewable Energy<br><span class="muted">Solar photovoltaic mounting</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2026-02-28<br><span class="muted">Effective: 2026-06-01</span></td>
+        <td><span class="muted">None in demo</span></td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Defines mechanical strength, corrosion protection, attachment, load-path, and installation documentation requirements for rooftop mounting systems supporting solar photovoltaic modules.</p>
+            <p><strong>Applicability:</strong> Applies to fixed rooftop mounting systems for small and medium distributed solar PV installations; excludes ground-mounted utility-scale systems and tracking structures.</p>
+            <p><strong>Certification:</strong> Certification may be required when the mounting product is covered by a procurement or project conformity specification; this standard alone does not universally mandate certification.</p>
+            <p><strong>Last reviewed:</strong> 2026-08-18</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Mounting members shall withstand declared design loads for the installation zone.</li><li>Fasteners and attachment details shall maintain the specified load path.</li><li>Corrosion protection shall match the declared environmental exposure.</li><li>Installation documents shall identify permitted roof interfaces and tightening requirements.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Mechanical load verification for representative assemblies.</li><li>Fastener and connection strength checks.</li><li>Corrosion-protection verification by documented coating or material evidence.</li><li>Installation interface inspection.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Mechanical load test report for the representative assembly.</li><li>Connection-strength test records.</li><li>Material/coating evidence for corrosion resistance.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>System/model designation.</li><li>Material or coating identification where relevant.</li><li>Batch or component identification for traceable parts.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Assembly drawings and installation manual.</li><li>Declared load capacities and design assumptions.</li><li>Mechanical test evidence.</li><li>Material/coating documentation.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-005, STD-DEMO-013</p>
+            <p><strong>Keywords:</strong> solar PV mounting, rooftop solar, solar mounting system, PV structure, roof attachment</p>
+            <p><strong>Synonyms:</strong> rooftop solar structure, solar panel mounting, PV mounting frame, solar rooftop mounting</p>
+            <p><strong>Product examples:</strong> Rail-based rooftop mounting, Flat-roof ballast mounting, Pitched-roof PV attachment kit</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-009<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Building Materials" data-status="Superseded" data-text="is demo 1010:2023 upvc drainage pipes - gravity drainage service upvc pipe drainage pipe gravity drainage plastic piping superseded pipe standard pvc drainage pipe upvc sewer pipe plastic drain pipe pvc gravity pipe">
+        <td><code>STD-DEMO-010</code></td>
+        <td><strong>IS DEMO 1010:2023</strong><br>uPVC Drainage Pipes - Gravity Drainage Service</td>
+        <td>Building Materials<br><span class="muted">Plastics piping systems</span></td>
+        <td><span class="badge status-superseded">Superseded</span></td>
+        <td>2023-02-14<br><span class="muted">Effective: 2023-05-01</span></td>
+        <td>QCO-DEMO-BLDG-2023-02</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specified dimensional, material, jointing, pressure-related, and workmanship requirements for unplasticized PVC drainage pipes used in gravity drainage applications.</p>
+            <p><strong>Applicability:</strong> Applied to uPVC gravity drainage pipes produced under the earlier demo specification; this record is retained for historical lookup and replacement tracing.</p>
+            <p><strong>Certification:</strong> Certification applicability followed the conformity route attached to the earlier edition; it is not the current basis for new conformity claims in this demo dataset.</p>
+            <p><strong>Last reviewed:</strong> 2025-12-05</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Pipe dimensions and wall thickness shall match the declared size series.</li><li>Material shall meet the earlier demo formulation limits.</li><li>Jointing surfaces shall remain compatible with the specified connection method.</li><li>Pipes shall meet the earlier stiffness and workmanship checks.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Dimensional and wall-thickness verification.</li><li>Ring stiffness screening.</li><li>Joint-leakage or watertightness check where applicable.</li><li>Visual workmanship inspection.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Historical product test report.</li><li>Dimensional inspection results.</li><li>Stiffness and joint performance evidence.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Nominal size and class designation.</li><li>Batch or production reference.</li><li>Earlier standard number marking where historically applied.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Historical product specification.</li><li>Production test record.</li><li>Archived conformity evidence.</li><li>Replacement mapping to the current demo standard.</li></ul>
+            <p><strong>Supersession:</strong> Superseded by: <code>STD-DEMO-011</code></p>
+            <p><strong>Related standards:</strong> STD-DEMO-011</p>
+            <p><strong>Keywords:</strong> uPVC pipe, drainage pipe, gravity drainage, plastic piping, superseded pipe standard</p>
+            <p><strong>Synonyms:</strong> PVC drainage pipe, uPVC sewer pipe, plastic drain pipe, PVC gravity pipe</p>
+            <p><strong>Product examples:</strong> uPVC drain pipe, Building drainage pipe, Gravity wastewater pipe</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-010<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Building Materials" data-status="Active" data-text="is demo 1011:2026 upvc drainage pipes - gravity drainage service, revised requirements upvc drainage current drainage pipe gravity pipe building drainage replacement standard revised upvc drainage pipe current pvc drain pipe standard gravity drainage pipe upvc sewer pipe current">
+        <td><code>STD-DEMO-011</code></td>
+        <td><strong>IS DEMO 1011:2026</strong><br>uPVC Drainage Pipes - Gravity Drainage Service, Revised Requirements</td>
+        <td>Building Materials<br><span class="muted">Plastics piping systems</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2026-01-10<br><span class="muted">Effective: 2026-04-01</span></td>
+        <td>QCO-DEMO-BLDG-2026-02</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies current dimensional, material, jointing, stiffness, and identification requirements for unplasticized PVC drainage pipes intended for gravity drainage service in buildings and site drainage systems.</p>
+            <p><strong>Applicability:</strong> Applies to new production and current conformity assessment for the defined uPVC drainage pipe range; the earlier 2023 demo edition is retained only as a superseded historical record.</p>
+            <p><strong>Certification:</strong> Certification applicable where the current product control route adopts this standard; otherwise the standard may support voluntary or contractually required conformity.</p>
+            <p><strong>Last reviewed:</strong> 2026-08-10</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Pipe dimensions and wall thickness shall meet the revised size-series tolerances.</li><li>Ring stiffness classification shall be declared and supported by test evidence.</li><li>Joint compatibility shall be demonstrated for the specified socket and seal configuration.</li><li>Permanent identification shall include current standard reference and traceability information.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Dimensional and wall-thickness verification.</li><li>Ring stiffness or flattening-related performance test.</li><li>Joint watertightness or leakage test.</li><li>Impact/workmanship inspection where the declared application requires it.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Current-edition product test report.</li><li>Stiffness results by representative pipe size.</li><li>Joint performance report using the declared seal/joint system.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Nominal size and stiffness/class designation.</li><li>Current standard number: IS DEMO 1011:2026.</li><li>Batch/production traceability mark.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Current product specification.</li><li>Installation and jointing instructions.</li><li>Laboratory test evidence.</li><li>Traceability and production-control record.</li></ul>
+            <p><strong>Supersession:</strong> Supersedes: <code>STD-DEMO-010</code></p>
+            <p><strong>Related standards:</strong> STD-DEMO-010</p>
+            <p><strong>Keywords:</strong> uPVC drainage, current drainage pipe, gravity pipe, building drainage, replacement standard</p>
+            <p><strong>Synonyms:</strong> revised uPVC drainage pipe, current PVC drain pipe standard, gravity drainage pipe, uPVC sewer pipe current</p>
+            <p><strong>Product examples:</strong> New-generation uPVC drain pipe, Building drainage pipe, Site gravity drainage pipe</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-011<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Renewable Energy" data-status="Superseded" data-text="is demo 1012:2023 solar water heating collectors - domestic thermal systems solar water heater solar collector thermal collector hot water superseded renewable standard solar thermal collector domestic solar heater collector solar hot-water collector solar water-heating panel">
+        <td><code>STD-DEMO-012</code></td>
+        <td><strong>IS DEMO 1012:2023</strong><br>Solar Water Heating Collectors - Domestic Thermal Systems</td>
+        <td>Renewable Energy<br><span class="muted">Solar thermal water heating</span></td>
+        <td><span class="badge status-superseded">Superseded</span></td>
+        <td>2023-05-20<br><span class="muted">Effective: 2023-08-01</span></td>
+        <td>QCO-DEMO-REN-2023-01</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specified thermal efficiency, durability, connection, and basic safety requirements for domestic solar water-heating collectors used in small building-scale systems.</p>
+            <p><strong>Applicability:</strong> Applied to the earlier collector design classes covered by the demo catalogue; retained for historical searches and replacement tracing.</p>
+            <p><strong>Certification:</strong> Certification was applicable under the earlier demo conformity route when invoked by procurement or product-control conditions; current conformity should use the replacement record.</p>
+            <p><strong>Last reviewed:</strong> 2025-11-16</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Collector shall achieve the declared thermal output under the defined test condition.</li><li>Hydraulic connections shall remain leak-tight under the specified pressure.</li><li>Thermal cycling shall not cause unacceptable functional damage.</li><li>Collector casing and support points shall remain secure.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Thermal efficiency test under defined irradiance and inlet conditions.</li><li>Pressure and leakage test.</li><li>Thermal cycling durability test.</li><li>Visual and dimensional inspection.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Historical thermal-performance report.</li><li>Pressure/leak test report.</li><li>Durability and inspection records.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Collector model.</li><li>Rated thermal performance information.</li><li>Batch/production identification.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Collector specification sheet.</li><li>Hydraulic connection details.</li><li>Archived performance test evidence.</li><li>Replacement mapping to the current standard.</li></ul>
+            <p><strong>Supersession:</strong> Superseded by: <code>STD-DEMO-013</code></p>
+            <p><strong>Related standards:</strong> STD-DEMO-009, STD-DEMO-013</p>
+            <p><strong>Keywords:</strong> solar water heater, solar collector, thermal collector, hot water, superseded renewable standard</p>
+            <p><strong>Synonyms:</strong> solar thermal collector, domestic solar heater collector, solar hot-water collector, solar water-heating panel</p>
+            <p><strong>Product examples:</strong> Flat-plate solar collector, Domestic solar thermal collector</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-012<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Renewable Energy" data-status="Active" data-text="is demo 1013:2026 solar water heating collectors - domestic thermal systems, current requirements solar collector solar thermal domestic hot water renewable energy current collector standard solar hot-water collector solar thermal water heater domestic solar collector solar heating panel">
+        <td><code>STD-DEMO-013</code></td>
+        <td><strong>IS DEMO 1013:2026</strong><br>Solar Water Heating Collectors - Domestic Thermal Systems, Current Requirements</td>
+        <td>Renewable Energy<br><span class="muted">Solar thermal water heating</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2026-02-05<br><span class="muted">Effective: 2026-05-15</span></td>
+        <td>QCO-DEMO-REN-2026-03</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies current thermal performance, pressure integrity, durability, materials, insulation, and marking requirements for domestic solar water-heating collectors used in building-scale hot-water systems.</p>
+            <p><strong>Applicability:</strong> Applies to current collector models intended for domestic or small institutional hot-water systems; the 2023 demo edition is superseded and retained only for historical traceability.</p>
+            <p><strong>Certification:</strong> Certification applicable when a product-control or procurement route explicitly requires this current edition; otherwise test evidence may support voluntary conformity.</p>
+            <p><strong>Last reviewed:</strong> 2026-08-25</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Declared thermal performance shall be supported by the current test method and reporting format.</li><li>Collector circuit shall withstand the specified pressure and leakage checks.</li><li>Insulation and absorber construction shall maintain performance after durability conditioning.</li><li>Materials and coatings shall be suitable for the declared operating temperature and environment.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Thermal performance test using the current conditioning and reporting method.</li><li>Pressure integrity and leakage test.</li><li>Thermal cycling and stagnation-related durability checks where applicable.</li><li>Material, coating, and insulation inspection.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Current thermal-performance laboratory report.</li><li>Pressure integrity report for the representative collector.</li><li>Durability and insulation evidence.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Collector model/type.</li><li>Declared thermal-performance designation.</li><li>Current standard number and traceability mark.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Current collector technical specification.</li><li>Hydraulic and installation diagrams.</li><li>Laboratory performance report.</li><li>Material/coating evidence and traceability record.</li></ul>
+            <p><strong>Supersession:</strong> Supersedes: <code>STD-DEMO-012</code></p>
+            <p><strong>Related standards:</strong> STD-DEMO-009, STD-DEMO-012</p>
+            <p><strong>Keywords:</strong> solar collector, solar thermal, domestic hot water, renewable energy, current collector standard</p>
+            <p><strong>Synonyms:</strong> solar hot-water collector, solar thermal water heater, domestic solar collector, solar heating panel</p>
+            <p><strong>Product examples:</strong> Current flat-plate collector, Institutional solar hot-water collector</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-013<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr><tr data-sector="Electrical Appliances" data-status="Active" data-text="is demo 1014:2025 electric storage water heaters - domestic safety and energy performance electric water heater storage water heater geyser domestic water heating energy performance electric geyser storage geyser hot-water storage heater domestic electric heater">
+        <td><code>STD-DEMO-014</code></td>
+        <td><strong>IS DEMO 1014:2025</strong><br>Electric Storage Water Heaters - Domestic Safety and Energy Performance</td>
+        <td>Electrical Appliances<br><span class="muted">Domestic water heating</span></td>
+        <td><span class="badge status-active">Active</span></td>
+        <td>2025-09-14<br><span class="muted">Effective: 2025-12-01</span></td>
+        <td>QCO-DEMO-ELEC-2025-05</td>
+        <td><details><summary>View details</summary>
+            <div class="detail">
+            <p><strong>Scope:</strong> Specifies electrical safety, thermal performance, pressure containment, controls, energy-performance declaration, and marking requirements for domestic electric storage water heaters.</p>
+            <p><strong>Applicability:</strong> Applies to fixed electric storage water heaters for domestic hot-water service within the declared capacity range; excludes instantaneous heaters and industrial hot-water vessels.</p>
+            <p><strong>Certification:</strong> Certification applicable where a relevant product control order adopts this standard; otherwise conformity assessment may be voluntary or procurement-driven.</p>
+            <p><strong>Last reviewed:</strong> 2026-07-12</p>
+            <p><strong>Amendment status:</strong> No amendment | <strong>Reference:</strong> None</p>
+            <p><strong>Amendment:</strong> No amendment.</p>
+            <p><strong>Key requirements:</strong></p><ul><li>Tank and pressure-containing parts shall withstand the specified pressure condition.</li><li>Electrical protection shall address insulation, leakage, and protective-device operation.</li><li>Thermostatic controls shall maintain the declared water-temperature range.</li><li>Energy-performance information shall be supported by the stated test method.</li></ul>
+            <p><strong>Testing requirements:</strong></p><ul><li>Pressure containment and leakage test.</li><li>Dielectric strength and insulation tests.</li><li>Thermostat and safety cut-out function test.</li><li>Energy-performance or heat-loss verification.</li></ul>
+            <p><strong>Laboratory/test evidence:</strong></p><ul><li>Pressure and leakage test report.</li><li>Electrical safety report.</li><li>Thermostat/safety cut-out functional test record.</li><li>Energy-performance test results.</li></ul>
+            <p><strong>Marking requirements:</strong></p><ul><li>Manufacturer identification.</li><li>Rated capacity and electrical data.</li><li>Model and serial/batch identification.</li><li>Installation warnings and pressure-related information.</li></ul>
+            <p><strong>Documentation required:</strong></p><ul><li>Tank construction specification.</li><li>Electrical schematic and component list.</li><li>Installation and operating manual.</li><li>Laboratory safety and energy-performance evidence.</li></ul>
+            <p><strong>Supersession:</strong> <span class="muted">No direct supersession relationship</span></p>
+            <p><strong>Related standards:</strong> STD-DEMO-003, STD-DEMO-013</p>
+            <p><strong>Keywords:</strong> electric water heater, storage water heater, geyser, domestic water heating, energy performance</p>
+            <p><strong>Synonyms:</strong> electric geyser, storage geyser, hot-water storage heater, domestic electric heater</p>
+            <p><strong>Product examples:</strong> 10 L electric storage heater, 25 L domestic water heater, 50 L storage geyser</p>
+            <p class="citation"><strong>Source:</strong> BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-014<br><strong>Files:</strong> standards_demo.pdf / CSV / JSON / HTML</p>
+            </div></details></td>
+    </tr></tbody>
+  </table>
+  <div class="footer">Source citation format: BIS MITRA Demo &rarr; Standards &rarr; STD-DEMO-XXX. This site is a synthetic demo artifact and does not represent official BIS content.</div>
+</div>
+<script>
+const rows = Array.from(document.querySelectorAll('#catalog tbody tr'));
+const search = document.getElementById('search');
+const sector = document.getElementById('sector');
+const status = document.getElementById('status');
+const count = document.getElementById('count');
+function applyFilters() {
+  const q = search.value.trim().toLowerCase();
+  const sec = sector.value;
+  const st = status.value;
+  let visible = 0;
+  rows.forEach(row => {
+    const matchesQ = !q || row.dataset.text.includes(q);
+    const matchesSec = !sec || row.dataset.sector === sec;
+    const matchesSt = !st || row.dataset.status === st;
+    const show = matchesQ && matchesSec && matchesSt;
+    row.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  count.textContent = visible;
+}
+search.addEventListener('input', applyFilters);
+sector.addEventListener('change', applyFilters);
+status.addEventListener('change', applyFilters);
+</script>
+</body>
+</html>

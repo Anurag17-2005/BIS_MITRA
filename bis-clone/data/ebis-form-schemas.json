@@ -1,0 +1,81 @@
+{
+  "FORM-CERT-I": {
+    "form_id": "FORM-CERT-I",
+    "title": "Form-I — BIS Certification Application",
+    "service_id": "SVC-CERT-001",
+    "submit_api": "/api/applications",
+    "fields": [
+      { "name": "company_name", "label": "Company / Factory Name", "type": "text", "required": true, "validation": "minLength:2" },
+      { "name": "factory_name", "label": "Factory Name", "type": "text", "required": true },
+      { "name": "udyam_id", "label": "Udyam Registration ID", "type": "text", "required": true, "validation": "pattern:UDYAM-[A-Z]{2}-\\d{2}-\\d{7}" },
+      { "name": "is_number", "label": "Applicable IS Standard", "type": "text", "required": true, "placeholder": "IS DEMO 1001:2026" },
+      { "name": "product_name", "label": "Product Name / Model", "type": "text", "required": true },
+      { "name": "lab_report_ref", "label": "NABL Lab Test Report Reference", "type": "text", "required": true, "placeholder": "TRL-DEMO-PPE-26017" }
+    ],
+    "documents": [
+      { "name": "udyam_certificate", "label": "Udyam MSME Certificate", "required": true },
+      { "name": "lab_report", "label": "NABL Test Report", "required": true },
+      { "name": "factory_layout", "label": "Factory Layout Plan", "required": false }
+    ]
+  },
+  "FORM-GRIEV": {
+    "form_id": "FORM-GRIEV",
+    "title": "Consumer Complaint Form",
+    "service_id": "SVC-GRIEV-001",
+    "submit_api": "/api/consumer/grievances",
+    "fields": [
+      { "name": "consumer_name", "label": "Your Name", "type": "text", "required": false },
+      { "name": "merchant_name", "label": "Seller / Merchant Name", "type": "text", "required": true },
+      { "name": "product_category", "label": "Product Category", "type": "select", "required": true, "options": ["Electrical Accessories", "Personal Protective Equipment", "Food and Packaging", "Hallmarking / Gold Jewellery", "Gas Appliances"] },
+      { "name": "product_name", "label": "Product Name", "type": "text", "required": false },
+      { "name": "is_number", "label": "Related IS Standard (if known)", "type": "text", "required": false },
+      { "name": "invoice_number", "label": "Invoice / Bill Number", "type": "text", "required": false },
+      { "name": "complaint_details", "label": "Complaint Description", "type": "textarea", "required": true },
+      { "name": "evidence_upload", "label": "Evidence File Name", "type": "text", "required": false, "placeholder": "store_bill.pdf" }
+    ],
+    "documents": [
+      { "name": "invoice", "label": "Purchase Invoice / Bill", "required": true },
+      { "name": "product_photos", "label": "Product Photographs", "required": true },
+      { "name": "packaging_photos", "label": "Packaging Images", "required": false }
+    ]
+  },
+  "FORM-LAB-REC": {
+    "form_id": "FORM-LAB-REC",
+    "title": "Laboratory Recognition Application",
+    "service_id": "SVC-LAB-001",
+    "submit_api": "/api/ebis/lab-applications",
+    "fields": [
+      { "name": "lab_name", "label": "Laboratory Name", "type": "text", "required": true },
+      { "name": "city", "label": "City", "type": "text", "required": true },
+      { "name": "state", "label": "State", "type": "text", "required": true },
+      { "name": "nabl_number", "label": "NABL Accreditation Number", "type": "text", "required": true },
+      { "name": "scope", "label": "Scope of Testing (IS standards)", "type": "textarea", "required": true },
+      { "name": "contact_email", "label": "Contact Email", "type": "email", "required": true }
+    ],
+    "documents": [
+      { "name": "nabl_certificate", "label": "NABL Accreditation Certificate", "required": true },
+      { "name": "scope_document", "label": "Scope of Accreditation", "required": true },
+      { "name": "quality_manual", "label": "Quality Manual", "required": false }
+    ]
+  },
+  "FORM-FMCS-IV": {
+    "form_id": "FORM-FMCS-IV",
+    "title": "FMCS Form-IV Application",
+    "service_id": "SVC-FMCS-001",
+    "submit_api": "/api/fmcs/applications",
+    "fields": [
+      { "name": "company_name", "label": "Foreign Manufacturer Name", "type": "text", "required": true },
+      { "name": "country_of_origin", "label": "Country of Origin", "type": "text", "required": true },
+      { "name": "factory_address", "label": "Factory Address", "type": "textarea", "required": true },
+      { "name": "air_name", "label": "Authorized Indian Representative (AIR)", "type": "text", "required": true },
+      { "name": "air_address", "label": "AIR Address", "type": "textarea", "required": true },
+      { "name": "is_number", "label": "Applicable IS Standard", "type": "text", "required": true },
+      { "name": "product_name", "label": "Product Name", "type": "text", "required": true }
+    ],
+    "documents": [
+      { "name": "factory_audit", "label": "Factory Audit Report", "required": true },
+      { "name": "test_reports", "label": "Test Reports", "required": true },
+      { "name": "air_letter", "label": "AIR Appointment Letter", "required": true }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "pattern": "A",
+  "fetched_at": "2026-09-14T13:57:50.202Z",
+  "source_url": "http://localhost:3003/know-your-standards",
+  "description": "Search box → text results",
+  "scraped_text": {
+    "query": "cycle",
+    "results": [
+      "IS 623:2025BICYCLES - BICYCLE FRAMES - SPECIFICATION (First Revision)Published In: 2025 | Mandatory"
+    ]
+  }
+}

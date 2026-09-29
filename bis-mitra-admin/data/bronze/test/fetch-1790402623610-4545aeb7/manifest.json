@@ -1,0 +1,364 @@
+{
+  "fetch_id": "fetch-1790402623610-4545aeb7",
+  "cluster_id": "test",
+  "source_id": "schemes_api",
+  "plan_id": "test_ingest_schemes_docs",
+  "started_at": "2026-09-26T06:03:43.300Z",
+  "finished_at": "2026-09-26T06:03:43.499Z",
+  "seed_urls": [
+    "plan://test_ingest_schemes_docs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-GSR-NO-759(E).pdf",
+      "url": "plan://test_ingest_schemes_docs/GSR-NO-759(E).pdf",
+      "sha256": "f47ca3033bb7f912b073e22e0f9e58fb7bfc7cf2b0654c55f4900fa2d6baec8c",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/GSR-NO-759_E_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 936439,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Guidance-document-on-QCOs-Revised-1.pdf",
+      "url": "plan://test_ingest_schemes_docs/Guidance-document-on-QCOs-Revised-1.pdf",
+      "sha256": "cd386c12fe9ec50f53f788dd7de501a1638fff19e2f8938fecb68c8fc6c17c2c",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Guidance-document-on-QCOs-Revised-1.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 712151,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-QCO-CoC-Bycycle-DPIIT (1).pdf",
+      "url": "plan://test_ingest_schemes_docs/QCO-CoC-Bycycle-DPIIT (1).pdf",
+      "sha256": "d6d0836aac3794461104287b4303a3b6fd32c8c11473ad007493b0b9a9b135b9",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/QCO-CoC-Bycycle-DPIIT__1_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1452525,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-QCO-CoC-Bycycle-DPIIT.pdf",
+      "url": "plan://test_ingest_schemes_docs/QCO-CoC-Bycycle-DPIIT.pdf",
+      "sha256": "d6d0836aac3794461104287b4303a3b6fd32c8c11473ad007493b0b9a9b135b9",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/QCO-CoC-Bycycle-DPIIT.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1452525,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-QCO30032020.pdf",
+      "url": "plan://test_ingest_schemes_docs/QCO30032020.pdf",
+      "sha256": "2f29fd8d26dd6018d0032974ba43354176bffbe15c6bfd1b5bc093163f49b394",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/QCO30032020.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 164844,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 2033 (E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 2033 (E).pdf",
+      "sha256": "b601546ca14b5baa857cdab956b1241aa7b683e3c365cd101b4ab4f63f4ca3b5",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/SO_No_2033__E_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 80976,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 2357 (E) (1).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 2357 (E) (1).pdf",
+      "sha256": "206507c717345d01318c80ff5545ad3755252c0b4722b57221a11a377191862c",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/SO_No_2357__E___1_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 147334,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 2357 (E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 2357 (E).pdf",
+      "sha256": "206507c717345d01318c80ff5545ad3755252c0b4722b57221a11a377191862c",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/SO_No_2357__E_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 147334,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO No 822 (E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO No 822 (E).pdf",
+      "sha256": "3b2e006db8dc9b1da0cc68f2e6e5e6fd5809f63264130f1eaf64977e4b96eb13",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/SO_No_822__E_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 327748,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO-No-165(E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO-No-165(E).pdf",
+      "sha256": "50fb3b8a5b5b7fdd655abb3f9ba740a4d33babe3e1f6ba3b9a8fabaab19a5312",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/SO-No-165_E_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 511598,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-SO-No-191(E).pdf",
+      "url": "plan://test_ingest_schemes_docs/SO-No-191(E).pdf",
+      "sha256": "718eaa77ee83ba0019756432b5f2b5d0464175ec5f3e53f84408077e3aa87622",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/SO-No-191_E_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1843101,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.56.29 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.56.29 AM.png",
+      "sha256": "6d18547aeb916cb1f76eedd853914bc5f82bec14553f73fb220e980c6bf1bbbf",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_10.56.29_AM.png",
+      "mime_type": "image/png",
+      "bytes": 684318,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.56.56 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.56.56 AM.png",
+      "sha256": "edf27b681f23ede053e77fec1d774a7cb347f58b1dda2a22dcf0ffc8adae6ba9",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_10.56.56_AM.png",
+      "mime_type": "image/png",
+      "bytes": 670920,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.58.15 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.58.15 AM.png",
+      "sha256": "244b25a7f696525c876b0ae9b765af9ac07b0769acede580236ee45c9ec24c4b",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_10.58.15_AM.png",
+      "mime_type": "image/png",
+      "bytes": 624398,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 10.59.46 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 10.59.46 AM.png",
+      "sha256": "4130fc2ac51f2fa1cfe19546c209041fddcf9d6fdbe0888183e1182ac8cfa017",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_10.59.46_AM.png",
+      "mime_type": "image/png",
+      "bytes": 2416475,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.02.23 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.02.23 AM.png",
+      "sha256": "328cdf829853f0afd16c19c4097664c3d19ce4138900cacfba0f1c5726e840b2",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.02.23_AM.png",
+      "mime_type": "image/png",
+      "bytes": 462551,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.02.29 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.02.29 AM.png",
+      "sha256": "ae3bf36d98d7e5670f28e26cf1350e20e41c90d580be1cdfc4a0f66ca3081ae3",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.02.29_AM.png",
+      "mime_type": "image/png",
+      "bytes": 545812,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.03.17 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.03.17 AM.png",
+      "sha256": "c143d22920c2c4d73022a2b4bd84b13d68ddfef35afa800f228307bb9ffad8a1",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.03.17_AM.png",
+      "mime_type": "image/png",
+      "bytes": 614811,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.04.21 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.04.21 AM.png",
+      "sha256": "07db672f0d3682265bbcb172fcd88303d065956a9ed1c87f2040f7a3ffd92825",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.04.21_AM.png",
+      "mime_type": "image/png",
+      "bytes": 630988,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.05.18 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.05.18 AM.png",
+      "sha256": "358409c5e4a4394cf42e5ba39007db23e98b44b66b6bed2b6517ebdc82774e77",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.05.18_AM.png",
+      "mime_type": "image/png",
+      "bytes": 564203,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.07.19 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.07.19 AM.png",
+      "sha256": "8a1a6c580825089a126a4ab724af98aa728ae5ed29296675a9d68bdd0fccd6b3",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.07.19_AM.png",
+      "mime_type": "image/png",
+      "bytes": 512594,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Screenshot 2026-09-19 at 11.10.07 AM.png",
+      "url": "plan://test_ingest_schemes_docs/Screenshot 2026-09-19 at 11.10.07 AM.png",
+      "sha256": "b7c2e7fd92ab478e146bde600315edf779db41c09a1033addf7f78511ef796b6",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Screenshot_2026-09-19_at_11.10.07_AM.png",
+      "mime_type": "image/png",
+      "bytes": 485533,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-Steel-QCO-2020-dated-27th-May-2020.pdf",
+      "url": "plan://test_ingest_schemes_docs/Steel-QCO-2020-dated-27th-May-2020.pdf",
+      "sha256": "295891cce6bc03e35734655d480315ec7471b85a6eddb2fdc379f2b7476f98bd",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/Steel-QCO-2020-dated-27th-May-2020.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 3215539,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-gazette_notification_2012_10_03 (1).pdf",
+      "url": "plan://test_ingest_schemes_docs/gazette_notification_2012_10_03 (1).pdf",
+      "sha256": "99c16a83af257bdf48dba2c0a4facc71853e74aa73c4e38d38c9187d05693cc4",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/gazette_notification_2012_10_03__1_.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 9915921,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-gazette_notification_2012_10_03.pdf",
+      "url": "plan://test_ingest_schemes_docs/gazette_notification_2012_10_03.pdf",
+      "sha256": "99c16a83af257bdf48dba2c0a4facc71853e74aa73c4e38d38c9187d05693cc4",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/gazette_notification_2012_10_03.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 9915921,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-compulsory-products-list.pdf",
+      "url": "plan://test_ingest_schemes_docs/compulsory-products-list.pdf",
+      "sha256": "5debee92f880cabf2eb1254e979499a6735eb775fad1b1ce7ae771c9e4d47019",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/compulsory-products-list.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 4613705,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-conformity-assessment-regulations-2019.pdf",
+      "url": "plan://test_ingest_schemes_docs/conformity-assessment-regulations-2019.pdf",
+      "sha256": "531e12c5a8a15a1bd6a9b4f01e2cb8e9f9c3c9e1afb763a0362da518e0a27666",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/conformity-assessment-regulations-2019.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 7312036,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-guidance-document-on-qcos.pdf",
+      "url": "plan://test_ingest_schemes_docs/guidance-document-on-qcos.pdf",
+      "sha256": "cd386c12fe9ec50f53f788dd7de501a1638fff19e2f8938fecb68c8fc6c17c2c",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/guidance-document-on-qcos.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 712151,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-scheme-1-notification-2024.pdf",
+      "url": "plan://test_ingest_schemes_docs/scheme-1-notification-2024.pdf",
+      "sha256": "7921e12a6bb5d6ede35ef8c3d8d6e04897c86098361a4a4bd67106225aa86261",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/scheme-1-notification-2024.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 1142292,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-simplified-procedure-products.pdf",
+      "url": "plan://test_ingest_schemes_docs/simplified-procedure-products.pdf",
+      "sha256": "51c1ae487dcac929579c6680e5bd0e3030b9adec2afbcb78fc999a0724c9f9c5",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/simplified-procedure-products.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 313083,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-fmcs-scheme-notification-2018.pdf",
+      "url": "plan://test_ingest_schemes_docs/fmcs-scheme-notification-2018.pdf",
+      "sha256": "53088a2cdcd5ad7be881048a83443ace42bfda754c3b2a16c087fbc8778317bc",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/fmcs-scheme-notification-2018.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 3537,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-fmcs-application-form-iv.pdf",
+      "url": "plan://test_ingest_schemes_docs/fmcs-application-form-iv.pdf",
+      "sha256": "f286579aab90ea1989cd7d070743d61a4d660734b75ef34020d544cc6c9e50f8",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/fmcs-application-form-iv.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 4529,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-fmcs-air-nomination-template.pdf",
+      "url": "plan://test_ingest_schemes_docs/fmcs-air-nomination-template.pdf",
+      "sha256": "e4d756ebf14fed1e4fff1a71c8c797dd84cf545966eacec6f7f48118fce952c8",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/fmcs-air-nomination-template.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 4860,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-fmcs-fee-matrix-2026.pdf",
+      "url": "plan://test_ingest_schemes_docs/fmcs-fee-matrix-2026.pdf",
+      "sha256": "b7233e47989ef61f305a2c495c88a747518dcc92a27be3b184fa3995988b7a4a",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/fmcs-fee-matrix-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 4701,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_schemes_docs-fmcs-mra-treaties-2026.pdf",
+      "url": "plan://test_ingest_schemes_docs/fmcs-mra-treaties-2026.pdf",
+      "sha256": "20c9713af710b7a8b411a59268ca06c6b907b93e1b9fccaeba951ae081a7f55a",
+      "uri": "bronze/test/fetch-1790402623610-4545aeb7/artifacts/fmcs-mra-treaties-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 5039,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

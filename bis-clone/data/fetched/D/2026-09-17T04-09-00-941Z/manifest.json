@@ -1,0 +1,20 @@
+{
+  "pattern": "D",
+  "fetched_at": "2026-09-17T04:09:00.945Z",
+  "source_url": "http://localhost:3001/product-manuals",
+  "description": "Search → table → PDF download",
+  "scraped_text": {
+    "query": "3055",
+    "rows": [
+      {
+        "sr": "3",
+        "is_number": "IS 3055 (Part 1):1994",
+        "title": "Clinical Thermometers – Solid stem Type",
+        "size": "1.3 MB"
+      }
+    ]
+  },
+  "files": [
+    "/Users/anuragpanigrahi/Desktop/BIS_MITRA/bis-clone/data/fetched/D/2026-09-17T04-09-00-941Z/IS-3055-1994.pdf"
+  ]
+}
