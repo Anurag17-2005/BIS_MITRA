@@ -1,5 +1,5 @@
 {
-  "installCommand": "cd .. && npm ci",
+  "installCommand": "cd .. && npm ci && cd ../../bis-mitra-user && npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
