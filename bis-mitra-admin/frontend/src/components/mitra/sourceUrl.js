@@ -1,3 +1,5 @@
+import { apiAssetUrl } from '../../fileUrls.js';
+
 /** Resolve agent source citation to a browser-openable PDF URL on the admin API. */
 export function sourceToPdfUrl(source) {
   if (!source) return null;
@@ -11,8 +13,9 @@ export function sourceToPdfUrl(source) {
   else base = `/api/clone-files/knowledge/pdfs/manuals/${raw}`;
 
   const page = source.page || source.pageNumber || parsePageFromSection(source.section);
-  if (page && !base.includes('#')) return `${base}#page=${page}`;
-  return base;
+  const url = apiAssetUrl(base);
+  if (page && url && !url.includes('#')) return `${url}#page=${page}`;
+  return url;
 }
 
 function parsePageFromSection(section) {

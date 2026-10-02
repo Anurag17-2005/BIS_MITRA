@@ -1,15 +1,28 @@
+import { config } from './config.js';
+
+/** Turn /api/... paths into absolute Render admin URLs on Vercel (SPA rewrites /api to index.html). */
+export function apiAssetUrl(pathOrUrl) {
+  if (!pathOrUrl) return null;
+  const s = String(pathOrUrl);
+  if (/^https?:\/\//i.test(s)) return s;
+  const base = (config.apiUrl || '').replace(/\/$/, '');
+  if (!base) return s;
+  const path = s.startsWith('/') ? s : `/${s}`;
+  return `${base}${path}`;
+}
+
 /**
  * Resolve a warehouse item to a browser-openable URL.
  */
 export function warehouseViewUrl(item) {
   if (!item) return null;
-  if (item.viewUrl) return item.viewUrl;
+  if (item.viewUrl) return apiAssetUrl(item.viewUrl);
 
   if (item.source === 'upload' || item.storagePath) {
     const rel = (item.storagePath || '').replace(/^uploads[/\\]/, '').replace(/\\/g, '/');
-    if (rel) return `/api/uploads/${rel}`;
+    if (rel) return apiAssetUrl(`/api/uploads/${rel}`);
     if (item.clusterId && item.domain && item.name) {
-      return `/api/uploads/${item.clusterId}/${item.domain}/${item.name}`;
+      return apiAssetUrl(`/api/uploads/${item.clusterId}/${item.domain}/${item.name}`);
     }
   }
 
@@ -21,7 +34,7 @@ export function warehouseViewUrl(item) {
     const rel = fetchedIdx >= 0
       ? raw.slice(fetchedIdx + '/fetched/'.length)
       : raw.replace(/^[/]+/, '');
-    return `/api/files/${rel}`;
+    return apiAssetUrl(`/api/files/${rel}`);
   }
 
   const rel = raw.replace(/^[/]+/, '');
@@ -35,7 +48,7 @@ export function warehouseViewUrl(item) {
     'process/scheme-1-additional.pdf': 'knowledge/pdfs/schemes/scheme-1-notification-2024.pdf',
     'process/non-conformity-guidelines.pdf': 'knowledge/pdfs/process/dealing-with-non-conformity-2026.pdf',
   }[rel] || rel;
-  return `/api/clone-files/${remapped}`;
+  return apiAssetUrl(`/api/clone-files/${remapped}`);
 }
 
 export function isPdfItem(item) {
