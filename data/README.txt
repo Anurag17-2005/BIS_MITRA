@@ -18,16 +18,16 @@ RECORD COUNT
 
 FILES
 -----
-1. standards_demo.pdf
+1. standards.pdf
    Human-readable BIS-style demo catalog with a summary table, detailed standard records, amendment details, testing/certification information, and historical relationships.
 
-2. standards_demo.csv
+2. standards.csv
    One row per standard. List-like fields use " | " separators and relational fields use semicolon-delimited demo_ids/terms. Amendment fields are flattened into dedicated columns.
 
-3. standards_demo.json
+3. standards.json
    Complete nested representation with arrays for requirements, tests, evidence, synonyms, related standards, and nested amendment objects.
 
-4. standards_demo.html
+4. standards.html
    Searchable/table-based demo webpage with client-side search and sector/status filters; each record expands to show detailed information.
 
 5. README.txt
@@ -107,7 +107,7 @@ SOURCE-CITATION EXAMPLE
 Source:
 BIS MITRA Demo -> Standards -> STD-DEMO-001
 File:
-standards_demo.pdf
+standards.pdf
 
 DATA QUALITY CHECKS PERFORMED
 -----------------------------

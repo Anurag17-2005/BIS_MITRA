@@ -61,12 +61,12 @@ export function buildQcoAuthoritativeChunk(q, query) {
     metadata: {
       demo_id: q.demo_id,
       record_id: q.demo_id,
-      source_file: q.source_file || 'qco_demo.pdf',
+      source_file: q.source_file || 'qco.pdf',
       is_number: q.is_number,
     },
     citation: { source_url: q.source_reference || null },
   };
-  hit.storage_uri = resolvePdfStorageFromHit(hit) || 'knowledge/pdfs/demo/qco_demo.pdf';
+  hit.storage_uri = resolvePdfStorageFromHit(hit) || 'knowledge/pdfs/demo/qco.pdf';
   const fields = enrichChunkFields(hit, query);
   const portalUrl = resolvePortalUrl({
     storage_uri: hit.storage_uri,
@@ -77,7 +77,7 @@ export function buildQcoAuthoritativeChunk(q, query) {
     chunkId: hit.chunkId,
     recordId: q.demo_id,
     demo_id: q.demo_id,
-    source_file: 'qco_demo.pdf',
+    source_file: 'qco.pdf',
     storage_uri: hit.storage_uri,
     source_reference: q.source_reference || null,
     sourceUrl: portalUrl || q.source_reference || null,
@@ -97,7 +97,7 @@ export function buildQcoAuthoritativeChunk(q, query) {
     record_id: q.demo_id,
     evidence: fields.evidence.length ? fields.evidence : ['Mandatory certification Yes'],
     label: fields.label || `${q.demo_id} · Mandatory certification Yes`,
-    provenance: { demo_id: q.demo_id, is_number: q.is_number, source_file: 'qco_demo.pdf' },
+    provenance: { demo_id: q.demo_id, is_number: q.is_number, source_file: 'qco.pdf' },
   };
 }
 

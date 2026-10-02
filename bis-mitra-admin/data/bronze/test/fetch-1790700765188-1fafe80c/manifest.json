@@ -1,0 +1,154 @@
+{
+  "fetch_id": "fetch-1790700765188-1fafe80c",
+  "cluster_id": "test",
+  "source_id": "demo_enforcement_api",
+  "plan_id": "test_ingest_demo_enforcement",
+  "started_at": "2026-09-29T16:52:45.183Z",
+  "finished_at": "2026-09-29T16:52:45.187Z",
+  "seed_urls": [
+    "plan://test_ingest_demo_enforcement"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-001",
+      "url": "demo://enforcement.pdf#ENF-DEMO-001",
+      "sha256": "a88c187e486b42033b6bc6f81638095ee81f8f12156426b39576dd0d85c9f994",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1383,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-002",
+      "url": "demo://enforcement.pdf#ENF-DEMO-002",
+      "sha256": "9084b30093362e8c6cb0ce3db0ba90abd713fe0eeaa5109051f51120250310d0",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 1323,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-003",
+      "url": "demo://enforcement.pdf#ENF-DEMO-003",
+      "sha256": "6b6870cf4e9c529c8f053b5c4f830bc9b5b4b064dd8d6d772e30d4f6672b7246",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 1328,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-004",
+      "url": "demo://enforcement.pdf#ENF-DEMO-004",
+      "sha256": "1384865dc5b2def0a67d48473f23e36525427d5e26090a643bf9dd4be8cb009c",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 1317,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-005",
+      "url": "demo://enforcement.pdf#ENF-DEMO-005",
+      "sha256": "8c225923b91d7cb9eb0aa825bf78dd188d749dd689c06bd01144a99712705569",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 1239,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-006",
+      "url": "demo://enforcement.pdf#ENF-DEMO-006",
+      "sha256": "f8143706ce9abd00d3f34fde0c261f910cf5a9db63df2f7c8f0229eb0b6c2bd2",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 1270,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-007",
+      "url": "demo://enforcement.pdf#ENF-DEMO-007",
+      "sha256": "e94c52544f941237068ff826b9ebfce39734d0f6f75d8d3316edd64bf0f889cf",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 1278,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-008",
+      "url": "demo://enforcement.pdf#ENF-DEMO-008",
+      "sha256": "a839b19c097078d1ab4cffa0608394175d17f53dd5ad793495400d32e2789138",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 1229,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-009",
+      "url": "demo://enforcement.pdf#ENF-DEMO-009",
+      "sha256": "ce3874a87f418fe3fd62ac8eb184b024c835065821924e7555ad4559f0350832",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 1271,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-010",
+      "url": "demo://enforcement.pdf#ENF-DEMO-010",
+      "sha256": "007afa88c5a906a2e00cbed5ce633894fe1211fe7bf1ebf6906888f7268209f1",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 1278,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-011",
+      "url": "demo://enforcement.pdf#ENF-DEMO-011",
+      "sha256": "c8e31754c0df25726387ababba753a5aca037282a2aeb23ade3c473180b06003",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 1259,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-012",
+      "url": "demo://enforcement.pdf#ENF-DEMO-012",
+      "sha256": "c2538d69aa298a5399cb8a34926c7aa3ed176e4f1eaae9d710b0aa0adecc52fb",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 1208,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-013",
+      "url": "demo://enforcement.pdf#ENF-DEMO-013",
+      "sha256": "a4cc683758f756f55040b18a378c07ddc4bfd58c42fcc53169d9ec743c0b80b7",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-013.json",
+      "mime_type": "application/json",
+      "bytes": 1190,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_enforcement-ENF-DEMO-014",
+      "url": "demo://enforcement.pdf#ENF-DEMO-014",
+      "sha256": "44dbe2ce2b6c550e4d9116fe06065a61d03b32b6ae848094367aa44734eb25d7",
+      "uri": "bronze/test/fetch-1790700765188-1fafe80c/artifacts/enforcement-ENF-DEMO-014.json",
+      "mime_type": "application/json",
+      "bytes": 1311,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

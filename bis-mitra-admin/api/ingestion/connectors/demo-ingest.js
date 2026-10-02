@@ -4,14 +4,14 @@
  */
 
 export const DEMO_SOURCE_PDFS = {
-  standards: 'standards_demo.pdf',
-  qco: 'qco_demo.pdf',
-  certification: 'certification_demo.pdf',
-  laboratories: 'laboratories_demo.pdf',
-  hallmarking: 'hallmarking_demo.pdf',
-  consumer: 'consumer_complaints_demo.pdf',
-  enforcement: 'enforcement_demo.pdf',
-  surveillance: 'surveillance_demo.pdf',
+  standards: 'standards.pdf',
+  qco: 'qco.pdf',
+  certification: 'certification.pdf',
+  laboratories: 'laboratories.pdf',
+  hallmarking: 'hallmarking.pdf',
+  consumer: 'consumer_complaints.pdf',
+  enforcement: 'enforcement.pdf',
+  surveillance: 'surveillance.pdf',
 };
 
 export const DEMO_INGEST_CONNECTORS = {

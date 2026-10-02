@@ -11,7 +11,7 @@
   "artifacts": [
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-001",
-      "url": "demo://standards_demo.pdf#STD-DEMO-001",
+      "url": "demo://standards.pdf#STD-DEMO-001",
       "sha256": "bc16d699ec2f80350fc9d9eaa37f355f4bba4f4f7c0043396c0d06572dd0f026",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-001.json",
       "mime_type": "application/json",
@@ -21,7 +21,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-002",
-      "url": "demo://standards_demo.pdf#STD-DEMO-002",
+      "url": "demo://standards.pdf#STD-DEMO-002",
       "sha256": "5d2e9031015493b1e949b0c274d24d45fb6e33f518e0c68f3cd31b0e0dcbfcd8",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-002.json",
       "mime_type": "application/json",
@@ -31,7 +31,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-003",
-      "url": "demo://standards_demo.pdf#STD-DEMO-003",
+      "url": "demo://standards.pdf#STD-DEMO-003",
       "sha256": "adfde0560d9c2082d2b9421a867df05c6908e67943d84dee51b9991231d8fd28",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-003.json",
       "mime_type": "application/json",
@@ -41,7 +41,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-004",
-      "url": "demo://standards_demo.pdf#STD-DEMO-004",
+      "url": "demo://standards.pdf#STD-DEMO-004",
       "sha256": "7b8fca6d286813b7befeaa0d856b697eb16484a4035b78dd1be8b705f6fe2106",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-004.json",
       "mime_type": "application/json",
@@ -51,7 +51,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-005",
-      "url": "demo://standards_demo.pdf#STD-DEMO-005",
+      "url": "demo://standards.pdf#STD-DEMO-005",
       "sha256": "9294177c3473276360640abe1d36ab789f1dd0f2d617a7d291c836353b360b66",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-005.json",
       "mime_type": "application/json",
@@ -61,7 +61,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-006",
-      "url": "demo://standards_demo.pdf#STD-DEMO-006",
+      "url": "demo://standards.pdf#STD-DEMO-006",
       "sha256": "124a07b9e8d45bffe707258bca8d6e59da0ef37060dab7f5a069e07893582851",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-006.json",
       "mime_type": "application/json",
@@ -71,7 +71,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-007",
-      "url": "demo://standards_demo.pdf#STD-DEMO-007",
+      "url": "demo://standards.pdf#STD-DEMO-007",
       "sha256": "fb1aa2998b2752a28480716a8ea56ce69130acfe98cddf85bac6b847d1debdc6",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-007.json",
       "mime_type": "application/json",
@@ -81,7 +81,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-008",
-      "url": "demo://standards_demo.pdf#STD-DEMO-008",
+      "url": "demo://standards.pdf#STD-DEMO-008",
       "sha256": "92c68e139c1b0c4b73a3f7db6f33672a888775e8eb597fc6db3c819caf0d8fa7",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-008.json",
       "mime_type": "application/json",
@@ -91,7 +91,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-009",
-      "url": "demo://standards_demo.pdf#STD-DEMO-009",
+      "url": "demo://standards.pdf#STD-DEMO-009",
       "sha256": "8d96f64ae30e07a115f1bb20b583606af23a85adb75134cd1a7cd5ee4466963a",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-009.json",
       "mime_type": "application/json",
@@ -101,7 +101,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-010",
-      "url": "demo://standards_demo.pdf#STD-DEMO-010",
+      "url": "demo://standards.pdf#STD-DEMO-010",
       "sha256": "0abf86543bbb029cdc139f26b257b64755b1f392403feace0525583778002d9d",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-010.json",
       "mime_type": "application/json",
@@ -111,7 +111,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-011",
-      "url": "demo://standards_demo.pdf#STD-DEMO-011",
+      "url": "demo://standards.pdf#STD-DEMO-011",
       "sha256": "23f81b4a4afa3db117d69d9ee5aba189c19a1a67e58bf7044657d685ec2a63c3",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-011.json",
       "mime_type": "application/json",
@@ -121,7 +121,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-012",
-      "url": "demo://standards_demo.pdf#STD-DEMO-012",
+      "url": "demo://standards.pdf#STD-DEMO-012",
       "sha256": "b06bae5fd77217e46f83af1c64dd52fcdc108ab8dee2439d0bc2339d58e53659",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-012.json",
       "mime_type": "application/json",
@@ -131,7 +131,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-013",
-      "url": "demo://standards_demo.pdf#STD-DEMO-013",
+      "url": "demo://standards.pdf#STD-DEMO-013",
       "sha256": "d35c748a4f395bc9438ae06e465dde1dc66d9fa44907cdf1751a5c3459798cd6",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-013.json",
       "mime_type": "application/json",
@@ -141,7 +141,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_standards-STD-DEMO-014",
-      "url": "demo://standards_demo.pdf#STD-DEMO-014",
+      "url": "demo://standards.pdf#STD-DEMO-014",
       "sha256": "e246daf1690213b2f9e4410d17113feae4987cc9e89e192f9b7de97a1cb10059",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159592-ba827d73/artifacts/standards-STD-DEMO-014.json",
       "mime_type": "application/json",

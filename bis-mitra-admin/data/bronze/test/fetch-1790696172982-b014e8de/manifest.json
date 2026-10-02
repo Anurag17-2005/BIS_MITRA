@@ -1,0 +1,154 @@
+{
+  "fetch_id": "fetch-1790696172982-b014e8de",
+  "cluster_id": "test",
+  "source_id": "demo_standards_api",
+  "plan_id": "test_ingest_demo_standards",
+  "started_at": "2026-09-29T15:36:12.978Z",
+  "finished_at": "2026-09-29T15:36:12.981Z",
+  "seed_urls": [
+    "plan://test_ingest_demo_standards"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-001",
+      "url": "demo://standards.pdf#STD-DEMO-001",
+      "sha256": "e79bfad119877183ba439194e2f7bf334b50595d072bc99d1b515d774fa74f80",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 2336,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-002",
+      "url": "demo://standards.pdf#STD-DEMO-002",
+      "sha256": "527c0104866174f40fdb0e07d3a60485b088b2068ab8ef5e2a524a61c4db27d2",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 2348,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-003",
+      "url": "demo://standards.pdf#STD-DEMO-003",
+      "sha256": "3b0f1c07f1b00799bfe10581812296c8bc35ed84e1b5d9e01d754f6bd9715465",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 2149,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-004",
+      "url": "demo://standards.pdf#STD-DEMO-004",
+      "sha256": "2775cb52a58e497bb2337c9cafe0877f84c34b375a7adc8e56086a9ae7cc850b",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 2210,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-005",
+      "url": "demo://standards.pdf#STD-DEMO-005",
+      "sha256": "d02925ff7766b4e2ef7639b17d83cc10994f7e268b771cb9d5440401bc07a99f",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 2247,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-006",
+      "url": "demo://standards.pdf#STD-DEMO-006",
+      "sha256": "dd73dd90e786820a1d5d0aec08c4ecd26791aa55248635d3af9a1ec728451eeb",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 2268,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-007",
+      "url": "demo://standards.pdf#STD-DEMO-007",
+      "sha256": "830ec4b1a050847e11e6300498f8100cc34fdf4362e7abc0eb29901f1d3cc9e8",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 2157,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-008",
+      "url": "demo://standards.pdf#STD-DEMO-008",
+      "sha256": "1e2ce246531b42fe02947922aa112c2ae0d3d7e18d8ae325951dd27b42b45895",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 2064,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-009",
+      "url": "demo://standards.pdf#STD-DEMO-009",
+      "sha256": "fd1fa4f348af9b4e33f0dce2334436c3d0005ab4c41e1377a9653f99339a9d5e",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 2251,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-010",
+      "url": "demo://standards.pdf#STD-DEMO-010",
+      "sha256": "21f72019573ef8e3f8b4ba841ea447f3879a068782b6e3dbc946645ebdc46e54",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 2069,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-011",
+      "url": "demo://standards.pdf#STD-DEMO-011",
+      "sha256": "7111b3b268f3c03ea57f19ba48dbd4cdd6ef4887dd872abd6dff43c63d869301",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 2277,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-012",
+      "url": "demo://standards.pdf#STD-DEMO-012",
+      "sha256": "41e3b9611611887926aaa0291a09042840f5b382bf7f54bb3bbb9c5c53843199",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 2061,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-013",
+      "url": "demo://standards.pdf#STD-DEMO-013",
+      "sha256": "3a0263c25d6851c551b55b1a6b03a0160fe860b0360c5c881338afefa5e58e4a",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-013.json",
+      "mime_type": "application/json",
+      "bytes": 2331,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_standards-STD-DEMO-014",
+      "url": "demo://standards.pdf#STD-DEMO-014",
+      "sha256": "03fa9de48929c7e671c8b698dac3c11996c2a11620a00cac63b3e9086583977b",
+      "uri": "bronze/test/fetch-1790696172982-b014e8de/artifacts/standards-STD-DEMO-014.json",
+      "mime_type": "application/json",
+      "bytes": 2203,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

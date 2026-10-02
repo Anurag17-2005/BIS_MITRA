@@ -1,0 +1,124 @@
+{
+  "fetch_id": "fetch-1790700765169-fa231623",
+  "cluster_id": "test",
+  "source_id": "demo_laboratories_api",
+  "plan_id": "test_ingest_demo_laboratories",
+  "started_at": "2026-09-29T16:52:45.167Z",
+  "finished_at": "2026-09-29T16:52:45.169Z",
+  "seed_urls": [
+    "plan://test_ingest_demo_laboratories"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-001",
+      "url": "demo://laboratories.pdf#LAB-DEMO-001",
+      "sha256": "6ccc10ffdbfe7aeacc9976b86efe0c057f26d370cd8a40309363d3892f7cffe6",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 903,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-004",
+      "url": "demo://laboratories.pdf#LAB-DEMO-004",
+      "sha256": "25ff00b3b7857b66362becea78631cb0bae1f53b58a0cab526c1c7b07f1e132c",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 830,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-011",
+      "url": "demo://laboratories.pdf#LAB-DEMO-011",
+      "sha256": "41d1502f1799151c073b67269c42b4ad9b2c0ef5fd7c6224d59f9ab54e2a8626",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 835,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-010",
+      "url": "demo://laboratories.pdf#LAB-DEMO-010",
+      "sha256": "fdb79b1ce2e8318118eca6e3a41c1d6e922c6a837d35750cc4cd657a6742b3e0",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 785,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-002",
+      "url": "demo://laboratories.pdf#LAB-DEMO-002",
+      "sha256": "5dcc6110a35c32be934418e010655712990987d79137bbc6ac2d84451c5eacd2",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 835,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-006",
+      "url": "demo://laboratories.pdf#LAB-DEMO-006",
+      "sha256": "18685fc3d6fddf3f0839656f5e83599bde72c1ae1a1d5263466032e16b89fff5",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 819,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-007",
+      "url": "demo://laboratories.pdf#LAB-DEMO-007",
+      "sha256": "e353a3ec9cf21e1f2a8b9b28676d20608db699da29bf851e357b7526075e47d1",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 798,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-008",
+      "url": "demo://laboratories.pdf#LAB-DEMO-008",
+      "sha256": "fc04eeb4f30678ef00a98df2b90e9515571d73525e2eb528ac1899cce9933af6",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 829,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-005",
+      "url": "demo://laboratories.pdf#LAB-DEMO-005",
+      "sha256": "94e5f22719618885a62f9bd9ae2b416093734cc323e5d28eb78f5370db60a10e",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 820,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-003",
+      "url": "demo://laboratories.pdf#LAB-DEMO-003",
+      "sha256": "a05841f37be1897da333f2946f6d471806bb2661051751d96c38b1e22c8f522d",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 821,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_laboratories-LAB-DEMO-009",
+      "url": "demo://laboratories.pdf#LAB-DEMO-009",
+      "sha256": "d2ecf985d6d16c36578799a0e6c69f326b3562946e9276da5b2c1e8e9c40dae1",
+      "uri": "bronze/test/fetch-1790700765169-fa231623/artifacts/laboratories-LAB-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 836,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

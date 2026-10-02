@@ -153,7 +153,7 @@ export async function executeProbeApi(connector, query = '') {
     case 'guidance_search': {
       const token = /\bvariant|endorsement|inclusion|scope\b/i.test(q) ? 'variant'
         : /\bmsme|udyam|simplified\b/i.test(q) ? 'msme'
-        : q.split(/\s+/).find(w => w.length > 3) || q;
+          : q.split(/\s+/).find(w => w.length > 3) || q;
       const data = await fetchClone(`/api/guidance?q=${enc(token)}`);
       return { query: q, resultCount: data.length, results: data };
     }

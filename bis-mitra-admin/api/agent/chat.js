@@ -288,7 +288,7 @@ function sourcesFromProbe(probe, toolName) {
         textPreview: r.finding || r.summary || JSON.stringify(r).slice(0, 120),
         label: r.demo_id || r.surveillance_id || null,
         evidence: [r.finding || r.status || ''].filter(Boolean),
-        storage_uri: 'knowledge/pdfs/demo/surveillance_demo.pdf',
+        storage_uri: 'knowledge/pdfs/demo/surveillance.pdf',
         source_type: 'bis_api',
       }));
     }
@@ -337,7 +337,7 @@ function sourcesFromProbe(probe, toolName) {
       textPreview: (r.finding || r.summary || `${r.demo_id || ''} ${r.status || ''}`).trim(),
       label: r.demo_id || r.surveillance_id || null,
       evidence: [(r.finding || r.status || '').trim()].filter(Boolean),
-      storage_uri: 'knowledge/pdfs/demo/surveillance_demo.pdf',
+      storage_uri: 'knowledge/pdfs/demo/surveillance.pdf',
       source_type: 'bis_api',
     }));
   }
@@ -1049,12 +1049,12 @@ export async function agentChat(message, {
       }, { userId, persona: userPersona });
       const evidenceTable = probe.data.action === 'log_raid_evidence'
         ? {
-            kind: 'evidence',
-            columns: ['Case ID', 'Evidence', 'Officer'],
-            rows: [[caseId, 'Sealed sample reference and inspection photographs', 'FIELD-OFFICER-01']],
-            missing: [],
-            fields: { case_id: caseId, run_id: runId, product_description: 'Sealed sample and inspection photographs' },
-          }
+          kind: 'evidence',
+          columns: ['Case ID', 'Evidence', 'Officer'],
+          rows: [[caseId, 'Sealed sample reference and inspection photographs', 'FIELD-OFFICER-01']],
+          missing: [],
+          fields: { case_id: caseId, run_id: runId, product_description: 'Sealed sample and inspection photographs' },
+        }
         : null;
       const answer = language === 'hi'
         ? `मैं यह कार्य कर सकता हूँ: ${WRITE_TOOLS[probe.data.action]}। आगे बढ़ने के लिए “confirm” लिखें, या “cancel”।`
@@ -1245,12 +1245,12 @@ export async function agentChat(message, {
     }, { userId, persona: userPersona });
     const evidenceTable = probe.data.action === 'log_raid_evidence'
       ? {
-          kind: 'evidence',
-          columns: ['Case ID', 'Evidence', 'Officer'],
-          rows: [[caseId, 'Sealed sample reference and inspection photographs', 'FIELD-OFFICER-01']],
-          missing: [],
-          fields: { case_id: caseId, run_id: runId, product_description: 'Sealed sample and inspection photographs' },
-        }
+        kind: 'evidence',
+        columns: ['Case ID', 'Evidence', 'Officer'],
+        rows: [[caseId, 'Sealed sample reference and inspection photographs', 'FIELD-OFFICER-01']],
+        missing: [],
+        fields: { case_id: caseId, run_id: runId, product_description: 'Sealed sample and inspection photographs' },
+      }
       : null;
     const answer = language === 'hi'
       ? `मैं यह कार्य कर सकता हूँ: ${WRITE_TOOLS[probe.data.action]}। आगे बढ़ने के लिए “confirm” लिखें, या “cancel”।`

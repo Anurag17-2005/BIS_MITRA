@@ -328,7 +328,7 @@ function importStandards(db) {
 }
 
 function importQco(db) {
-  const rows = csvToObjects(path.join(DATA_ROOT, 'qco_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'qco.csv'));
   const ins = db.prepare(`
     INSERT INTO qco_orders (product, is_number, gazette_ref, effective_date, scheme, sector, keywords, ministry, legal_statute, demo_id, source_reference, source_file)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
@@ -347,7 +347,7 @@ function importQco(db) {
 function importCertification(db) {
   db.prepare('DELETE FROM mock_licensed_manufacturers WHERE demo_id IS NOT NULL').run();
   db.prepare('DELETE FROM licences WHERE demo_id IS NOT NULL').run();
-  const rows = csvToObjects(path.join(DATA_ROOT, 'certification_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'certification.csv'));
   for (const r of rows) {
     const cml = r.cml_number || '';
     const status = /suspended/i.test(r.licence_status || '') ? 'Suspended' : 'Active';
@@ -376,7 +376,7 @@ function importCertification(db) {
 }
 
 function importLabs(db) {
-  const rows = csvToObjects(path.join(DATA_ROOT, 'laboratories_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'laboratories.csv'));
   const ins = db.prepare(`
     INSERT INTO labs (lab_code, name, city, state, group_type, scope, capability, nabl_status, queue_time_weeks, status, demo_id, source_reference, source_file)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
@@ -398,7 +398,7 @@ function importLabs(db) {
 }
 
 function importHallmarking(db) {
-  const rows = csvToObjects(path.join(DATA_ROOT, 'hallmarking_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'hallmarking.csv'));
   for (const r of rows) {
     const fineness = (r['purity/fineness'] || '').match(/(\d+)/);
     const purityPct = fineness ? `${(parseInt(fineness[1], 10) / 10).toFixed(1)}%` : '91.6%';
@@ -430,7 +430,7 @@ function importHallmarking(db) {
 }
 
 function importComplaints(db) {
-  const rows = csvToObjects(path.join(DATA_ROOT, 'consumer_complaints_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'consumer_complaints.csv'));
   for (const r of rows) {
     const ticketId = r.complaint_id || r.demo_id;
     try {
@@ -450,7 +450,7 @@ function importComplaints(db) {
 }
 
 function importEnforcement(db) {
-  const rows = csvToObjects(path.join(DATA_ROOT, 'enforcement_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'enforcement.csv'));
   const ins = db.prepare(`
     INSERT OR REPLACE INTO enforcement_cases (demo_id, case_id, inspection_id, inspection_type, inspection_date, location, state, manufacturer, product, is_number, qco_reference, licence_number, finding, non_conformity, severity, evidence, action_taken, case_status, surveillance_reference, laboratory_reference, source_reference, source_file)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
@@ -467,7 +467,7 @@ function importEnforcement(db) {
 }
 
 function importSurveillance(db) {
-  const rows = csvToObjects(path.join(DATA_ROOT, 'surveillance_demo.csv'));
+  const rows = csvToObjects(path.join(DATA_ROOT, 'surveillance.csv'));
   const ins = db.prepare(`
     INSERT OR REPLACE INTO surveillance_cases (demo_id, surveillance_id, surveillance_type, surveillance_date, product, product_category, manufacturer, location, state, is_number, qco_reference, licence_number, sample_id, laboratory, test_report_reference, test_result, compliance_status, risk_level, finding, enforcement_case_reference, source_reference, source_file)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)

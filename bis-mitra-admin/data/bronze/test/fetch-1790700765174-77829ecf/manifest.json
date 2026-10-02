@@ -1,0 +1,134 @@
+{
+  "fetch_id": "fetch-1790700765174-77829ecf",
+  "cluster_id": "test",
+  "source_id": "demo_hallmarking_huid_api",
+  "plan_id": "test_ingest_demo_hallmarking_huid",
+  "started_at": "2026-09-29T16:52:45.170Z",
+  "finished_at": "2026-09-29T16:52:45.174Z",
+  "seed_urls": [
+    "plan://test_ingest_demo_hallmarking_huid"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-012",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-012",
+      "sha256": "afd08c3977e56774ee7ef45212a1ff7b3ba4ca22eade3d9f5edcb302212c9bdc",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 532,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-004",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-004",
+      "sha256": "fd2ece5c626813ef3433bb7ada1484d5040f9140c67eb492dece33e40c504c18",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 534,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-010",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-010",
+      "sha256": "cf8c834f99c24f8797de6e2952e75f736f5abfbc91982d2bdd3b7bcfaf9e79a6",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 529,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-001",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-001",
+      "sha256": "c7a49a04b174e38d1b8494ed3df15380134998ed70fc5a407b96fe046565ad71",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 532,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-002",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-002",
+      "sha256": "3ea7a8d7d6860e7d6fd2e3a007206045c0a82e72018adb72071dafa5cfef1e1d",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 533,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-007",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-007",
+      "sha256": "3b1813b0643b43b0d110489c23e62c759ac237445168657a819fcc2ab184df80",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 529,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-011",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-011",
+      "sha256": "aa37a6f8d9a9dd57ed5fa76ccc3c2242ef0ae1054c454b513c5a94867c27ae26",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 532,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-003",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-003",
+      "sha256": "9a86618f4a10e82bf6840a53a7f4381a618d9ec07a8ea9faea5c4ff2cc919b08",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 539,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-005",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-005",
+      "sha256": "1de2639fbd86f2d5346d95d795bc4ee449f2a772c2e74896993fdb8a64500f70",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 534,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-006",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-006",
+      "sha256": "2d09b3109a5eba8373e335a98201179cd0f5efedb25fd11d440c53a768a94618",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 532,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-008",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-008",
+      "sha256": "374963ece533095020a1542dec259cbf939013c703a9631504cf4c78e134f5f4",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 527,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_hallmarking_huid-HALL-DEMO-009",
+      "url": "demo://hallmarking.pdf#HALL-DEMO-009",
+      "sha256": "6ae4c38a49b26945652fc9eb0ef6bf1d298ef4236787927eb3334057b234e415",
+      "uri": "bronze/test/fetch-1790700765174-77829ecf/artifacts/hallmarking-HALL-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 534,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

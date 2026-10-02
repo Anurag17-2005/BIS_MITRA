@@ -1,0 +1,134 @@
+{
+  "fetch_id": "fetch-1790696172986-7d4c5a45",
+  "cluster_id": "test",
+  "source_id": "demo_qco_api",
+  "plan_id": "test_ingest_demo_qco",
+  "started_at": "2026-09-29T15:36:12.983Z",
+  "finished_at": "2026-09-29T15:36:12.985Z",
+  "seed_urls": [
+    "plan://test_ingest_demo_qco"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-005",
+      "url": "demo://qco.pdf#QCO-DEMO-005",
+      "sha256": "d4cebe3d7937429bb2957ccbe4523ea6ceb2dbffc5242fd6301a09a934d8495b",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 918,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-012",
+      "url": "demo://qco.pdf#QCO-DEMO-012",
+      "sha256": "b4123907669a591224fb096fa2c9d3f7b5a9c0c083f5a2dedcf1f64533c1092a",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 967,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-001",
+      "url": "demo://qco.pdf#QCO-DEMO-001",
+      "sha256": "f03ddcd85b1a5b3be2485991c5504672fa84638ce0955653ba796606bea86e77",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1014,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-002",
+      "url": "demo://qco.pdf#QCO-DEMO-002",
+      "sha256": "a6b87644435b1c504687d7513c76b7a5d704b338d56c1831a067f52f88da86de",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 910,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-009",
+      "url": "demo://qco.pdf#QCO-DEMO-009",
+      "sha256": "fbd805c677349542f1b759cd8efb35df9146f7208c9143ada3fafea3c7bda895",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 954,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-003",
+      "url": "demo://qco.pdf#QCO-DEMO-003",
+      "sha256": "cc9ceb4ae22c0fde3c7bc6c49580008a94e8dbd1e081738c5d50015520b8e6da",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 959,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-011",
+      "url": "demo://qco.pdf#QCO-DEMO-011",
+      "sha256": "fddf7549e88e23e54d3bf1b422fcb8eb4f2dd25b023cff33f9da7c55310b89e4",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 951,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-007",
+      "url": "demo://qco.pdf#QCO-DEMO-007",
+      "sha256": "852e111ffa678fe38acbef08b9c34c71b99c8721389e2099304c04f7bba46e64",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 900,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-006",
+      "url": "demo://qco.pdf#QCO-DEMO-006",
+      "sha256": "b29f9b92621056461fdae049656b17b0eeaf949aad958d01f3ee390008ade660",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 933,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-004",
+      "url": "demo://qco.pdf#QCO-DEMO-004",
+      "sha256": "1777e4750d728e7a35fb00697dba12f579fe8432140f5628335f3a2f95f238e6",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 965,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-008",
+      "url": "demo://qco.pdf#QCO-DEMO-008",
+      "sha256": "ee01d32b66e6480cbe75b7e1d74298af9ff9ba4ef8551a641d926c555399d9ee",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 965,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_qco-QCO-DEMO-010",
+      "url": "demo://qco.pdf#QCO-DEMO-010",
+      "sha256": "444cbc2e50e70945ee179883ed6d65ebb77bd42af615d9e7b6c83aab90ee3cf4",
+      "uri": "bronze/test/fetch-1790696172986-7d4c5a45/artifacts/qco-QCO-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 935,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

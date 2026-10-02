@@ -187,6 +187,7 @@ const HI_LABELS = {
   'Delayed tests': 'विलंबित परीक्षण',
   Amendments: 'संशोधन',
   'Which standard?': 'कौन सा मानक?',
+  'Helmet compliance': 'हेलमेट अनुपालन',
   'Mandatory?': 'अनिवार्य?',
   'Certification steps': 'प्रमाणन चरण',
   'Apply now': 'अभी आवेदन',

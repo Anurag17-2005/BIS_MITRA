@@ -721,7 +721,7 @@ function Home({ persona, lang = 'en', libReady = false, messages, busy, prompts,
             <p>{t(lang, 'greetingSub')}</p>
             <div className="bp-tiles">
               {prompts.map((p) => (
-                <button key={p.label} type="button" onClick={() => onSend(p.prompt)}>
+                <button key={p.label} type="button" onClick={() => onSend(lang === 'hi' && p.promptHi ? p.promptHi : p.prompt)}>
                   <strong>{hiLabel(lang, p.label)}</strong>
                 </button>
               ))}
@@ -811,7 +811,7 @@ function Home({ persona, lang = 'en', libReady = false, messages, busy, prompts,
         {messages.length > 0 && (
           <div className="bp-follow">
             {prompts.slice(0, 6).map((p) => (
-              <button key={p.label} type="button" onClick={() => onSend(p.prompt)}>{hiLabel(lang, p.label)}</button>
+              <button key={p.label} type="button" onClick={() => onSend(lang === 'hi' && p.promptHi ? p.promptHi : p.prompt)}>{hiLabel(lang, p.label)}</button>
             ))}
           </div>
         )}
@@ -1255,7 +1255,7 @@ function Context({ persona, last, prompts, alerts, app, onAsk, onOpenPdf, showDe
       <section>
         <h4>{t(lang, 'quick')}</h4>
         {prompts.slice(0, 5).map((p) => (
-          <button key={p.label} type="button" className="bp-link" onClick={() => onAsk(p.prompt)}>{p.icon} {hiLabel(lang, p.label)}</button>
+          <button key={p.label} type="button" className="bp-link" onClick={() => onAsk(lang === 'hi' && p.promptHi ? p.promptHi : p.prompt)}>{p.icon} {hiLabel(lang, p.label)}</button>
         ))}
       </section>
       {last?.sources?.length > 0 && (

@@ -1,0 +1,114 @@
+{
+  "fetch_id": "fetch-1790700765165-2cae1a52",
+  "cluster_id": "test",
+  "source_id": "demo_certification_api",
+  "plan_id": "test_ingest_demo_certification",
+  "started_at": "2026-09-29T16:52:45.162Z",
+  "finished_at": "2026-09-29T16:52:45.165Z",
+  "seed_urls": [
+    "plan://test_ingest_demo_certification"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-001",
+      "url": "demo://certification.pdf#CERT-DEMO-001",
+      "sha256": "c0c859ae52ad29d0b028ab350bf8d480e1356494298cb8dcd71bceefb8f6e978",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 694,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-002",
+      "url": "demo://certification.pdf#CERT-DEMO-002",
+      "sha256": "c0c22f2010aed0f2bec2227e5c0feb8cbcf9c5e63e3932e9e987d63879231f97",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 694,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-003",
+      "url": "demo://certification.pdf#CERT-DEMO-003",
+      "sha256": "66091b72ad4ddbdab0216020aabffa8b813a5aadff91acf463ac4429dfc7656e",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 703,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-004",
+      "url": "demo://certification.pdf#CERT-DEMO-004",
+      "sha256": "539e9ea31a27a7cfc415d3989ae48e7afcb64f5d1048b61531ea0b2aebc00a7b",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 875,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-005",
+      "url": "demo://certification.pdf#CERT-DEMO-005",
+      "sha256": "cc701d6831503411244da53f95f8f1bda1890abd7cffd538a0e4fe2d99886ab7",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 692,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-006",
+      "url": "demo://certification.pdf#CERT-DEMO-006",
+      "sha256": "345a3e4bc9db0e36d810604d1792cf085e0efaa42332adb7580453e0d330a56c",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 814,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-007",
+      "url": "demo://certification.pdf#CERT-DEMO-007",
+      "sha256": "170c9b35e90d4de2ddba2e576b2b41e1c340ca1ed7f5e61c3fc41dbfe7695f7b",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 686,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-008",
+      "url": "demo://certification.pdf#CERT-DEMO-008",
+      "sha256": "c156d3db8c33a29720561806cf0007ba88c904f1adcef1acc839057f3b4eaaf0",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 687,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-009",
+      "url": "demo://certification.pdf#CERT-DEMO-009",
+      "sha256": "ee36dcbbd24573969a5fbe8a97e7de506f81e5a3db7767f6693f547274c3d164",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 704,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-test_ingest_demo_certification-CERT-DEMO-010",
+      "url": "demo://certification.pdf#CERT-DEMO-010",
+      "sha256": "7d77faf7b9c64f29bb01b85bd95d68b58ba0e433f857b13ec6cb93da5a5e88b9",
+      "uri": "bronze/test/fetch-1790700765165-2cae1a52/artifacts/certification-CERT-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 686,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

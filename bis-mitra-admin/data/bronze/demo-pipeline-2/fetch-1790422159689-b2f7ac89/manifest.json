@@ -11,7 +11,7 @@
   "artifacts": [
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-001",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-001",
+      "url": "demo://certification.pdf#CERT-DEMO-001",
       "sha256": "f7b22a1e0b701b10cff949b90a3fe218217e48f5013b05b876a4db761ec70c75",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-001.json",
       "mime_type": "application/json",
@@ -21,7 +21,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-002",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-002",
+      "url": "demo://certification.pdf#CERT-DEMO-002",
       "sha256": "b352ec7b7d5ee9c6f46869e20dcbaf77ef7f1d39e6e7ca53c6c51e2c2bfbf512",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-002.json",
       "mime_type": "application/json",
@@ -31,7 +31,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-003",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-003",
+      "url": "demo://certification.pdf#CERT-DEMO-003",
       "sha256": "575ae019f699c3b1ac770e1ab20781ac8893de797924bb776e941edee21f8c04",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-003.json",
       "mime_type": "application/json",
@@ -41,7 +41,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-004",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-004",
+      "url": "demo://certification.pdf#CERT-DEMO-004",
       "sha256": "3bf67dd4eb247f59071479a7692db6b45a07d389b75e8374c4f2137d1e5369ee",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-004.json",
       "mime_type": "application/json",
@@ -51,7 +51,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-005",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-005",
+      "url": "demo://certification.pdf#CERT-DEMO-005",
       "sha256": "0c5b274a4b7d5dc57121b7a00734998a7ea42cb9c96947768b9b7108de8cbca5",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-005.json",
       "mime_type": "application/json",
@@ -61,7 +61,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-006",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-006",
+      "url": "demo://certification.pdf#CERT-DEMO-006",
       "sha256": "00a79d2ae52d7c6cb79aca1b2bdb802c15a3324f1a7be4a4ac05353adcca91eb",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-006.json",
       "mime_type": "application/json",
@@ -71,7 +71,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-007",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-007",
+      "url": "demo://certification.pdf#CERT-DEMO-007",
       "sha256": "bccdf4c47826abba91d67a447a8ed9a4f0981a8c43900a26621cb152a8a350a5",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-007.json",
       "mime_type": "application/json",
@@ -81,7 +81,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-008",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-008",
+      "url": "demo://certification.pdf#CERT-DEMO-008",
       "sha256": "934a3f01d5b457c8420f06444f74720707c7254488e9c27b4780e907d40b8b83",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-008.json",
       "mime_type": "application/json",
@@ -91,7 +91,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-009",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-009",
+      "url": "demo://certification.pdf#CERT-DEMO-009",
       "sha256": "050c1eb361a1acbdb26a787f2f2027d9d5617159f1206bb14a008d6342c22979",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-009.json",
       "mime_type": "application/json",
@@ -101,7 +101,7 @@
     },
     {
       "artifact_id": "w-demo-pipeline-2_ingest_demo_certification-CERT-DEMO-010",
-      "url": "demo://certification_demo.pdf#CERT-DEMO-010",
+      "url": "demo://certification.pdf#CERT-DEMO-010",
       "sha256": "343ef0ea220325ef95a8fe1c06bcc8098ecb64c5aaf339277053f87c1dd124ad",
       "uri": "bronze/demo-pipeline-2/fetch-1790422159689-b2f7ac89/artifacts/certification-CERT-DEMO-010.json",
       "mime_type": "application/json",

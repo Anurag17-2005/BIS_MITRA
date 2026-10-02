@@ -146,7 +146,7 @@ export function seedWorkflowInstances(db) {
       related_licence: 'LIC-DEMO-26001',
       related_cml: 'CML-DEMO-61001',
       demo_id: 'CMP-DEMO-001',
-      evidence_refs: [{ type: 'pdf', title: 'Complaint Acknowledgement', path: 'demo/consumer_complaints_demo.pdf' }],
+      evidence_refs: [{ type: 'pdf', title: 'Complaint Acknowledgement', path: 'demo/consumer_complaints.pdf' }],
       source: 'BIS Consumer Grievance Portal',
     },
     {
@@ -193,7 +193,7 @@ export function seedWorkflowInstances(db) {
       related_licence: 'LIC-DEMO-26001',
       related_cml: 'CML-DEMO-61001',
       demo_id: 'CERT-DEMO-001',
-      evidence_refs: [{ type: 'pdf', title: 'Licence Certificate', path: 'demo/certification_demo.pdf' }],
+      evidence_refs: [{ type: 'pdf', title: 'Licence Certificate', path: 'demo/certification.pdf' }],
       source: 'Certification Registry',
     },
   ];
@@ -254,7 +254,7 @@ export function seedWorkflowInstances(db) {
       'On-site Evaluation',
       'LAB-APP-DEMO-001',
       'BIS MITRA Demo → Laboratories → LAB-APP-DEMO-001',
-      'laboratories_demo.pdf',
+      'laboratories.pdf',
     );
   } catch { /* exists */ }
 }

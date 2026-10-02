@@ -1,9 +1,9 @@
 {
   "clusterId": "demo-pipeline-2",
-  "ingestedAt": "2026-09-29T10:39:34.091Z",
-  "fingerprint": "80605249db2a6733e3238d662a51c3678253972e24eadc47a0b31cdea4ad159b",
+  "ingestedAt": "2026-10-02T12:31:39.464Z",
+  "fingerprint": "55596babe66a3182e5309564ac3974958360450762b9bd3bf39caa0d314a71ba",
   "source": "bis-clone SQLite + /data demo files",
-  "recordCount": 107,
+  "recordCount": 91,
   "domains": [
     "standards",
     "qco",
@@ -92,20 +92,6 @@
     "demo-QCO-DEMO-010.json",
     "demo-QCO-DEMO-011.json",
     "demo-QCO-DEMO-012.json",
-    "demo-STD-DEMO-001.json",
-    "demo-STD-DEMO-002.json",
-    "demo-STD-DEMO-003.json",
-    "demo-STD-DEMO-004.json",
-    "demo-STD-DEMO-005.json",
-    "demo-STD-DEMO-006.json",
-    "demo-STD-DEMO-007.json",
-    "demo-STD-DEMO-008.json",
-    "demo-STD-DEMO-009.json",
-    "demo-STD-DEMO-010.json",
-    "demo-STD-DEMO-011.json",
-    "demo-STD-DEMO-012.json",
-    "demo-STD-DEMO-013.json",
-    "demo-STD-DEMO-014.json",
     "demo-SURV-DEMO-001.json",
     "demo-SURV-DEMO-002.json",
     "demo-SURV-DEMO-003.json",
@@ -119,8 +105,6 @@
     "demo-SURV-DEMO-011.json",
     "demo-SURV-DEMO-012.json",
     "demo-SURV-DEMO-013.json",
-    "demo-SURV-DEMO-014.json",
-    "demo-amend-1.json",
-    "demo-amend-2.json"
+    "demo-SURV-DEMO-014.json"
   ]
 }

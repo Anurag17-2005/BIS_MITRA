@@ -1,14 +1,14 @@
 const BIS_WEB = import.meta.env.VITE_BIS_URL || 'http://localhost:3001';
 
 const FILE_PAGE = {
-  'certification_demo.pdf': '/product-certification/process',
-  'consumer_complaints_demo.pdf': '/consumer/complaints',
-  'enforcement_demo.pdf': '/regulatory-hub',
-  'hallmarking_demo.pdf': '/consumer-guidance',
-  'laboratories_demo.pdf': '/regulatory-hub',
-  'qco_demo.pdf': '/product-certification/process',
-  'standards_demo.pdf': '/regulatory-hub',
-  'surveillance_demo.pdf': '/regulatory-hub',
+  'certification.pdf': '/product-certification/process',
+  'consumer_complaints.pdf': '/consumer/complaints',
+  'enforcement.pdf': '/regulatory-hub',
+  'hallmarking.pdf': '/consumer-guidance',
+  'laboratories.pdf': '/regulatory-hub',
+  'qco.pdf': '/product-certification/process',
+  'standards.pdf': '/regulatory-hub',
+  'surveillance.pdf': '/regulatory-hub',
 };
 
 const DOMAIN_PAGE = {
