@@ -1,4 +1,5 @@
-const API = import.meta.env.VITE_API_URL || '';
+export const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const API = API_BASE;
 const TOKEN_KEY = 'mitra_admin_token';
 const SESSION_KEY = 'mitra_user_session_id';
 
@@ -58,8 +59,10 @@ export async function getStatus() {
 }
 
 export async function getClusters() {
+  if (!API) throw new Error('VITE_API_URL is not set (rebuild admin UI on Vercel with env vars).');
   const res = await fetch(`${API}/api/clusters`, { headers: headers(false) });
-  return parseJson(res);
+  const data = await parseJson(res);
+  return Array.isArray(data) ? data : [];
 }
 
 export async function publishCluster(clusterId, published = true) {

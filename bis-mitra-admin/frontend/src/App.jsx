@@ -154,7 +154,8 @@ export default function App() {
   const [lineage, setLineage] = useState(null);
 
   const loadClusters = useCallback(async () => {
-    setClusters(await api.getClusters());
+    const list = await api.getClusters();
+    setClusters(Array.isArray(list) ? list : []);
   }, []);
 
   const loadClusterData = useCallback(async (clusterId) => {
@@ -520,6 +521,21 @@ export default function App() {
   if (appSection === 'agent') {
     return (
       <AgentConsole clusters={clusters} onNav={handleNav} />
+    );
+  }
+
+  if (!import.meta.env.VITE_API_URL) {
+    return (
+      <div className="app" style={{ padding: 24, maxWidth: 560 }}>
+        <h1>BIS MITRA Admin</h1>
+        <p className="warn">
+          <strong>VITE_API_URL</strong> is missing. In Vercel → Project → Settings → Environment Variables, set:
+        </p>
+        <pre style={{ background: '#1a1a1a', padding: 12, borderRadius: 8 }}>
+          VITE_API_URL=https://bis-mitra-admin-api.onrender.com
+        </pre>
+        <p className="row-sub">Redeploy after saving. Without this, the UI calls this Vercel site for /api and crashes.</p>
+      </div>
     );
   }
 
