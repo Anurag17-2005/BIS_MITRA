@@ -5,7 +5,7 @@ const BIS_URL = import.meta.env.VITE_BIS_URL || 'http://localhost:3001';
 export default function Layout({ children }) {
   const logout = () => {
     localStorage.removeItem('manak_token');
-    window.location.href = '/login';
+    window.location.href = '/dashboard';
   };
 
   return (

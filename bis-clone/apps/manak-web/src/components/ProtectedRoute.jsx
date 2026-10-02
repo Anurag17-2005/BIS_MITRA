@@ -1,7 +1,4 @@
-import { Navigate } from 'react-router-dom';
-
+/** Demo deploy: auth gate disabled (no login page). */
 export default function ProtectedRoute({ children }) {
-  const token = localStorage.getItem('manak_token');
-  if (!token) return <Navigate to="/login" replace />;
   return children;
 }
