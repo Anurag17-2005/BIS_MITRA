@@ -23,6 +23,12 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 4000;
+const PUBLIC_BASE = (
+  process.env.CLONE_PUBLIC_URL
+  || process.env.RENDER_EXTERNAL_URL
+  || `http://localhost:${PORT}`
+).replace(/\/$/, '');
+const FILES_BASE = `${PUBLIC_BASE}/files`;
 const JWT_SECRET = 'bis-clone-demo-secret';
 const FILES_DIR = path.join(__dirname, '..', 'public', 'files');
 const KNOWLEDGE_PDFS_DIR = path.join(__dirname, '..', 'data', 'knowledge', 'pdfs');
@@ -31,6 +37,10 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(FILES_DIR));
 app.use('/files/knowledge/pdfs', express.static(KNOWLEDGE_PDFS_DIR));
+
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok', publicBase: PUBLIC_BASE });
+});
 
 const MITRA_ADMIN_URL = (process.env.MITRA_ADMIN_URL || 'http://localhost:5050').replace(/\/$/, '');
 
@@ -46,7 +56,6 @@ async function notifyMitraStatus(payload) {
   }
 }
 
-const FILES_BASE = `http://localhost:${PORT}/files`;
 function withPdfUrl(row) {
   if (!row) return row;
   return {
@@ -116,7 +125,6 @@ app.get('/api/standards/:isNumber/detail', (req, res) => {
   const referred = db.prepare('SELECT * FROM referred_standards WHERE parent_is = ?').all(isNumber);
   const manual = db.prepare('SELECT * FROM product_manuals WHERE is_number = ?').get(isNumber);
   const fee = db.prepare('SELECT * FROM marking_fees WHERE is_number = ?').get(isNumber);
-  const FILES_BASE = `http://localhost:${PORT}/files`;
   res.json({
     standard,
     referred_standards: referred,
@@ -182,7 +190,6 @@ app.get('/api/compulsory-products', (req, res) => {
   }
   sql += ` ORDER BY is_number`;
   const rows = db.prepare(sql).all(...params);
-  const FILES_BASE = `http://localhost:${PORT}/files`;
   res.json(rows.map(r => ({
     is_number: r.is_number,
     title: r.title,

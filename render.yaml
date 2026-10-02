@@ -1,0 +1,61 @@
+# BIS MITRA — Render Blueprint (APIs only; frontends on Vercel)
+# Apply: Render Dashboard → New → Blueprint → connect repo, or `render blueprint sync`
+#
+# After first deploy, set cross-service URLs (see docs/DEPLOY.md), then redeploy.
+
+services:
+  - type: web
+    name: bis-mitra-clone-api
+    runtime: node
+    rootDir: bis-clone
+    plan: free
+    buildCommand: npm ci && node scripts/seed.js
+    startCommand: npm run start -w api
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: CLONE_PUBLIC_URL
+        sync: false
+      # Set to admin API URL after bis-mitra-admin-api is live, e.g. https://bis-mitra-admin-api.onrender.com
+      - key: MITRA_ADMIN_URL
+        sync: false
+
+  - type: web
+    name: bis-mitra-admin-api
+    runtime: node
+    rootDir: bis-mitra-admin
+    plan: free
+    buildCommand: >-
+      cd ../bis-clone && npm ci && node scripts/seed.js &&
+      cd ../bis-mitra-admin && npm ci &&
+      OCR_ENABLED=0 npm run build:demo
+    startCommand: npm run start:api
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: LLM_PROVIDER
+        value: groq
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+      - key: GROQ_REASONING_EFFORT
+        value: low
+      - key: LLM_TIMEOUT_MS
+        value: "30000"
+      - key: LLM_MAX_RETRIES
+        value: "2"
+      - key: LLM_MAX_TOKENS
+        value: "1400"
+      # Set after clone API deploy, e.g. https://bis-mitra-clone-api.onrender.com
+      - key: CLONE_API
+        sync: false
+      # Vercel URLs after frontends deploy (see docs/DEPLOY.md)
+      - key: BIS_WEB
+        sync: false
+      - key: MANAK_APPLICATIONS_URL
+        sync: false
+      - key: STANDARDS_URL
+        sync: false
