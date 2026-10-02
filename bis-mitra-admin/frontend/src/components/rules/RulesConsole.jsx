@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { config } from '../../config.js';
 import AppNav from '../common/AppNav';
 import Drawer from '../common/Drawer';
 import * as api from '../../api';
@@ -138,7 +139,7 @@ export default function RulesConsole({ onNav, onSignOut }) {
         onTransform={() => onNav('transform')}
         onAgent={() => onNav('agent')}
         onRules={() => {}}
-        onUserPortal={() => window.open(import.meta.env.VITE_USER_PORTAL_URL || 'http://localhost:5002', '_blank', 'noopener')}
+        onUserPortal={() => window.open(config.userPortalUrl, '_blank', 'noopener')}
         onSignOut={onSignOut}
       />
 

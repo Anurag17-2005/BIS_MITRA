@@ -3,6 +3,9 @@ import * as api from '../../api';
 import ComplianceAlertBanner from '../common/ComplianceAlertBanner';
 import PersonaWorkspace from './PersonaWorkspace';
 import { getPersona } from '../../config/userPersonas';
+import { config } from '../../config.js';
+
+const BIS_URL = config.bisUrl;
 
 function SourceList({ sources }) {
   if (!sources?.length) return null;
@@ -105,8 +108,6 @@ function ResponsePanel({ panel, uiMode }) {
 
   return null;
 }
-
-const BIS_URL = import.meta.env.VITE_BIS_URL || 'http://localhost:3001';
 
 function WorkspaceColumn({ userPersona, onRunPrompt, onOpenBis, busy, send }) {
   const persona = getPersona(userPersona);

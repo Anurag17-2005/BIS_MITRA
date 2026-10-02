@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { config } from '../../config.js';
 import AppNav from '../common/AppNav';
 import TransformInspector from './TransformInspector';
 import TrustStrip from '../common/TrustStrip';
@@ -44,7 +45,7 @@ export default function TransformConsole({ clusters, onNav, onSignOut }) {
         onTransform={() => {}}
         onRules={() => onNav('rules')}
         onAgent={() => onNav('agent')}
-        onUserPortal={() => window.open(import.meta.env.VITE_USER_PORTAL_URL || 'http://localhost:5002', '_blank', 'noopener')}
+        onUserPortal={() => window.open(config.userPortalUrl, '_blank', 'noopener')}
         onSignOut={onSignOut}
       />
       <TrustStrip trust={trust} />

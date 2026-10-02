@@ -3,7 +3,9 @@ import AppNav from '../common/AppNav';
 import PortalApp from '@bis-user/portal/PortalApp';
 import '@bis-user/portal/portal.css';
 
-const USER_PORTAL = import.meta.env.VITE_USER_PORTAL_URL || 'http://localhost:5002';
+import { config } from '../../config.js';
+
+const USER_PORTAL = config.userPortalUrl;
 
 /** Admin agent preview — same portal UI, isolated preview session, stays inside admin. */
 export default function AgentConsole({ clusters, onNav, onSignOut }) {

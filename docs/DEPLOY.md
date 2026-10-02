@@ -86,12 +86,14 @@ VITE_BIS_URL=https://<bis-clone-bis>.vercel.app
 VITE_MANAK_URL=https://<bis-clone-manak>.vercel.app
 ```
 
-**bis-mitra-admin/frontend**
+**bis-mitra-admin/frontend** (use **ADMIN_** names on Vercel — not `VITE_`; injected at build via `config.js`)
 
 ```
-VITE_API_URL=https://<ADMIN_API>
-VITE_USER_PORTAL_URL=https://<bis-mitra-user>.vercel.app
-VITE_BIS_URL=https://<bis-clone-bis>.vercel.app
+ADMIN_API_URL=https://<ADMIN_API>
+ADMIN_USER_PORTAL_URL=https://<bis-mitra-user>.vercel.app
+ADMIN_BIS_URL=https://<bis-clone-bis>.vercel.app
+ADMIN_CLONE_API_URL=https://<CLONE_API>
+ADMIN_MANAK_URL=https://<bis-clone-manak>.vercel.app
 ```
 
 **bis-clone/apps/bis-web**

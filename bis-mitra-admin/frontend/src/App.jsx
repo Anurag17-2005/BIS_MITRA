@@ -12,6 +12,7 @@ import RulesConsole from './components/rules/RulesConsole';
 import PlanHover from './components/common/PlanHover';
 import JsonPreview from './components/common/JsonPreview';
 import * as api from './api';
+import { config, apiUrlConfigured } from './config.js';
 import { SECTIONS, sectionForPlan } from './sections';
 import { methodLabel, methodOptionsForPlan, FETCH_METHODS } from './methods';
 import { warehouseViewUrl, isPdfItem, isJsonItem, isImageItem } from './fileUrls';
@@ -101,7 +102,7 @@ function WarehousePreviewBody({ item }) {
   );
 }
 
-const USER_PORTAL = import.meta.env.VITE_USER_PORTAL_URL || 'http://localhost:5002';
+const USER_PORTAL = config.userPortalUrl;
 
 function openUserPortal() {
   window.open(USER_PORTAL, '_blank', 'noopener');
@@ -524,17 +525,17 @@ export default function App() {
     );
   }
 
-  if (!import.meta.env.VITE_API_URL) {
+  if (!apiUrlConfigured()) {
     return (
       <div className="app" style={{ padding: 24, maxWidth: 560 }}>
         <h1>BIS MITRA Admin</h1>
         <p className="warn">
-          <strong>VITE_API_URL</strong> is missing. In Vercel → Project → Settings → Environment Variables, set:
+          <strong>ADMIN_API_URL</strong> is missing. In Vercel → Settings → Environment Variables (Production), set:
         </p>
         <pre style={{ background: '#1a1a1a', padding: 12, borderRadius: 8 }}>
-          VITE_API_URL=https://bis-mitra-admin-api.onrender.com
+          {`ADMIN_API_URL=https://bis-mitra-admin-api.onrender.com\nADMIN_USER_PORTAL_URL=https://your-user-portal.vercel.app\nADMIN_BIS_URL=https://your-bis.vercel.app`}
         </pre>
-        <p className="row-sub">Redeploy after saving. Without this, the UI calls this Vercel site for /api and crashes.</p>
+        <p className="row-sub">Redeploy after saving. Use ADMIN_* names (not VITE_*) — values are injected at build time only.</p>
       </div>
     );
   }
