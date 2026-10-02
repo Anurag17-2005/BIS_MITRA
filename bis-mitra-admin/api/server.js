@@ -1029,11 +1029,17 @@ app.post('/api/plans/run-bulk', async (req, res) => {
 
 const server = app.listen(PORT, () => {
   console.log(`Admin API running on http://localhost:${PORT}`);
-  startScheduler(15000);
-  startAlertScanner({ intervalMs: 20000 });
-  const store = getStore();
-  const pollMs = store.automation?.pollIntervalMs || 30000;
-  startAutoSyncWatcher(getStore, saveStore, pollMs);
+  const skipBackground = process.env.DISABLE_BACKGROUND_JOBS === '1'
+    || process.env.RENDER === 'true';
+  if (skipBackground) {
+    console.log('Background scheduler / alerts / auto-sync disabled (Render or DISABLE_BACKGROUND_JOBS=1).');
+  } else {
+    startScheduler(15000);
+    startAlertScanner({ intervalMs: 20000 });
+    const store = getStore();
+    const pollMs = store.automation?.pollIntervalMs || 30000;
+    startAutoSyncWatcher(getStore, saveStore, pollMs);
+  }
 });
 server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
