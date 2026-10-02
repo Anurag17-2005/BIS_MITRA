@@ -108,9 +108,6 @@ function openUserPortal() {
 }
 
 export default function App() {
-  const [authed, setAuthed] = useState(!!api.getToken());
-  const [loginPw, setLoginPw] = useState('');
-  const [loginErr, setLoginErr] = useState('');
   const [svcStatus, setSvcStatus] = useState(null);
   const [freshness, setFreshness] = useState([]);
   const [whFilter, setWhFilter] = useState('');
@@ -174,12 +171,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!authed) return undefined;
-    loadClusters().catch(() => setAuthed(false));
+    loadClusters().catch(() => {});
     api.getStatus().then(setSvcStatus).catch(() => {});
     const id = setInterval(() => api.getStatus().then(setSvcStatus).catch(() => {}), 15000);
     return () => clearInterval(id);
-  }, [authed, loadClusters]);
+  }, [loadClusters]);
 
   useEffect(() => {
     if (activeCluster) {
@@ -501,76 +497,29 @@ export default function App() {
     }
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoginErr('');
-    try {
-      const { token } = await api.login(loginPw);
-      api.setToken(token);
-      setAuthed(true);
-    } catch {
-      setLoginErr('Wrong password (default: mitra)');
-    }
-  };
-
-  if (!authed) {
-    return (
-      <div className="app login-split">
-        <header className="topbar">
-          <div>
-            <h1>BIS MITRA</h1>
-            <p>Choose how you want to enter</p>
-          </div>
-        </header>
-        <div className="login-panels">
-          <section className="login-panel login-panel-user">
-            <h2>User portal</h2>
-            <p className="row-sub">Citizens, gold buyers, labs, researchers, and officers — pick your role and chat with MITRA.</p>
-            <button type="button" className="btn btn-primary" onClick={openUserPortal}>
-              Open user portal
-            </button>
-          </section>
-          <section className="login-panel login-panel-admin">
-            <h2>Maintainer console</h2>
-            <p className="row-sub">Manage clusters, autofetch, transform pipelines, and agent preview.</p>
-            <form onSubmit={handleLogin}>
-              <label>Password</label>
-              <input type="password" value={loginPw} onChange={e => setLoginPw(e.target.value)} autoFocus />
-              {loginErr && <p className="warn">{loginErr}</p>}
-              <button className="btn btn-primary" type="submit" style={{ marginTop: 12 }}>Sign in</button>
-              <p className="row-sub" style={{ marginTop: 12 }}>Demo password: <code>mitra</code></p>
-            </form>
-          </section>
-        </div>
-      </div>
-    );
-  }
-
   const handleNav = (section) => {
     setActiveCluster(null);
     setPanel('data');
     setAppSection(section === 'clusters' ? null : section);
   };
 
-  const signOut = () => { api.setToken(''); setAuthed(false); };
-
   if (appSection === 'autofetch') {
-    return <AutomationConsole onNav={handleNav} onSignOut={signOut} />;
+    return <AutomationConsole onNav={handleNav} />;
   }
 
   if (appSection === 'transform') {
     return (
-      <TransformConsole clusters={clusters} onNav={handleNav} onSignOut={signOut} />
+      <TransformConsole clusters={clusters} onNav={handleNav} />
     );
   }
 
   if (appSection === 'rules') {
-    return <RulesConsole onNav={handleNav} onSignOut={signOut} />;
+    return <RulesConsole onNav={handleNav} />;
   }
 
   if (appSection === 'agent') {
     return (
-      <AgentConsole clusters={clusters} onNav={handleNav} onSignOut={signOut} />
+      <AgentConsole clusters={clusters} onNav={handleNav} />
     );
   }
 
@@ -585,7 +534,6 @@ export default function App() {
           onRules={() => handleNav('rules')}
           onAgent={() => handleNav('agent')}
           onUserPortal={openUserPortal}
-          onSignOut={signOut}
         />
         <HealthStrip status={svcStatus} />
         <div className="toolbar" style={{ marginBottom: 12 }}>
@@ -663,7 +611,6 @@ export default function App() {
         onRules={() => handleNav('rules')}
         onAgent={() => handleNav('agent')}
         onUserPortal={openUserPortal}
-        onSignOut={signOut}
       />
       <div className="cluster-header">
         <div>
