@@ -1,0 +1,154 @@
+{
+  "fetch_id": "fetch-1790945190202-d446bcd8",
+  "cluster_id": "proof-actions-sandbox",
+  "source_id": "demo_surveillance_api",
+  "plan_id": "proof-actions-sandbox_ingest_demo_surveillance",
+  "started_at": "2026-10-02T12:46:30.165Z",
+  "finished_at": "2026-10-02T12:46:30.200Z",
+  "seed_urls": [
+    "plan://proof-actions-sandbox_ingest_demo_surveillance"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-001",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-001",
+      "sha256": "dc584e67fa7d480f6b1ca1d902bc6d151d6f57e47c80a7addd7dc959e93a3eba",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1215,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-002",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-002",
+      "sha256": "96858fbff7d5973ee1377a773a2cfab50547659aec36d13dbd494ad57a0dde5c",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 1226,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-003",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-003",
+      "sha256": "0dd949dc1799d1f7358e9dfaabcffb2440bca275bf48468142f8e2dbdfc9191b",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 1178,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-004",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-004",
+      "sha256": "3691f036517ca4e8affe2b3a391ef97dd8cb7c2a029ea56a7292512f3721aaa5",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 1189,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-005",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-005",
+      "sha256": "0a7a24c937f30541bcaca60e108891c70ef67cf6f77160eae61c8206935e7647",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 1244,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-006",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-006",
+      "sha256": "17c482717e46a913975e754c11132ba650cff6cbffd9397ae6f64543b50d4e43",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 1154,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-007",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-007",
+      "sha256": "010dc1e9d139e935c75098f0bcba3a6cecbfdb9d23675c6c27d5ec172dbf4d64",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 1177,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-008",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-008",
+      "sha256": "9ab3521d236b22c78216772bc8c7d8ea94d68c293ee3084f27c96bd60c787e19",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 1166,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-009",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-009",
+      "sha256": "06e051cc69952c288598c059cb214249f43724fe38a47969bc4e4f0f0083ba2c",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 1182,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-010",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-010",
+      "sha256": "ecc54635f2d10f4ceffb7fa0d5041b2d1af2ea5c202bb45bc2306083daee7428",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 1176,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-011",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-011",
+      "sha256": "dc832b12509fa38f0af0a51615c615610e94465e6502a177590ee70c0d64e140",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 1221,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-012",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-012",
+      "sha256": "4d58e2bceda1acd54303e3fd530bbec6ed5b8776eb773d5067bab8624fe93499",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 1165,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-013",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-013",
+      "sha256": "ea532a89bc354193241685b0cafde8a15933483945f231e06dc98b13df55ce0d",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-013.json",
+      "mime_type": "application/json",
+      "bytes": 1196,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_surveillance-SURV-DEMO-014",
+      "url": "demo://surveillance_demo.pdf#SURV-DEMO-014",
+      "sha256": "13d409bd3dc4ce8f3ce5bad3d8f3fb136074900441cf56e699f774fcaeb55c6c",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190202-d446bcd8/artifacts/surveillance-SURV-DEMO-014.json",
+      "mime_type": "application/json",
+      "bytes": 1171,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

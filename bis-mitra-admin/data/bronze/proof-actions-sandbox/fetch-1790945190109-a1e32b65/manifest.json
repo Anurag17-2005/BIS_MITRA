@@ -1,0 +1,154 @@
+{
+  "fetch_id": "fetch-1790945190109-a1e32b65",
+  "cluster_id": "proof-actions-sandbox",
+  "source_id": "demo_enforcement_api",
+  "plan_id": "proof-actions-sandbox_ingest_demo_enforcement",
+  "started_at": "2026-10-02T12:46:30.080Z",
+  "finished_at": "2026-10-02T12:46:30.106Z",
+  "seed_urls": [
+    "plan://proof-actions-sandbox_ingest_demo_enforcement"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-001",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-001",
+      "sha256": "223423732da649762dab7ab9977e5acfbdf839b7c4c767b1ed658a8ce6a9a276",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1393,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-002",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-002",
+      "sha256": "d78a55babda1b26f68b2c874937a5621a72b39d26a9266bf7240c77442b8acd9",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 1333,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-003",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-003",
+      "sha256": "043b0ce3c9f2185ee44622a98c9c5e645fa8f8273fad98d7b317ea159e4667b6",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 1338,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-004",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-004",
+      "sha256": "e3c538df8bf885b895512818a7585be93fee7fdf624d7ffd60d70a06cec06d58",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 1327,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-005",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-005",
+      "sha256": "3b7e2328f1b682bdb49aa48c17cf56da21ac8c64c23f88404e2528f45724c1ec",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 1249,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-006",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-006",
+      "sha256": "73e34e586872e65d28d8f5fce5a9f677395c3c3368c5556fe1ff669711b169e1",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 1280,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-007",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-007",
+      "sha256": "c55a4ecd8e30361d6c0800c0bf152bdf895ffcc92ef74e6f9bc953a305bcec7e",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 1288,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-008",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-008",
+      "sha256": "0d4ed62f932206b9f43ab5afb66882a21c5062e18d9c80a8767e1c88e564a718",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 1239,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-009",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-009",
+      "sha256": "5a748e77b320c570fa859d522892dbb4e4e1439759e35a245afd5928e918cdcf",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 1281,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-010",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-010",
+      "sha256": "186ec725d13216bd5e85b40bdaae3d18afc3d9c8b365072ffb3c4f4d63c0660b",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 1288,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-011",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-011",
+      "sha256": "07d0b4e3f2f7e97d818004b6be3c9fdaf8b29341309139d8168080ef599692c5",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 1269,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-012",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-012",
+      "sha256": "194ff4be851b325c9a638633447c19472510c7be51f8aaa497820f8ea4174e26",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 1218,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-013",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-013",
+      "sha256": "a3ba2cf3eb76f587daade299bf2701d850d2f6b35bd9b7baa32f7601a59ea693",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-013.json",
+      "mime_type": "application/json",
+      "bytes": 1200,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_enforcement-ENF-DEMO-014",
+      "url": "demo://enforcement_demo.pdf#ENF-DEMO-014",
+      "sha256": "6917b737fae0ba2ba896d09fc2df4f2d82781a411d6f0861ae865404ddd99bd5",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790945190109-a1e32b65/artifacts/enforcement-ENF-DEMO-014.json",
+      "mime_type": "application/json",
+      "bytes": 1321,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,134 @@
+{
+  "fetch_id": "fetch-1790678008045-f211bd9a",
+  "cluster_id": "proof-actions-sandbox",
+  "source_id": "demo_qco_api",
+  "plan_id": "proof-actions-sandbox_ingest_demo_qco",
+  "started_at": "2026-09-29T10:33:28.018Z",
+  "finished_at": "2026-09-29T10:33:28.044Z",
+  "seed_urls": [
+    "plan://proof-actions-sandbox_ingest_demo_qco"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-005",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-005",
+      "sha256": "c28d918f1309fef1bc8c29ec4c0cead5eb07992b8b25d0570346bff3d7584f90",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-005.json",
+      "mime_type": "application/json",
+      "bytes": 928,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-012",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-012",
+      "sha256": "2502a8967927f7636402714a5d23196255870ccdcb687093c63a2b10535c23b4",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-012.json",
+      "mime_type": "application/json",
+      "bytes": 977,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-001",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-001",
+      "sha256": "c93dc18b3658e4a900c841d3111a59e8a5d5e236b7a7417dc8b31fc05dbbad17",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-001.json",
+      "mime_type": "application/json",
+      "bytes": 1024,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-002",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-002",
+      "sha256": "89b3c84a6f2f0c9a519d5fa739c3ccea910822ba4041926e3f6cc12dabd5d7b8",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-002.json",
+      "mime_type": "application/json",
+      "bytes": 920,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-009",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-009",
+      "sha256": "fe609e9de99bf7b338b00c30a08c774de5ceb5a92c23a9208dc667986b859d8c",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-009.json",
+      "mime_type": "application/json",
+      "bytes": 964,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-003",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-003",
+      "sha256": "61fcbc25811c0bf9571cabf6a9d029caee26c680d27e1113153b70fbbe3049e9",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-003.json",
+      "mime_type": "application/json",
+      "bytes": 969,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-011",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-011",
+      "sha256": "eac79a828b001dfb72d75f7468e9b9899a10c33e63e5778a7bf8436f40597fe4",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-011.json",
+      "mime_type": "application/json",
+      "bytes": 961,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-007",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-007",
+      "sha256": "cb53e9de7dbe4b1268399200f096ecc19540179ebd942d69c8dc6ac2df6552c5",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-007.json",
+      "mime_type": "application/json",
+      "bytes": 910,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-006",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-006",
+      "sha256": "132e68c4b3390b8b0268a6054a285ccfd7b8998ceeae4914a9da1dd9ee65d1bc",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-006.json",
+      "mime_type": "application/json",
+      "bytes": 943,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-004",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-004",
+      "sha256": "cadc1e12291c30c230628196d10e099b694f536efae1a1e7bd309eab5b608de3",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-004.json",
+      "mime_type": "application/json",
+      "bytes": 975,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-008",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-008",
+      "sha256": "06c4585b63c3341426569341df49add390ad763fb8b1e885a87eedd9e7c716ef",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-008.json",
+      "mime_type": "application/json",
+      "bytes": 975,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_demo_qco-QCO-DEMO-010",
+      "url": "demo://qco_demo.pdf#QCO-DEMO-010",
+      "sha256": "ff6c526ba5c4d09b9016d635afa74f11ba43484ccdec0afbf7168d0449f3b87e",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678008045-f211bd9a/artifacts/qco-QCO-DEMO-010.json",
+      "mime_type": "application/json",
+      "bytes": 945,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

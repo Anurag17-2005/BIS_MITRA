@@ -1,0 +1,19 @@
+[llm] groq rate_limit on openai/gpt-oss-120b — using openai/gpt-oss-20b
+[llm] groq rate_limit on openai/gpt-oss-120b — using openai/gpt-oss-20b
+[llm] groq rate_limit on openai/gpt-oss-120b — using openai/gpt-oss-20b
+[llm] groq rate_limit on openai/gpt-oss-120b — using openai/gpt-oss-20b
+[whatsapp] skipped — set TWILIO_ACCOUNT_SID+TWILIO_AUTH_TOKEN, or WHATSAPP_TOKEN+WHATSAPP_PHONE_NUMBER_ID, or WHATSAPP_CALLMEBOT_APIKEY. Intended to: +919556828397 BIS MITRA: Application BIS-APP-DEMO-072397 submitted. Status: Submitted · Industrial safety helmet — Model NSH-063506.
+[whatsapp] skipped — set TWILIO_ACCOUNT_SID+TWILIO_AUTH_TOKEN, or WHATSAPP_TOKEN+WHATSAPP_PHONE_NUMBER_ID, or WHATSAPP_CALLMEBOT_APIKEY. Intended to: +919556828397 BIS MITRA: Your application BIS-APP-DEMO-072397 status is now Under Review (was Submitted).
+[whatsapp] skipped — set TWILIO_ACCOUNT_SID+TWILIO_AUTH_TOKEN, or WHATSAPP_TOKEN+WHATSAPP_PHONE_NUMBER_ID, or WHATSAPP_CALLMEBOT_APIKEY. Intended to: +919556828397 BIS MITRA: Your application BIS-APP-DEMO-072397 status is now Testing (was Under Review).
+[whatsapp] skipped — set TWILIO_ACCOUNT_SID+TWILIO_AUTH_TOKEN, or WHATSAPP_TOKEN+WHATSAPP_PHONE_NUMBER_ID, or WHATSAPP_CALLMEBOT_APIKEY. Intended to: +919556828397 BIS MITRA: Your application BIS-APP-DEMO-072397 status is now Certified (was Testing).
+SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at parse (D:\BIS_MITRA\bis-mitra-admin\node_modules\body-parser\lib\types\json.js:96:19)
+    at D:\BIS_MITRA\bis-mitra-admin\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:227:14)
+    at invokeCallback (D:\BIS_MITRA\bis-mitra-admin\node_modules\raw-body\index.js:238:16)
+    at done (D:\BIS_MITRA\bis-mitra-admin\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (D:\BIS_MITRA\bis-mitra-admin\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:509:28)
+    at endReadableNT (node:internal/streams/readable:1736:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)

@@ -1,7 +1,7 @@
 {
   "clusterId": "demo-pipeline-2",
-  "ingestedAt": "2026-10-02T12:31:39.464Z",
-  "fingerprint": "55596babe66a3182e5309564ac3974958360450762b9bd3bf39caa0d314a71ba",
+  "ingestedAt": "2026-10-02T12:41:53.091Z",
+  "fingerprint": "a3957c3cccba40af2adbecb680b5464a4db03fc708f9ad04687ba2f8c40cad66",
   "source": "bis-clone SQLite + /data demo files",
   "recordCount": 91,
   "domains": [

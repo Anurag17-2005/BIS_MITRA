@@ -1,0 +1,194 @@
+{
+  "fetch_id": "fetch-1790678009163-df34c9a5",
+  "cluster_id": "proof-actions-sandbox",
+  "source_id": "process_api",
+  "plan_id": "proof-actions-sandbox_ingest_process_pdfs",
+  "started_at": "2026-09-29T10:33:29.112Z",
+  "finished_at": "2026-09-29T10:33:29.129Z",
+  "seed_urls": [
+    "plan://proof-actions-sandbox_ingest_process_pdfs"
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-certification_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/certification_demo.pdf",
+      "sha256": "6384a3d1febead7f6ebbdcb30596b7fcaa47bef894419e943c601acb7b05606c",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/certification_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 58071,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-consumer_complaints_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/consumer_complaints_demo.pdf",
+      "sha256": "4997234740fa00149b025ca61612359dc12be975b73ecc98f0f61ec83bb7629f",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/consumer_complaints_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 86480,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-enforcement_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/enforcement_demo.pdf",
+      "sha256": "5d73d7b62cfe8f287da54bdbf5506b4a23c703002938b666bb9d59fb542c4e6b",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/enforcement_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 82842,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-hallmarking_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/hallmarking_demo.pdf",
+      "sha256": "6e7ec3710519030d328aac9cd04e05e1a9f528082405938c209ec68c323ddddb",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/hallmarking_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 58904,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-laboratories_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/laboratories_demo.pdf",
+      "sha256": "5e7b77b8722d472429e0c2a9331f77231763762612c3d30d9cd5fcc4729287e5",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/laboratories_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 70347,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-qco_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/qco_demo.pdf",
+      "sha256": "334049dcba105b63ad673236593115efd7c9252a35f8afa7bf047519e4b02f52",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/qco_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 94837,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-standards_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/standards_demo.pdf",
+      "sha256": "d2611b4482b9f73b02a98ec4d12d6848ff94eb74f334732d9a984853b5afd2bf",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/standards_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 105661,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-surveillance_demo.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/surveillance_demo.pdf",
+      "sha256": "3c69d6a8a9541914a1dc2bdcdf4eabea46c523faef4583faabd7a37813ddc26a",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/surveillance_demo.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 80436,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-Renewal-application-Form-XII.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/Renewal-application-Form-XII.pdf",
+      "sha256": "7ddb94bdcce7515ef880142aad0cbe49278475042136a13291e12e17783865d0",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/Renewal-application-Form-XII.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 112740,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-change-in-scope-of-licence.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/change-in-scope-of-licence.pdf",
+      "sha256": "c36abeaa212f2c0257fa49697356c53c10eb45de9d64b2ddef752115ca78d841",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/change-in-scope-of-licence.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 149013,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-dealing-with-non-conformity-2026.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/dealing-with-non-conformity-2026.pdf",
+      "sha256": "ced756a1a4aa683c116f98b87c37a1f392a0d9bc5a5a4e769e30d21977da6ac1",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/dealing-with-non-conformity-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 319617,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-factory-surveillance-2026.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/factory-surveillance-2026.pdf",
+      "sha256": "847fd0446f917face2e9416e60cc188f4f54e55bd4ea50f07d9590b222e5c3eb",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/factory-surveillance-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 228417,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-grant-of-coc-guidelines.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/grant-of-coc-guidelines.pdf",
+      "sha256": "3afeff1f1beedc0f3d6a7111905c1d484aa6415272de3b20a6998934204870db",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/grant-of-coc-guidelines.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 354819,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-grant-of-licence-guidelines-2023.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/grant-of-licence-guidelines-2023.pdf",
+      "sha256": "920bd950886221f3141b5aa9f8b5e86de49a92358258ada596b79dbc3aefd173",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/grant-of-licence-guidelines-2023.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 215853,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-grant-of-licence-guidelines-2026.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/grant-of-licence-guidelines-2026.pdf",
+      "sha256": "0c5e8e3445b46fbd58973c266a1db355a08c5ebc6c926bb763ae57ea44cb64df",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/grant-of-licence-guidelines-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 483290,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-market-surveillance-2026.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/market-surveillance-2026.pdf",
+      "sha256": "e2fb91aa4f7d98f2afa9f8ec32bdf6a580a6bfd309bb6bcc4a4f16da08b6e771",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/market-surveillance-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 196992,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-renewal-of-coc-guidelines.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/renewal-of-coc-guidelines.pdf",
+      "sha256": "c7506149bea21e50f1768e2c15d47372bee752bd6dba9b9c1e78659190b665f2",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/renewal-of-coc-guidelines.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 136222,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    },
+    {
+      "artifact_id": "w-proof-actions-sandbox_ingest_process_pdfs-unsatisfactory-performance-2026.pdf",
+      "url": "plan://proof-actions-sandbox_ingest_process_pdfs/unsatisfactory-performance-2026.pdf",
+      "sha256": "ca4564388ec0f21fe3c529917e802c8f42ed567bd8211ecf5215b34c523d874b",
+      "uri": "bronze/proof-actions-sandbox/fetch-1790678009163-df34c9a5/artifacts/unsatisfactory-performance-2026.pdf",
+      "mime_type": "application/pdf",
+      "bytes": 243163,
+      "links_extracted": [],
+      "parent_artifact_id": null
+    }
+  ],
+  "errors": []
+}

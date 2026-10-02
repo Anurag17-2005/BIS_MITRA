@@ -1,4 +1,4 @@
-# Create/update Render web services from repo (requires GitHub repo on main with render.yaml pushed).
+# Create/update Render web services from repo (manual web services — see docs/DEPLOY.md).
 # Requires: $env:RENDER_API_KEY
 
 $ErrorActionPreference = "Stop"

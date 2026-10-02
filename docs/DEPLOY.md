@@ -9,32 +9,38 @@ Full stack: **2 Render web services** (APIs) + **5 Vercel projects** (static UIs
 - [Vercel](https://vercel.com) account + **token** (for CLI)
 - **Groq API key** — set only in Render (never commit)
 
-## 1. Render (APIs)
+## 1. Render (APIs) — two Web Services
 
-### Option A — Blueprint
-
-1. Render → **New** → **Blueprint**
-2. Connect GitHub repo → uses root `render.yaml`
-3. When prompted, set **secret** env vars:
-   - `GROQ_API_KEY`
-   - After first URLs exist: `CLONE_API`, `MITRA_ADMIN_URL`, `CLONE_PUBLIC_URL`, `BIS_WEB`, `MANAK_WEB` (see below)
-
-### Option B — CLI
-
-```powershell
-# Install: winget install Render.RenderCLI  OR  npm i -g render-cli
-$env:RENDER_API_KEY = "<your-render-api-key>"
-render blueprint sync
-```
+Create **two** services under your **BIS** project (same GitHub repo, different root directories). Do **not** use one service at repo root.
 
 **Services**
 
 | Service | Root dir | Notes |
 |---------|----------|--------|
-| `bis-mitra-clone-api` | `bis-clone` | Seeds `bis-clone.db` on build |
-| `bis-mitra-admin-api` | `bis-mitra-admin` | Seeds clone DB + `npm run build:demo` (indexes) |
+| `bis-mitra-clone-api` | `bis-clone` | Build below |
+| `bis-mitra-admin-api` | `bis-mitra-admin` | Build below |
 
-First admin build may take **10–20 minutes** (index pipeline).
+### Clone API (`bis-mitra-clone-api`)
+
+| Setting | Value |
+|---------|--------|
+| Root Directory | `bis-clone` |
+| Build Command | `npm ci && npm rebuild better-sqlite3 -w api && node scripts/seed-minimal.mjs` |
+| Start Command | `npm run start -w api` |
+| Health Check Path | `/api/health` |
+| Env | `NODE_VERSION=20` |
+
+### Admin API (`bis-mitra-admin-api`)
+
+| Setting | Value |
+|---------|--------|
+| Root Directory | `bis-mitra-admin` |
+| Build Command | `cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && node scripts/seed-minimal.mjs && cd ../bis-mitra-admin && npm ci` |
+| Start Command | `npm run start:api` |
+| Health Check Path | `/api/health` |
+| Env | `NODE_VERSION=20`, `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` (after clone is live) |
+
+Optional later: add `OCR_ENABLED=0 npm run build:demo` to admin build for full RAG indexes (slow on free tier).
 
 Copy public URLs when ready:
 
@@ -126,7 +132,7 @@ Repeat per app root with its `VITE_*` set.
 
 ## 3. Deploy order
 
-1. Push `main` with `render.yaml` + fixes to GitHub
+1. Push `main` to GitHub
 2. Render: deploy **clone API** → note URL
 3. Render: deploy **admin API** with `CLONE_API` + `GROQ_API_KEY`
 4. Vercel: deploy all 5 sites with `VITE_*` pointing at Render + other Vercel URLs
