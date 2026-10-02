@@ -25,7 +25,7 @@ Create **two** services under your **BIS** project (same GitHub repo, different 
 | Setting | Value |
 |---------|--------|
 | Root Directory | `bis-clone` |
-| Build Command | `npm ci && npm rebuild better-sqlite3 -w api && node scripts/seed-minimal.mjs` |
+| Build Command | `npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db` |
 | Start Command | `npm run start -w api` |
 | Health Check Path | `/api/health` |
 | Env | `NODE_VERSION=20` |
@@ -35,7 +35,7 @@ Create **two** services under your **BIS** project (same GitHub repo, different 
 | Setting | Value |
 |---------|--------|
 | Root Directory | `bis-mitra-admin` |
-| Build Command | `cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && node scripts/seed-minimal.mjs && cd ../bis-mitra-admin && npm ci` |
+| Build Command | `cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && cd ../bis-mitra-admin && npm ci` |
 | Start Command | `npm run start:api` |
 | Health Check Path | `/api/health` |
 | Env | `NODE_VERSION=20`, `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` (after clone is live) |
