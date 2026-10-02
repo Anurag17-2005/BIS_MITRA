@@ -1190,21 +1190,25 @@ db.prepare(`INSERT INTO mock_customs_hs_mapping (hs_code, product_description, i
 
 console.log('Database seeded successfully with probe-ready demo data.');
 
-// Import BIS MITRA synthetic demo datasets from /data/
-const { importDemoData } = await import('./import-demo-data.mjs');
-importDemoData(db);
+if (process.env.RENDER_SKIP_POST_SEED === '1') {
+  console.log('RENDER_SKIP_POST_SEED=1 — skipping import-demo, golden build, knowledge sync.');
+} else {
+  // Import BIS MITRA synthetic demo datasets from /data/
+  const { importDemoData } = await import('./import-demo-data.mjs');
+  importDemoData(db);
 
-spawnSync('node', ['scripts/build-demo-golden.mjs'], {
-  cwd: path.join(__dirname, '..'),
-  stdio: 'inherit',
-});
+  spawnSync('node', ['scripts/build-demo-golden.mjs'], {
+    cwd: path.join(__dirname, '..'),
+    stdio: 'inherit',
+  });
 
-// Merge MITRA knowledge PDFs into BIS tables
-const sync = spawnSync('node', ['scripts/sync-knowledge-into-clone.mjs'], {
-  cwd: path.join(__dirname, '..'),
-  stdio: 'inherit',
-});
-if (sync.status !== 0) console.warn('Knowledge sync warning — manifest may be missing');
+  // Merge MITRA knowledge PDFs into BIS tables
+  const sync = spawnSync('node', ['scripts/sync-knowledge-into-clone.mjs'], {
+    cwd: path.join(__dirname, '..'),
+    stdio: 'inherit',
+  });
+  if (sync.status !== 0) console.warn('Knowledge sync warning — manifest may be missing');
+}
 
 // Close explicitly — Node 24 + better-sqlite3 can assert on GC teardown otherwise
 db.close();

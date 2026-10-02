@@ -9,7 +9,7 @@ services:
     runtime: node
     rootDir: bis-clone
     plan: free
-    buildCommand: npm ci && node scripts/seed.js
+    buildCommand: npm ci && npm rebuild better-sqlite3 -w api && node scripts/seed-minimal.mjs
     startCommand: npm run start -w api
     healthCheckPath: /api/health
     envVars:
@@ -27,9 +27,8 @@ services:
     rootDir: bis-mitra-admin
     plan: free
     buildCommand: >-
-      cd ../bis-clone && npm ci && node scripts/seed.js &&
-      cd ../bis-mitra-admin && npm ci &&
-      OCR_ENABLED=0 npm run build:demo
+      cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && node scripts/seed-minimal.mjs &&
+      cd ../bis-mitra-admin && npm ci
     startCommand: npm run start:api
     healthCheckPath: /api/health
     envVars:
