@@ -77,48 +77,30 @@ Each folder has a `vercel.json`. Clone apps run `npm ci` from `bis-clone` root (
 
 ### Environment variables (Production, rebuild after changes)
 
-**bis-mitra-user**
+All five frontends map env at **build time** via `scripts/mitra-vercel-env.mjs` (see each app’s `vite.config.js`). React code still uses `import.meta.env.VITE_*` / admin `config.js`; you do **not** need `VITE_` prefixes on Vercel.
+
+**Recommended: one shared set on the Vercel team** (link the same keys to every frontend project):
 
 ```
-VITE_API_URL=https://<ADMIN_API>
-VITE_BIS_API=https://<CLONE_API>
-VITE_BIS_URL=https://<bis-clone-bis>.vercel.app
-VITE_MANAK_URL=https://<bis-clone-manak>.vercel.app
+REND_ADMIN_API=https://<ADMIN_API>
+REND_CLONE_API=https://<CLONE_API>
+REND_CLONE_FILES=https://<CLONE_API>/files
+URL_USER=https://<bis-mitra-user>.vercel.app
+URL_ADMIN_UI=https://<bis-mitra-admin-ui>.vercel.app
+URL_BIS=https://<bis-clone-bis>.vercel.app
+URL_MANAK=https://<bis-clone-manak>.vercel.app
+URL_STANDARDS=https://<bis-clone-standards>.vercel.app
 ```
 
-**bis-mitra-admin/frontend** (use **ADMIN_** names on Vercel — not `VITE_`; injected at build via `config.js`)
+Legacy names still work as fallbacks: `ADMIN_*`, `VITE_*` (per-app mapping in `mitra-vercel-env.mjs`).
 
-```
-ADMIN_API_URL=https://<ADMIN_API>
-ADMIN_USER_PORTAL_URL=https://<bis-mitra-user>.vercel.app
-ADMIN_BIS_URL=https://<bis-clone-bis>.vercel.app
-ADMIN_CLONE_API_URL=https://<CLONE_API>
-ADMIN_MANAK_URL=https://<bis-clone-manak>.vercel.app
-```
-
-**bis-clone/apps/bis-web**
-
-```
-VITE_API_URL=https://<CLONE_API>
-VITE_MANAK_URL=https://<bis-clone-manak>.vercel.app
-VITE_STANDARDS_URL=https://<bis-clone-standards>.vercel.app
-```
-
-**bis-clone/apps/manak-web**
-
-```
-VITE_API_URL=https://<CLONE_API>
-VITE_BIS_URL=https://<bis-clone-bis>.vercel.app
-```
-
-**bis-clone/apps/standards-web**
-
-```
-VITE_API_URL=https://<CLONE_API>
-VITE_FILES_URL=https://<CLONE_API>/files
-VITE_BIS_URL=https://<bis-clone-bis>.vercel.app
-VITE_MANAK_URL=https://<bis-clone-manak>.vercel.app
-```
+| Project | Uses from shared set |
+|---------|----------------------|
+| `bis-mitra-user` | `REND_ADMIN_API`, `REND_CLONE_API`, `URL_BIS`, `URL_MANAK` |
+| `bis-mitra-admin/frontend` | `REND_ADMIN_API`, `REND_CLONE_API`, `URL_USER`, `URL_BIS`, `URL_MANAK` |
+| `bis-clone/apps/bis-web` | `REND_CLONE_API`, `URL_MANAK`, `URL_STANDARDS` |
+| `bis-clone/apps/manak-web` | `REND_CLONE_API`, `URL_BIS` |
+| `bis-clone/apps/standards-web` | `REND_CLONE_API`, `REND_CLONE_FILES`, `URL_BIS`, `URL_MANAK` |
 
 ### Vercel CLI (optional)
 
