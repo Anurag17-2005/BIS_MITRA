@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { buildPlansForCluster } from './plan-templates.js';
 import {
   RESERVED_CLUSTER_IDS,
+  clusterCanClearData,
   clusterCanDelete,
   clusterCanRename,
 } from './clusters.js';
@@ -116,6 +117,9 @@ export function clearClusterData(store, clusterId) {
   const cluster = store.clusters.find(c => c.id === clusterId);
   if (!cluster) {
     throw Object.assign(new Error('Cluster not found'), { status: 404 });
+  }
+  if (!clusterCanClearData(cluster)) {
+    throw Object.assign(new Error('Demo knowledge cluster cannot be cleared'), { status: 403 });
   }
 
   const toRemove = (store.warehouse || []).filter(w => w.clusterId === clusterId);

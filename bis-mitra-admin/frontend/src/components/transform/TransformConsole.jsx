@@ -4,6 +4,7 @@ import AppNav from '../common/AppNav';
 import TransformInspector from './TransformInspector';
 import TrustStrip from '../common/TrustStrip';
 import * as api from '../../api';
+import { clusterCanRunTransform } from '../../clusters.js';
 
 export default function TransformConsole({ clusters, onNav, onSignOut }) {
   const [overview, setOverview] = useState([]);
@@ -35,6 +36,8 @@ export default function TransformConsole({ clusters, onNav, onSignOut }) {
 
   const active = overview.find(c => c.clusterId === clusterId);
   const clusterOptions = clusters.length ? clusters : overview;
+  const activeMeta = clusterOptions.find(c => (c.id || c.clusterId) === clusterId);
+  const transformReadOnly = activeMeta ? !clusterCanRunTransform(activeMeta) : false;
 
   return (
     <div className="app">
@@ -63,7 +66,13 @@ export default function TransformConsole({ clusters, onNav, onSignOut }) {
           </span>
         )}
       </div>
-      {clusterId && <TransformInspector clusterId={clusterId} onChanged={reloadOverview} />}
+      {clusterId && (
+        <TransformInspector
+          clusterId={clusterId}
+          onChanged={reloadOverview}
+          readOnly={transformReadOnly}
+        />
+      )}
     </div>
   );
 }

@@ -26,16 +26,36 @@ export function stripClusterPrefix(planId, clusterId) {
   return id;
 }
 
-export function isSecuredCluster() {
-  return false;
+export function isSecuredCluster(cluster) {
+  if (!cluster) return false;
+  return cluster.secured === true || cluster.id === C2_CLUSTER_ID;
+}
+
+export function clusterIsReadOnly(cluster) {
+  if (!cluster) return false;
+  return cluster.secured === true || cluster.deletable === false;
 }
 
 export function clusterCanRename(cluster) {
   if (!cluster) return false;
-  return cluster.renamable !== false;
+  return cluster.renamable !== false && !clusterIsReadOnly(cluster);
 }
 
 export function clusterCanDelete(cluster) {
   if (!cluster) return false;
-  return cluster.deletable !== false;
+  return cluster.deletable !== false && !clusterIsReadOnly(cluster);
+}
+
+export function clusterCanUnpublish(cluster) {
+  if (!cluster) return false;
+  return !clusterIsReadOnly(cluster);
+}
+
+export function clusterCanClearData(cluster) {
+  return clusterCanDelete(cluster);
+}
+
+export function clusterCanRunTransform(cluster) {
+  if (!cluster) return false;
+  return !clusterIsReadOnly(cluster);
 }

@@ -165,7 +165,7 @@ Render admin build runs `node scripts/apply-render-seed.mjs` (no-op if seed not 
 
 Seed paths: [`bis-mitra-admin/data/render-seed/`](bis-mitra-admin/data/render-seed/) — see [`docs/vercel-env.example`](vercel-env.example) for frontends only.
 
-Evaluators: use published **`mitra-knowledge`**; avoid **Full rebuild** on production admin API.
+Evaluators: use published **`mitra-knowledge`** (single demo cluster in seed, read-only — delete/unpublish/clear/transform rebuild blocked).
 
 ## 6. Not deployed (by design)
 

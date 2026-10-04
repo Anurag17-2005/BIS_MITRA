@@ -5,7 +5,7 @@ import SectionChunks from './SectionChunks';
 import RetrievalTestPanel from '../retrieval/RetrievalTestPanel';
 import * as api from '../../api';
 
-export default function TransformInspector({ clusterId, onChanged }) {
+export default function TransformInspector({ clusterId, onChanged, readOnly = false }) {
   const [status, setStatus] = useState(null);
   const [goldenGrouped, setGoldenGrouped] = useState({ sections: [] });
   const [chunksGrouped, setChunksGrouped] = useState({ sections: [] });
@@ -80,29 +80,36 @@ export default function TransformInspector({ clusterId, onChanged }) {
         <span>Index <strong>{status?.index?.live?.chunkCount ?? status?.index?.draft?.chunkCount ?? 0}</strong></span>
       </div>
 
-      <div className="toolbar" style={{ flexWrap: 'wrap', gap: 8 }}>
-        <button className="btn btn-sm btn-primary" disabled={busy} onClick={() => runStage('full')}>Full rebuild</button>
-        <button className="btn btn-sm" disabled={busy} onClick={() => runStage('golden')}>Golden</button>
-        <button className="btn btn-sm" disabled={busy} onClick={() => runStage('chunks')}>Chunks</button>
-        <button className="btn btn-sm" disabled={busy} onClick={() => runStage('index')}>Index</button>
-        <button
-          className="btn btn-sm"
-          disabled={busy}
-          onClick={async () => {
-            setBusy(true);
-            try {
-              await api.promoteTransformIndex(clusterId);
-              setMsg('Promoted');
-              await reload();
-            } catch (e) { setMsg(e.message); }
-            finally { setBusy(false); }
-          }}
-        >
-          Promote
-        </button>
-        <button className="btn btn-sm danger" disabled={busy} onClick={clearAll}>Clear all</button>
-        {msg && <span className="row-sub">{msg}</span>}
-      </div>
+      {readOnly && (
+        <p className="row-sub" style={{ marginBottom: 8 }}>
+          Pre-built demo index — browse and test retrieval only. Rebuild is disabled.
+        </p>
+      )}
+      {!readOnly && (
+        <div className="toolbar" style={{ flexWrap: 'wrap', gap: 8 }}>
+          <button className="btn btn-sm btn-primary" disabled={busy} onClick={() => runStage('full')}>Full rebuild</button>
+          <button className="btn btn-sm" disabled={busy} onClick={() => runStage('golden')}>Golden</button>
+          <button className="btn btn-sm" disabled={busy} onClick={() => runStage('chunks')}>Chunks</button>
+          <button className="btn btn-sm" disabled={busy} onClick={() => runStage('index')}>Index</button>
+          <button
+            className="btn btn-sm"
+            disabled={busy}
+            onClick={async () => {
+              setBusy(true);
+              try {
+                await api.promoteTransformIndex(clusterId);
+                setMsg('Promoted');
+                await reload();
+              } catch (e) { setMsg(e.message); }
+              finally { setBusy(false); }
+            }}
+          >
+            Promote
+          </button>
+          <button className="btn btn-sm danger" disabled={busy} onClick={clearAll}>Clear all</button>
+          {msg && <span className="row-sub">{msg}</span>}
+        </div>
+      )}
 
       <div className="transform-tabs">
         {['golden', 'chunks', 'index', 'retrieval'].map(t => (

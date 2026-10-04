@@ -14,6 +14,13 @@ import JsonPreview from './components/common/JsonPreview';
 import * as api from './api';
 import { config, apiUrlConfigured } from './config.js';
 import { SECTIONS, sectionForPlan } from './sections';
+import {
+  clusterCanClearData,
+  clusterCanDelete,
+  clusterCanRename,
+  clusterCanUnpublish,
+  isSecuredCluster,
+} from './clusters.js';
 import { methodLabel, methodOptionsForPlan, FETCH_METHODS } from './methods';
 import { warehouseViewUrl, isPdfItem, isJsonItem, isImageItem } from './fileUrls';
 
@@ -565,11 +572,16 @@ export default function App() {
           {clusters.map(c => (
             <div key={c.id} className="cluster-card" onClick={() => openCluster(c)}>
               {c.published && <span className="badge badge-star">★ Published to agent</span>}
+              {isSecuredCluster(c) && <span className="badge badge-secured">Demo · read-only</span>}
               <h3>{c.name}</h3>
               <p>{c.fileCount || 0} files</p>
               <div className="cluster-card-actions" onClick={e => e.stopPropagation()}>
-                <button type="button" className="btn btn-sm" onClick={(e) => openRenameCluster(c, e)}>Rename</button>
-                <button type="button" className="btn btn-sm danger" onClick={(e) => handleDeleteCluster(c, e)}>Delete</button>
+                {clusterCanRename(c) && (
+                  <button type="button" className="btn btn-sm" onClick={(e) => openRenameCluster(c, e)}>Rename</button>
+                )}
+                {clusterCanDelete(c) && (
+                  <button type="button" className="btn btn-sm danger" onClick={(e) => handleDeleteCluster(c, e)}>Delete</button>
+                )}
               </div>
             </div>
           ))}
@@ -634,10 +646,13 @@ export default function App() {
           <button className="btn back" onClick={() => { setActiveCluster(null); setPanel('data'); }}>← Clusters</button>
           <h2 style={{ marginTop: 8 }}>{activeCluster.name}</h2>
           {activeCluster.published && <span className="badge badge-star">Published</span>}
+          {isSecuredCluster(activeCluster) && <span className="badge badge-secured">Demo · read-only</span>}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           {activeCluster.published ? (
-            <button className="btn" onClick={() => handlePublish(false)}>Unpublish</button>
+            clusterCanUnpublish(activeCluster) && (
+              <button className="btn" onClick={() => handlePublish(false)}>Unpublish</button>
+            )
           ) : (
             <button className="btn btn-primary" onClick={() => handlePublish(true)}>Publish</button>
           )}
@@ -661,9 +676,11 @@ export default function App() {
                   value={whFilter}
                   onChange={e => setWhFilter(e.target.value)}
                 />
-                <button type="button" className="btn btn-sm danger" onClick={handleClearClusterData}>
-                  Clear all cluster data
-                </button>
+                {clusterCanClearData(activeCluster) && (
+                  <button type="button" className="btn btn-sm danger" onClick={handleClearClusterData}>
+                    Clear all cluster data
+                  </button>
+                )}
               </div>
               <SectionWarehouse
                 clusterId={activeCluster.id}
@@ -672,10 +689,10 @@ export default function App() {
                 filter={whFilter}
                 onPreview={openWarehousePreview}
                 onLineage={openLineage}
-                onUpload={openUpload}
+                onUpload={clusterCanClearData(activeCluster) ? openUpload : undefined}
                 onJumpToPlan={jumpToPlan}
-                onDelete={handleDeleteItem}
-                onRefreshSection={refreshSection}
+                onDelete={clusterCanClearData(activeCluster) ? handleDeleteItem : undefined}
+                onRefreshSection={clusterCanClearData(activeCluster) ? refreshSection : undefined}
               />
             </>
           )}

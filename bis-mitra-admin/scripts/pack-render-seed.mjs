@@ -51,9 +51,9 @@ function normalizeStoreForRender(store) {
   cluster.secured = true;
   cluster.deletable = false;
   cluster.renamable = false;
-  for (const c of store.clusters) {
-    if (c.id !== SEED_CLUSTER_ID) c.published = false;
-  }
+  cluster.name = cluster.name || 'MITRA Knowledge';
+  cluster.description = cluster.description || 'Pre-built demo corpus — indexed for the agent (read-only on deploy)';
+  store.clusters = [cluster];
   store.warehouse = (store.warehouse || []).filter((w) => w.clusterId === SEED_CLUSTER_ID);
   store.plans = (store.plans || []).filter((p) => p.clusterId === SEED_CLUSTER_ID);
   store.history = (store.history || []).filter((h) => h.clusterId === SEED_CLUSTER_ID);
@@ -61,6 +61,9 @@ function normalizeStoreForRender(store) {
     const plan = store.plans.find((p) => p.id === s.planId);
     return plan?.clusterId === SEED_CLUSTER_ID;
   });
+  store.fetches = [];
+  store.ingestionFailures = [];
+  store.automationEvents = [];
   updateClusterFileCounts(store);
   return store;
 }

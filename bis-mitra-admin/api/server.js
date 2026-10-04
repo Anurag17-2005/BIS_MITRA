@@ -700,6 +700,9 @@ app.patch('/api/clusters/:clusterId/publish', (req, res) => {
   const target = store.clusters.find(c => c.id === req.params.clusterId);
   if (!target) return res.status(404).json({ error: 'Cluster not found' });
   const published = req.body.published === undefined ? true : !!req.body.published;
+  if (!published && (target.secured || target.deletable === false)) {
+    return res.status(403).json({ error: 'Demo knowledge cluster cannot be unpublished' });
+  }
   let indexPromoted = null;
   if (published) {
     for (const c of store.clusters) {
