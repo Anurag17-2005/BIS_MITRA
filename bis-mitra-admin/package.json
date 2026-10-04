@@ -15,7 +15,14 @@
     "test:agent:trace": "node api/tests/agent/retrieval-trace.test.mjs",
     "test:agent": "npm run test:agent:router && npm run test:agent:trace",
     "test:agent:context": "node api/tests/agent/context-alerts-tools.test.mjs",
+    "test:preflight": "node api/tests/helpers/preflight.mjs",
+    "test:integration": "node api/tests/integration/apply-seed-merge.test.mjs && node api/tests/integration/cluster-flags.test.mjs && node api/tests/integration/cluster-publish-portal.test.mjs",
     "test:proof:industry": "node api/tests/agent/industry-proof-actions.test.mjs",
+    "test:proof:01": "node api/tests/agent/industry-proof-actions.test.mjs --only=1",
+    "test:proof:02": "node api/tests/agent/industry-proof-actions.test.mjs --only=2",
+    "test:proof:03": "node api/tests/agent/industry-proof-actions.test.mjs --only=3",
+    "test:proof:suite": "node api/tests/agent/proof-suite.test.mjs",
+    "test:proof:all": "node api/tests/helpers/preflight.mjs && node api/tests/integration/apply-seed-merge.test.mjs && npm run test:proof:suite && node api/tests/integration/cluster-flags.test.mjs && node api/tests/integration/cluster-publish-portal.test.mjs",
     "test:proof:4-10": "node api/tests/agent/proof-actions-4-10.test.mjs",
     "test:proof:04": "node api/tests/agent/proof-actions-4-10.test.mjs --only=4",
     "test:proof:05": "node api/tests/agent/proof-actions-4-10.test.mjs --only=5",
@@ -43,7 +50,8 @@
     "build:demo": "OCR_ENABLED=0 node scripts/run-full.mjs --cluster demo-pipeline-2 && node -e \"import { promoteIndexToLive } from './api/transformation/pipeline/run-index.js'; promoteIndexToLive('demo-pipeline-2');\"",
     "build:mitra-knowledge": "npm run seed:c2 && OCR_ENABLED=0 node scripts/run-full.mjs --cluster mitra-knowledge && node -e \"import { promoteIndexToLive } from './api/transformation/pipeline/run-index.js'; promoteIndexToLive('mitra-knowledge');\"",
     "pack:render-seed": "node scripts/pack-render-seed.mjs",
-    "apply:render-seed": "node scripts/apply-render-seed.mjs"
+    "apply:render-seed": "node scripts/apply-render-seed.mjs",
+    "test:e2e:portal": "npm run test:e2e --prefix ../bis-mitra-user"
   },
   "workspaces": ["api", "frontend"],
   "devDependencies": {

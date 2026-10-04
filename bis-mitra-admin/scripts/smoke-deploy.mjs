@@ -88,6 +88,34 @@ async function main() {
     console.log('SKIP clone checks (set CLONE_API to enable)');
   }
 
+  if (process.env.SMOKE_CHAT === '1') {
+    const pid = portal.ok ? portal.data?.publishedClusterId : null;
+    if (!pid) {
+      console.log('SKIP SMOKE_CHAT (no published cluster — publish in admin first)');
+    } else {
+      const chatRes = await fetch(`${ADMIN}/api/agent/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: 'What BIS standard applies to industrial safety helmets?',
+          clusterId: pid,
+          personaMode: 'industry',
+          userPersona: 'industry',
+          sessionId: `smoke-${Date.now()}`,
+          userId: 'industry',
+          language: 'en',
+        }),
+      });
+      const chatBody = await chatRes.json().catch(() => ({}));
+      if (chatRes.ok && (chatBody.panel || chatBody.answer?.length > 10)) {
+        pass('SMOKE_CHAT', `clusterId=${pid}`);
+      } else {
+        fail('SMOKE_CHAT', chatBody.error || `status ${chatRes.status}`);
+        failed += 1;
+      }
+    }
+  }
+
   process.exit(failed > 0 ? 1 : 0);
 }
 

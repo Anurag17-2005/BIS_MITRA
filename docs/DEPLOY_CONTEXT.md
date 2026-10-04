@@ -56,13 +56,15 @@ ADMIN_API=https://<admin>.up.railway.app CLONE_API=https://<clone>.up.railway.ap
 
 Manual: 2–3 chat prompts from [PROOF_ACTIONS_4_10_PLAN.md](../PROOF_ACTIONS_4_10_PLAN.md) or industry helmet prompt after you publish.
 
-Local proof suite (default localhost admin + `proof-actions-sandbox`):
+Full local test matrix: see **[TEST_MATRIX.md](TEST_MATRIX.md)**.
 
 ```bash
 cd bis-mitra-admin
-npm run test:proof:industry
-npm run test:proof:4-10
+npm run test:proof:all          # preflight + proof 1–10 + integration
+cd ../bis-mitra-user && npm run test:e2e   # portal UI (admin + clone must be running)
 ```
+
+Prod optional chat probe: `SMOKE_CHAT=1 ADMIN_API=… CLONE_API=… node scripts/smoke-deploy.mjs`
 
 ## Railway / Vercel wiring (reminder)
 

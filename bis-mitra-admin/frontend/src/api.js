@@ -61,7 +61,6 @@ export async function getStatus() {
 }
 
 export async function getClusters() {
-  if (!API) throw new Error('ADMIN_API_URL is not set (rebuild admin UI on Vercel with env vars).');
   const res = await fetch(`${API}/api/clusters`, { headers: headers(false) });
   const data = await parseJson(res);
   return Array.isArray(data) ? data : [];

@@ -11,5 +11,7 @@ export const config = {
 };
 
 export function apiUrlConfigured() {
-  return Boolean(config.apiUrl);
+  if (config.apiUrl) return true;
+  // Vite dev proxies /api → localhost:5050 when apiUrl is empty
+  return import.meta.env.DEV;
 }

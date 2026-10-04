@@ -149,9 +149,9 @@ export default function PortalApp({
     if (clusterIdProp) setClusterId(clusterIdProp);
   }, [clusterIdProp]);
 
-  useEffect(() => {
-    if (mode === 'preview' && clusterIdProp) return undefined;
-    api.getPortalConfig()
+  const loadPortalConfig = useCallback(() => {
+    if (mode === 'preview' && clusterIdProp) return Promise.resolve();
+    return api.getPortalConfig()
       .then((cfg) => {
         if (!clusterIdProp) {
           setClusterId(cfg.publishedClusterId || '');
@@ -159,11 +159,24 @@ export default function PortalApp({
         }
         if (!cfg.publishedClusterId && mode === 'user') {
           setError('No knowledge cluster is published yet.');
+        } else if (mode === 'user' && cfg.publishedClusterId) {
+          setError('');
         }
       })
       .catch(() => setError('Could not reach the BIS MITRA service. Start the admin API on port 5050.'));
-    return undefined;
   }, [mode, clusterIdProp]);
+
+  useEffect(() => {
+    loadPortalConfig();
+    if (mode !== 'user') return undefined;
+    const onFocus = () => { loadPortalConfig(); };
+    window.addEventListener('focus', onFocus);
+    const pollId = setInterval(() => { loadPortalConfig(); }, 60_000);
+    return () => {
+      window.removeEventListener('focus', onFocus);
+      clearInterval(pollId);
+    };
+  }, [loadPortalConfig, mode]);
 
   useEffect(() => {
     setMessages([]);
@@ -408,7 +421,12 @@ export default function PortalApp({
         <button type="button" className="bp-icon-btn bp-menu" onClick={() => setSidebar((s) => !s)} aria-label="Menu">☰</button>
         <div className="bp-view-as">
           <span>{t(lang, 'viewAs')}</span>
-          <select value={personaId} onChange={(e) => setPersonaId(e.target.value)} aria-label="View as persona">
+          <select
+            data-testid="portal-persona-select"
+            value={personaId}
+            onChange={(e) => setPersonaId(e.target.value)}
+            aria-label="View as persona"
+          >
             {PERSONAS.map((p) => (
               <option key={p.id} value={p.id}>{p.short}</option>
             ))}
@@ -439,7 +457,9 @@ export default function PortalApp({
               ))}
             </select>
           )}
-          {mode === 'user' && clusterName && <small className="bp-muted">Knowledge · {clusterName}</small>}
+          {mode === 'user' && clusterName && (
+            <small className="bp-muted" data-testid="portal-knowledge-label">Knowledge · {clusterName}</small>
+          )}
           {mode === 'preview' && onExit && (
             <button type="button" className="bp-text-btn" onClick={onExit}>← Maintainer</button>
           )}
@@ -472,16 +492,27 @@ export default function PortalApp({
             </div>
           )}
         </div>
-        <select className="bp-select" value={lang} onChange={(e) => setLang(e.target.value)} aria-label="Language">
+        <select
+          className="bp-select"
+          data-testid="portal-lang-select"
+          value={lang}
+          onChange={(e) => setLang(e.target.value)}
+          aria-label="Language"
+        >
           <option value="en">EN</option>
           <option value="hi">हिन्दी</option>
         </select>
-        <button type="button" className="bp-text-btn" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+        <button
+          type="button"
+          className="bp-text-btn"
+          data-testid="portal-theme-toggle"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        >
           {theme === 'dark' ? '☀ Light' : '☾ Dark'}
         </button>
       </header>
 
-      {error && <div className="bp-banner">{error}</div>}
+      {error && <div className="bp-banner" data-testid="portal-error-banner">{error}</div>}
       {docNote && <div className="bp-inline-note">{docNote}</div>}
 
       <div
@@ -780,6 +811,7 @@ function Home({ persona, lang = 'en', libReady = false, messages, busy, prompts,
         {voiceError && <span className="bp-voice-status">{voiceError}</span>}
         <div className="bp-input bp-input-slim">
           <input
+            data-testid="portal-chat-input"
             placeholder={t(lang, 'askAnything')}
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -799,6 +831,7 @@ function Home({ persona, lang = 'en', libReady = false, messages, busy, prompts,
             <button
               type="button"
               className="bp-send bp-input-tool"
+              data-testid="portal-send"
               disabled={busy || (!input.trim() && !attachName)}
               onClick={dispatch}
               title={t(lang, 'askMitra') || 'Send'}
@@ -886,7 +919,7 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
   if (panel?.checklist) {
     const c = panel.checklist;
     return (
-      <div className="bp-card bp-compliance-result">
+      <div className="bp-card bp-compliance-result" data-testid="portal-compliance-card">
         <header><small>Import / FMCS checklist</small><strong>{c.standard}</strong></header>
         <div className="bp-grid4">
           <div className="tone-blue"><small>Product</small><p>{c.product}</p></div>
@@ -958,7 +991,7 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
   if (panel?.compliance) {
     const result = panel.compliance;
     return (
-      <div className="bp-card bp-compliance-result">
+      <div className="bp-card bp-compliance-result" data-testid="portal-compliance-card">
         <header>
           <small>Standards / Compliance Result</small>
           <strong>{result.standard_number}</strong>
