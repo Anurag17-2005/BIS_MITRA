@@ -35,12 +35,14 @@ Create **two** services under your **BIS** project (same GitHub repo, different 
 | Setting | Value |
 |---------|--------|
 | Root Directory | `bis-mitra-admin` |
-| Build Command | `cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && cd ../bis-mitra-admin && npm ci && npm rebuild better-sqlite3 -w api` |
+| Build Command | `cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && cd ../bis-mitra-admin && npm ci && npm rebuild better-sqlite3 -w api && node scripts/apply-render-seed.mjs` |
 | Start Command | `npm run start:api` |
 | Health Check Path | `/api/health` |
 | Env | `NODE_VERSION=20`, `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` (after clone is live) |
 
-Optional later: add `OCR_ENABLED=0 npm run build:demo` to admin build for full RAG indexes (slow on free tier).
+Do **not** run `build:demo` / Full rebuild on Render (OOM on large PDF sets). RAG indexes ship via **Git seed** (below).
+
+Optional: `NODE_OPTIONS=--max-old-space-size=512` on the admin service if occasional transform is needed.
 
 Copy public URLs when ready:
 
@@ -127,14 +129,50 @@ Repeat per app root with its `VITE_*` set.
 
 - `GET https://<CLONE_API>/api/health`
 - `GET https://<ADMIN_API>/api/health`
-- Open user portal → chat (needs Groq)
+- `GET https://<ADMIN_API>/api/portal/config` → `publishedClusterId: "mitra-knowledge"` (when seed is committed)
+- Open user portal → chat (needs Groq on admin API)
 - “Open on BIS” links → Vercel clone sites
 
-## 5. Not deployed (by design)
+## 5. Pre-built RAG seed (`mitra-knowledge`) via GitHub
 
-- Local `data/bronze` (~GB) — rebuilt via `build:demo` on Render admin service
+Transform runs **locally**; Render applies committed seed on each deploy (same idea as `bis-clone.seed.db`).
+
+**Local (high RAM):**
+
+```bash
+cd bis-mitra-admin
+npm ci
+set NODE_OPTIONS=--max-old-space-size=4096   # Windows; use export on macOS/Linux
+npm run build:mitra-knowledge
+npm run pack:render-seed
+```
+
+Verify before pack:
+
+- `http://localhost:5050/api/portal/config` → published `mitra-knowledge`
+- Transform tab → live index chunk count &gt; 0
+
+**Git:**
+
+```bash
+git lfs install
+git add bis-mitra-admin/data/render-seed .gitattributes
+git commit -m "chore: add Render admin seed for mitra-knowledge"
+git push origin main
+```
+
+Render admin build runs `node scripts/apply-render-seed.mjs` (no-op if seed not in repo yet).
+
+Seed paths: [`bis-mitra-admin/data/render-seed/`](bis-mitra-admin/data/render-seed/) — see [`docs/vercel-env.example`](vercel-env.example) for frontends only.
+
+Evaluators: use published **`mitra-knowledge`**; avoid **Full rebuild** on production admin API.
+
+## 6. Not deployed (by design)
+
+- Local `data/bronze` (~GB) — not required when using `render-seed`
+- Live `data/indexes/` and `admin-store.json` (gitignored); only `data/render-seed/` is committed
 - `node_modules`, logs, sandbox under `proof-actions-sandbox`
 
-## Admin login
+## 7. Admin login
 
-Password default **`mitra`** (`ADMIN_PASSWORD` on admin API if you override).
+Password default **`mitra`** (`ADMIN_PASSWORD` on admin API if you override). Auth is disabled when `RENDER=true`.

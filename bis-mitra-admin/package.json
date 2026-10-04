@@ -40,7 +40,10 @@
     "index:c2": "node scripts/run-index.mjs --cluster mitra-knowledge",
     "build": "OCR_ENABLED=0 node scripts/run-full.mjs --cluster demo-pipeline-2",
     "build:all": "OCR_ENABLED=0 node scripts/run-full.mjs --all",
-    "build:demo": "OCR_ENABLED=0 node scripts/run-full.mjs --cluster demo-pipeline-2 && node -e \"import { promoteIndexToLive } from './api/transformation/pipeline/run-index.js'; promoteIndexToLive('demo-pipeline-2');\""
+    "build:demo": "OCR_ENABLED=0 node scripts/run-full.mjs --cluster demo-pipeline-2 && node -e \"import { promoteIndexToLive } from './api/transformation/pipeline/run-index.js'; promoteIndexToLive('demo-pipeline-2');\"",
+    "build:mitra-knowledge": "npm run seed:c2 && OCR_ENABLED=0 node scripts/run-full.mjs --cluster mitra-knowledge && node -e \"import { promoteIndexToLive } from './api/transformation/pipeline/run-index.js'; promoteIndexToLive('mitra-knowledge');\"",
+    "pack:render-seed": "node scripts/pack-render-seed.mjs",
+    "apply:render-seed": "node scripts/apply-render-seed.mjs"
   },
   "workspaces": ["api", "frontend"],
   "devDependencies": {

@@ -8,5 +8,9 @@ dist/
 
 # Ignore large data files
 bis-mitra-admin/data/indexes/
+bis-mitra-admin/data/uploads/
 bis-mitra-admin/data/admin-store.json
 bis-mitra-admin/data/rules-store.json
+# Committed Render seed (pack locally → push → apply on Render build)
+!bis-mitra-admin/data/render-seed/
+!bis-mitra-admin/data/render-seed/**

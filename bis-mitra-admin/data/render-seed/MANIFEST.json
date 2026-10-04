@@ -1,0 +1,10 @@
+{
+  "clusterId": "mitra-knowledge",
+  "packedAt": "2026-10-04T06:01:24.417Z",
+  "gitSha": "66f03b5",
+  "warehouseItems": 68,
+  "chunkCount": 2793,
+  "liveIndex": "D:\\BIS_MITRA\\bis-mitra-admin\\data\\render-seed\\indexes\\mitra-knowledge\\index\\live\\search-index.json",
+  "uploadFiles": 68,
+  "indexFiles": 75
+}
