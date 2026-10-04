@@ -1,6 +1,8 @@
 # Railway: set service Root Directory to `bis-mitra-admin` (not repo root).
 [build]
-buildCommand = "cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && cd ../bis-mitra-admin && npm ci && npm rebuild better-sqlite3 -w api && (command -v git-lfs >/dev/null && git lfs install && git lfs pull || true) && node scripts/apply-render-seed.mjs"
+# Root Directory must be `bis-mitra-admin` — sibling `bis-clone` is not in the build context.
+# Railpack already runs `npm install`; rebuild native modules and apply committed demo seed only.
+buildCommand = "npm rebuild better-sqlite3 -w api && (command -v git-lfs >/dev/null && git lfs install && git lfs pull || true) && node scripts/apply-render-seed.mjs"
 
 [deploy]
 startCommand = "npm run start:api"

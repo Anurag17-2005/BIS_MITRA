@@ -61,13 +61,15 @@ Railway also sets `RAILWAY_PUBLIC_DOMAIN`; clone API will use `https://${RAILWAY
 
 ### Admin API (`bis-mitra-admin`)
 
-**Build:**
+**Build** (in [`bis-mitra-admin/railway.toml`](../bis-mitra-admin/railway.toml); do **not** `cd ../bis-clone` — with Root Directory `bis-mitra-admin`, only that folder exists in the build image):
 
 ```bash
-cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && cd ../bis-mitra-admin && npm ci && npm rebuild better-sqlite3 -w api && node scripts/apply-render-seed.mjs
+npm rebuild better-sqlite3 -w api && (command -v git-lfs >/dev/null && git lfs install && git lfs pull || true) && node scripts/apply-render-seed.mjs
 ```
 
-(`apply-render-seed` applies the committed **`mitra-knowledge`** demo — same as Render.)
+Railpack runs `npm install` before this. `apply-render-seed` applies the committed **`mitra-knowledge`** demo (same as Render).
+
+**Clone data on admin:** there is no local `bis-clone.db` on this service. Set **`CLONE_API`** to the clone Railway URL so HTTP-backed features work. Direct SQLite (`clone-db.js`, some ingestion/runner paths) need **`CLONE_DB_PATH`** only if you mount or copy a DB file — optional for the agent demo if clone API is up.
 
 **Variables (minimum):**
 
