@@ -29,6 +29,20 @@ async function main() {
   if (cloneHealth.ok) ok(`clone ${CLONE}/api/health`);
   else fail(`clone health (${cloneHealth.status}) — start bis-clone on :4000`);
 
+  if (cloneHealth.ok) {
+    const q = encodeURIComponent('industrial safety helmet');
+    const stdRes = await fetchJson(`${CLONE}/api/standards?q=${q}`);
+    const rows = Array.isArray(stdRes.body) ? stdRes.body : [];
+    const demo = rows.find((r) => r.demo_id === 'STD-DEMO-001' || r.is_number === 'IS DEMO 1001:2026');
+    if (demo) ok('clone demo standard STD-DEMO-001');
+    else {
+      fail('clone missing STD-DEMO-001 — run `cd bis-clone && npm install && npm run seed` (or redeploy clone with demo DB)');
+    }
+    const cml = await fetchJson(`${CLONE}/api/registry/verify?cml=CML-DEMO-61003`);
+    if (cml.ok && cml.body?.found) ok('clone registry CML-DEMO-61003');
+    else fail('clone registry verify failed — demo data not loaded');
+  }
+
   if (fs.existsSync(CLONE_DB)) {
     try {
       const { default: Database } = await import('better-sqlite3');

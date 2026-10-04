@@ -52,7 +52,18 @@ async function main() {
   const portal = await getJson(`${ADMIN}/api/portal/config`);
   if (portal.ok) {
     const pid = portal.data?.publishedClusterId;
-    pass('portal /api/portal/config', `publishedClusterId=${pid ?? 'null'}`);
+    const extras = [
+      portal.data?.bisWebUrl ? `bisWeb=${portal.data.bisWebUrl}` : null,
+      portal.data?.cloneFilesBase ? 'cloneFiles=set' : null,
+    ].filter(Boolean).join(' ');
+    pass('portal /api/portal/config', `publishedClusterId=${pid ?? 'null'}${extras ? ` ${extras}` : ''}`);
+    if (portal.data?.bisWebUrl && /localhost/i.test(portal.data.bisWebUrl)) {
+      fail('portal bisWebUrl', 'still localhost — set URL_BIS on Railway admin');
+      failed += 1;
+    }
+    if (pid === 'test') {
+      console.log('WARN published cluster is "test" — prefer proof-actions-sandbox for demo proofs');
+    }
   } else {
     fail('portal config', `status ${portal.status}`);
     failed += 1;
@@ -84,6 +95,26 @@ async function main() {
       fail('clone registry verify', `status ${verify.status}`);
       failed += 1;
     }
+
+    const filesBase = (portal.ok && portal.data?.cloneFilesBase)
+      ? String(portal.data.cloneFilesBase).replace(/\/$/, '')
+      : `${CLONE}/files`;
+    const pdfUrl = `${filesBase}/knowledge/pdfs/demo/qco.pdf`;
+    try {
+      const head = await fetch(pdfUrl, { method: 'HEAD' });
+      if (head.ok) pass('clone demo PDF HEAD', pdfUrl.slice(0, 80));
+      else {
+        const get = await fetch(pdfUrl, { method: 'GET' });
+        if (get.ok) pass('clone demo PDF GET', 'HEAD not supported');
+        else {
+          fail('clone demo PDF', `status ${head.status} ${pdfUrl}`);
+          failed += 1;
+        }
+      }
+    } catch (err) {
+      fail('clone demo PDF', err.message);
+      failed += 1;
+    }
   } else {
     console.log('SKIP clone checks (set CLONE_API to enable)');
   }
@@ -93,11 +124,13 @@ async function main() {
     if (!pid) {
       console.log('SKIP SMOKE_CHAT (no published cluster — publish in admin first)');
     } else {
+      const helmetPrompt =
+        'I manufacture industrial safety helmets. What BIS standard applies to my product, is certification mandatory, and what tests and documents do I need?';
       const chatRes = await fetch(`${ADMIN}/api/agent/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: 'What BIS standard applies to industrial safety helmets?',
+          message: helmetPrompt,
           clusterId: pid,
           personaMode: 'industry',
           userPersona: 'industry',
@@ -107,10 +140,24 @@ async function main() {
         }),
       });
       const chatBody = await chatRes.json().catch(() => ({}));
-      if (chatRes.ok && (chatBody.panel || chatBody.answer?.length > 10)) {
-        pass('SMOKE_CHAT', `clusterId=${pid}`);
-      } else {
+      const compliance = chatBody.panel?.compliance;
+      if (!chatRes.ok) {
         fail('SMOKE_CHAT', chatBody.error || `status ${chatRes.status}`);
+        failed += 1;
+      } else if (!compliance?.standard_number) {
+        fail(
+          'SMOKE_CHAT compliance panel',
+          `missing panel.compliance (probe/RAG only?). cluster=${pid} probe=${chatBody.probe?.tool || 'none'}`,
+        );
+        failed += 1;
+      } else if (!/IS DEMO 1001/i.test(String(compliance.standard_number))) {
+        fail('SMOKE_CHAT standard', `got ${compliance.standard_number}`);
+        failed += 1;
+      } else {
+        pass('SMOKE_CHAT', `${compliance.standard_number} tests=${compliance.tests?.length ?? 0}`);
+      }
+      if (chatRes.ok && chatBody.answer && /\{"dataset"\s*:/.test(chatBody.answer)) {
+        fail('SMOKE_CHAT answer leak', 'raw JSON in user-visible answer — redeploy admin sanitize');
         failed += 1;
       }
     }

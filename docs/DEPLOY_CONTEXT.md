@@ -64,7 +64,9 @@ npm run test:proof:all          # preflight + proof 1–10 + integration
 cd ../bis-mitra-user && npm run test:e2e   # portal UI (admin + clone must be running)
 ```
 
-Prod optional chat probe: `SMOKE_CHAT=1 ADMIN_API=… CLONE_API=… node scripts/smoke-deploy.mjs`
+Prod optional chat probe: `SMOKE_CHAT=1 ADMIN_API=… CLONE_API=… node scripts/smoke-deploy.mjs` (asserts helmet **compliance panel**, demo PDF, warns on `test` cluster).
+
+Full proof gate: [PROOF_ACTIONS_RUNBOOK.md](PROOF_ACTIONS_RUNBOOK.md) Phase 0 + `npm run test:proof:all`.
 
 ## Railway / Vercel wiring (reminder)
 

@@ -2,6 +2,8 @@
 
 Maps user/admin features to automated tests. Run local stack: **clone :4000**, **admin :5050**, then tests from `bis-mitra-admin`.
 
+**Panel demo rehearsal:** [PROOF_ACTIONS_RUNBOOK.md](PROOF_ACTIONS_RUNBOOK.md) (10 proof actions, deploy gate, checklists).
+
 ## Commands
 
 | Command | Scope |
@@ -31,6 +33,7 @@ Maps user/admin features to automated tests. Run local stack: **clone :4000**, *
 | 8 personas + welcome tiles | Playwright | `portal-personas.spec.js` |
 | Published cluster label | Playwright | `portal-publish-cross.spec.js` |
 | Helmet compliance card (action 1 UI) | Playwright | `portal-publish-cross.spec.js` |
+| Proof cards 1,4,5,6 (quick) | Playwright | `proof-actions-quick.spec.js` |
 | Unpublished banner | Playwright | `portal-unpublished.spec.js` |
 | Config refresh on focus | Playwright | `portal-config-refresh.spec.js` |
 | Voice mic | Manual | — |

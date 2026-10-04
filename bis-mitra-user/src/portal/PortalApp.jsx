@@ -921,7 +921,7 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
   if (panel?.checklist) {
     const c = panel.checklist;
     return (
-      <div className="bp-card bp-compliance-result" data-testid="portal-compliance-card">
+      <div className="bp-card bp-compliance-result" data-testid="portal-checklist-card">
         <header><small>Import / FMCS checklist</small><strong>{c.standard}</strong></header>
         <div className="bp-grid4">
           <div className="tone-blue"><small>Product</small><p>{c.product}</p></div>
@@ -942,7 +942,7 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
   if (panel?.matching) {
     const m = panel.matching;
     return (
-      <div className="bp-card">
+      <div className="bp-card" data-testid="portal-matching-card">
         <small>Recommended laboratory</small>
         <strong>{m.recommended}</strong>
         <p>{m.lab_code} · {m.city}, {m.state} · {m.demo_id}</p>
@@ -954,7 +954,7 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
   if (panel?.verification) {
     const v = panel.verification;
     return (
-      <div className="bp-verify bp-card">
+      <div className="bp-verify bp-card" data-testid="portal-verify-card">
         <strong>{v.verification_result || (v.verified ? 'VERIFIED' : 'MISMATCH')}</strong>
         <p>{v.identifier || v.huid}</p>
         {v.manufacturer && <p>{v.manufacturer} · {v.product}</p>}
@@ -1077,7 +1077,7 @@ function ResponseCards({ panel, uiMode, lang = 'en', onConfirm, onAction }) {
   if (uiMode === 'comparison' && panel.comparison?.rows?.length) {
     const cmp = panel.comparison;
     return (
-      <div className="bp-card">
+      <div className="bp-card" data-testid="portal-comparison-card">
         <small>Standard comparison</small>
         <strong>{cmp.old_is_number} → {cmp.new_is_number}</strong>
         <table>
