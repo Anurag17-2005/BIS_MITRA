@@ -71,6 +71,7 @@ export function viteEnvDefines(env, profile) {
       set('VITE_BIS_API', resolveCloneApi(env));
       set('VITE_BIS_URL', resolveUrlBis(env));
       set('VITE_MANAK_URL', resolveUrlManak(env));
+      set('VITE_CLONE_FILES', resolveCloneFiles(env));
       break;
     case 'admin': {
       const apiUrl = resolveAdminApi(env);

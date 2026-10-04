@@ -1,3 +1,5 @@
+import { getCloneFilesBase } from './portalUrls.js';
+
 const API = import.meta.env.VITE_API_URL || '';
 
 function storage(mode) {
@@ -95,10 +97,28 @@ export function sourceToPdfUrl(source) {
   const file = source.storage_uri || source.source_file || source.sourceFile || source.file;
   if (!file) return null;
   const raw = String(file).replace(/\\/g, '/').replace(/^\/+/, '');
-  let base;
-  if (raw.startsWith('http')) base = raw.split('#')[0];
-  else if (raw.startsWith('knowledge/')) base = `${API}/api/clone-files/${raw}`;
-  else if (raw.includes('/')) base = `${API}/api/clone-files/knowledge/pdfs/${raw}`;
-  else base = `${API}/api/clone-files/knowledge/pdfs/manuals/${raw}`;
-  return base;
+  if (raw.startsWith('http')) return raw.split('#')[0];
+
+  const filesBase = getCloneFilesBase();
+
+  if (raw.startsWith('knowledge/')) {
+    const rel = raw.replace(/^knowledge\//, '');
+    return `${filesBase}/${rel}`;
+  }
+  if (raw.includes('/')) {
+    return `${filesBase}/knowledge/pdfs/${raw}`;
+  }
+  return `${filesBase}/knowledge/pdfs/manuals/${raw}`;
+}
+
+/** Legacy admin-relative PDF URL (proxy to clone when local files missing). */
+export function sourceToPdfUrlViaAdmin(source) {
+  if (!source) return null;
+  const file = source.storage_uri || source.source_file || source.sourceFile || source.file;
+  if (!file) return null;
+  const raw = String(file).replace(/\\/g, '/').replace(/^\/+/, '');
+  if (raw.startsWith('http')) return raw.split('#')[0];
+  if (raw.startsWith('knowledge/')) return `${API}/api/clone-files/${raw}`;
+  if (raw.includes('/')) return `${API}/api/clone-files/knowledge/pdfs/${raw}`;
+  return `${API}/api/clone-files/knowledge/pdfs/manuals/${raw}`;
 }

@@ -1,4 +1,4 @@
-const BIS_WEB = import.meta.env.VITE_BIS_URL || 'http://localhost:3001';
+import { getBisWeb } from './portalUrls.js';
 
 const FILE_PAGE = {
   'certification.pdf': '/product-certification/process',
@@ -54,6 +54,7 @@ function isBisHttp(url) {
   if (!url || typeof url !== 'string') return false;
   if (!/^https?:\/\//i.test(url)) return false;
   return url.includes('localhost:3001')
+    || /bis-clone|vercel\.app/i.test(url)
     || url.includes('bis.gov.in')
     || isPortalPath(url);
 }
@@ -63,7 +64,7 @@ export function resolvePortalUrl(source = {}) {
   const sourceType = source.source_type || source.sourceType || null;
 
   if (sourceType === 'compulsory_portal') {
-    return `${BIS_WEB}/product-certification/compulsory`;
+    return `${getBisWeb()}/product-certification/compulsory`;
   }
 
   const stored = source.sourceUrl || source.bisUrl || source.origin_url || null;
@@ -71,23 +72,23 @@ export function resolvePortalUrl(source = {}) {
   if (stored && isBisHttp(stored)) return stored;
 
   if (sourceType && TYPE_PAGE[sourceType]) {
-    return `${BIS_WEB}${TYPE_PAGE[sourceType]}`;
+    return `${getBisWeb()}${TYPE_PAGE[sourceType]}`;
   }
 
   const file = basename(source.storage_uri || source.source_file);
-  if (file && FILE_PAGE[file]) return `${BIS_WEB}${FILE_PAGE[file]}`;
-  if (file && /_demo\.pdf$/.test(file)) return `${BIS_WEB}/product-certification/process`;
+  if (file && FILE_PAGE[file]) return `${getBisWeb()}${FILE_PAGE[file]}`;
+  if (file && /_demo\.pdf$/.test(file)) return `${getBisWeb()}/product-certification/process`;
 
   const storage = String(source.storage_uri || source.source_file || '');
-  if (/\/pdfs\/process\//i.test(storage)) return `${BIS_WEB}/product-certification/process`;
-  if (/\/pdfs\/schemes\//i.test(storage)) return `${BIS_WEB}/product-certification/process`;
-  if (/\/pdfs\/manuals\//i.test(storage)) return `${BIS_WEB}/product-manuals`;
-  if (/\/pdfs\/consumer\//i.test(storage)) return `${BIS_WEB}/consumer/complaints`;
-  if (/\/pdfs\/labs\//i.test(storage)) return `${BIS_WEB}/regulatory-hub`;
-  if (/\/pdfs\/hallmarking\//i.test(storage)) return `${BIS_WEB}/consumer-guidance`;
+  if (/\/pdfs\/process\//i.test(storage)) return `${getBisWeb()}/product-certification/process`;
+  if (/\/pdfs\/schemes\//i.test(storage)) return `${getBisWeb()}/product-certification/process`;
+  if (/\/pdfs\/manuals\//i.test(storage)) return `${getBisWeb()}/product-manuals`;
+  if (/\/pdfs\/consumer\//i.test(storage)) return `${getBisWeb()}/consumer/complaints`;
+  if (/\/pdfs\/labs\//i.test(storage)) return `${getBisWeb()}/regulatory-hub`;
+  if (/\/pdfs\/hallmarking\//i.test(storage)) return `${getBisWeb()}/consumer-guidance`;
 
   const domain = cleanDomain(source.librarySection || source.domain || source.section);
-  if (domain && DOMAIN_PAGE[domain]) return `${BIS_WEB}${DOMAIN_PAGE[domain]}`;
+  if (domain && DOMAIN_PAGE[domain]) return `${getBisWeb()}${DOMAIN_PAGE[domain]}`;
 
   return null;
 }

@@ -22,7 +22,12 @@ import { expandQueryTerms } from '../retrieval/regulatory/synonym-expander.js';
 import { bestEnforcementForIsList } from '../retrieval/regulatory/qco-matcher.js';
 import { applyTruthShield, extractVerifiedFacts } from './truth-shield.js';
 import { shouldRunLiveProbe, runLivePlaywrightProbe } from './live-probe.js';
-import { resolvePersonaMode, formatForPersona, formatPersonaPlaybook } from './persona.js';
+import {
+  resolvePersonaMode,
+  formatForPersona,
+  formatPersonaPlaybook,
+  sanitizeAssistantAnswer,
+} from './persona.js';
 import { composeWithLlm, llmConfigured, llmProvider } from './llm.js';
 import { enrichProofPanel, mergeProofPanel } from './proof-panels.js';
 import {
@@ -277,7 +282,7 @@ function buildModuleTags(router, retrievalResult, probe, toolName, llmMeta) {
 function sourcesFromProbe(probe, toolName) {
   const tool = probe?.tool || toolName;
   const results = probe?.data?.results;
-  const BIS = process.env.BIS_WEB || 'http://localhost:3001';
+  const BIS = (process.env.URL_BIS || process.env.BIS_WEB_URL || process.env.BIS_WEB || 'http://localhost:3001').replace(/\/$/, '');
   if (!Array.isArray(results) || !results.length) {
     if (tool === 'search_surveillance' && probe?.data?.results === undefined && probe?.data?.length) {
       return probe.data.slice(0, 5).map((r, i) => ({
@@ -1402,7 +1407,7 @@ export async function agentChat(message, {
     probe: live?.ok ? { data: live } : probe,
     extraCorpus: { query, enforcement: enforcementForLlm, verifiedFacts, expandedTerms: exp.expandedTerms },
   });
-  draft = shielded.answer;
+  draft = sanitizeAssistantAnswer(shielded.answer);
 
   let uiSources = buildUiSources(hits, retrievalResult.sources, probe, toolName);
   // EVIDENCE → keep diversified validated sources if the cap wiped them
@@ -1418,6 +1423,21 @@ export async function agentChat(message, {
       console.warn('[chat] restoring diversified validated sources after aggressive cap');
       uiSources = merged;
     }
+  }
+
+  const panelBuilt = withSuggestedAction({
+    ...buildCapabilityPanel(router, probe, retrievalResult, query),
+    noVerifiedSources: chatModule !== 'advice' && !uiSources.length,
+    missingData: llmContract?.missing_data?.length ? llmContract.missing_data : undefined,
+  }, llmContract?.suggested_cta);
+
+  if (panelBuilt.compliance && personaFinal === 'industry') {
+    const c = panelBuilt.compliance;
+    draft = sanitizeAssistantAnswer(
+      `**${c.product_category}** — applicable standard **${c.standard_number}**`
+      + (c.applicability ? ` (${c.applicability})` : '')
+      + '.\n\nRequirements, tests, and documents are listed in the compliance card below.',
+    );
   }
 
   const ragPayload = {
@@ -1450,11 +1470,7 @@ export async function agentChat(message, {
     },
     uiMode: chatModule === 'advice' ? 'advice' : router.uiMode,
     capability: router.capability,
-    panel: withSuggestedAction({
-      ...buildCapabilityPanel(router, probe, retrievalResult, query),
-      noVerifiedSources: chatModule !== 'advice' && !uiSources.length,
-      missingData: llmContract?.missing_data?.length ? llmContract.missing_data : undefined,
-    }, llmContract?.suggested_cta),
+    panel: panelBuilt,
     retrieval: {
       type: retrievalResult.retrieval_type,
       methods: retrievalResult.methods_used,

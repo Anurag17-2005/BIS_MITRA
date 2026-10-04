@@ -69,5 +69,6 @@ Prod optional chat probe: `SMOKE_CHAT=1 ADMIN_API=… CLONE_API=… node scripts
 ## Railway / Vercel wiring (reminder)
 
 - Admin build: **no** `cd ../bis-clone`; LFS pull + `apply-render-seed.mjs` only ([`railway.toml`](../bis-mitra-admin/railway.toml)).
-- Admin env: `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` = clone public URL.
-- Vercel: `REND_ADMIN_API`, `REND_CLONE_API`, `REND_CLONE_FILES` — redeploy all five frontends after URL changes.
+- Admin env: `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` = clone public URL; optional `URL_BIS` / `URL_MANAK` (served via `/api/portal/config` so **Open on BIS** works even if a frontend was built without `URL_BIS`).
+- Vercel: `REND_ADMIN_API`, `REND_CLONE_API`, `REND_CLONE_FILES`, `URL_BIS`, `URL_MANAK` — redeploy all five frontends after URL changes.
+- Publish an **indexed** cluster (e.g. `proof-actions-sandbox`), not an empty `test` cluster, for helmet compliance cards and clean answers.

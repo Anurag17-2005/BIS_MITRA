@@ -3,6 +3,7 @@ import * as api from './api';
 import { PERSONAS, QUICK_BY_PERSONA, getPersona, profileFor } from './personas';
 import { ALERTS_BY_PERSONA, APPLICATIONS, DOCUMENTS_BY_PERSONA, MANAK_APPLICATIONS_URL, SERVICES, modeFromResponse } from './demoData';
 import { sourceToPdfUrl } from './api';
+import { applyPortalConfig } from './portalUrls';
 import { RichText } from './markdown';
 import { groupSources, hasPdfFile, openOnBisUrl } from './sources';
 import { loadLibraryIndex } from './bisUrls';
@@ -153,6 +154,7 @@ export default function PortalApp({
     if (mode === 'preview' && clusterIdProp) return Promise.resolve();
     return api.getPortalConfig()
       .then((cfg) => {
+        applyPortalConfig(cfg);
         if (!clusterIdProp) {
           setClusterId(cfg.publishedClusterId || '');
           setClusterName(cfg.publishedClusterName || '');

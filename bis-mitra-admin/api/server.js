@@ -12,6 +12,12 @@ import { SECTIONS, sectionForPlan } from './sections.js';
 import { saveUpload } from './upload.js';
 import { FETCH_METHODS, applyMethodToPlan, normalizeFetchMethod, decoratePlan } from './methods.js';
 import { enrichWarehouseItem } from './fileUrls.js';
+import {
+  createCloneFilesHandler,
+  resolveBisWebUrl,
+  resolveCloneFilesPublicBase,
+  resolveManakWebUrl,
+} from './clone-files-proxy.js';
 import { serviceStatus } from './preflight.js';
 import { sectionFreshness } from './freshness.js';
 import { login as adminLogin, authMiddleware } from './auth.js';
@@ -106,8 +112,15 @@ const upload = multer({
 app.use(cors());
 app.use(express.json());
 app.use('/api/files', express.static(FETCH_DATA_PATH));
-app.use('/api/clone-files/knowledge/pdfs', express.static(KNOWLEDGE_PDFS));
-app.use('/api/clone-files', express.static(CLONE_FILES));
+function mountCloneFilesGet(mountPath, localRoot, opts) {
+  const handler = createCloneFilesHandler(localRoot, opts);
+  app.use(mountPath, (req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+    return handler(req, res);
+  });
+}
+mountCloneFilesGet('/api/clone-files/knowledge/pdfs', KNOWLEDGE_PDFS, { filesPrefix: 'knowledge/pdfs' });
+mountCloneFilesGet('/api/clone-files', CLONE_FILES);
 app.use('/api/uploads', express.static(UPLOADS_PATH));
 
 app.post('/api/login', (req, res) => {
@@ -159,6 +172,9 @@ app.get('/api/portal/config', (_req, res) => {
     publishedClusterId: published?.id || null,
     publishedClusterName: published?.name || null,
     cloneApi: process.env.CLONE_API || 'http://localhost:4000',
+    cloneFilesBase: resolveCloneFilesPublicBase(),
+    bisWebUrl: resolveBisWebUrl(),
+    manakWebUrl: resolveManakWebUrl(),
     stt: {
       enabled: Boolean(process.env.GROQ_API_KEY || process.env.SARVAM_API_KEY),
     },

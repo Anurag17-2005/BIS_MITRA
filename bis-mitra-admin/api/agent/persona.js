@@ -2,6 +2,19 @@
  * Kid (consumer) vs Expert (industry) answer formatting.
  */
 
+/** Remove index debug prefixes and leaked JSON records from chunk text shown to users. */
+export function sanitizePassageText(text) {
+  let s = String(text || '');
+  s = s.replace(/\[Context Hierarchy:[^\]]+\]\s*/g, '');
+  const jsonIdx = s.search(/\s*\{[\s\n]*"dataset"\s*:\s*"/);
+  if (jsonIdx >= 0) s = s.slice(0, jsonIdx).trim();
+  return s.replace(/\s+\n/g, '\n').trim();
+}
+
+export function sanitizeAssistantAnswer(text) {
+  return sanitizePassageText(text);
+}
+
 export function resolvePersonaMode(mode, query, hits = []) {
   const m = String(mode || 'auto').toLowerCase();
   if (m === 'consumer' || m === 'kid') return 'consumer';
@@ -299,8 +312,7 @@ export function formatForPersona(persona, {
 
     if (hits.length) {
       const top = hits[0];
-      const plain = (top.text || top.textPreview || '')
-        .replace(/\[Context Hierarchy:[^\]]+\]\s*/g, '')
+      const plain = sanitizePassageText(top.text || top.textPreview || '')
         .replace(/#+\s*/g, '')
         .slice(0, 280)
         .trim();
@@ -359,7 +371,7 @@ export function formatForPersona(persona, {
   if (hits.length) {
     lines.push(`Retrieved ${hits.length} clause-bound passage(s):\n`);
     hits.forEach((h, i) => {
-      const excerpt = (h.text || h.textPreview || '').slice(0, 520).trim();
+      const excerpt = sanitizePassageText(h.text || h.textPreview || '').slice(0, 520).trim();
       const anchor = h.citation?.citation_anchor || h.metadata?.citation_anchor;
       const status = h.metadata?.mandatory_status;
       const scheme = h.metadata?.certification_scheme;
