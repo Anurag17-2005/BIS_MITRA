@@ -1,9 +1,10 @@
 # Copy values into Vercel → Team shared env (Production), linked to all 5 frontend projects.
 # Local: copy to app folder as .env.local or export before npm run dev.
 
-REND_ADMIN_API=https://bis-mitra-admin-api.onrender.com
-REND_CLONE_API=https://bis-mitra-clone-api.onrender.com
-REND_CLONE_FILES=https://bis-mitra-clone-api.onrender.com/files
+# Render or Railway public URLs (no trailing slash)
+REND_ADMIN_API=https://your-admin-api.up.railway.app
+REND_CLONE_API=https://your-clone-api.up.railway.app
+REND_CLONE_FILES=https://your-clone-api.up.railway.app/files
 
 URL_USER=https://bis-mitra-user.vercel.app
 URL_ADMIN_UI=https://bis-mitra-admin-ui.vercel.app

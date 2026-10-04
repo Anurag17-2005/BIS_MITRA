@@ -1,0 +1,9 @@
+# Railway: set service Root Directory to `bis-mitra-admin` (not repo root).
+[build]
+buildCommand = "cd ../bis-clone && npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && cd ../bis-mitra-admin && npm ci && npm rebuild better-sqlite3 -w api && (command -v git-lfs >/dev/null && git lfs install && git lfs pull || true) && node scripts/apply-render-seed.mjs"
+
+[deploy]
+startCommand = "npm run start:api"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"

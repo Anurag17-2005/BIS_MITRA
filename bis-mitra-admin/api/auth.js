@@ -2,10 +2,11 @@ import crypto from 'crypto';
 
 const PASSWORD = process.env.ADMIN_PASSWORD || 'mitra';
 
-/** Demo / Render deploy: skip maintainer password gate when explicitly disabled. */
+/** Demo hosted deploy: skip maintainer password gate when explicitly disabled. */
 export function authDisabled() {
   return process.env.DISABLE_ADMIN_AUTH === '1'
-    || process.env.RENDER === 'true';
+    || process.env.RENDER === 'true'
+    || Boolean(process.env.RAILWAY_ENVIRONMENT);
 }
 
 export function expectedToken() {

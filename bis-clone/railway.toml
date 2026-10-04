@@ -1,0 +1,9 @@
+# Railway: set service Root Directory to `bis-clone` (not repo root).
+[build]
+buildCommand = "npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db"
+
+[deploy]
+startCommand = "npm run start -w api"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"

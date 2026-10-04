@@ -2,6 +2,8 @@
 
 Full stack: **2 Render web services** (APIs) + **5 Vercel projects** (static UIs).
 
+**Prefer Railway for APIs?** See **[DEPLOY_RAILWAY.md](DEPLOY_RAILWAY.md)** — same seed + Vercel setup; swap `REND_ADMIN_API` / `REND_CLONE_API` to Railway URLs.
+
 ## Prerequisites
 
 - GitHub repo: `Anurag17-2005/BIS_MITRA` on `main`
@@ -175,4 +177,4 @@ Evaluators: use published **`mitra-knowledge`** (single demo cluster in seed, re
 
 ## 7. Admin login
 
-Password default **`mitra`** (`ADMIN_PASSWORD` on admin API if you override). Auth is disabled when `RENDER=true`.
+Password default **`mitra`** (`ADMIN_PASSWORD` on admin API if you override). Auth is disabled on Render/Railway demo deploy (see `auth.js`).

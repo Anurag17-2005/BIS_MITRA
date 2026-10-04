@@ -26,6 +26,9 @@ const PORT = process.env.PORT || 4000;
 const PUBLIC_BASE = (
   process.env.CLONE_PUBLIC_URL
   || process.env.RENDER_EXTERNAL_URL
+  || (process.env.RAILWAY_PUBLIC_DOMAIN
+    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+    : null)
   || `http://localhost:${PORT}`
 ).replace(/\/$/, '');
 const FILES_BASE = `${PUBLIC_BASE}/files`;

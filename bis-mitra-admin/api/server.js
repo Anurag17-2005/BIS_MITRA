@@ -1033,9 +1033,10 @@ app.post('/api/plans/run-bulk', async (req, res) => {
 const server = app.listen(PORT, () => {
   console.log(`Admin API running on http://localhost:${PORT}`);
   const skipBackground = process.env.DISABLE_BACKGROUND_JOBS === '1'
-    || process.env.RENDER === 'true';
+    || process.env.RENDER === 'true'
+    || Boolean(process.env.RAILWAY_ENVIRONMENT);
   if (skipBackground) {
-    console.log('Background scheduler / alerts / auto-sync disabled (Render or DISABLE_BACKGROUND_JOBS=1).');
+    console.log('Background scheduler / alerts / auto-sync disabled (hosted deploy or DISABLE_BACKGROUND_JOBS=1).');
   } else {
     startScheduler(15000);
     startAlertScanner({ intervalMs: 20000 });
