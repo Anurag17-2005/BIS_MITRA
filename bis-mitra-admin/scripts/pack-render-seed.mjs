@@ -33,11 +33,11 @@ function ensureSeedCluster(store) {
     cluster = {
       id: SEED_CLUSTER_ID,
       name: 'MITRA Knowledge',
-      description: 'Full BIS knowledge pack corpus — secured seed files',
+      description: 'Full BIS knowledge pack corpus',
       published: false,
-      secured: true,
-      deletable: false,
-      renamable: false,
+      secured: false,
+      deletable: true,
+      renamable: true,
       fileCount: whCount,
     };
     store.clusters.push(cluster);
@@ -48,11 +48,11 @@ function ensureSeedCluster(store) {
 function normalizeStoreForRender(store) {
   const cluster = ensureSeedCluster(store);
   cluster.published = true;
-  cluster.secured = true;
-  cluster.deletable = false;
-  cluster.renamable = false;
+  cluster.secured = false;
+  cluster.deletable = cluster.deletable !== false;
+  cluster.renamable = cluster.renamable !== false;
   cluster.name = cluster.name || 'MITRA Knowledge';
-  cluster.description = cluster.description || 'Pre-built demo corpus — indexed for the agent (read-only on deploy)';
+  cluster.description = cluster.description || 'Pre-built demo corpus — indexed for the agent';
   store.clusters = [cluster];
   store.warehouse = (store.warehouse || []).filter((w) => w.clusterId === SEED_CLUSTER_ID);
   store.plans = (store.plans || []).filter((p) => p.clusterId === SEED_CLUSTER_ID);

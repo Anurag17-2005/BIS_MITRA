@@ -16,7 +16,7 @@ import { clearTransformData } from './transformation/service.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STORE_PATH = path.join(__dirname, '..', 'data', 'admin-store.json');
 const UPLOADS_ROOT = path.join(__dirname, '..', 'data', 'uploads');
-const STORE_VERSION = 15;
+const STORE_VERSION = 16;
 
 function loadDefault() {
   return {
@@ -156,32 +156,19 @@ function migrateToV7(store) {
     store.clusters.push({
       id: C2_CLUSTER_ID,
       name: 'MITRA Knowledge',
-      description: 'Full BIS knowledge pack corpus — secured seed files',
+      description: 'Full BIS knowledge pack corpus',
       published: true,
-      secured: true,
-      deletable: false,
-      renamable: false,
+      secured: false,
+      deletable: true,
+      renamable: true,
       fileCount: 0,
     });
-  } else {
-    const c2 = store.clusters.find(c => c.id === C2_CLUSTER_ID);
-    c2.secured = true;
-    c2.deletable = false;
-    c2.renamable = false;
-    c2.published = true;
   }
 
   for (const c of store.clusters) {
-    if (c.id === C1_CLUSTER_ID) {
-      c.secured = false;
-      c.deletable = c.deletable !== false;
-      c.renamable = c.renamable !== false;
-    }
-    if (c.id !== C2_CLUSTER_ID && c.id !== C1_CLUSTER_ID) {
-      c.secured = c.secured ?? false;
-      c.deletable = c.deletable !== false;
-      c.renamable = c.renamable !== false;
-    }
+    c.secured = c.secured ?? false;
+    c.deletable = c.deletable !== false;
+    c.renamable = c.renamable !== false;
   }
 
   if (store.clusters.find(c => c.id === C2_CLUSTER_ID)?.published) {
@@ -274,9 +261,23 @@ function migrateStore(store) {
     migrateToV8(store);
   }
 
+  if (fromVersion < 16) {
+    migrateToV16(store);
+  }
+
   store.plans = (store.plans || []).map(normalizePlan);
   store.version = STORE_VERSION;
   return store;
+}
+
+function migrateToV16(store) {
+  for (const c of store.clusters || []) {
+    if (c.id === C2_CLUSTER_ID) {
+      c.secured = false;
+      c.deletable = c.deletable !== false;
+      c.renamable = c.renamable !== false;
+    }
+  }
 }
 
 function migrateToV13(store) {

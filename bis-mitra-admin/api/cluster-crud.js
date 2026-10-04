@@ -119,7 +119,7 @@ export function clearClusterData(store, clusterId) {
     throw Object.assign(new Error('Cluster not found'), { status: 404 });
   }
   if (!clusterCanClearData(cluster)) {
-    throw Object.assign(new Error('Demo knowledge cluster cannot be cleared'), { status: 403 });
+    throw Object.assign(new Error('Cluster cannot be cleared'), { status: 403 });
   }
 
   const toRemove = (store.warehouse || []).filter(w => w.clusterId === clusterId);

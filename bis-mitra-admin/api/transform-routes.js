@@ -11,19 +11,6 @@ import {
   clearTransformData,
   listAllTransformStatus,
 } from './transformation/service.js';
-import { getStore } from './store.js';
-import { clusterCanRunTransform } from './clusters.js';
-
-function assertTransformAllowed(clusterId) {
-  const store = getStore();
-  const cluster = store.clusters.find((c) => c.id === clusterId);
-  if (!clusterCanRunTransform(cluster)) {
-    const err = new Error('Demo knowledge cluster is read-only (transform disabled)');
-    err.status = 403;
-    throw err;
-  }
-}
-
 function bindTransformRoutes(app, prefix) {
   app.get(`${prefix}/status`, (req, res) => {
     try {
@@ -72,7 +59,6 @@ function bindTransformRoutes(app, prefix) {
 
   app.post(`${prefix}/run`, async (req, res) => {
     try {
-      assertTransformAllowed(req.params.clusterId);
       const stage = req.body.stage || 'incremental';
       if (!process.env.OCR_ENABLED) process.env.OCR_ENABLED = '0';
       const result = await runTransform(req.params.clusterId, stage);
@@ -105,7 +91,6 @@ function bindTransformRoutes(app, prefix) {
 
   app.post(`${prefix}/promote`, (req, res) => {
     try {
-      assertTransformAllowed(req.params.clusterId);
       const manifest = promoteIndexToLive(req.params.clusterId);
       res.json({ message: 'Draft index promoted to live', manifest });
     } catch (err) {
@@ -115,7 +100,6 @@ function bindTransformRoutes(app, prefix) {
 
   app.post(`${prefix}/clear`, (req, res) => {
     try {
-      assertTransformAllowed(req.params.clusterId);
       const layers = req.body.layers || ['golden', 'chunks', 'index'];
       const result = clearTransformData(req.params.clusterId, layers);
       res.json({ message: 'Transform data cleared', ...result });

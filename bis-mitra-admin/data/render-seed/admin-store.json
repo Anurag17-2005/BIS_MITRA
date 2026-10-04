@@ -1,14 +1,14 @@
 {
-  "version": 15,
+  "version": 16,
   "clusters": [
     {
       "id": "mitra-knowledge",
       "name": "MITRA Knowledge",
-      "description": "Full BIS knowledge pack corpus — secured seed files",
+      "description": "Full BIS knowledge pack corpus",
       "published": true,
-      "secured": true,
-      "deletable": false,
-      "renamable": false,
+      "secured": false,
+      "deletable": true,
+      "renamable": true,
       "fileCount": 68
     }
   ],

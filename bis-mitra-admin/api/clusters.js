@@ -1,7 +1,7 @@
 /** C1 demo cluster — legacy unprefixed plan ids */
 export const C1_CLUSTER_ID = 'demo-pipeline';
 
-/** C2 secured knowledge corpus */
+/** C2 knowledge corpus */
 export const C2_CLUSTER_ID = 'mitra-knowledge';
 
 export const RESERVED_CLUSTER_IDS = new Set([
@@ -41,32 +41,18 @@ export function stripClusterPrefix(planId, clusterId) {
   return id;
 }
 
-export function isSecuredCluster(clusterOrId) {
-  if (!clusterOrId) return false;
-  if (typeof clusterOrId === 'string') {
-    return clusterOrId === C2_CLUSTER_ID;
-  }
-  return clusterOrId.secured === true;
-}
-
-export function clusterIsReadOnly(cluster) {
-  if (!cluster) return false;
-  return cluster.secured === true || cluster.deletable === false;
-}
-
 export function clusterCanRename(cluster) {
   if (!cluster) return false;
-  return cluster.renamable !== false && !clusterIsReadOnly(cluster);
+  return cluster.renamable !== false;
 }
 
 export function clusterCanDelete(cluster) {
   if (!cluster) return false;
-  return cluster.deletable !== false && !clusterIsReadOnly(cluster);
+  return cluster.deletable !== false;
 }
 
-export function clusterCanUnpublish(cluster) {
-  if (!cluster) return false;
-  return !clusterIsReadOnly(cluster);
+export function clusterCanUnpublish(_cluster) {
+  return true;
 }
 
 export function clusterCanClearData(cluster) {
@@ -74,6 +60,5 @@ export function clusterCanClearData(cluster) {
 }
 
 export function clusterCanRunTransform(cluster) {
-  if (!cluster) return false;
-  return !clusterIsReadOnly(cluster);
+  return Boolean(cluster);
 }
