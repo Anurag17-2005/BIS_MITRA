@@ -5,7 +5,7 @@
       "id": "mitra-knowledge",
       "name": "MITRA Knowledge",
       "description": "Full BIS knowledge pack corpus",
-      "published": true,
+      "published": false,
       "secured": false,
       "deletable": true,
       "renamable": true,

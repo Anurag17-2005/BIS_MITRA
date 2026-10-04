@@ -15,7 +15,7 @@ import { enrichWarehouseItem } from './fileUrls.js';
 import { serviceStatus } from './preflight.js';
 import { sectionFreshness } from './freshness.js';
 import { login as adminLogin, authMiddleware } from './auth.js';
-import { createCluster, renameCluster, deleteCluster, clearClusterData } from './cluster-crud.js';
+import { createCluster, patchCluster, deleteCluster, clearClusterData } from './cluster-crud.js';
 import {
   AGENT_TOOLS,
   executeAgentTool,
@@ -655,7 +655,7 @@ app.post('/api/clusters', (req, res) => {
 app.patch('/api/clusters/:clusterId', (req, res) => {
   const store = getStore();
   try {
-    const cluster = renameCluster(store, req.params.clusterId, req.body || {});
+    const cluster = patchCluster(store, req.params.clusterId, req.body || {});
     saveStore(store);
     res.json(cluster);
   } catch (err) {

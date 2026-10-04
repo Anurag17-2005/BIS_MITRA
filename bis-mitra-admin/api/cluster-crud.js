@@ -86,6 +86,43 @@ export function renameCluster(store, clusterId, { name, description }) {
   return cluster;
 }
 
+export function updateClusterFlags(store, clusterId, { deletable, renamable }) {
+  const cluster = store.clusters.find(c => c.id === clusterId);
+  if (!cluster) {
+    throw Object.assign(new Error('Cluster not found'), { status: 404 });
+  }
+  if (deletable !== undefined) {
+    if (typeof deletable !== 'boolean') {
+      throw Object.assign(new Error('deletable must be a boolean'), { status: 400 });
+    }
+    cluster.deletable = deletable;
+  }
+  if (renamable !== undefined) {
+    if (typeof renamable !== 'boolean') {
+      throw Object.assign(new Error('renamable must be a boolean'), { status: 400 });
+    }
+    cluster.renamable = renamable;
+  }
+  cluster.secured = false;
+  return cluster;
+}
+
+/** PATCH body: { name?, description?, deletable?, renamable? } */
+export function patchCluster(store, clusterId, body = {}) {
+  const { name, description, deletable, renamable } = body;
+  if (name !== undefined || description !== undefined) {
+    renameCluster(store, clusterId, { name, description });
+  }
+  if (deletable !== undefined || renamable !== undefined) {
+    updateClusterFlags(store, clusterId, { deletable, renamable });
+  }
+  const cluster = store.clusters.find(c => c.id === clusterId);
+  if (!cluster) {
+    throw Object.assign(new Error('Cluster not found'), { status: 404 });
+  }
+  return cluster;
+}
+
 export function deleteCluster(store, clusterId) {
   const cluster = store.clusters.find(c => c.id === clusterId);
   if (!cluster) {

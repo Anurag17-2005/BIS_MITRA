@@ -156,6 +156,8 @@ export default function App() {
   const [renameClusterTarget, setRenameClusterTarget] = useState(null);
   const [renameClusterName, setRenameClusterName] = useState('');
   const [renameClusterDesc, setRenameClusterDesc] = useState('');
+  const [clusterMenuId, setClusterMenuId] = useState(null);
+  const clusterMenuRef = useRef(null);
   const [appSection, setAppSection] = useState(null);
   const [trust, setTrust] = useState(null);
   const [lineage, setLineage] = useState(null);
@@ -184,6 +186,17 @@ export default function App() {
     const id = setInterval(() => api.getStatus().then(setSvcStatus).catch(() => {}), 15000);
     return () => clearInterval(id);
   }, [loadClusters]);
+
+  useEffect(() => {
+    if (!clusterMenuId) return undefined;
+    const onDocClick = (ev) => {
+      if (clusterMenuRef.current && !clusterMenuRef.current.contains(ev.target)) {
+        setClusterMenuId(null);
+      }
+    };
+    document.addEventListener('click', onDocClick);
+    return () => document.removeEventListener('click', onDocClick);
+  }, [clusterMenuId]);
 
   useEffect(() => {
     if (activeCluster) {
@@ -480,6 +493,19 @@ export default function App() {
     }
   };
 
+  const handleTogglePreventDeletion = async (c, e) => {
+    e?.stopPropagation();
+    const lock = c.deletable !== false;
+    try {
+      await api.patchCluster(c.id, { deletable: !lock });
+      await loadClusters();
+      setClusterMenuId(null);
+      showToastMsg(lock ? 'Deletion prevented for this cluster' : 'Deletion allowed again');
+    } catch (err) {
+      alert(err.message || 'Update failed');
+    }
+  };
+
   const handleDeleteCluster = async (c, e) => {
     e?.stopPropagation();
     if (!confirm(`Delete cluster "${c.name}" and all its warehouse data?`)) return;
@@ -570,7 +596,39 @@ export default function App() {
           )}
           {clusters.map(c => (
             <div key={c.id} className="cluster-card" onClick={() => openCluster(c)}>
-              {c.published && <span className="badge badge-star">★ Published to agent</span>}
+              <div
+                className="cluster-card-top"
+                ref={clusterMenuId === c.id ? clusterMenuRef : null}
+                onClick={e => e.stopPropagation()}
+              >
+                {c.published && <span className="badge badge-star">★ Published to agent</span>}
+                {c.deletable === false && (
+                  <span className="badge badge-locked">Deletion locked</span>
+                )}
+                <button
+                  type="button"
+                  className="cluster-card-menu-btn"
+                  aria-label="Cluster options"
+                  aria-expanded={clusterMenuId === c.id}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setClusterMenuId(clusterMenuId === c.id ? null : c.id);
+                  }}
+                >
+                  ⋯
+                </button>
+                {clusterMenuId === c.id && (
+                  <div className="cluster-card-menu" role="menu">
+                    <button
+                      type="button"
+                      role="menuitem"
+                      onClick={(e) => handleTogglePreventDeletion(c, e)}
+                    >
+                      {c.deletable === false ? 'Allow deletion' : 'Prevent deletion'}
+                    </button>
+                  </div>
+                )}
+              </div>
               <h3>{c.name}</h3>
               <p>{c.fileCount || 0} files</p>
               <div className="cluster-card-actions" onClick={e => e.stopPropagation()}>

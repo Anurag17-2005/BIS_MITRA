@@ -86,6 +86,10 @@ export async function createCluster(name, description = '') {
 }
 
 export async function renameCluster(clusterId, body) {
+  return patchCluster(clusterId, body);
+}
+
+export async function patchCluster(clusterId, body) {
   const res = await fetch(`${API}/api/clusters/${clusterId}`, {
     method: 'PATCH',
     headers: headers(),

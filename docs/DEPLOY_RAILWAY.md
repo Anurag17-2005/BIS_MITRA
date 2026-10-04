@@ -67,7 +67,7 @@ Railway also sets `RAILWAY_PUBLIC_DOMAIN`; clone API will use `https://${RAILWAY
 npm rebuild better-sqlite3 -w api && (command -v git-lfs >/dev/null && git lfs install && git lfs pull || true) && node scripts/apply-render-seed.mjs
 ```
 
-Railpack runs `npm install` before this. `apply-render-seed` applies the committed **`mitra-knowledge`** demo (same as Render).
+Railpack runs `npm install` before this. `apply-render-seed` **merges** the committed **`mitra-knowledge`** corpus into the live store (does not wipe your other clusters or publish flags). See [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md).
 
 **Clone data on admin:** there is no local `bis-clone.db` on this service. Set **`CLONE_API`** to the clone Railway URL so HTTP-backed features work. Direct SQLite (`clone-db.js`, some ingestion/runner paths) need **`CLONE_DB_PATH`** only if you mount or copy a DB file — optional for the agent demo if clone API is up.
 
@@ -89,7 +89,7 @@ Railpack runs `npm install` before this. `apply-render-seed` applies the committ
 | `STANDARDS_URL` | Vercel Standards URL |
 
 **Health:** `GET https://<admin>/api/health`  
-**Demo cluster:** `GET https://<admin>/api/portal/config` → `publishedClusterId: "mitra-knowledge"`
+**Portal:** `GET https://<admin>/api/portal/config` → `publishedClusterId: null` until you publish a cluster in admin
 
 Do **not** add `npm run build:mitra-knowledge` to the Railway build (run that locally; seed is in Git).
 
@@ -144,7 +144,7 @@ git lfs install && git lfs pull
 
 ## 7. Smoke test
 
-Same as [DEPLOY.md](DEPLOY.md): health, portal config, user chat, clone UIs.
+Run [`bis-mitra-admin/scripts/smoke-deploy.mjs`](../bis-mitra-admin/scripts/smoke-deploy.mjs) with `ADMIN_API` / `CLONE_API`, or follow the checklist in [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md).
 
 ## Render vs Railway env (reference)
 

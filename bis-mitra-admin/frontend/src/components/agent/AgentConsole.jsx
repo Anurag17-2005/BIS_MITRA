@@ -10,7 +10,7 @@ const USER_PORTAL = config.userPortalUrl;
 /** Admin agent preview — same portal UI, isolated preview session, stays inside admin. */
 export default function AgentConsole({ clusters, onNav, onSignOut }) {
   const published = clusters.find((c) => c.published);
-  const [clusterId, setClusterId] = useState(published?.id || clusters[0]?.id || '');
+  const [clusterId, setClusterId] = useState(published?.id || '');
 
   return (
     <div className="app agent-embed-app">

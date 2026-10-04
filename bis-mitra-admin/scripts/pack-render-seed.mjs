@@ -47,7 +47,7 @@ function ensureSeedCluster(store) {
 
 function normalizeStoreForRender(store) {
   const cluster = ensureSeedCluster(store);
-  cluster.published = true;
+  cluster.published = false;
   cluster.secured = false;
   cluster.deletable = cluster.deletable !== false;
   cluster.renamable = cluster.renamable !== false;

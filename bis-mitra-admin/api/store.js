@@ -358,6 +358,9 @@ export function getStore() {
     return migrated;
   }
   store.plans = (store.plans || []).map(normalizePlan);
+  for (const c of store.clusters || []) {
+    c.secured = false;
+  }
   const needsCatalog = (store.warehouse || []).some(w => !w.catalog?.content_sha256);
   if (needsCatalog) {
     backfillWarehouseCatalog(store);
