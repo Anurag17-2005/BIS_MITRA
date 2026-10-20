@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { searchIndex } from '../transformation/pipeline/run-index.js';
 import { PATHS } from '../core/config/paths.js';
+import { readJsonFileSafe } from '../core/read-json-file.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CHUNKS_ROOT = process.env.TRANSFORM_DATA_PATH || PATHS.dataRoot;
@@ -17,8 +18,8 @@ export function resolveClusterId(explicitId) {
 
 function loadChunkFull(clusterId, chunkId) {
   const file = path.join(CHUNKS_ROOT, clusterId, 'chunks', '_chunks.json');
-  if (!fs.existsSync(file)) return null;
-  const chunks = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const chunks = readJsonFileSafe(file);
+  if (!chunks || chunks.__lfsPointer || !Array.isArray(chunks)) return null;
   return chunks.find(c => c.id === chunkId) || null;
 }
 

@@ -8,6 +8,7 @@ import { expandQueryTerms } from './regulatory/synonym-expander.js';
 import { resolveClusterId } from './search-knowledge.js';
 import { PATHS } from '../core/config/paths.js';
 import { SCORE_POLICY } from './score-policy.js';
+import { readJsonFile, readJsonFileSafe } from '../core/read-json-file.js';
 
 const CHUNKS_ROOT = process.env.TRANSFORM_DATA_PATH || PATHS.dataRoot;
 
@@ -23,7 +24,7 @@ function readJsonCached(cache, file) {
   const mtime = fs.statSync(file).mtimeMs;
   const hit = cache.get(file);
   if (hit && hit.mtime === mtime) return hit.value;
-  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const value = readJsonFile(file);
   cache.set(file, { mtime, value });
   return value;
 }
@@ -34,8 +35,12 @@ function loadChunkFull(clusterId, chunkId) {
   const cached = chunkCache.get(file);
   const mtime = fs.statSync(file).mtimeMs;
   if (!cached || cached.mtime !== mtime) {
-    const chunks = JSON.parse(fs.readFileSync(file, 'utf8'));
-    chunkCache.set(file, { mtime, byId: new Map(chunks.map(c => [c.id, c])) });
+    const chunks = readJsonFileSafe(file);
+    if (!chunks || chunks.__lfsPointer || !Array.isArray(chunks)) {
+      chunkCache.set(file, { mtime, byId: new Map() });
+    } else {
+      chunkCache.set(file, { mtime, byId: new Map(chunks.map(c => [c.id, c])) });
+    }
   }
   return chunkCache.get(file).byId.get(chunkId) || null;
 }
@@ -149,6 +154,22 @@ export function searchIndexTraced(clusterId, query, {
       combined: { status: 'not_used', method: HYBRID_METHOD, candidates: [], count: 0 },
       hybrid: false,
       indexModel: null,
+    };
+  }
+
+  const indexPayload = readJsonFileSafe(indexPath);
+  if (indexPayload?.__lfsPointer) {
+    const msg = indexPayload.message;
+    return {
+      clusterId: resolved,
+      stage: searchStage,
+      expanded,
+      lexical: { status: 'error', method: LEXICAL_METHOD, candidates: [], count: 0, message: msg },
+      dense: { status: 'error', method: DENSE_METHOD, candidates: [], count: 0, message: msg },
+      combined: { status: 'error', method: HYBRID_METHOD, candidates: [], count: 0, message: msg },
+      hybrid: false,
+      indexModel: null,
+      indexError: 'LFS_POINTER',
     };
   }
 
