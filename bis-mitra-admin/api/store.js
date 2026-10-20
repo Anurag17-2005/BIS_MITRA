@@ -10,6 +10,7 @@ import {
   planIdForCluster,
   stripClusterPrefix,
 } from './clusters.js';
+import { PATHS } from './core/config/paths.js';
 import { backfillWarehouseCatalog } from './provenance.js';
 import { clearTransformData } from './transformation/service.js';
 
@@ -331,14 +332,46 @@ function migrateToV9(store) {
 }
 
 function migrateToV8(store) {
+  ensurePlansForAllClusters(store);
+}
+
+/** Every cluster should have template ingest/probe plans (seed merge can add cluster without plans). */
+export function ensurePlansForAllClusters(store) {
+  let added = 0;
   const clusterIds = (store.clusters || []).map(c => c.id);
   for (const clusterId of clusterIds) {
     for (const sp of buildPlansForCluster(clusterId)) {
       if (!store.plans.find(p => p.id === sp.id)) {
         store.plans.push(sp);
+        added += 1;
       }
     }
   }
+  return added;
+}
+
+function clusterLiveIndexPath(clusterId) {
+  return path.join(PATHS.dataRoot, clusterId, 'index', 'live', 'search-index.json');
+}
+
+function clusterHasLiveIndex(clusterId) {
+  return Boolean(clusterId && fs.existsSync(clusterLiveIndexPath(clusterId)));
+}
+
+/** On Railway/Render, prefer seed cluster when published cluster has no live index. */
+function ensureHostedPublishedCluster(store) {
+  const hosted = Boolean(process.env.RAILWAY_ENVIRONMENT) || process.env.RENDER === 'true';
+  if (!hosted) return false;
+  const published = (store.clusters || []).find(c => c.published);
+  if (published && clusterHasLiveIndex(published.id)) return false;
+  if (!clusterHasLiveIndex(C2_CLUSTER_ID)) return false;
+  for (const c of store.clusters || []) {
+    c.published = c.id === C2_CLUSTER_ID;
+  }
+  console.warn(
+    `[store] Republished ${C2_CLUSTER_ID} (was ${published?.id || 'none'} — no live index)`,
+  );
+  return true;
 }
 
 export function getStore() {
@@ -361,9 +394,29 @@ export function getStore() {
   for (const c of store.clusters || []) {
     c.secured = false;
   }
+  const plansAdded = ensurePlansForAllClusters(store);
+  if (plansAdded > 0) {
+    updateClusterFileCounts(store);
+    fs.writeFileSync(STORE_PATH, JSON.stringify(store, null, 2));
+  }
   const needsCatalog = (store.warehouse || []).some(w => !w.catalog?.content_sha256);
   if (needsCatalog) {
-    backfillWarehouseCatalog(store);
+    const hosted = Boolean(process.env.RAILWAY_ENVIRONMENT)
+      || process.env.RENDER === 'true';
+    if (hosted) {
+      // Avoid reading dozens of corpus PDFs into RAM on small Railway/Render plans.
+      for (const w of store.warehouse || []) {
+        if (w.catalog?.content_sha256) continue;
+        w.catalog = w.catalog || {};
+        w.catalog.content_sha256 = w.catalog.content_sha256 || `hosted:${w.id}`;
+      }
+    } else {
+      backfillWarehouseCatalog(store);
+    }
+    updateClusterFileCounts(store);
+    fs.writeFileSync(STORE_PATH, JSON.stringify(store, null, 2));
+  }
+  if (ensureHostedPublishedCluster(store)) {
     updateClusterFileCounts(store);
     fs.writeFileSync(STORE_PATH, JSON.stringify(store, null, 2));
   }

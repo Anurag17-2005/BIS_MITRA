@@ -61,6 +61,16 @@ async function main() {
       fail('portal bisWebUrl', 'still localhost — set URL_BIS on Railway admin');
       failed += 1;
     }
+    if (!pid) {
+      fail('portal published cluster', 'none published — publish mitra-knowledge or proof-actions-sandbox');
+      failed += 1;
+    } else if (pid !== 'mitra-knowledge' && pid !== 'proof-actions-sandbox') {
+      fail(
+        'portal published cluster',
+        `"${pid}" is not a demo index cluster — publish mitra-knowledge in admin or redeploy with hosted auto-fix`,
+      );
+      failed += 1;
+    }
     if (pid === 'test') {
       console.log('WARN published cluster is "test" — prefer proof-actions-sandbox for demo proofs');
     }

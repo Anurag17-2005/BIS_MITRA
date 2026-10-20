@@ -39,12 +39,35 @@ export function loadEnvFile(filePath) {
   return applied;
 }
 
+function bootstrapPortalEnvAliases() {
+  const pick = (...keys) => {
+    for (const key of keys) {
+      const v = process.env[key];
+      if (v != null && String(v).trim() !== '') return String(v).trim().replace(/\/$/, '');
+    }
+    return '';
+  };
+  if (!pick('BIS_URL')) {
+    const bis = pick('URL_BIS', 'BIS_WEB', 'BIS_WEB_URL', 'VITE_BIS_URL');
+    if (bis) process.env.BIS_URL = bis;
+  }
+  if (!pick('MANAK_URL')) {
+    const manak = pick('URL_MANAK', 'MANAK_WEB_URL', 'MANAK_APPLICATIONS_URL', 'VITE_MANAK_URL');
+    if (manak) process.env.MANAK_URL = manak;
+  }
+  if (!pick('STANDARDS_URL')) {
+    const standards = pick('URL_STANDARDS', 'STANDARDS_WEB', 'VITE_STANDARDS_URL');
+    if (standards) process.env.STANDARDS_URL = standards;
+  }
+}
+
 /** Idempotent. Safe to call from server startup and from the LLM module. */
 export function ensureEnvLoaded() {
   if (loaded) return;
   loaded = true;
   loadEnvFile(path.join(ADMIN_ROOT, '.env'));
   loadEnvFile(path.join(__dirname, '.env'));
+  bootstrapPortalEnvAliases();
 }
 
 /**

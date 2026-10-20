@@ -66,6 +66,8 @@ import {
 import { executeRule } from './rules/rules-engine.js';
 import { RULE_TYPES } from './rules/rules-defaults.js';
 import { registerTranscribeRoutes } from './routes/transcribe.js';
+import { ensureEnvLoaded } from './env.js';
+import { closeSessionDb } from './agent/session-db.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -92,6 +94,7 @@ function loadEnvFile(filePath) {
 loadEnvFile(path.join(ROOT, '.env'));
 loadEnvFile(path.join(__dirname, '.env'));
 loadEnvFile(path.join(ROOT, '.env'));
+ensureEnvLoaded();
 
 const app = express();
 const PORT = process.env.PORT || 5050;
@@ -1065,3 +1068,17 @@ server.on('error', (err) => {
   }
   throw err;
 });
+
+function shutdown(signal) {
+  console.log(`[admin-api] ${signal} — closing session DB and HTTP server`);
+  try {
+    closeSessionDb();
+  } catch (err) {
+    console.warn('[admin-api] session DB close:', err.message);
+  }
+  server.close(() => process.exit(0));
+  setTimeout(() => process.exit(1), 8000).unref();
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

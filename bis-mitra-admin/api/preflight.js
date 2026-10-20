@@ -1,11 +1,33 @@
-const CLONE_API = process.env.CLONE_API || 'http://localhost:4000';
-const BIS = process.env.BIS_URL || 'http://localhost:3001';
-const MANAK = process.env.MANAK_URL || 'http://localhost:3002';
-const STANDARDS = process.env.STANDARDS_URL || 'http://localhost:3003';
+import { ensureEnvLoaded } from './env.js';
+import {
+  resolveBisWebUrl,
+  resolveManakWebUrl,
+} from './clone-files-proxy.js';
+
+function cloneApiBase() {
+  return (process.env.CLONE_API || process.env.CLONE_PUBLIC_URL || 'http://localhost:4000')
+    .replace(/\/$/, '');
+}
+
+function standardsWebUrl() {
+  ensureEnvLoaded();
+  const u = process.env.URL_STANDARDS || process.env.STANDARDS_URL || process.env.STANDARDS_WEB;
+  return (u || 'http://localhost:3003').replace(/\/$/, '');
+}
+
+function portalUrls() {
+  ensureEnvLoaded();
+  return {
+    cloneApi: cloneApiBase(),
+    bis: resolveBisWebUrl() || process.env.BIS_URL || 'http://localhost:3001',
+    manak: resolveManakWebUrl() || process.env.MANAK_URL || 'http://localhost:3002',
+    standards: standardsWebUrl(),
+  };
+}
 
 async function ping(url) {
   const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 1500);
+  const t = setTimeout(() => ctrl.abort(), 5000);
   try {
     const res = await fetch(url, { signal: ctrl.signal });
     return { ok: res.ok || res.status < 500, status: res.status };
@@ -17,17 +39,18 @@ async function ping(url) {
 }
 
 export async function serviceStatus() {
-  const [api, bis, manak, standards] = await Promise.all([
-    ping(`${CLONE_API}/api/health`),
-    ping(BIS),
-    ping(MANAK),
-    ping(STANDARDS),
+  const { cloneApi, bis, manak, standards } = portalUrls();
+  const [api, bisPing, manakPing, standardsPing] = await Promise.all([
+    ping(`${cloneApi}/api/health`),
+    ping(bis),
+    ping(manak),
+    ping(standards),
   ]);
   return {
-    cloneApi: { url: CLONE_API, ...api },
-    bis: { url: BIS, ...bis },
-    manak: { url: MANAK, ...manak },
-    standards: { url: STANDARDS, ...standards },
+    cloneApi: { url: cloneApi, ...api },
+    bis: { url: bis, ...bisPing },
+    manak: { url: manak, ...manakPing },
+    standards: { url: standards, ...standardsPing },
   };
 }
 
@@ -51,6 +74,9 @@ export async function assertScriptReady(pattern) {
 export async function assertApiReady() {
   const s = await serviceStatus();
   if (!s.cloneApi.ok) {
-    throw new Error('Clone API is not running on :4000. Start with: cd bis-clone && npm start');
+    const detail = s.cloneApi.error || `HTTP ${s.cloneApi.status ?? '?'}`;
+    throw new Error(
+      `Clone API unreachable at ${s.cloneApi.url} (${detail}). Set CLONE_API to your live clone URL (e.g. Railway) and redeploy admin.`,
+    );
   }
 }

@@ -20,8 +20,19 @@ function gitSha() {
   }
 }
 
+function assertNotLfsPointer(filePath, label) {
+  const head = fs.readFileSync(filePath, 'utf8').slice(0, 120);
+  if (head.startsWith('version https://git-lfs.github.com')) {
+    console.error(
+      `[apply:render-seed] ${label} is a Git LFS pointer — install git-lfs in the build and run git lfs pull`,
+    );
+    process.exit(1);
+  }
+}
+
 function loadJson(pathname, fallback) {
   if (!fs.existsSync(pathname)) return fallback;
+  assertNotLfsPointer(pathname, pathname);
   return JSON.parse(fs.readFileSync(pathname, 'utf8'));
 }
 
@@ -36,6 +47,7 @@ function main() {
     console.warn(`[apply:render-seed] Seed missing live index at ${liveIndex} — skip apply.`);
     process.exit(0);
   }
+  assertNotLfsPointer(liveIndex, 'seed search-index.json');
 
   const seed = loadJson(PATHS.seedStore, null);
   const live = loadJson(PATHS.liveStore, {
