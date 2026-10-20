@@ -1,0 +1,21 @@
+name: Prod smoke (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Admin + clone smoke
+        env:
+          ADMIN_API: https://bismitra-production.up.railway.app
+          CLONE_API: https://bis-clone-production.up.railway.app
+          SMOKE_CHAT: '1'
+        run: node bis-mitra-admin/scripts/smoke-deploy.mjs

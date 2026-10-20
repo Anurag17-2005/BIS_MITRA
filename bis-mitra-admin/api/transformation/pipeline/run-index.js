@@ -90,7 +90,30 @@ export function searchIndex(clusterId, query, { topK = 5, stage = 'live' } = {})
     return { query, stage: searchStage, results: [], message: 'No index built yet' };
   }
 
-  const { idf, entries, hybrid } = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+  const rawIndex = fs.readFileSync(indexPath, 'utf8');
+  if (rawIndex.startsWith('version https://git-lfs.github.com')) {
+    return {
+      query,
+      stage: searchStage,
+      results: [],
+      message: 'Search index is a Git LFS pointer — redeploy admin with git lfs pull in build',
+      indexError: 'LFS_POINTER',
+    };
+  }
+  let idf;
+  let entries;
+  let hybrid;
+  try {
+    ({ idf, entries, hybrid } = JSON.parse(rawIndex));
+  } catch (err) {
+    return {
+      query,
+      stage: searchStage,
+      results: [],
+      message: `Invalid search index JSON: ${err.message}`,
+      indexError: 'PARSE',
+    };
+  }
   const expanded = expandQueryTerms(query);
   const qText = expanded.expandedQuery;
   const qVec = vectorize(termFrequency(tokenize(qText)), idf);

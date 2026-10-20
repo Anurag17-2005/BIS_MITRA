@@ -14,12 +14,19 @@ Maps user/admin features to automated tests. Run local stack: **clone :4000**, *
 | `npm run test:proof:04` … `10` | Proof actions 4–10 |
 | `npm run test:proof:suite` | All 10 actions sequentially |
 | `npm run test:proof:all` | Preflight + merge + suite + integration |
-| `cd bis-mitra-user && npm run test:e2e` | Playwright portal UI (needs admin + clone up) |
+| `cd bis-mitra-user && npm run test:e2e` | Playwright portal UI (local dev server) |
+| `cd bis-mitra-user && npm run test:e2e:prod` | Playwright vs **deployed** user portal (`playwright.prod.config.js`) |
 | `SMOKE_CHAT=1 node scripts/smoke-deploy.mjs` | Prod chat probe (uses published cluster only) |
+| GitHub Actions **Prod smoke (manual)** | Same smoke script against Railway URLs |
 
-**Env:** `TEST_CLUSTER=proof-actions-sandbox` (default), `ADMIN_API`, `CLONE_API`, `DISABLE_ADMIN_AUTH=1` optional locally, `ADMIN_PASSWORD` when auth on.
+**Env:** `ADMIN_API`, `CLONE_API`, `DISABLE_ADMIN_AUTH=1` optional locally, `ADMIN_PASSWORD` when auth on.
 
-**Prerequisite:** Cluster `proof-actions-sandbox` exists with index (see `data/bronze/proof-actions-sandbox`). Tests publish it temporarily; set `TEST_LEAVE_PUBLISHED=1` to skip restore.
+**Cluster policy (production):**
+
+- **`mitra-knowledge`** — render-seed RAG + `SMOKE_CHAT` / helmet UI (publish via admin or hosted auto-fix in `store.js`).
+- **`proof-actions-sandbox`** — full `test:proof:all` when that cluster + index exist on the admin volume; otherwise run `test:proof:01`…`10` individually and document skips.
+
+**Playwright prod:** set `PLAYWRIGHT_PROD=1` (optional), `ADMIN_API` / `CLONE_API` to Railway; global setup publishes `mitra-knowledge` when present (does not unpublish all on prod).
 
 ---
 

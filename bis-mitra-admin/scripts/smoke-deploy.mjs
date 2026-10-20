@@ -152,7 +152,11 @@ async function main() {
       const chatBody = await chatRes.json().catch(() => ({}));
       const compliance = chatBody.panel?.compliance;
       if (!chatRes.ok) {
-        fail('SMOKE_CHAT', chatBody.error || `status ${chatRes.status}`);
+        const err = chatBody.error || `status ${chatRes.status}`;
+        fail('SMOKE_CHAT', err);
+        if (/git lfs|LFS pointer|version ht/i.test(String(err))) {
+          console.log('HINT redeploy Railway admin with git lfs pull (see bis-mitra-admin/railway.toml)');
+        }
         failed += 1;
       } else if (!compliance?.standard_number) {
         fail(
