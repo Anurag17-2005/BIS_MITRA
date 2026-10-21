@@ -44,8 +44,10 @@ Then **Networking → Generate domain** so the service is not “Unexposed”.
 **Build:**
 
 ```bash
-npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db
+npm ci && npm rebuild better-sqlite3 -w api && cp data/bis-clone.seed.db data/bis-clone.db && node scripts/seed-demo-records.mjs
 ```
+
+Docker builds use [`bis-clone/Dockerfile`](../bis-clone/Dockerfile) (same seed step). Demo standards load from `data/standards-demo.json` (sync from repo root `data/standards.json` when records change).
 
 **Variables (minimum):**
 
@@ -64,7 +66,7 @@ Railway also sets `RAILWAY_PUBLIC_DOMAIN`; clone API will use `https://${RAILWAY
 **Build** (in [`bis-mitra-admin/railway.toml`](../bis-mitra-admin/railway.toml); do **not** `cd ../bis-clone` — with Root Directory `bis-mitra-admin`, only that folder exists in the build image):
 
 ```bash
-npm rebuild better-sqlite3 -w api && (command -v git-lfs >/dev/null && git lfs install && git lfs pull || true) && node scripts/apply-render-seed.mjs
+npm rebuild better-sqlite3 -w api && node scripts/fetch-render-seed-lfs.mjs && node scripts/apply-render-seed.mjs
 ```
 
 Railpack runs `npm install` before this. `apply-render-seed` **merges** the committed **`mitra-knowledge`** corpus into the live store (does not wipe your other clusters or publish flags). See [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md).
@@ -134,13 +136,7 @@ Redeploy **all 5** Vercel frontends after changing env.
 
 ## 6. Git LFS
 
-If the repo uses LFS for `render-seed`, enable **Git LFS** in Railway build or ensure LFS objects are fetched (Railway: install `git-lfs` in build or use `GIT LFS pull` in build command before `apply-render-seed`):
-
-```bash
-git lfs install && git lfs pull
-```
-
-(Add at the start of the admin build if LFS files are missing on deploy.)
+`render-seed/indexes/**` and `uploads/**` are Git LFS in GitHub. Railway’s build snapshot often has **no `.git`**, so `git lfs pull` alone fails. The admin build runs [`scripts/fetch-render-seed-lfs.mjs`](../bis-mitra-admin/scripts/fetch-render-seed-lfs.mjs) before `apply-render-seed.mjs`: it no-ops when files are already materialized, runs `git lfs pull` in a real checkout when available, otherwise shallow-clones the repo and pulls LFS for `bis-mitra-admin/data/render-seed/**`.
 
 ## 7. Smoke test
 

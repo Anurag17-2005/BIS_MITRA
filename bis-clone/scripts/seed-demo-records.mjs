@@ -11,7 +11,17 @@ import Database from 'better-sqlite3';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CLONE_ROOT = path.join(__dirname, '..');
 const DB_PATH = process.env.CLONE_DB_PATH || path.join(CLONE_ROOT, 'data', 'bis-clone.db');
-const STANDARDS_JSON = path.join(CLONE_ROOT, '..', 'data', 'standards.json');
+const STANDARDS_CANDIDATES = [
+  path.join(CLONE_ROOT, 'data', 'standards-demo.json'),
+  path.join(CLONE_ROOT, '..', 'data', 'standards.json'),
+];
+
+function resolveStandardsJson() {
+  for (const p of STANDARDS_CANDIDATES) {
+    if (fs.existsSync(p)) return p;
+  }
+  return null;
+}
 
 function ensureColumn(db, table, column, typeSql) {
   const cols = db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name);
@@ -25,12 +35,13 @@ function main() {
     console.warn('[seed-demo-records] DB missing — skip', DB_PATH);
     process.exit(0);
   }
-  if (!fs.existsSync(STANDARDS_JSON)) {
-    console.warn('[seed-demo-records] standards.json missing — skip');
+  const standardsPath = resolveStandardsJson();
+  if (!standardsPath) {
+    console.warn('[seed-demo-records] standards JSON missing — skip (expected standards-demo.json or ../data/standards.json)');
     process.exit(0);
   }
 
-  const { records = [] } = JSON.parse(fs.readFileSync(STANDARDS_JSON, 'utf8'));
+  const { records = [] } = JSON.parse(fs.readFileSync(standardsPath, 'utf8'));
   const db = new Database(DB_PATH);
   for (const col of ['demo_id', 'source_reference', 'source_file', 'certification_applicability', 'amendment_status', 'qco_reference', 'superseded_by_is']) {
     ensureColumn(db, 'standards', col, 'TEXT');

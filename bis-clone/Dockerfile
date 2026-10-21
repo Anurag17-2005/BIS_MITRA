@@ -10,7 +10,7 @@ COPY api/package.json ./api/
 RUN npm ci && npm rebuild better-sqlite3 -w api
 
 COPY . .
-RUN cp -f data/bis-clone.seed.db data/bis-clone.db
+RUN cp -f data/bis-clone.seed.db data/bis-clone.db && node scripts/seed-demo-records.mjs
 
 ENV PORT=4000
 EXPOSE 4000

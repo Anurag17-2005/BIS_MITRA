@@ -155,7 +155,7 @@ async function main() {
         const err = chatBody.error || `status ${chatRes.status}`;
         fail('SMOKE_CHAT', err);
         if (/git lfs|LFS pointer|version ht/i.test(String(err))) {
-          console.log('HINT redeploy Railway admin with git lfs pull (see bis-mitra-admin/railway.toml)');
+          console.log('HINT redeploy Railway admin with fetch-render-seed-lfs (see bis-mitra-admin/railway.toml)');
         }
         failed += 1;
       } else if (!compliance?.standard_number) {

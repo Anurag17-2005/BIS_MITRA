@@ -70,8 +70,8 @@ Full proof gate: [PROOF_ACTIONS_RUNBOOK.md](PROOF_ACTIONS_RUNBOOK.md) Phase 0 + 
 
 ## After pushing `main` (operator one-pager)
 
-1. **Railway → bis-mitra-admin:** Redeploy from GitHub. Build log must show `git lfs pull` and `[apply:render-seed]` (real index, not LFS pointer).
-2. **Railway → bis-clone:** Redeploy so build runs `node scripts/seed-demo-records.mjs` (loads `STD-DEMO-*` from `data/standards.json`).
+1. **Railway → bis-mitra-admin:** Redeploy from GitHub. Build log must show `[fetch-render-seed-lfs]` (if pointers) and `[apply:render-seed]` (real index, not LFS pointer).
+2. **Railway → bis-clone:** Redeploy so build runs `node scripts/seed-demo-records.mjs` (Dockerfile or `railway.toml`; loads `STD-DEMO-*` from `data/standards-demo.json`).
 3. **Vercel:** Redeploy all five frontends if `URL_*` / `REND_*` changed.
 4. **Publish:** Admin UI → publish **MITRA Knowledge** (or rely on hosted auto-fix in `store.js` after admin restart).
 5. **Regression gate:**
@@ -89,7 +89,7 @@ npm run test:prod:gate
 
 ## Railway / Vercel wiring (reminder)
 
-- Admin build: **no** `cd ../bis-clone`; LFS pull + `apply-render-seed.mjs` only ([`railway.toml`](../bis-mitra-admin/railway.toml)).
+- Admin build: **no** `cd ../bis-clone`; `fetch-render-seed-lfs.mjs` + `apply-render-seed.mjs` only ([`railway.toml`](../bis-mitra-admin/railway.toml)).
 - Admin env: `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` = clone public URL; optional `URL_BIS` / `URL_MANAK` (served via `/api/portal/config` so **Open on BIS** works even if a frontend was built without `URL_BIS`).
 - Vercel: `REND_ADMIN_API`, `REND_CLONE_API`, `REND_CLONE_FILES`, `URL_BIS`, `URL_MANAK` — redeploy all five frontends after URL changes.
 - Publish an **indexed** cluster (e.g. `proof-actions-sandbox`), not an empty `test` cluster, for helmet compliance cards and clean answers.
