@@ -95,8 +95,12 @@ export function resetSessionDbForTests(suffix = '') {
 }
 
 export function closeSessionDb() {
-  if (db) {
-    db.close();
-    db = null;
+  if (!db) return;
+  const instance = db;
+  db = null;
+  try {
+    instance.close();
+  } catch (err) {
+    console.warn('[session-db] close skipped:', err.message);
   }
 }

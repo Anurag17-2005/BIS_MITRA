@@ -1084,11 +1084,15 @@ server.on('error', (err) => {
 });
 
 function shutdown(signal) {
-  console.log(`[admin-api] ${signal} — closing session DB and HTTP server`);
-  try {
-    closeSessionDb();
-  } catch (err) {
-    console.warn('[admin-api] session DB close:', err.message);
+  console.log(`[admin-api] ${signal} — shutting down HTTP server`);
+  // On Railway/Render, closing better-sqlite3 during SIGTERM can abort Node (native destructor bug).
+  const hosted = Boolean(process.env.RAILWAY_ENVIRONMENT || process.env.RENDER);
+  if (!hosted) {
+    try {
+      closeSessionDb();
+    } catch (err) {
+      console.warn('[admin-api] session DB close:', err.message);
+    }
   }
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(1), 8000).unref();
