@@ -161,6 +161,30 @@ export function searchIndexTraced(clusterId, query, {
     };
   }
 
+  if (SKIP_FULL_CHUNK_HYDRATE) {
+    const maxBytes = Number(process.env.HOSTED_MAX_INDEX_BYTES || 32 * 1024 * 1024);
+    try {
+      const { size } = fs.statSync(indexPath);
+      if (size > maxBytes) {
+        const msg = `Hosted RAM budget: skip in-memory index (${Math.round(size / (1024 * 1024))}MB)`;
+        console.warn(`[trace-search] ${msg}`);
+        return {
+          clusterId: resolved,
+          stage: searchStage,
+          expanded,
+          lexical: { status: 'skipped', method: LEXICAL_METHOD, candidates: [], count: 0, message: msg },
+          dense: { status: 'skipped', method: DENSE_METHOD, candidates: [], count: 0, message: msg },
+          combined: { status: 'skipped', method: HYBRID_METHOD, candidates: [], count: 0, message: msg },
+          hybrid: false,
+          indexModel: null,
+          hostedIndexSkipped: true,
+        };
+      }
+    } catch {
+      // fall through to normal load
+    }
+  }
+
   const indexPayload = readJsonFileSafe(indexPath);
   if (indexPayload?.__lfsPointer) {
     const msg = indexPayload.message;
