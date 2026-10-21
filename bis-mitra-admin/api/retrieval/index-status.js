@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { resolveClusterId } from './search-knowledge.js';
 import { PATHS } from '../core/config/paths.js';
+import { isLfsPointer, readJsonFileSafe } from '../core/read-json-file.js';
 
 const CHUNKS_ROOT = process.env.TRANSFORM_DATA_PATH || PATHS.dataRoot;
 
@@ -24,16 +25,20 @@ export function getIndexStatus(clusterId) {
   const liveIndexPath = path.join(indexDir(resolved, 'live'), 'search-index.json');
   const draftIndexPath = path.join(indexDir(resolved, 'draft'), 'search-index.json');
 
-  const hasLive = fs.existsSync(liveIndexPath);
-  const hasDraft = fs.existsSync(draftIndexPath);
+  let hasLive = fs.existsSync(liveIndexPath);
+  let hasDraft = fs.existsSync(draftIndexPath);
+  if (hasLive && isLfsPointer(fs.readFileSync(liveIndexPath, 'utf8').slice(0, 80))) {
+    hasLive = false;
+  }
   const stage = hasLive ? 'live' : (hasDraft ? 'draft' : null);
 
   let manifest = null;
   if (stage === 'live' && fs.existsSync(liveManifestPath)) {
-    manifest = JSON.parse(fs.readFileSync(liveManifestPath, 'utf8'));
+    manifest = readJsonFileSafe(liveManifestPath);
   } else if (fs.existsSync(draftManifestPath)) {
-    manifest = JSON.parse(fs.readFileSync(draftManifestPath, 'utf8'));
+    manifest = readJsonFileSafe(draftManifestPath);
   }
+  if (manifest?.__lfsPointer) manifest = null;
 
   const chunksPath = path.join(CHUNKS_ROOT, resolved, 'chunks', '_manifest.json');
   let chunkCount = manifest?.chunkCount ?? 0;

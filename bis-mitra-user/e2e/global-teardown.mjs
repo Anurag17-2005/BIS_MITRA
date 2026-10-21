@@ -2,6 +2,9 @@ import { unpublishAll } from '../../bis-mitra-admin/api/tests/helpers/cluster-ap
 
 export default async function globalTeardown() {
   if (process.env.TEST_LEAVE_PUBLISHED === '1') return;
+  const isProd = process.env.PLAYWRIGHT_PROD === '1'
+    || String(process.env.PLAYWRIGHT_BASE_URL || '').includes('vercel.app');
+  if (isProd) return;
   process.env.ADMIN_API = process.env.ADMIN_API || 'http://127.0.0.1:5050';
   try {
     await unpublishAll();

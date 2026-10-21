@@ -68,6 +68,25 @@ Prod optional chat probe: `SMOKE_CHAT=1 ADMIN_API=… CLONE_API=… node scripts
 
 Full proof gate: [PROOF_ACTIONS_RUNBOOK.md](PROOF_ACTIONS_RUNBOOK.md) Phase 0 + `npm run test:proof:all`.
 
+## After pushing `main` (operator one-pager)
+
+1. **Railway → bis-mitra-admin:** Redeploy from GitHub. Build log must show `git lfs pull` and `[apply:render-seed]` (real index, not LFS pointer).
+2. **Railway → bis-clone:** Redeploy so build runs `node scripts/seed-demo-records.mjs` (loads `STD-DEMO-*` from `data/standards.json`).
+3. **Vercel:** Redeploy all five frontends if `URL_*` / `REND_*` changed.
+4. **Publish:** Admin UI → publish **MITRA Knowledge** (or rely on hosted auto-fix in `store.js` after admin restart).
+5. **Regression gate:**
+
+```powershell
+$env:ADMIN_API="https://bismitra-production.up.railway.app"
+$env:CLONE_API="https://bis-clone-production.up.railway.app"
+cd bis-mitra-admin
+npm run test:prod:gate
+```
+
+6. **Playwright prod (full user shell):** `cd bis-mitra-user && set PLAYWRIGHT_PROD=1 && npm run test:e2e:prod` — teardown does **not** unpublish clusters on prod.
+
+**Common RCA:** Chat `version ht…` JSON error = admin index still LFS pointer → fix admin build LFS. No compliance card with empty clone demo → redeploy clone with `seed-demo-records.mjs`.
+
 ## Railway / Vercel wiring (reminder)
 
 - Admin build: **no** `cd ../bis-clone`; LFS pull + `apply-render-seed.mjs` only ([`railway.toml`](../bis-mitra-admin/railway.toml)).

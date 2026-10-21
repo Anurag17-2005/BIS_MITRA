@@ -484,6 +484,7 @@ function buildCapabilityPanel(router, probe, retrieval, query = '') {
   const standardRows = probe?.tool === 'search_standards' ? probe?.data?.results : null;
   const helmet = Array.isArray(standardRows)
     ? standardRows.find((row) => row.demo_id === 'STD-DEMO-001'
+      || /IS DEMO 1001/i.test(String(row.is_number || ''))
       || /industrial safety helmet/i.test(`${row.title || ''} ${row.description || ''}`))
     : null;
   if (helmet) {
@@ -1216,13 +1217,27 @@ export async function agentChat(message, {
     return metaPayload;
   }
 
-  const retrievalResult = await retrieve(query, {
-    clusterId: cluster,
-    topK,
-    history: prior,
-    // Carry prior IS/QCO/CML only for genuine follow-ups ("what about it?"), never into a new topic.
-    contextEntities: router.isFollowUp ? router.contextEntities : {},
-  });
+  let retrievalResult;
+  try {
+    retrievalResult = await retrieve(query, {
+      clusterId: cluster,
+      topK,
+      history: prior,
+      contextEntities: router.isFollowUp ? router.contextEntities : {},
+    });
+  } catch (err) {
+    retrievalResult = {
+      query,
+      answer_context: { message: err.message },
+      records: [],
+      chunks: [],
+      sources: [],
+      confidence: 0,
+      retrieval_type: 'error',
+      insufficient_evidence: true,
+      indexError: err.code || 'retrieve_failed',
+    };
+  }
 
   let probe = null;
   // Registry probe hints may refine knowledge lookups, but never override a transactional route.
