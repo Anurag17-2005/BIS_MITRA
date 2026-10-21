@@ -11,6 +11,9 @@ import { SCORE_POLICY } from './score-policy.js';
 import { readJsonFile, readJsonFileSafe } from '../core/read-json-file.js';
 
 const CHUNKS_ROOT = process.env.TRANSFORM_DATA_PATH || PATHS.dataRoot;
+const SKIP_FULL_CHUNK_HYDRATE = Boolean(process.env.RAILWAY_ENVIRONMENT)
+  || process.env.RENDER === 'true'
+  || process.env.SKIP_FULL_CHUNK_HYDRATE === '1';
 
 const LEXICAL_METHOD = 'tfidf_cosine';
 const DENSE_METHOD = 'hash_trick_dense_384';
@@ -30,6 +33,7 @@ function readJsonCached(cache, file) {
 }
 
 function loadChunkFull(clusterId, chunkId) {
+  if (SKIP_FULL_CHUNK_HYDRATE) return null;
   const file = path.join(CHUNKS_ROOT, clusterId, 'chunks', '_chunks.json');
   if (!fs.existsSync(file)) return null;
   const cached = chunkCache.get(file);

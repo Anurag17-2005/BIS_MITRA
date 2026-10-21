@@ -8,6 +8,9 @@ import { readJsonFileSafe } from '../core/read-json-file.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CHUNKS_ROOT = process.env.TRANSFORM_DATA_PATH || PATHS.dataRoot;
 const ADMIN_STORE = PATHS.adminStore;
+const SKIP_FULL_CHUNK_HYDRATE = Boolean(process.env.RAILWAY_ENVIRONMENT)
+  || process.env.RENDER === 'true'
+  || process.env.SKIP_FULL_CHUNK_HYDRATE === '1';
 
 export function resolveClusterId(explicitId) {
   if (explicitId) return explicitId;
@@ -17,6 +20,7 @@ export function resolveClusterId(explicitId) {
 }
 
 function loadChunkFull(clusterId, chunkId) {
+  if (SKIP_FULL_CHUNK_HYDRATE) return null;
   const file = path.join(CHUNKS_ROOT, clusterId, 'chunks', '_chunks.json');
   const chunks = readJsonFileSafe(file);
   if (!chunks || chunks.__lfsPointer || !Array.isArray(chunks)) return null;
