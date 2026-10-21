@@ -5,11 +5,14 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { createRequire } from 'module';
 import { fileURLToPath } from 'url';
-import Database from 'better-sqlite3';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CLONE_ROOT = path.join(__dirname, '..');
+const requireFromApi = createRequire(path.join(CLONE_ROOT, 'api', 'package.json'));
+const Database = requireFromApi('better-sqlite3');
+
 const DB_PATH = process.env.CLONE_DB_PATH || path.join(CLONE_ROOT, 'data', 'bis-clone.db');
 const STANDARDS_CANDIDATES = [
   path.join(CLONE_ROOT, 'data', 'standards-demo.json'),
