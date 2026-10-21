@@ -35,11 +35,20 @@ async function main() {
   ok = run('proof:01 helmet', 'npm', ['run', 'test:proof:01'], {
     TEST_CLUSTER: 'mitra-knowledge',
   }) && ok;
+  ok = run('proof:04–06 API', 'node', ['api/tests/agent/proof-actions-4-10.test.mjs', '--only=4'], {
+    TEST_CLUSTER: 'mitra-knowledge',
+  }) && ok;
+  ok = run('proof:05 lab', 'node', ['api/tests/agent/proof-actions-4-10.test.mjs', '--only=5'], {
+    TEST_CLUSTER: 'mitra-knowledge',
+  }) && ok;
+  ok = run('proof:06 CML', 'node', ['api/tests/agent/proof-actions-4-10.test.mjs', '--only=6'], {
+    TEST_CLUSTER: 'mitra-knowledge',
+  }) && ok;
   const userRoot = path.join(ROOT, '..', 'bis-mitra-user');
   console.log(`\n=== playwright prod (quick) ===`);
   const pw = spawnSync(
     'npm',
-    ['run', 'test:e2e:prod', '--', 'portal-chrome.spec.js', 'proof-actions-quick.spec.js', 'knowledge-smoke.spec.js'],
+    ['run', 'test:e2e:prod', '--', 'proof-actions-quick.spec.js', 'knowledge-smoke.spec.js', 'portal-chrome.spec.js'],
     {
       cwd: userRoot,
       stdio: 'inherit',

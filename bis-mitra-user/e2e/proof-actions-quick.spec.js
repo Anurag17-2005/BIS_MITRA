@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { preparePortalChat, sendAndWaitForTestId } from './helpers/portal-chat.mjs';
 
 const HELMET =
   'I manufacture industrial safety helmets. What BIS standard applies to my product, is certification mandatory, and what tests and documents do I need?';
@@ -11,42 +12,28 @@ const LAB =
 
 const CML = 'Verify CML-DEMO-61003 — is this product certified under BIS?';
 
-async function useIndustryPersona(page) {
-  await page.getByTestId('portal-persona-select').selectOption('industry');
-}
-
-async function sendAndWait(page, prompt, testId, timeout = 90_000) {
-  await page.getByTestId('portal-chat-input').fill(prompt);
-  await page.getByTestId('portal-send').click();
-  await expect(page.getByTestId(testId)).toBeVisible({ timeout });
-}
-
 test.describe('Proof actions — response cards', () => {
   test('Action 1 — helmet compliance card', async ({ page }) => {
-    await page.goto('/');
-    await useIndustryPersona(page);
-    await sendAndWait(page, HELMET, 'portal-compliance-card');
+    await preparePortalChat(page, 'industry');
+    await sendAndWaitForTestId(page, HELMET, 'portal-compliance-card');
     await expect(page.getByTestId('portal-compliance-card')).toContainText('IS DEMO 1001');
   });
 
   test('Action 4 — FMCS checklist (foreign exporter)', async ({ page }) => {
-    await page.goto('/');
-    await page.getByTestId('portal-persona-select').selectOption('foreign_exporter');
-    await sendAndWait(page, FMCS, 'portal-checklist-card');
+    await preparePortalChat(page, 'foreign_exporter');
+    await sendAndWaitForTestId(page, FMCS, 'portal-checklist-card');
     await expect(page.getByTestId('portal-checklist-card')).toContainText('1003');
   });
 
   test('Action 5 — lab matching', async ({ page }) => {
-    await page.goto('/');
-    await useIndustryPersona(page);
-    await sendAndWait(page, LAB, 'portal-matching-card');
+    await preparePortalChat(page, 'industry');
+    await sendAndWaitForTestId(page, LAB, 'portal-matching-card');
     await expect(page.getByTestId('portal-matching-card')).toContainText(/lab|Apex|LAB/i);
   });
 
   test('Action 6 — CML verification', async ({ page }) => {
-    await page.goto('/');
-    await page.getByTestId('portal-persona-select').selectOption('citizen');
-    await sendAndWait(page, CML, 'portal-verify-card');
+    await preparePortalChat(page, 'citizen');
+    await sendAndWaitForTestId(page, CML, 'portal-verify-card');
     await expect(page.getByTestId('portal-verify-card')).toContainText(/VERIFIED|MISMATCH|found/i);
   });
 

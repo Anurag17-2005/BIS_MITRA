@@ -1,40 +1,54 @@
 # Production test report
 
-Last Phase 0 baseline: **2026-10-21** (USER_EVAL_PLAN §3).
+**Last full regate:** 2026-10-21  
+**Git `main`:** `6787084` (after `3360c40` eval/RAG/PDF ship)
 
-## Phase 0 — Preflight snapshot (Railway prod)
+## Deploy status
 
-| Check | Result | Notes |
-|-------|--------|-------|
-| Admin `GET /api/health` | **200** | `cloneApi` set |
-| Clone `GET /api/health` | **200** | |
-| `GET /api/portal/config` | **OK** | `publishedClusterId`: `mitra-knowledge`; `cloneFilesBase`: `…/files` (correct suffix) |
-| `GET /api/transform/mitra-knowledge/status` | **OK** | golden **176**, chunks **3123**, live index promoted **2026-10-21** |
-| Hosted RAG | **Mitigated in repo** | Golden scan fallback when index >32MB ([hosted-golden-search.js](../bis-mitra-admin/api/retrieval/hosted-golden-search.js)) — redeploy admin to apply |
+| Target | Commit | State |
+|--------|--------|--------|
+| Railway **bis-clone** | `3360c40`+ | SUCCESS |
+| Railway **bis admin api** | `3360c40` live (`0b114a70`); newer deploys may still BUILDING | Health OK |
+| Vercel **bis-mitra-user** | `6787084` | READY |
+| Vercel **bis-mitra-admin-ui** | `3360c40` | READY |
 
-**URLs used:**
+**Railway admin vars added:** `ENABLE_HOSTED_PIPELINE=1`, `HOSTED_PIPELINE_MS=60000`
 
-- Admin: `https://bismitra-production.up.railway.app`
-- Clone: `https://bis-clone-production.up.railway.app`
-- User portal: `https://bis-mitra-user.vercel.app`
+## Automated gates (prod URLs)
 
-## Evaluation assets
+| Gate | Result | Notes |
+|------|--------|-------|
+| Preflight | **PASS** | STD-DEMO-001, CML-DEMO-61003 |
+| Portal config | **PASS** | `mitra-knowledge`, `cloneFilesBase` → `/files` |
+| `test:proof:01` | **PASS** | Helmet compliance API |
+| `SMOKE_CHAT` | **INTERMITTENT FAIL** | 502 / Groq 401 — see RCA below |
+| Playwright knowledge (K-01, K-14) | **PASS** | Industry persona + hosted golden fallback |
+| Playwright Action 1 (helmet card) | **PASS** | |
+| Playwright Actions 4–6 | **FAIL** | Timeouts when chat API unhealthy |
+| Playwright portal config/BIS | **PASS** | |
+| `test:eval:knowledge` (local index) | **PASS** | 8/8 |
 
-- Runbook: [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md)
-- Golden Q&A: [eval/mitra-knowledge-golden-qa.json](eval/mitra-knowledge-golden-qa.json)
-- Command: `cd bis-mitra-admin && npm run test:eval:knowledge`
+## RCA — chat / smoke failures
 
-## Gate summary (historical + next regate)
+Railway **deploy logs** show:
 
-| Gate | Result | RCA / next step |
-|------|--------|-----------------|
-| Preflight (`test:preflight`) | Re-run after redeploy | Clone demo seed for proof actions |
-| Smoke + `SMOKE_CHAT` | Re-run after admin redeploy | |
-| Playwright prod | Re-run | `proof-actions-quick.spec.js`, `knowledge-smoke.spec.js` |
-| Admin UI | Verify `REND_ADMIN_API` on Vercel admin-ui | |
-| `proof-actions-sandbox` | **SKIP on prod** | Use `mitra-knowledge` + D-* prompts |
+```text
+[llm] groq auth: 401 ... Invalid API Key
+```
 
-## Operator regate (after deploy)
+**Action:** In Railway → **bis admin api** → Variables, set a valid **`GROQ_API_KEY`** (and `LLM_PROVIDER=groq`). Redeploy admin. Do not commit keys to git.
+
+Secondary: hosted index uses **golden scan fallback** (72MB index) — expected; log line is informational.
+
+## Manual USER_EVAL spot checks
+
+| Check | Result |
+|-------|--------|
+| `GET /api/pipeline/status?clusterId=mitra-knowledge` | **OK** — not stale, index ready |
+| K-01 / K-14 via user portal (Playwright) | **PASS** after e2e persona fix |
+| PDF path normalization | Shipped in `3360c40` — verify in UI after stable chat |
+
+## Operator regate (after Groq key fixed)
 
 ```powershell
 $env:ADMIN_API="https://bismitra-production.up.railway.app"
@@ -42,12 +56,6 @@ $env:CLONE_API="https://bis-clone-production.up.railway.app"
 cd bis-mitra-admin
 npm run test:prod:gate
 npm run test:eval:knowledge
-cd ../bis-mitra-user
-$env:PLAYWRIGHT_PROD="1"
-$env:ADMIN_API="https://bismitra-production.up.railway.app"
-npm run test:e2e:prod
 ```
 
-**Hosted auto-transform (optional):** set Railway `ENABLE_HOSTED_PIPELINE=1` on admin — runs stale warehouse transform without full scheduler.
-
-See [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md), [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md).
+See [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md), [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md).

@@ -11,6 +11,7 @@ export function chat(message, extra = {}) {
   const clusterId = extra.clusterId || CLUSTER;
   return json(`${ADMIN}/api/agent/chat`, {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       message,
       clusterId,
