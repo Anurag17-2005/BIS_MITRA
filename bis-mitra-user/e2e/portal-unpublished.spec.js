@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test';
 import { unpublishAll } from '../../bis-mitra-admin/api/tests/helpers/cluster-api.mjs';
 
 test('shows banner when no cluster is published', async ({ page }) => {
+  const isProd = process.env.PLAYWRIGHT_PROD === '1'
+    || String(process.env.PLAYWRIGHT_BASE_URL || '').includes('vercel.app');
+  test.skip(isProd, 'Do not unpublish production clusters from prod Playwright');
   process.env.ADMIN_API = process.env.ADMIN_API || 'http://127.0.0.1:5050';
   await unpublishAll();
   await page.goto('/');
