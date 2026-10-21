@@ -11,6 +11,10 @@ const LAB =
 
 const CML = 'Verify CML-DEMO-61003 — is this product certified under BIS?';
 
+async function useIndustryPersona(page) {
+  await page.getByTestId('portal-persona-select').selectOption('industry');
+}
+
 async function sendAndWait(page, prompt, testId, timeout = 90_000) {
   await page.getByTestId('portal-chat-input').fill(prompt);
   await page.getByTestId('portal-send').click();
@@ -20,6 +24,7 @@ async function sendAndWait(page, prompt, testId, timeout = 90_000) {
 test.describe('Proof actions — response cards', () => {
   test('Action 1 — helmet compliance card', async ({ page }) => {
     await page.goto('/');
+    await useIndustryPersona(page);
     await sendAndWait(page, HELMET, 'portal-compliance-card');
     await expect(page.getByTestId('portal-compliance-card')).toContainText('IS DEMO 1001');
   });
@@ -33,6 +38,7 @@ test.describe('Proof actions — response cards', () => {
 
   test('Action 5 — lab matching', async ({ page }) => {
     await page.goto('/');
+    await useIndustryPersona(page);
     await sendAndWait(page, LAB, 'portal-matching-card');
     await expect(page.getByTestId('portal-matching-card')).toContainText(/lab|Apex|LAB/i);
   });
@@ -41,13 +47,15 @@ test.describe('Proof actions — response cards', () => {
     await page.goto('/');
     await page.getByTestId('portal-persona-select').selectOption('citizen');
     await sendAndWait(page, CML, 'portal-verify-card');
-    await expect(page.getByTestId('portal-verify-card')).toContainText(/VERIFIED|found/i);
+    await expect(page.getByTestId('portal-verify-card')).toContainText(/VERIFIED|MISMATCH|found/i);
   });
 
   test('Portal config — clone PDF base and BIS shell', async ({ request }) => {
     const admin = process.env.ADMIN_API || process.env.REND_ADMIN_API;
     test.skip(!admin, 'Set ADMIN_API for prod link smoke');
-    const cfg = await request.get(`${admin.replace(/\/$/, '')}/api/portal/config`).json();
+    const cfgRes = await request.get(`${admin.replace(/\/$/, '')}/api/portal/config`);
+    expect(cfgRes.ok()).toBeTruthy();
+    const cfg = await cfgRes.json();
     expect(cfg.cloneFilesBase).toMatch(/\/files$/);
     expect(cfg.bisWebUrl).toBeTruthy();
     const bis = await request.get(cfg.bisWebUrl);

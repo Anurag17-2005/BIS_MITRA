@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('published cluster label and helmet compliance card', async ({ page }) => {
   await page.goto('/');
+  await page.getByTestId('portal-persona-select').selectOption('industry');
   const label = page.getByTestId('portal-knowledge-label');
   await expect(label).toBeVisible({ timeout: 15_000 });
   const prompt =
