@@ -17,6 +17,27 @@ export const DEMO_HELMET_STANDARD = {
   source_file: 'standards.pdf',
 };
 
+function sectionFromDescription(description, label) {
+  const text = String(description || '');
+  const match = text.match(new RegExp(`${label}:\\s*([\\s\\S]*?)(?=\\n\\n[A-Z][^:]+:|$)`, 'i'));
+  return match?.[1]?.split(';').map((item) => item.trim()).filter(Boolean) || [];
+}
+
+/** Lists for compliance panel when clone DB description lacks section headers. */
+export function demoHelmetComplianceLists(description) {
+  const fromDesc = {
+    requirements: sectionFromDescription(description, 'Key requirements'),
+    tests: sectionFromDescription(description, 'Testing requirements'),
+    documents: sectionFromDescription(description, 'Documentation required'),
+  };
+  if (fromDesc.tests.length && fromDesc.documents.length) return fromDesc;
+  return {
+    requirements: sectionFromDescription(DEMO_HELMET_STANDARD.description, 'Key requirements'),
+    tests: sectionFromDescription(DEMO_HELMET_STANDARD.description, 'Testing requirements'),
+    documents: sectionFromDescription(DEMO_HELMET_STANDARD.description, 'Documentation required'),
+  };
+}
+
 export function appendDemoHelmetIfMissing(results, query) {
   const rows = Array.isArray(results) ? [...results] : [];
   const q = String(query || '');

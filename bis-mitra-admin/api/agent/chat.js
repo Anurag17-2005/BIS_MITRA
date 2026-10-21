@@ -20,6 +20,7 @@ import {
 } from '../workflows/common/workflow-bridge.js';
 import { expandQueryTerms } from '../retrieval/regulatory/synonym-expander.js';
 import { bestEnforcementForIsList } from '../retrieval/regulatory/qco-matcher.js';
+import { demoHelmetComplianceLists } from '../core/demo-standard-fallback.js';
 import { applyTruthShield, extractVerifiedFacts } from './truth-shield.js';
 import { shouldRunLiveProbe, runLivePlaywrightProbe } from './live-probe.js';
 import {
@@ -488,11 +489,7 @@ function buildCapabilityPanel(router, probe, retrieval, query = '') {
       || /industrial safety helmet/i.test(`${row.title || ''} ${row.description || ''}`))
     : null;
   if (helmet) {
-    const description = String(helmet.description || '');
-    const section = (label) => {
-      const match = description.match(new RegExp(`${label}:\\s*([\\s\\S]*?)(?=\\n\\n[A-Z][^:]+:|$)`, 'i'));
-      return match?.[1]?.split(';').map((item) => item.trim()).filter(Boolean) || [];
-    };
+    const lists = demoHelmetComplianceLists(helmet.description);
     return {
       ...base,
       compliance: {
@@ -501,9 +498,9 @@ function buildCapabilityPanel(router, probe, retrieval, query = '') {
         status: helmet.status || 'Active',
         applicability: helmet.certification_applicability || helmet.mandatory_voluntary,
         qco_reference: helmet.qco_reference || null,
-        requirements: section('Key requirements'),
-        tests: section('Testing requirements'),
-        documents: section('Documentation required'),
+        requirements: lists.requirements,
+        tests: lists.tests,
+        documents: lists.documents,
         source: helmet.source_reference || helmet.demo_id || 'STD-DEMO-001',
         demo_notice: 'Synthetic BIS MITRA demonstration record — not an official BIS standard.',
       },
