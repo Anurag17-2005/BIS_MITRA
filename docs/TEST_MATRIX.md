@@ -4,6 +4,8 @@ Maps user/admin features to automated tests. Run local stack: **clone :4000**, *
 
 **Panel demo rehearsal:** [PROOF_ACTIONS_RUNBOOK.md](PROOF_ACTIONS_RUNBOOK.md) (10 proof actions, deploy gate, checklists).
 
+**Virtual user evaluation (prod/local):** [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md) — K/D/N prompt suites, admin checklist, link/PDF rubric, phases P0–P6.
+
 ## Commands
 
 | Command | Scope |
@@ -17,6 +19,7 @@ Maps user/admin features to automated tests. Run local stack: **clone :4000**, *
 | `cd bis-mitra-user && npm run test:e2e` | Playwright portal UI (local dev server) |
 | `cd bis-mitra-user && npm run test:e2e:prod` | Playwright vs **deployed** user portal (`playwright.prod.config.js`) |
 | `SMOKE_CHAT=1 node scripts/smoke-deploy.mjs` | Prod chat probe (uses published cluster only) |
+| `npm run test:eval:knowledge` | Knowledge K-* prompts vs golden Q&A (admin API) |
 | GitHub Actions **Prod smoke (manual)** | Same smoke script against Railway URLs |
 
 **Env:** `ADMIN_API`, `CLONE_API`, `DISABLE_ADMIN_AUTH=1` optional locally, `ADMIN_PASSWORD` when auth on.
@@ -44,7 +47,7 @@ Maps user/admin features to automated tests. Run local stack: **clone :4000**, *
 | Unpublished banner | Playwright | `portal-unpublished.spec.js` |
 | Config refresh on focus | Playwright | `portal-config-refresh.spec.js` |
 | Voice mic | Manual | — |
-| PDF viewer full flow | Manual | — |
+| PDF viewer full flow | Playwright + manual | `proof-actions-quick.spec.js`, `knowledge-smoke.spec.js`; full matrix in [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md) §10 |
 | File attach in composer | Manual | — |
 | Save snippet | Manual | — |
 

@@ -43,4 +43,17 @@ test.describe('Proof actions — response cards', () => {
     await sendAndWait(page, CML, 'portal-verify-card');
     await expect(page.getByTestId('portal-verify-card')).toContainText(/VERIFIED|found/i);
   });
+
+  test('Portal config — clone PDF base and BIS shell', async ({ request }) => {
+    const admin = process.env.ADMIN_API || process.env.REND_ADMIN_API;
+    test.skip(!admin, 'Set ADMIN_API for prod link smoke');
+    const cfg = await request.get(`${admin.replace(/\/$/, '')}/api/portal/config`).json();
+    expect(cfg.cloneFilesBase).toMatch(/\/files$/);
+    expect(cfg.bisWebUrl).toBeTruthy();
+    const bis = await request.get(cfg.bisWebUrl);
+    expect(bis.status()).toBeLessThan(500);
+    const manualPdf = `${cfg.cloneFilesBase}/knowledge/pdfs/manuals/PM-IS-4151-helmet-2024.pdf`;
+    const pdfRes = await request.get(manualPdf);
+    expect([200, 404]).toContain(pdfRes.status());
+  });
 });

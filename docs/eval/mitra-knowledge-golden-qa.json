@@ -1,0 +1,70 @@
+{
+  "clusterId": "mitra-knowledge",
+  "version": 1,
+  "cases": [
+    {
+      "id": "K-01",
+      "prompt": "What is the procedure for change in scope of licence (CSoL) under Scheme I?",
+      "mustContain": ["scope", "licence"],
+      "mustNotContain": ["IS 99999"],
+      "sourceFiles": ["process-change-in-scope-of-licence.pdf"],
+      "expectEvidence": true
+    },
+    {
+      "id": "K-02",
+      "prompt": "Explain general principles for grant of licence (GoL) for BIS certification.",
+      "mustContain": ["licence", "grant"],
+      "mustNotContain": [],
+      "sourceFiles": ["grant-of-licence-guidelines-2026"],
+      "expectEvidence": true
+    },
+    {
+      "id": "K-06",
+      "prompt": "Is my product on the compulsory certification list? How do I check?",
+      "mustContain": ["compulsory"],
+      "mustNotContain": [],
+      "sourceFiles": ["schemes-compulsory-products-list.pdf"],
+      "expectEvidence": true
+    },
+    {
+      "id": "K-07",
+      "prompt": "Summarise the BIS guidance document on quality control orders (QCOs).",
+      "mustContain": ["QCO"],
+      "mustNotContain": [],
+      "sourceFiles": ["guidance-document-on-qcos"],
+      "expectEvidence": true
+    },
+    {
+      "id": "K-12",
+      "prompt": "What is the BIS laboratory recognition scheme (LRS)?",
+      "mustContain": ["laborator", "recognition"],
+      "mustNotContain": [],
+      "sourceFiles": ["labs-lab-recognition-scheme-2020.pdf"],
+      "expectEvidence": true
+    },
+    {
+      "id": "K-14",
+      "prompt": "What tests are required for IS 4151 industrial safety helmets?",
+      "mustContain": ["4151", "helmet"],
+      "mustNotContain": [],
+      "sourceFiles": ["manuals-PM-IS-4151-helmet-2024.pdf"],
+      "expectEvidence": true
+    },
+    {
+      "id": "K-16",
+      "prompt": "How do I complain about a BIS-certified product?",
+      "mustContain": ["complaint"],
+      "mustNotContain": [],
+      "sourceFiles": ["consumer-complaint-guidelines-certified-products-2023.pdf"],
+      "expectEvidence": true
+    },
+    {
+      "id": "N-04",
+      "prompt": "Explain IS 99999:2099 certification requirements.",
+      "mustContain": [],
+      "mustNotContain": ["99999:2099"],
+      "sourceFiles": [],
+      "expectEvidence": false
+    }
+  ]
+}

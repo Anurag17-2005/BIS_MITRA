@@ -52,7 +52,8 @@
     "pack:render-seed": "node scripts/pack-render-seed.mjs",
     "apply:render-seed": "node scripts/apply-render-seed.mjs",
     "test:e2e:portal": "npm run test:e2e --prefix ../bis-mitra-user",
-    "test:prod:gate": "node scripts/prod-regate.mjs"
+    "test:prod:gate": "node scripts/prod-regate.mjs",
+    "test:eval:knowledge": "node scripts/eval-knowledge.mjs"
   },
   "workspaces": ["api", "frontend"],
   "devDependencies": {

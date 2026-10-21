@@ -2,7 +2,7 @@
 
 Panel demo: **Prompt → Agent → System change → Visible proof**. Rehearsal target: **~2 hours** including automated gate.
 
-See also: [TEST_MATRIX.md](TEST_MATRIX.md), [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md), [vercel-env.example](vercel-env.example).
+See also: [TEST_MATRIX.md](TEST_MATRIX.md), [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md) (virtual user + knowledge prompts), [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md), [vercel-env.example](vercel-env.example).
 
 ---
 

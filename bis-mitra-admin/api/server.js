@@ -55,6 +55,8 @@ import {
   startAutoSyncWatcher,
   defaultAutomationConfig,
 } from './automation.js';
+import { getPipelineStatus } from './pipeline-status.js';
+import { startHostedPipelineWatcher } from './hosted-pipeline-watcher.js';
 import {
   listRules,
   getRule,
@@ -948,6 +950,15 @@ app.get('/api/automation/status', (req, res) => {
   res.json(getAutomationStatus(store));
 });
 
+app.get('/api/pipeline/status', (req, res) => {
+  try {
+    const clusterId = req.query.clusterId || null;
+    res.json(getPipelineStatus(clusterId));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/api/automation/events', (req, res) => {
   const store = getStore();
   const limit = Math.min(parseInt(req.query.limit || '50', 10), 80);
@@ -1053,6 +1064,9 @@ const server = app.listen(PORT, () => {
     || Boolean(process.env.RAILWAY_ENVIRONMENT);
   if (skipBackground) {
     console.log('Background scheduler / alerts / auto-sync disabled (hosted deploy or DISABLE_BACKGROUND_JOBS=1).');
+    if (process.env.ENABLE_HOSTED_PIPELINE === '1') {
+      startHostedPipelineWatcher(getStore, saveStore, Number(process.env.HOSTED_PIPELINE_MS || 60000));
+    }
   } else {
     startScheduler(15000);
     startAlertScanner({ intervalMs: 20000 });

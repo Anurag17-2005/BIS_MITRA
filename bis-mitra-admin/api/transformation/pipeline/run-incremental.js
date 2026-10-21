@@ -31,14 +31,17 @@ export function listChangedWarehouseItems(clusterId, store = null) {
   return changed;
 }
 
-export async function runGoldenForItems(clusterId, warehouseItemIds, store = null) {
+export async function runGoldenForItems(clusterId, warehouseItemIds, store = null, { onProgress } = {}) {
   const adminStore = store || loadAdminStore();
   const items = listWarehouseItems(adminStore, { clusterId })
     .filter(i => warehouseItemIds.includes(i.id));
   const dedup = createDedupRegistry();
   const results = [];
+  const total = items.length;
 
-  for (const item of items) {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    onProgress?.({ phase: 'golden', done: i, total, currentItem: item.id });
     try {
       const out = await processWarehouseItem(item, dedup);
       results.push({
@@ -66,7 +69,7 @@ export async function runGoldenForItems(clusterId, warehouseItemIds, store = nul
   return { processed: results.length, results };
 }
 
-export async function runIncrementalTransform(clusterId, { warehouseItemIds = null } = {}) {
+export async function runIncrementalTransform(clusterId, { warehouseItemIds = null, onProgress } = {}) {
   const store = loadAdminStore();
   const changedItemIds = warehouseItemIds?.length
     ? warehouseItemIds
@@ -74,10 +77,12 @@ export async function runIncrementalTransform(clusterId, { warehouseItemIds = nu
 
   let golden = null;
   if (changedItemIds.length) {
-    golden = await runGoldenForItems(clusterId, changedItemIds, store);
+    golden = await runGoldenForItems(clusterId, changedItemIds, store, { onProgress });
   }
 
+  onProgress?.({ phase: 'chunks', done: changedItemIds.length, total: changedItemIds.length || 1 });
   const chunks = runChunksForCluster(clusterId);
+  onProgress?.({ phase: 'index', done: changedItemIds.length, total: changedItemIds.length || 1 });
   const index = runIndexForCluster(clusterId, 'draft');
 
   return {

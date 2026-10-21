@@ -1,59 +1,53 @@
-# Production test report (2026-10-21)
+# Production test report
 
-GitHub `main` tip: **`95b9c49`** (includes deploy fixes, Playwright prod profile, demo fallbacks).
+Last Phase 0 baseline: **2026-10-21** (USER_EVAL_PLAN §3).
 
-## Gate summary
+## Phase 0 — Preflight snapshot (Railway prod)
+
+| Check | Result | Notes |
+|-------|--------|-------|
+| Admin `GET /api/health` | **200** | `cloneApi` set |
+| Clone `GET /api/health` | **200** | |
+| `GET /api/portal/config` | **OK** | `publishedClusterId`: `mitra-knowledge`; `cloneFilesBase`: `…/files` (correct suffix) |
+| `GET /api/transform/mitra-knowledge/status` | **OK** | golden **176**, chunks **3123**, live index promoted **2026-10-21** |
+| Hosted RAG | **Mitigated in repo** | Golden scan fallback when index >32MB ([hosted-golden-search.js](../bis-mitra-admin/api/retrieval/hosted-golden-search.js)) — redeploy admin to apply |
+
+**URLs used:**
+
+- Admin: `https://bismitra-production.up.railway.app`
+- Clone: `https://bis-clone-production.up.railway.app`
+- User portal: `https://bis-mitra-user.vercel.app`
+
+## Evaluation assets
+
+- Runbook: [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md)
+- Golden Q&A: [eval/mitra-knowledge-golden-qa.json](eval/mitra-knowledge-golden-qa.json)
+- Command: `cd bis-mitra-admin && npm run test:eval:knowledge`
+
+## Gate summary (historical + next regate)
 
 | Gate | Result | RCA / next step |
 |------|--------|-----------------|
-| Preflight (`test:preflight`) | **FAIL** | Clone missing `STD-DEMO-001` — redeploy **bis-clone** with `seed-demo-records.mjs` in build |
-| Smoke + `SMOKE_CHAT` | **FAIL** | Admin index still Git LFS pointer on running container — **redeploy bis-mitra-admin** after `git lfs pull` build |
-| Playwright prod (18 tests) | **13 pass / 5 fail** | Chat cards fail until admin+clone redeploy; shell/personas/config refresh **pass** |
-| Admin UI (browser) | **FAIL** | [bis-mitra-admin-ui.vercel.app](https://bis-mitra-admin-ui.vercel.app) shows “No clusters” — set **`REND_ADMIN_API`** on Vercel admin-ui and redeploy |
-| `proof-actions-sandbox` suite | **SKIP** | Cluster not on prod volume — use **`mitra-knowledge`** only |
+| Preflight (`test:preflight`) | Re-run after redeploy | Clone demo seed for proof actions |
+| Smoke + `SMOKE_CHAT` | Re-run after admin redeploy | |
+| Playwright prod | Re-run | `proof-actions-quick.spec.js`, `knowledge-smoke.spec.js` |
+| Admin UI | Verify `REND_ADMIN_API` on Vercel admin-ui | |
+| `proof-actions-sandbox` | **SKIP on prod** | Use `mitra-knowledge` + D-* prompts |
 
-## User portal — section A (chrome)
-
-| # | Result |
-|---|--------|
-| A1–A7 | **PASS** (Playwright prod: theme, language, nav, 8 personas, config refresh) |
-
-## User portal — section B (agent / proof)
-
-| Action | Result | Notes |
-|--------|--------|-------|
-| 1 Helmet compliance | **FAIL** | `/api/agent/chat` error until admin redeploy + clone demo seed |
-| 4 FMCS checklist | **FAIL** | Same |
-| 5 Lab matching | **FAIL** | Same |
-| 6 CML verify | **FAIL** | Same |
-| 2–3, 7–10 | **Not run** (blocked on chat stability) | Re-run after regate |
-
-## Admin UI — section M
-
-| # | Result | Notes |
-|---|--------|-------|
-| M1 | **FAIL** | Empty cluster list — Vercel **`REND_ADMIN_API`** likely missing at build |
-| M2–M8 | **Blocked** | Fix M1 first; then health strip, publish, agent preview via Railway API |
-
-## Fixes landed in repo (awaiting Railway/Vercel redeploy)
-
-- Hosted publish guard, preflight `URL_*`, smoke gates (`c538f86`)
-- LFS-safe index read + retrieve try/catch (`704582c`, `95b9c49`)
-- Clone `seed-demo-records.mjs` + helmet probe fallback (`47f94d5`, `95b9c49`)
-- Playwright prod config; **no unpublish on prod** teardown/setup (`global-teardown.mjs`, `portal-unpublished` skip)
-- `npm run test:prod:gate` — [prod-regate.mjs](../bis-mitra-admin/scripts/prod-regate.mjs)
-- GitHub Action: `.github/workflows/prod-smoke.yml` (manual)
-
-## Operator regate (after redeploy)
+## Operator regate (after deploy)
 
 ```powershell
 $env:ADMIN_API="https://bismitra-production.up.railway.app"
 $env:CLONE_API="https://bis-clone-production.up.railway.app"
 cd bis-mitra-admin
 npm run test:prod:gate
+npm run test:eval:knowledge
 cd ../bis-mitra-user
 $env:PLAYWRIGHT_PROD="1"
+$env:ADMIN_API="https://bismitra-production.up.railway.app"
 npm run test:e2e:prod
 ```
 
-See [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md) for redeploy order.
+**Hosted auto-transform (optional):** set Railway `ENABLE_HOSTED_PIPELINE=1` on admin — runs stale warehouse transform without full scheduler.
+
+See [DEPLOY_CONTEXT.md](DEPLOY_CONTEXT.md), [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md).

@@ -44,11 +44,19 @@ export function createCloneFilesHandler(localRoot, { filesPrefix = '' } = {}) {
   };
 }
 
+function normalizeCloneFilesBase(url) {
+  if (!url) return null;
+  let base = String(url).replace(/\/+$/, '');
+  // Misconfigured env sometimes ends with /files/pdfs — clone serves PDFs at /files/knowledge/pdfs/...
+  if (base.endsWith('/files/pdfs')) base = base.slice(0, -'/pdfs'.length);
+  return base;
+}
+
 export function resolveCloneFilesPublicBase() {
   const explicit = process.env.CLONE_FILES_URL || process.env.CLONE_FILES_PUBLIC;
-  if (explicit) return String(explicit).replace(/\/$/, '');
+  if (explicit) return normalizeCloneFilesBase(explicit);
   const clone = cloneApiBase();
-  return clone ? `${clone}/files` : null;
+  return clone ? normalizeCloneFilesBase(`${clone}/files`) : null;
 }
 
 export function resolveBisWebUrl() {

@@ -241,6 +241,12 @@ export async function getTransformStatus(clusterId) {
   return parseJson(res);
 }
 
+export async function getPipelineStatus(clusterId) {
+  const q = clusterId ? `?clusterId=${encodeURIComponent(clusterId)}` : '';
+  const res = await fetch(`${API}/api/pipeline/status${q}`, { headers: headers(false) });
+  return parseJson(res);
+}
+
 export async function getTransformGoldenGrouped(clusterId) {
   const res = await fetch(`${API}/api/transform/${clusterId}/golden?grouped=1`, { headers: headers(false) });
   return parseJson(res);

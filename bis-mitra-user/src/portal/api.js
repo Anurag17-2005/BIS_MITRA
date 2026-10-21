@@ -92,33 +92,50 @@ export async function getComplianceAlerts(persona) {
   return parseJson(res);
 }
 
+/** Map citation paths to clone static mount: /files/knowledge/pdfs/... */
+export function normalizeKnowledgeStoragePath(file) {
+  const raw = String(file || '').replace(/\\/g, '/').replace(/^\/+/, '');
+  if (raw.startsWith('http')) return raw;
+  if (raw.startsWith('knowledge/pdfs/')) return raw;
+  if (raw.startsWith('knowledge/')) return raw;
+  if (raw.startsWith('pdfs/knowledge/pdfs/')) {
+    return raw.replace(/^pdfs\/knowledge\/pdfs\//, 'knowledge/pdfs/');
+  }
+  if (raw.includes('/')) return `knowledge/pdfs/${raw}`;
+  return `knowledge/pdfs/manuals/${raw}`;
+}
+
+function normalizeCloneFilesBase(base) {
+  if (!base) return base;
+  let b = String(base).replace(/\/+$/, '');
+  if (b.endsWith('/files/pdfs')) b = b.slice(0, -'/pdfs'.length);
+  return b;
+}
+
 export function sourceToPdfUrl(source) {
   if (!source) return null;
   const file = source.storage_uri || source.source_file || source.sourceFile || source.file;
   if (!file) return null;
-  const raw = String(file).replace(/\\/g, '/').replace(/^\/+/, '');
-  if (raw.startsWith('http')) return raw.split('#')[0];
-
-  const filesBase = getCloneFilesBase();
-
-  if (raw.startsWith('knowledge/')) {
-    const rel = raw.replace(/^knowledge\//, '');
-    return `${filesBase}/${rel}`;
-  }
-  if (raw.includes('/')) {
-    return `${filesBase}/knowledge/pdfs/${raw}`;
-  }
-  return `${filesBase}/knowledge/pdfs/manuals/${raw}`;
+  const storage = normalizeKnowledgeStoragePath(file);
+  if (storage.startsWith('http')) return storage.split('#')[0];
+  const filesBase = normalizeCloneFilesBase(getCloneFilesBase());
+  if (!filesBase) return null;
+  const rel = storage.replace(/^knowledge\//, '');
+  return `${filesBase}/${rel}`;
 }
 
-/** Legacy admin-relative PDF URL (proxy to clone when local files missing). */
+/** Admin proxy to clone when local files missing or clone URL misconfigured. */
 export function sourceToPdfUrlViaAdmin(source) {
   if (!source) return null;
   const file = source.storage_uri || source.source_file || source.sourceFile || source.file;
   if (!file) return null;
-  const raw = String(file).replace(/\\/g, '/').replace(/^\/+/, '');
-  if (raw.startsWith('http')) return raw.split('#')[0];
-  if (raw.startsWith('knowledge/')) return `${API}/api/clone-files/${raw}`;
-  if (raw.includes('/')) return `${API}/api/clone-files/knowledge/pdfs/${raw}`;
-  return `${API}/api/clone-files/knowledge/pdfs/manuals/${raw}`;
+  const storage = normalizeKnowledgeStoragePath(file);
+  if (storage.startsWith('http')) return storage.split('#')[0];
+  if (!API) return null;
+  return `${API}/api/clone-files/${storage}`;
+}
+
+/** Prefer direct clone URL; admin proxy as fallback for iframe loads. */
+export function resolvePdfOpenUrl(source) {
+  return sourceToPdfUrl(source) || sourceToPdfUrlViaAdmin(source);
 }

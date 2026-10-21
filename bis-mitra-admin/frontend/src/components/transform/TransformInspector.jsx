@@ -17,20 +17,31 @@ export default function TransformInspector({ clusterId, onChanged, readOnly = fa
   const [searchStage, setSearchStage] = useState('live');
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState('');
+  const [pipeline, setPipeline] = useState(null);
 
   const reload = useCallback(async () => {
-    const [st, g, c] = await Promise.all([
+    const [st, g, c, pipe] = await Promise.all([
       api.getTransformStatus(clusterId),
       api.getTransformGoldenGrouped(clusterId),
       api.getTransformChunksGrouped(clusterId),
+      api.getPipelineStatus(clusterId).catch(() => null),
     ]);
     setStatus(st);
     setGoldenGrouped(g);
     setChunksGrouped(c);
+    setPipeline(pipe);
     onChanged?.();
   }, [clusterId, onChanged]);
 
   useEffect(() => { reload().catch(() => {}); }, [reload]);
+
+  useEffect(() => {
+    if (!pipeline?.job || pipeline.job.status !== 'running') return undefined;
+    const t = setInterval(() => {
+      api.getPipelineStatus(clusterId).then(setPipeline).catch(() => {});
+    }, 3000);
+    return () => clearInterval(t);
+  }, [clusterId, pipeline?.job?.status]);
 
   const runStage = async (stage) => {
     setBusy(true);
@@ -79,6 +90,18 @@ export default function TransformInspector({ clusterId, onChanged, readOnly = fa
         <span>Chunks <strong>{status?.chunks?.count ?? 0}</strong></span>
         <span>Index <strong>{status?.index?.live?.chunkCount ?? status?.index?.draft?.chunkCount ?? 0}</strong></span>
       </div>
+
+      {pipeline?.job?.status === 'running' && (
+        <p className="row-sub pipeline-banner" data-testid="pipeline-job-banner" style={{ marginBottom: 8 }}>
+          Transform in progress — {pipeline.job.phase} ({pipeline.job.percent ?? 0}%)
+          {pipeline.job.total ? ` · ${pipeline.job.done ?? 0}/${pipeline.job.total}` : ''}
+        </p>
+      )}
+      {pipeline?.stale?.stale && pipeline?.job?.status !== 'running' && (
+        <p className="row-sub pipeline-stale-banner" data-testid="pipeline-stale-banner" style={{ marginBottom: 8, color: 'var(--warn, #c90)' }}>
+          Index may be stale: {pipeline.stale.pendingWarehouseItems} file(s) changed — run transform before testing the agent.
+        </p>
+      )}
 
       {readOnly && (
         <p className="row-sub" style={{ marginBottom: 8 }}>

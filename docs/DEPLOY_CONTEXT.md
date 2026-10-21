@@ -91,5 +91,7 @@ npm run test:prod:gate
 
 - Admin build: **no** `cd ../bis-clone`; `fetch-render-seed-lfs.mjs` + `apply-render-seed.mjs` only ([`railway.toml`](../bis-mitra-admin/railway.toml)).
 - Admin env: `GROQ_API_KEY`, `LLM_PROVIDER=groq`, `CLONE_API` = clone public URL; optional `URL_BIS` / `URL_MANAK` (served via `/api/portal/config` so **Open on BIS** works even if a frontend was built without `URL_BIS`).
+- Optional hosted transform: `ENABLE_HOSTED_PIPELINE=1` (and `HOSTED_PIPELINE_MS=60000`) when background scheduler is off — auto incremental transform for stale warehouse items. See [USER_EVAL_PLAN.md](USER_EVAL_PLAN.md).
+- `REND_CLONE_FILES` / `CLONE_FILES_URL` must end with `/files`, not `/files/pdfs`.
 - Vercel: `REND_ADMIN_API`, `REND_CLONE_API`, `REND_CLONE_FILES`, `URL_BIS`, `URL_MANAK` — redeploy all five frontends after URL changes.
 - Publish an **indexed** cluster (e.g. `proof-actions-sandbox`), not an empty `test` cluster, for helmet compliance cards and clean answers.

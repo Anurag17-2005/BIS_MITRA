@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as api from './api';
 import { PERSONAS, QUICK_BY_PERSONA, getPersona, profileFor } from './personas';
 import { ALERTS_BY_PERSONA, APPLICATIONS, DOCUMENTS_BY_PERSONA, MANAK_APPLICATIONS_URL, SERVICES, modeFromResponse } from './demoData';
-import { sourceToPdfUrl } from './api';
+import { resolvePdfOpenUrl } from './api';
 import { applyPortalConfig } from './portalUrls';
 import { RichText } from './markdown';
 import { groupSources, hasPdfFile, openOnBisUrl } from './sources';
@@ -387,7 +387,7 @@ export default function PortalApp({
       sourceUrl: group.sourceUrl || passage?.source?.sourceUrl || passage?.source?.source_reference,
       bisUrl: group.bisUrl || passage?.source?.bisUrl,
     };
-    const url = sourceToPdfUrl(source);
+    const url = resolvePdfOpenUrl(source);
     const bisUrl = openOnBisUrl(source);
 
     if (!url || !hasPdfFile(source)) {

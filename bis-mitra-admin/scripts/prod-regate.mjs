@@ -39,7 +39,7 @@ async function main() {
   console.log(`\n=== playwright prod (quick) ===`);
   const pw = spawnSync(
     'npm',
-    ['run', 'test:e2e:prod', '--', 'portal-chrome.spec.js', 'proof-actions-quick.spec.js'],
+    ['run', 'test:e2e:prod', '--', 'portal-chrome.spec.js', 'proof-actions-quick.spec.js', 'knowledge-smoke.spec.js'],
     {
       cwd: userRoot,
       stdio: 'inherit',

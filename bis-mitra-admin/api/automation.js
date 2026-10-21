@@ -6,6 +6,13 @@ import {
   runIncrementalTransform,
   promoteIndexToLive,
 } from './transformation/service.js';
+import { listChangedWarehouseItems } from './transformation/pipeline/run-incremental.js';
+import {
+  startPipelineJob,
+  updatePipelineJob,
+  finishPipelineJob,
+  getActivePipelineJob,
+} from './pipeline-status.js';
 
 const MAX_EVENTS = 80;
 const DOMAINS = ['news', 'standards', 'manuals', 'fees', 'process', 'schemes', 'hallmarking', 'labs', 'consumer'];
@@ -322,6 +329,16 @@ export async function runPostIngestTransform(store, clusterId, warehouseItemIds 
   const cfg = { ...defaultAutomationConfig(), ...(store.automation || {}) };
   if (!cfg.autoTransform) return null;
 
+  if (getActivePipelineJob(clusterId)) {
+    console.warn(`[transform] skip ${clusterId}: pipeline already running`);
+    return null;
+  }
+
+  const pendingIds = warehouseItemIds.length
+    ? warehouseItemIds
+    : listChangedWarehouseItems(clusterId, store);
+  const total = pendingIds.length || 1;
+
   appendAutomationEvent(store, {
     type: 'transform_queued',
     kind: 'sync',
@@ -330,10 +347,15 @@ export async function runPostIngestTransform(store, clusterId, warehouseItemIds 
     trigger: reason,
   });
 
+  startPipelineJob(clusterId, { total, phase: 'golden', reason });
+
   try {
+    updatePipelineJob(clusterId, { phase: 'golden', total: pendingIds.length || total });
     const transform = await runIncrementalTransform(clusterId, {
       warehouseItemIds: warehouseItemIds.length ? warehouseItemIds : undefined,
+      onProgress: (patch) => updatePipelineJob(clusterId, patch),
     });
+    updatePipelineJob(clusterId, { phase: 'index', done: total });
     appendAutomationEvent(store, {
       type: 'transform',
       kind: 'sync',
@@ -347,11 +369,14 @@ export async function runPostIngestTransform(store, clusterId, warehouseItemIds 
 
     const cluster = store.clusters.find(c => c.id === clusterId);
     if (cfg.promoteOnPublished && cluster?.published) {
+      updatePipelineJob(clusterId, { phase: 'promote' });
       promoteIndexToLive(clusterId);
       appendAutomationEvent(store, { type: 'promote', kind: 'sync', clusterId, trigger: reason });
     }
+    finishPipelineJob(clusterId, { status: 'ok' });
     return transform;
   } catch (err) {
+    finishPipelineJob(clusterId, { status: 'error', error: err.message });
     appendAutomationEvent(store, {
       type: 'transform_error',
       kind: 'sync',

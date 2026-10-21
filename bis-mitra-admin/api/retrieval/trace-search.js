@@ -9,6 +9,7 @@ import { resolveClusterId } from './search-knowledge.js';
 import { PATHS } from '../core/config/paths.js';
 import { SCORE_POLICY } from './score-policy.js';
 import { readJsonFile, readJsonFileSafe } from '../core/read-json-file.js';
+import { searchGoldenHostedFallback } from './hosted-golden-search.js';
 
 const CHUNKS_ROOT = process.env.TRANSFORM_DATA_PATH || PATHS.dataRoot;
 const SKIP_FULL_CHUNK_HYDRATE = Boolean(process.env.RAILWAY_ENVIRONMENT)
@@ -167,17 +168,32 @@ export function searchIndexTraced(clusterId, query, {
       const { size } = fs.statSync(indexPath);
       if (size > maxBytes) {
         const msg = `Hosted RAM budget: skip in-memory index (${Math.round(size / (1024 * 1024))}MB)`;
-        console.warn(`[trace-search] ${msg}`);
+        console.warn(`[trace-search] ${msg} — using golden scan fallback`);
+        const fallback = searchGoldenHostedFallback(resolved, query, { topK });
+        const candidates = fallback.hits.map(h => toHit(h, { combined: h.score, lexical: h.score }, fallback.method));
         return {
           clusterId: resolved,
           stage: searchStage,
-          expanded,
-          lexical: { status: 'skipped', method: LEXICAL_METHOD, candidates: [], count: 0, message: msg },
-          dense: { status: 'skipped', method: DENSE_METHOD, candidates: [], count: 0, message: msg },
-          combined: { status: 'skipped', method: HYBRID_METHOD, candidates: [], count: 0, message: msg },
+          expanded: fallback.expanded || expanded,
+          lexical: {
+            status: 'used',
+            method: fallback.method,
+            candidates,
+            count: candidates.length,
+            message: fallback.message,
+          },
+          dense: { status: 'not_used', method: DENSE_METHOD, candidates: [], count: 0, message: msg },
+          combined: {
+            status: 'used',
+            method: 'hosted_golden_fallback',
+            candidates,
+            count: candidates.length,
+            message: fallback.message,
+          },
           hybrid: false,
-          indexModel: null,
+          indexModel: 'hosted-golden-scan',
           hostedIndexSkipped: true,
+          hostedFallback: true,
         };
       }
     } catch {
